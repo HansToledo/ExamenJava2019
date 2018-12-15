@@ -7,5 +7,7 @@ package model;
  * Time: 11:58<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Zeilboot {
+public class Zeilboot extends Actor implements ISchip {
+
+
 }

@@ -7,5 +7,6 @@ package model;
  * Time: 11:56<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Motorboot implements ISchip {
+public class Motorboot extends Actor implements ISchip,IHulpdienst {
+
 }

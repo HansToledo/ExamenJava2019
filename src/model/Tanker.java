@@ -7,5 +7,5 @@ package model;
  * Time: 11:58<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Tanker {
+public class Tanker extends Actor implements ISchip,IHulpdienst {
 }

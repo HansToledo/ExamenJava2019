@@ -9,5 +9,5 @@ public enum Actors {
 
     VERKEERSTOREN,
     SCHIP,
-    HULPVERLENERS
+    HULPDIENST
 }

@@ -9,6 +9,6 @@ package model;
  * Time: 11:38<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Verkeerstoren {
+public class Verkeerstoren extends Actor implements IHulpdienst,ISubject{
 
 }

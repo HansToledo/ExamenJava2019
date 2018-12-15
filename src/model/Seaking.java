@@ -7,5 +7,5 @@ package model;
  * Time: 12:05<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Seaking {
+public class Seaking extends Actor implements IHulpdienst {
 }
