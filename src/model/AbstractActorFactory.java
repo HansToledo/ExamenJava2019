@@ -9,8 +9,8 @@ package model;
  */
 public abstract class AbstractActorFactory {
 
-    abstract Verkeerstoren getVerkeersToren(String verkeersToren);
-    abstract IHulpdienst getHulpDienst(Hulpdiensten hulpdienst);
-    abstract ISchip getSchip(Schepen schip);
+    public abstract Verkeerstoren getVerkeersToren(String verkeersToren);
+    public abstract IHulpdienst getHulpDienst(Hulpdiensten hulpdienst);
+    public abstract ISchip getSchip(Schepen schip);
 
 }

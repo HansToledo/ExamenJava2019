@@ -9,17 +9,17 @@ package model;
  */
 public class VerkeersTorenFactory extends AbstractActorFactory {
     @Override
-    Verkeerstoren getVerkeersToren(String verkeersToren) {
+    public Verkeerstoren getVerkeersToren(String verkeersToren) {
         return new Verkeerstoren();
     }
 
     @Override
-    IHulpdienst getHulpDienst(Hulpdiensten hulpdienst) {
+    public IHulpdienst getHulpDienst(Hulpdiensten hulpdienst) {
         return null;
     }
 
     @Override
-    ISchip getSchip(Schepen schip) {
+    public ISchip getSchip(Schepen schip) {
         return null;
     }
 

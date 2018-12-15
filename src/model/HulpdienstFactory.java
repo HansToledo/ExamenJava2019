@@ -9,12 +9,12 @@ package model;
  */
 public class HulpdienstFactory extends AbstractActorFactory {
     @Override
-    Verkeerstoren getVerkeersToren(String verkeersToren) {
+    public Verkeerstoren getVerkeersToren(String verkeersToren) {
         return null;
     }
 
     @Override
-    IHulpdienst getHulpDienst(Hulpdiensten hulpdienst) {
+    public IHulpdienst getHulpDienst(Hulpdiensten hulpdienst) {
 
         switch (hulpdienst) {
 
@@ -22,14 +22,13 @@ public class HulpdienstFactory extends AbstractActorFactory {
                 return new ScheepsvaartPolitie();
             case SEAKING:
                 return new Seaking();
-
         }
 
         return null;
     }
 
     @Override
-    ISchip getSchip(Schepen schip) {
+    public ISchip getSchip(Schepen schip) {
         return null;
     }
 
