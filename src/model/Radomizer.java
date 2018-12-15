@@ -7,5 +7,5 @@ package model;
  * Time: 13:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Ramdonizer {
+public class Radomizer {
 }
