@@ -1,5 +1,12 @@
 package database;
 
+/**
+ * @Autor: Hans Van De Weyer
+ * @Date: 15/12/2018
+ * @Project: Examen Januari 2019
+ * @Purpose: Opzetten van de verbinding met de database d.m.v. Singleton Pattern en properties file.
+ */
+
 import com.mysql.jdbc.Connection;
 import java.io.InputStream;
 import java.io.FileInputStream;
