@@ -9,4 +9,14 @@ package model;
  */
 public class Motorboot extends Actor implements ISchip,IHulpdienst {
 
+
+    @Override
+    public Coördinaten getLocatie() {
+        return null;
+    }
+
+    @Override
+    public String verkeersTorenId() {
+        return null;
+    }
 }

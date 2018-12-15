@@ -11,4 +11,14 @@ package model;
  */
 public class Verkeerstoren extends Actor implements IHulpdienst,ISubject{
 
+
+    @Override
+    public Coördinaten getLocatie() {
+        return null;
+    }
+
+    @Override
+    public String verkeersTorenId() { //niet ok
+        return null;
+    }
 }

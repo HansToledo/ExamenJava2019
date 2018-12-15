@@ -8,4 +8,14 @@ package model;
  * To change this template use File | Settings | File Templates.
  */
 public class ContainerSchip extends Actor implements ISchip,IHulpdienst{
+
+    @Override
+    public Coördinaten getLocatie() {
+        return null;
+    }
+
+    @Override
+    public String verkeersTorenId() {
+        return null;
+    }
 }

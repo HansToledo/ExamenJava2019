@@ -9,6 +9,8 @@ package model;
  */
 public interface IHulpdienst {
 
+    //ID verbinding verkeerstoren
 
+    public String verkeersTorenId();
 
 }

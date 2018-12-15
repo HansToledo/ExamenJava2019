@@ -10,4 +10,8 @@ package model;
 public class Zeilboot extends Actor implements ISchip {
 
 
+    @Override
+    public Coördinaten getLocatie() {
+        return null;
+    }
 }

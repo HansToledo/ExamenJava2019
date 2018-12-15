@@ -28,7 +28,7 @@ public abstract class Actor {
         //Latitude = breedte
         //Longitude = lengte
         double afstand = 0;
-        try{ ;
+        try{
             double Radius = 6371; // radius van de aarde is 6371km
             double LatX = Math.toRadians(breedteX);
             double LatY = Math.toRadians(breedteY);
