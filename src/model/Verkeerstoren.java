@@ -11,6 +11,4 @@ package model;
  */
 public class Verkeerstoren extends Actor implements IHulpdienst,ISubject{
 
-
-
 }

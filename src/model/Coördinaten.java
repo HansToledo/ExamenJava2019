@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * @Autor: Mathy Paesen
+ * @Date: 15/12/2018
+ * @Project: Examen Januari 2019
+ * @Purpose: Gegeven.
+ */
+
 public class Coördinaten  {
 
     private double breedte;

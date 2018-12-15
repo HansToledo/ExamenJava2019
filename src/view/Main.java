@@ -1,5 +1,6 @@
 package view;
 
+import com.mysql.jdbc.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,8 +24,9 @@ public class Main extends Application {
         launch(args);
     }
 
-    //deze code als test, best via randomizer classe
+    Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
+    //deze code als test, best via randomizer classe
     AbstractActorFactory testHulpdienst = FactoryProducer.getFactory(Actors.HULPDIENST);
     IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
 
