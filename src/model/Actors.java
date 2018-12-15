@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>

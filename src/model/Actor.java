@@ -71,4 +71,18 @@ public abstract class Actor {
     public void setKoers(int koers) {
         this.koers = koers;
     }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "locatie=" + locatie +
+                ", afstand=" + afstand +
+                ", snelheid=" + snelheid +
+                ", reactieTijd=" + reactieTijd +
+                ", wendbaarheid=" + wendbaarheid +
+                ", grootte=" + grootte +
+                ", capaciteit=" + capaciteit +
+                ", koers=" + koers +
+                '}';
+    }
 }
