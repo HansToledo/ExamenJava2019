@@ -11,7 +11,7 @@ import java.util.ListIterator;
  * Time: 11:58<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Tanker extends Actor implements ISchip,IHulpdienst,IStatusSubject {
+public class Tanker extends Actor implements ISchip,IHulpdienst,IStatusSubject,INoodObserver {
 
     @Override
     public Coördinaten getLocatie() {
