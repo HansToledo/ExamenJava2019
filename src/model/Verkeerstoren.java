@@ -18,6 +18,9 @@ public class Verkeerstoren extends Actor implements IHulpdienst, INoodSubject,IS
     }
 
     @Override
+    public double getAfstand(){ return 0;};
+
+    @Override
     public double getSnelheid() {
         return 0;
     }

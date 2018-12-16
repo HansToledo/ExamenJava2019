@@ -20,6 +20,9 @@ public class Zeilboot extends Actor implements ISchip,IStatusSubject,INoodObserv
     }
 
     @Override
+    public double getAfstand(){ return 0;};
+
+    @Override
     public double getSnelheid() {
         return 0;
     }

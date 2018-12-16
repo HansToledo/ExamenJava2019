@@ -16,6 +16,9 @@ public class Seaking extends Actor implements IHulpdienst,INoodObserver {
     }
 
     @Override
+    public double getAfstand(){ return 0;};
+
+    @Override
     public double getSnelheid() {
         return 0;
     }

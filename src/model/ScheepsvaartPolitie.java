@@ -15,6 +15,9 @@ package model;
         return null;
     }
 
+   @Override
+   public double getAfstand(){ return 0;};
+
     @Override
     public double getSnelheid() {
         return 0;
