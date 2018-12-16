@@ -19,6 +19,11 @@ public class Zeilboot extends Actor implements ISchip,IStatusSubject,INoodObserv
         return null;
     }
 
+    @Override
+    public void test(){
+        System.out.println("Ik ben een zeilboot.");
+    }
+
 
     //region StatusObserver
     private List<Verkeerstoren> verkeerstorens;

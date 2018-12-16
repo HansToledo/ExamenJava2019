@@ -2,6 +2,7 @@ package model;
 
 import enums.Actors;
 import enums.Hulpdiensten;
+import enums.Schepen;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -23,9 +24,14 @@ public void test() {
     Coördinaten cotest = new Coördinaten();
     double ct = cotest.getRandomBreedte();
 
-
     hulpdienst.test();
     hulpdienst2.test();
+    System.out.println(ct);
 
-}
+
+    AbstractActorFactory testSchip = FactoryProducer.getFactory(Actors.SCHIP);
+    ISchip schip1 = testSchip.getSchip(Schepen.CONTAINERSCHIP);
+    schip1.test();
+
+    }
 }
