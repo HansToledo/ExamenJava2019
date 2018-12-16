@@ -1,5 +1,7 @@
 package model;
 
+import enums.Actors;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>

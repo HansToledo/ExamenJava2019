@@ -1,5 +1,8 @@
 package model;
 
+import enums.Hulpdiensten;
+import enums.Schepen;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>

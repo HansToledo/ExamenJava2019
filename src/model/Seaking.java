@@ -17,7 +17,7 @@ public class Seaking extends Actor implements IHulpdienst {
 
 
     @Override
-    public String verkeersTorenId() {
-        return "test";
+    public void test() {
+
     }
 }

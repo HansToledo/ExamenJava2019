@@ -15,7 +15,7 @@ public class Tanker extends Actor implements ISchip,IHulpdienst {
     }
 
     @Override
-    public String verkeersTorenId() {
-        return null;
+    public void test() {
+
     }
 }

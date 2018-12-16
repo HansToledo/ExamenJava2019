@@ -1,6 +1,8 @@
 package view;
 
 import com.mysql.jdbc.Connection;
+import enums.Actors;
+import enums.Hulpdiensten;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,14 +23,23 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
         launch(args);
+
+        AbstractActorFactory testHulpdienst = FactoryProducer.getFactory(Actors.HULPDIENST);
+        IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+        hulpdienst.test();
+
+        Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
+
     }
 
-    Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
-    //deze code als test, best via randomizer classe
-    AbstractActorFactory testHulpdienst = FactoryProducer.getFactory(Actors.HULPDIENST);
-    IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+
+
 
 
 }
+
+
+

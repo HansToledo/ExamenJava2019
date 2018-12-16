@@ -33,7 +33,7 @@ public abstract class Actor {
             double LatX = Math.toRadians(breedteX);
             double LatY = Math.toRadians(breedteY);
             double differenceLat = Math.toRadians(breedteX-breedteY);
-            double differenceLon = Math.toRadians(lengteX-lengteX);
+            double differenceLon = Math.toRadians(lengteX-lengteY);
 
             double a = Math.sin(differenceLat/2) * Math.sin(differenceLat/2) + Math.cos(LatY) * Math.cos(LatX) * Math.sin(differenceLon/2) * Math.sin(differenceLon/2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));

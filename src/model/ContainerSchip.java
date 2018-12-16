@@ -14,8 +14,9 @@ public class ContainerSchip extends Actor implements ISchip,IHulpdienst{
         return null;
     }
 
+
     @Override
-    public String verkeersTorenId() {
-        return null;
+    public void test() {
+
     }
 }

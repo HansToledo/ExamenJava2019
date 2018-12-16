@@ -17,8 +17,9 @@ public class Verkeerstoren extends Actor implements IHulpdienst,ISubject{
         return null;
     }
 
+
     @Override
-    public String verkeersTorenId() { //niet ok
-        return null;
+    public void test() {
+
     }
 }
