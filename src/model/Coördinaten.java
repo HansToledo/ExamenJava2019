@@ -12,19 +12,32 @@ public class Coördinaten  {
     private double breedte;
     private double lengte;
 
-
     public Coördinaten(double breedte, double lengte){
+
+        this.breedte = breedte;
+        this.lengte = lengte;
+
+    }
+
+    public double getRandomBreedte(){
+
+        return 0.0;
+    }
+
+    public double getRandomLengte(){
+
+        return 0.0;
 
     }
 
     public double getBreedte(){
 
-        return 0.0;
+        return this.breedte;
     }
 
     public double getLengte(){
 
-        return 0.0;
+        return this.lengte;
     }
 
 
