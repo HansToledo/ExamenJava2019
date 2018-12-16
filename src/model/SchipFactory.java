@@ -10,7 +10,7 @@ import enums.Schepen;
  * Time: 13:29<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class SchipFactory extends AbstractActorFactory {
+public class SchipFactory extends AbstractActorFactory{
     @Override
     public Verkeerstoren getVerkeersToren(String verkeersToren) {
         return null;
@@ -39,6 +39,4 @@ public class SchipFactory extends AbstractActorFactory {
 
         return null;
     }
-
-
 }

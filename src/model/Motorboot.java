@@ -7,7 +7,7 @@ package model;
  * Time: 11:56<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Motorboot extends Actor implements ISchip,IHulpdienst {
+public class Motorboot extends Actor implements ISchip,IHulpdienst,IStatusSubject {
 
 
     @Override
@@ -20,4 +20,18 @@ public class Motorboot extends Actor implements ISchip,IHulpdienst {
     public void test() {
 
     }
+
+    //region StatusObserver
+    public void notifyObservers(){
+        //Naar alle observers een statusupdate versturen.
+    }
+    public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
+        //lijst met observers wordt aangepast door toevoegen van observer.
+    }
+    public void removeVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
+        //lijst met observers wordt aangepast door verwijderen van observer.
+    }
+    //endregion
+
+
 }

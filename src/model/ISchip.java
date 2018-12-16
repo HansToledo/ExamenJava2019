@@ -9,6 +9,4 @@ package model;
  */
 public interface ISchip {
 
-
-
 }
