@@ -24,6 +24,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
+        test test = new test();
+        test.test();
         Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
         launch(args);

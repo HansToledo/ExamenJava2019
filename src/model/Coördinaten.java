@@ -12,6 +12,11 @@ public class Coördinaten  {
     private double breedte;
     private double lengte;
 
+    public Coördinaten(){
+
+
+    }
+
     public Coördinaten(double breedte, double lengte){
 
         this.breedte = breedte;
@@ -21,13 +26,12 @@ public class Coördinaten  {
 
     public double getRandomBreedte(){
 
-        return 0.0;
+        return  (-180.0 + Math.random() * 180.0);
     }
 
     public double getRandomLengte(){
 
-        return 0.0;
-
+        return  (-90.0 + Math.random() * 90.0);
     }
 
     public double getBreedte(){

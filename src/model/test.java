@@ -20,6 +20,9 @@ public void test() {
     IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
     IHulpdienst hulpdienst2 = testHulpdienst.getHulpDienst(Hulpdiensten.SEAKING);
 
+    Coördinaten cotest = new Coördinaten();
+    double ct = cotest.getRandomBreedte();
+
 
     hulpdienst.test();
     hulpdienst2.test();

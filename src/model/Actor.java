@@ -39,6 +39,7 @@ public abstract class Actor {
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
             afstand = (Radius * c) / 1.852; //uitgedruk in zeemijl dus / 1.852km
+
         } catch(Exception e){
             e.printStackTrace();
         }
