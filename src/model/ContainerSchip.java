@@ -77,13 +77,15 @@ public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusS
 
     @Override
     public void test() {
-
+        System.out.println("Ik ben een containerschip.");
     }
 
 
     //region StatusObserver
     private List<Verkeerstoren> verkeerstorens;
     private LinkedList<ISchip> status;
+
+
 
     public void notifyVerkeerstorenObservers(){                                             //Naar alle observers een statusupdate versturen.
         ListIterator list = verkeerstorens.listIterator();

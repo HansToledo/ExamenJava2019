@@ -75,7 +75,7 @@ public class Tanker extends Actor implements ISchip,IHulpdienst,IStatusSubject,I
 
     @Override
     public void test() {
-
+        System.out.println("Ik ben een tanker.");
     }
 
 

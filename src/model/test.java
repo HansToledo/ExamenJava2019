@@ -2,6 +2,7 @@ package model;
 
 import enums.Actors;
 import enums.Hulpdiensten;
+import enums.Schepen;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -21,11 +22,17 @@ public void test() {
     IHulpdienst hulpdienst2 = testHulpdienst.getHulpDienst(Hulpdiensten.SEAKING);
 
     Coördinaten cotest = new Coördinaten();
-    double ct = cotest.getRandomBreedte();
-
+    double ctb = cotest.getRandomBreedte();
+    double ctl = cotest.getRandomLengte();
 
     hulpdienst.test();
     hulpdienst2.test();
+    System.out.println("Latitude:" + ctb + "  " + "Longitude:" + ctl);
 
-}
+
+    AbstractActorFactory testSchip = FactoryProducer.getFactory(Actors.SCHIP);
+    ISchip schip1 = testSchip.getSchip(Schepen.CONTAINERSCHIP);
+    schip1.test();
+
+    }
 }

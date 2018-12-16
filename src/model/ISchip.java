@@ -8,5 +8,5 @@ package model;
  * To change this template use File | Settings | File Templates.
  */
 public interface ISchip {
-
+    public void test();
 }

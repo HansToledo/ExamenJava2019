@@ -78,7 +78,7 @@ public class Motorboot extends Actor implements ISchip,IHulpdienst,IStatusSubjec
 
     @Override
     public void test() {
-
+        System.out.println("Ik ben een motorboot.");
     }
 
     //region StatusObserver
