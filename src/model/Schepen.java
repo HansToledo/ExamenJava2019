@@ -1,5 +1,7 @@
 package model;
 
+import states.ISchipState;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -7,7 +9,7 @@ package model;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Schepen extends Vaartuigen implements IStatusSubject {
+public class Schepen extends Vaartuigen implements IStatusSubject, ISchipState {
 
 
     @Override
