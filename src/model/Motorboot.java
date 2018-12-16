@@ -11,7 +11,7 @@ import java.util.ListIterator;
  * Time: 11:56<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Motorboot extends Actor implements ISchip,IHulpdienst,IStatusSubject,INoodObserver {
+public class Motorboot extends Vaartuigen implements ISchip,IStatusSubject {
 
 
     @Override

@@ -7,7 +7,7 @@ package model;
  * Time: 12:04<br/>
  * To change this template use File | Settings | File Templates.
  */
- public class ScheepsvaartPolitie extends Actor implements IHulpdienst,INoodObserver {
+ public class ScheepsvaartPolitie extends Vaartuigen  {
 
 
    @Override
