@@ -8,4 +8,7 @@ package model;
  * To change this template use File | Settings | File Templates.
  */
 public interface ISubject {
+    public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver);
+    public void removeVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver);
+    public void notifyObservers();
 }
