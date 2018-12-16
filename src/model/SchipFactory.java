@@ -12,7 +12,7 @@ import enums.Schepen;
  */
 public class SchipFactory extends AbstractActorFactory{
     @Override
-    public Verkeerstoren getVerkeersToren(String verkeersToren) {
+    public Actor getVerkeersToren(String verkeersToren) {
         return null;
     }
 

@@ -15,16 +15,12 @@ public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusS
 
 
     @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
-    @Override
     public double getAfstand(){ return 0;};
 
     @Override
-    public double getSnelheid() {
-        return 0;
+    public double getSnelheid() { // snelheid in knopen containerschip
+
+        return (1 + Math.random() * 30);
     }
 
     @Override
@@ -75,12 +71,6 @@ public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusS
     @Override
     public void setKoers(int koers) {
 
-    }
-
-
-    @Override
-    public void test() {
-        System.out.println("Ik ben een containerschip.");
     }
 
 

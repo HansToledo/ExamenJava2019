@@ -14,11 +14,6 @@ import java.util.ListIterator;
 public class Tanker extends Actor implements ISchip,IHulpdienst,IStatusSubject,INoodObserver {
 
     @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
-    @Override
     public double getAfstand(){ return 0;};
 
     @Override
@@ -74,11 +69,6 @@ public class Tanker extends Actor implements ISchip,IHulpdienst,IStatusSubject,I
     @Override
     public void setKoers(int koers) {
 
-    }
-
-    @Override
-    public void test() {
-        System.out.println("Ik ben een tanker.");
     }
 
 

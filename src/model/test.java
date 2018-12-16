@@ -19,20 +19,25 @@ public void test() {
 
      AbstractActorFactory testschip = FactoryProducer.getFactory(Actors.SCHIP);
      Actor schip = testschip.getSchip(Schepen.CONTAINERSCHIP);
-     int test = schip.getKoers(); // return van 10
+//     int test = schip.getKoers(); // return van 10
+
+     Coördinaten test2 = schip.getLocatie();
+     double breedte = test2.getBreedte();
+     double lengte = test2.getLengte();
 
 
     AbstractActorFactory testVerkeerstoren = FactoryProducer.getFactory(Actors.VERKEERSTOREN);
-    Actor verkeerstoren = testVerkeerstoren.getVerkeersToren("Test");
+    Actor verkeerstoren = testVerkeerstoren.getVerkeersToren("test");
 
 
 
-    Coördinaten cotest = new Coördinaten();
-    double ctb = cotest.getRandomBreedte();
-    double ctl = cotest.getRandomLengte();
 
-
-    System.out.println("Latitude:" + ctb + "  " + "Longitude:" + ctl);
+//    Coördinaten cotest = new Coördinaten();
+//    double ctb = cotest.getRandomBreedte();
+//    double ctl = cotest.getRandomLengte();
+//
+//
+//    System.out.println("Latitude:" + ctb + "  " + "Longitude:" + ctl);
 
 
     }

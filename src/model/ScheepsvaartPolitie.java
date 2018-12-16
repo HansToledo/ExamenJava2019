@@ -10,11 +10,6 @@ package model;
  public class ScheepsvaartPolitie extends Actor implements IHulpdienst,INoodObserver {
 
 
-    @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
    @Override
    public double getAfstand(){ return 0;};
 
@@ -73,8 +68,5 @@ package model;
 
     }
 
-    @Override
-    public void test() {
-        System.out.println("test scheepsvaartpolitie ok");
-    }
+
 }

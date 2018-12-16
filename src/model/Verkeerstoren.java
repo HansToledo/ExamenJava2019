@@ -13,11 +13,6 @@ public class Verkeerstoren extends Actor implements IHulpdienst, INoodSubject,IS
 
 
     @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
-    @Override
     public double getAfstand(){ return 0;};
 
     @Override
@@ -76,10 +71,7 @@ public class Verkeerstoren extends Actor implements IHulpdienst, INoodSubject,IS
     }
 
 
-    @Override
-    public void test() {
 
-    }
 
 
     //region StatusObserver

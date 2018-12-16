@@ -11,8 +11,9 @@ import enums.Schepen;
  * To change this template use File | Settings | File Templates.
  */
 public class VerkeersTorenFactory extends AbstractActorFactory {
+
     @Override
-    public Verkeerstoren getVerkeersToren(String verkeersToren) {
+    public Actor getVerkeersToren(String verkeersToren) {
         return new Verkeerstoren();
     }
 

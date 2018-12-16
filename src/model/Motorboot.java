@@ -14,12 +14,6 @@ import java.util.ListIterator;
 public class Motorboot extends Actor implements ISchip,IHulpdienst,IStatusSubject,INoodObserver {
 
 
-
-    @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
     @Override
     public double getAfstand(){ return 0;};
 
@@ -78,11 +72,6 @@ public class Motorboot extends Actor implements ISchip,IHulpdienst,IStatusSubjec
 
     }
 
-
-    @Override
-    public void test() {
-        System.out.println("Ik ben een motorboot.");
-    }
 
     //region StatusObserver
     private List<Verkeerstoren> verkeerstorens;

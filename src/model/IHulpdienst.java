@@ -9,8 +9,26 @@ package model;
  */
 public interface IHulpdienst {
 
-    //test functie
+  public abstract double getSnelheid();
 
-  public void test();
+  public abstract double getReactieTijd();
+
+  public abstract double getWendbaarheid();
+
+  public abstract double getGrootte();
+
+  public abstract double getCapaciteit();
+
+  public abstract int getKoers();
+
+  public abstract void setLocatie(Coördinaten locatie);
+
+  public abstract void setSnelheid(double snelheid);
+
+  public abstract void setGrootte(double grootte);
+
+  public abstract void setCapaciteit(double capaciteit);
+
+  public abstract void setKoers(int koers);
 
 }

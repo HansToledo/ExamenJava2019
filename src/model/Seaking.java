@@ -11,11 +11,6 @@ public class Seaking extends Actor implements IHulpdienst,INoodObserver {
 
 
     @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
-    @Override
     public double getAfstand(){ return 0;};
 
     @Override
@@ -74,10 +69,5 @@ public class Seaking extends Actor implements IHulpdienst,INoodObserver {
     }
 
 
-    @Override
-    public void test() {
 
-        System.out.println("test seaking ok");
-
-    }
 }

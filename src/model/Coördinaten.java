@@ -14,6 +14,9 @@ public class Coördinaten  {
 
     public Coördinaten(){
 
+        this.breedte = getRandomBreedte();
+        this.lengte = getRandomLengte();
+
     }
 
     public Coördinaten(double breedte, double lengte){
@@ -23,14 +26,14 @@ public class Coördinaten  {
 
     }
 
-    public double getRandomBreedte(){
-
-        return  (-180.0 + Math.random() * 180.0);
-    }
-
-    public double getRandomLengte(){
+    private double getRandomBreedte(){
 
         return  (-90.0 + Math.random() * 90.0);
+    }
+
+    private double getRandomLengte(){
+
+        return  (-180.0 + Math.random() * 180.0);
     }
 
     public double getBreedte(){
@@ -41,28 +44,6 @@ public class Coördinaten  {
     public double getLengte(){
 
         return this.lengte;
-    }
-
-    public double GPSDistance(double breedteX, double lengteX, double breedteY, double lengteY) {
-        //Latitude = breedte
-        //Longitude = lengte
-        double afstand = 0;
-        try {
-            double Radius = 6371; // radius van de aarde is 6371km
-            double LatX = Math.toRadians(breedteX);
-            double LatY = Math.toRadians(breedteY);
-            double differenceLat = Math.toRadians(breedteX - breedteY);
-            double differenceLon = Math.toRadians(lengteX - lengteY);
-
-            double a = Math.sin(differenceLat / 2) * Math.sin(differenceLat / 2) + Math.cos(LatY) * Math.cos(LatX) * Math.sin(differenceLon / 2) * Math.sin(differenceLon / 2);
-            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-            afstand = (Radius * c) / 1.852; //uitgedruk in zeemijl dus / 1.852km
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return afstand;
     }
 
 

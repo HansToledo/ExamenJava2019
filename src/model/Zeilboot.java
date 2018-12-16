@@ -15,11 +15,6 @@ public class Zeilboot extends Actor implements ISchip,IStatusSubject,INoodObserv
 
 
     @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
-    @Override
     public double getAfstand(){ return 0;};
 
     @Override
@@ -75,11 +70,6 @@ public class Zeilboot extends Actor implements ISchip,IStatusSubject,INoodObserv
     @Override
     public void setKoers(int koers) {
 
-    }
-
-    @Override
-    public void test(){
-        System.out.println("Ik ben een zeilboot.");
     }
 
 
