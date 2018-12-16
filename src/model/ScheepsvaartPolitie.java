@@ -7,15 +7,16 @@ package model;
  * Time: 12:04<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class ScheepsvaartPolitie extends Actor implements IHulpdienst {
+ public class ScheepsvaartPolitie extends Actor implements IHulpdienst {
+
+//    @Override
+//    public Coördinaten getLocatie() {
+//        return null;
+//    }
+
 
     @Override
-    public Coördinaten getLocatie() {
-        return null;
-    }
-
-    @Override
-    public String verkeersTorenId() {
-        return "testscheepsvaartPolitie";
+    public void test() {
+        System.out.println("test scheepsvaart");
     }
 }

@@ -15,8 +15,9 @@ public class Motorboot extends Actor implements ISchip,IHulpdienst {
         return null;
     }
 
+
     @Override
-    public String verkeersTorenId() {
-        return null;
+    public void test() {
+
     }
 }
