@@ -11,14 +11,6 @@ import com.sun.xml.internal.bind.v2.runtime.Coordinator;
  */
 public abstract class Actor  {
 
-    private Coördinaten locatie;
-    private double afstand;
-    private double snelheid;
-    private double reactieTijd;
-    private double wendbaarheid;
-    private double grootte;
-    private double capaciteit;
-    private int koers;
 
     public abstract Coördinaten getLocatie();
 
