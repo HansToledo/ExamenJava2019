@@ -22,7 +22,7 @@ public class Motorboot extends Actor implements ISchip,IHulpdienst,IStatusSubjec
     }
 
     //region StatusObserver
-    public void notifyObservers(){
+    public void notifyVerkeerstorenObservers(){
         //Naar alle observers een statusupdate versturen.
     }
     public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){

@@ -17,7 +17,7 @@ public class Zeilboot extends Actor implements ISchip,IStatusSubject {
 
 
     //region StatusObserver
-    public void notifyObservers(){
+    public void notifyVerkeerstorenObservers(){
         //Naar alle observers een statusupdate versturen.
     }
     public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
