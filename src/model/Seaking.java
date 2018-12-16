@@ -15,6 +15,61 @@ public class Seaking extends Actor implements IHulpdienst,INoodObserver {
         return null;
     }
 
+    @Override
+    public double getSnelheid() {
+        return 0;
+    }
+
+    @Override
+    public double getReactieTijd() {
+        return 0;
+    }
+
+    @Override
+    public double getWendbaarheid() {
+        return 0;
+    }
+
+    @Override
+    public double getGrootte() {
+        return 0;
+    }
+
+    @Override
+    public double getCapaciteit() {
+        return 0;
+    }
+
+    @Override
+    public int getKoers() {
+        return 0;
+    }
+
+    @Override
+    public void setLocatie(Coördinaten locatie) {
+
+    }
+
+    @Override
+    public void setSnelheid(double snelheid) {
+
+    }
+
+    @Override
+    public void setGrootte(double grootte) {
+
+    }
+
+    @Override
+    public void setCapaciteit(double capaciteit) {
+
+    }
+
+    @Override
+    public void setKoers(int koers) {
+
+    }
+
 
     @Override
     public void test() {

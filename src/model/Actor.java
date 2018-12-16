@@ -9,7 +9,7 @@ import com.sun.xml.internal.bind.v2.runtime.Coordinator;
  * Time: 11:10<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Actor {
+public abstract class Actor  {
 
     private Coördinaten locatie;
     private double afstand;
@@ -20,9 +20,8 @@ public abstract class Actor {
     private double capaciteit;
     private int koers;
 
-    public Coördinaten getLocatie() {
-        return locatie;
-    }
+    public abstract Coördinaten getLocatie();
+
 
     public double getAfstand(double breedteX, double lengteX, double breedteY, double lengteY) {
         //Latitude = breedte
@@ -46,61 +45,27 @@ public abstract class Actor {
         return afstand;
     }
 
-    public double getSnelheid() {
-        return snelheid;
-    }
+    public abstract double getSnelheid();
 
-    public double getReactieTijd() {
-        return reactieTijd;
-    }
+    public abstract double getReactieTijd();
 
-    public double getWendbaarheid() {
-        return wendbaarheid;
-    }
+    public abstract double getWendbaarheid();
 
-    public double getGrootte() {
-        return grootte;
-    }
+    public abstract double getGrootte();
 
-    public double getCapaciteit() {
-        return capaciteit;
-    }
+    public abstract double getCapaciteit();
 
-    public int getKoers() {
-        return koers;
-    }
+    public abstract int getKoers();
 
-    public void setLocatie(Coördinaten locatie) {
-        this.locatie = locatie;
-    }
+    public abstract void setLocatie(Coördinaten locatie);
 
-    public void setSnelheid(double snelheid) {
-        this.snelheid = snelheid;
-    }
+    public abstract void setSnelheid(double snelheid);
 
-    public void setGrootte(double grootte) {
-        this.grootte = grootte;
-    }
+    public abstract void setGrootte(double grootte);
 
-    public void setCapaciteit(double capaciteit) {
-        this.capaciteit = capaciteit;
-    }
+    public abstract void setCapaciteit(double capaciteit);
 
-    public void setKoers(int koers) {
-        this.koers = koers;
-    }
+    public abstract void setKoers(int koers);
 
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "locatie=" + locatie +
-                ", afstand=" + afstand +
-                ", snelheid=" + snelheid +
-                ", reactieTijd=" + reactieTijd +
-                ", wendbaarheid=" + wendbaarheid +
-                ", grootte=" + grootte +
-                ", capaciteit=" + capaciteit +
-                ", koers=" + koers +
-                '}';
-    }
+
 }
