@@ -14,7 +14,7 @@ import model.*;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/controller/sample.fxml"));
         primaryStage.setTitle("Examen2019");
         primaryStage.setScene(new Scene(root, 300, 275));
@@ -24,19 +24,12 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        launch(args);
-
-        AbstractActorFactory testHulpdienst = FactoryProducer.getFactory(Actors.HULPDIENST);
-        IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
-        hulpdienst.test();
-
         Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
+        launch(args);
+
+
     }
-
-
-
-
 
 
 }
