@@ -22,11 +22,12 @@ public void test() {
     IHulpdienst hulpdienst2 = testHulpdienst.getHulpDienst(Hulpdiensten.SEAKING);
 
     Coördinaten cotest = new Coördinaten();
-    double ct = cotest.getRandomBreedte();
+    double ctb = cotest.getRandomBreedte();
+    double ctl = cotest.getRandomLengte();
 
     hulpdienst.test();
     hulpdienst2.test();
-    System.out.println(ct);
+    System.out.println("Latitude:" + ctb + "  " + "Longitude:" + ctl);
 
 
     AbstractActorFactory testSchip = FactoryProducer.getFactory(Actors.SCHIP);
