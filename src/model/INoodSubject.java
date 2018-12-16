@@ -7,6 +7,6 @@ package model;
  * Time: 12:45<br/>
  * To change this template use File | Settings | File Templates.
  */
-public interface IObserver {
+public interface INoodSubject {
 
 }

@@ -11,7 +11,7 @@ import java.util.ListIterator;
  * Time: 11:59<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusSubject{
+public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusSubject,INoodObserver{
 
     @Override
     public Coördinaten getLocatie() {
@@ -29,7 +29,7 @@ public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusS
     private List<Verkeerstoren> verkeerstorens;
     private LinkedList<ISchip> status;
 
-    public void notifyVerkeerstorenObservers(){                                                          //Naar alle observers een statusupdate versturen.
+    public void notifyVerkeerstorenObservers(){                                             //Naar alle observers een statusupdate versturen.
         ListIterator list = verkeerstorens.listIterator();
         while(list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(status);
     }
