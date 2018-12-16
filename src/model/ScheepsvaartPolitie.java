@@ -9,14 +9,14 @@ package model;
  */
  public class ScheepsvaartPolitie extends Actor implements IHulpdienst {
 
-//    @Override
-//    public Coördinaten getLocatie() {
-//        return null;
-//    }
 
+    @Override
+    public Coördinaten getLocatie() {
+        return null;
+    }
 
     @Override
     public void test() {
-        System.out.println("test scheepsvaart");
+        System.out.println("test scheepsvaartpolitie ok");
     }
 }

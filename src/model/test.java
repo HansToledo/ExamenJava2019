@@ -11,8 +11,18 @@ import enums.Hulpdiensten;
  * To change this template use File | Settings | File Templates.
  */
 public class test {
+
+    // dit is een test classe mag weg
+
 public void test() {
+
     AbstractActorFactory testHulpdienst = FactoryProducer.getFactory(Actors.HULPDIENST);
     IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+    IHulpdienst hulpdienst2 = testHulpdienst.getHulpDienst(Hulpdiensten.SEAKING);
+
+
+    hulpdienst.test();
+    hulpdienst2.test();
+
 }
 }

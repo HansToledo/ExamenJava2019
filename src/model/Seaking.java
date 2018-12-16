@@ -19,5 +19,7 @@ public class Seaking extends Actor implements IHulpdienst {
     @Override
     public void test() {
 
+        System.out.println("test seaking ok");
+
     }
 }
