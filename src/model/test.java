@@ -22,6 +22,11 @@ public void test() {
      int test = schip.getKoers(); // return van 10
 
 
+    AbstractActorFactory testVerkeerstoren = FactoryProducer.getFactory(Actors.VERKEERSTOREN);
+    Actor verkeerstoren = testVerkeerstoren.getVerkeersToren("Test");
+
+
+
     Coördinaten cotest = new Coördinaten();
     double ctb = cotest.getRandomBreedte();
     double ctl = cotest.getRandomLengte();
