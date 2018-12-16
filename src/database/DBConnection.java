@@ -23,7 +23,7 @@ public class DBConnection {
 
     static {
         try {
-            InputStream file = new FileInputStream(new File("db.properties")) ;
+            InputStream file = new FileInputStream(new File("resources/config/db.properties")) ;
             Properties props = new Properties();
             props.load(file);
 
