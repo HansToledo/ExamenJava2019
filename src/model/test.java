@@ -17,22 +17,18 @@ public class test {
 
 public void test() {
 
-    AbstractActorFactory testHulpdienst = FactoryProducer.getFactory(Actors.HULPDIENST);
-    IHulpdienst hulpdienst = testHulpdienst.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
-    IHulpdienst hulpdienst2 = testHulpdienst.getHulpDienst(Hulpdiensten.SEAKING);
+     AbstractActorFactory testschip = FactoryProducer.getFactory(Actors.SCHIP);
+     Actor schip = testschip.getSchip(Schepen.CONTAINERSCHIP);
+     int test = schip.getKoers(); // return van 10
+
 
     Coördinaten cotest = new Coördinaten();
     double ctb = cotest.getRandomBreedte();
     double ctl = cotest.getRandomLengte();
 
-    hulpdienst.test();
-    hulpdienst2.test();
+
     System.out.println("Latitude:" + ctb + "  " + "Longitude:" + ctl);
 
-
-    AbstractActorFactory testSchip = FactoryProducer.getFactory(Actors.SCHIP);
-    ISchip schip1 = testSchip.getSchip(Schepen.CONTAINERSCHIP);
-    schip1.test();
 
     }
 }

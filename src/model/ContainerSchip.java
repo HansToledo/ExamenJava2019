@@ -46,7 +46,7 @@ public class ContainerSchip extends Actor implements ISchip,IHulpdienst,IStatusS
 
     @Override
     public int getKoers() {
-        return 0;
+        return 10;
     }
 
     @Override

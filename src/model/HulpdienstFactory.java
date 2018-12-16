@@ -17,7 +17,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
     }
 
     @Override
-    public IHulpdienst getHulpDienst(Hulpdiensten hulpdienst) {
+    public Actor getHulpDienst(Hulpdiensten hulpdienst) {
 
         switch (hulpdienst) {
 
@@ -31,7 +31,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
     }
 
     @Override
-    public ISchip getSchip(Schepen schip) {
+    public Actor getSchip(Schepen schip) {
         return null;
     }
 

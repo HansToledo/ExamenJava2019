@@ -14,7 +14,6 @@ public class Coördinaten  {
 
     public Coördinaten(){
 
-
     }
 
     public Coördinaten(double breedte, double lengte){
