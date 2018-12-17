@@ -1,4 +1,4 @@
-package strategies;
+package model;
 
 import model.IHulpdienstStrategy;
 

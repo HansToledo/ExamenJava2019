@@ -19,6 +19,8 @@ public class Verkeerstoren extends Actor {
 
 
 
+
+
     //region StatusObserver
     private LinkedList<ISchip> status;
     public void statusUpdate(LinkedList<ISchip> status){
