@@ -7,41 +7,41 @@ package model;
  * @Purpose: Gegeven.
  */
 
-public class Coördinaten  {
+public class Coördinaten {
 
     private double breedte;
     private double lengte;
 
-    public Coördinaten(){
+    public Coördinaten() {
 
         this.breedte = getRandomBreedte();
         this.lengte = getRandomLengte();
 
     }
 
-    public Coördinaten(double breedte, double lengte){
+    public Coördinaten(double breedte, double lengte) {
 
         this.breedte = breedte;
         this.lengte = lengte;
 
     }
 
-    private double getRandomBreedte(){
+    private double getRandomBreedte() {
 
-        return  (-90.0 + Math.random() * 90.0);
+        return (-90.0 + Math.random() * 90.0);
     }
 
-    private double getRandomLengte(){
+    private double getRandomLengte() {
 
-        return  (-180.0 + Math.random() * 180.0);
+        return (-180.0 + Math.random() * 180.0);
     }
 
-    public double getBreedte(){
+    public double getBreedte() {
 
         return this.breedte;
     }
 
-    public double getLengte(){
+    public double getLengte() {
 
         return this.lengte;
     }

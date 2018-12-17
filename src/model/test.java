@@ -19,7 +19,8 @@ public void test() {
 
      AbstractActorFactory testschip = FactoryProducer.getFactory(Actors.SCHIP);
      Actor schip = testschip.getSchip(Schepen.CONTAINERSCHIP);
-//     int test = schip.getKoers(); // return van 10
+
+      //int test = schip.getKoers(); // return van 10
 
      Coördinaten test2 = schip.getLocatie();
      double breedte = test2.getBreedte();

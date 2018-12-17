@@ -15,12 +15,14 @@ public class ContainerSchip extends Schepen {
 
 
     @Override
-    public double getAfstand(){ return 0;};
+    public double getAfstand() {
+        return 0;
+    };
 
     @Override
     public double getSnelheid() { // snelheid in knopen containerschip
 
-        return (1 + Math.random() * 30);
+        return 0;//(1 + Math.random() * 30);
     }
 
     @Override
@@ -79,15 +81,16 @@ public class ContainerSchip extends Schepen {
     private LinkedList<ISchip> status;
 
 
-
-    public void notifyVerkeerstorenObservers(){                                             //Naar alle observers een statusupdate versturen.
+    public void notifyVerkeerstorenObservers() {                                             //Naar alle observers een statusupdate versturen.
         ListIterator list = verkeerstorens.listIterator();
-        while(list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(status);
+        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(status);
     }
-    public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
+
+    public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver) {
         verkeerstorens.add(verkeerstorenObserver);                                          //lijst met observers wordt aangepast door toevoegen van observer.
     }
-    public void removeVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
+
+    public void removeVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver) {
         verkeerstorens.remove(verkeerstorenObserver);                                       //lijst met observers wordt aangepast door verwijderen van observer.
     }
     //endregion

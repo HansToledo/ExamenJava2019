@@ -10,7 +10,7 @@ import enums.Schepen;
  * Time: 13:31<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class VerkeersTorenFactory extends AbstractActorFactory {
+public class VerkeersTorenFactory {
 
     @Override
     public Actor getVerkeersToren(String verkeersToren) {
