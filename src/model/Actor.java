@@ -9,7 +9,7 @@ import com.sun.xml.internal.bind.v2.runtime.Coordinator;
  * Time: 11:10<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Actor  {
+public abstract class Actor   {
 
 
     public Coördinaten getLocatie(){
