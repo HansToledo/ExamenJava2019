@@ -1,5 +1,7 @@
 package model;
 
+import java.util.LinkedList;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>

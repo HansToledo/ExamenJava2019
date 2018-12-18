@@ -12,7 +12,7 @@ import enums.Schepen;
  */
 public abstract class AbstractActorFactory {
 
-    public abstract Actor getHulpDienst(Hulpdiensten hulpdienst);
-    public abstract Actor getSchip(Schepen schip);
+    public abstract Actor setHulpDienst(Hulpdiensten hulpdienst);
+    public abstract Actor setSchip(Schepen schip);
 
 }

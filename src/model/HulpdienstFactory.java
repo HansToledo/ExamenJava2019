@@ -12,7 +12,7 @@ import enums.Schepen;
  */
 public class HulpdienstFactory extends AbstractActorFactory {
     @Override
-    public Actor getHulpDienst(Hulpdiensten hulpdienst) {
+    public Actor setHulpDienst(Hulpdiensten hulpdienst) {
 
         switch (hulpdienst) {
 
@@ -28,7 +28,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
     }
 
     @Override
-    public Actor getSchip(Schepen schip) {
+    public Actor setSchip(Schepen schip) {
         return null;
     }
 }

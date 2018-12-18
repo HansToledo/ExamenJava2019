@@ -27,20 +27,20 @@ public void test() {
 
     //Aanmaken hulpdiensten
     AbstractActorFactory hulpdiensten = FactoryProducer.getFactory(Actors.HULPDIENST);
-    Actor sk1 = hulpdiensten.getHulpDienst(Hulpdiensten.SEAKING);
-    Actor sk2 = hulpdiensten.getHulpDienst(Hulpdiensten.SEAKING);
-    Actor vt1 = hulpdiensten.getHulpDienst(Hulpdiensten.VERKEERSTOREN);
+    Actor sk1 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
+    Actor sk2 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
+    Actor vt1 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
     vt1.setHulpdienstStrategy(geenStrategy);
-    Actor vt2 = hulpdiensten.getHulpDienst(Hulpdiensten.VERKEERSTOREN);
-    Actor svp1 = hulpdiensten.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
-    Actor svp2 = hulpdiensten.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+    Actor vt2 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
+    Actor svp1 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+    Actor svp2 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
 
     //Aanmaken schepen
     AbstractActorFactory schepen = FactoryProducer.getFactory(Actors.SCHIP);
-    Actor container1 = schepen.getSchip(Schepen.CONTAINERSCHIP);
-    Actor zeilboot1 = schepen.getSchip(Schepen.ZEILBOOT);
-    Actor tanker1 = schepen.getSchip(Schepen.TANKER);
-    Actor motorboot = schepen.getSchip(Schepen.MOTORBOOT);
+    Actor container1 = schepen.setSchip(Schepen.CONTAINERSCHIP);
+    Actor zeilboot1 = schepen.setSchip(Schepen.ZEILBOOT);
+    Actor tanker1 = schepen.setSchip(Schepen.TANKER);
+    Actor motorboot = schepen.setSchip(Schepen.MOTORBOOT);
 
     System.out.println("CONTAINERSCHIP");
     container1.getLocatie();
@@ -56,9 +56,9 @@ public void test() {
 
 
     //Vuurtoren toevoegen als observer van schip
-    ContainerSchip con = new ContainerSchip();
+    ContainerSchip con = new ContainerSchip();  //TODO methods zijn enkel bereikbaar als jezelf een nieuw object aanmaakt, niet via de factory.
     con.setHulpdienstStrategy(geenStrategy);
-//    con.addVerkeerstorenObserver(vt1);  //TODO Observer toevoegen aan schip error.
+//    con.addVerkeerstorenObserver(vt1);    //TODO Observer toevoegen aan schip geeft NullPointerException error.
 
 
 //    System.out.println("ZEILBOOT");

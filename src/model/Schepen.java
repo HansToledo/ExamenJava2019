@@ -3,7 +3,6 @@ package model;
 import states.ISchipState;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -14,24 +13,26 @@ import java.util.ListIterator;
  * To change this template use File | Settings | File Templates.
  */
 public class Schepen extends Voertuigen implements IStatusSubject, ISchipState {
+
+
     //region StatusObserver
-    private List<Actor> verkeerstorens;
-    private LinkedList<ISchip> status;
+    private LinkedList<Actor> verkeerstorens;
+    private LinkedList<Actor> statusUpdate;
 
     @Override
     public void notifyVerkeerstorenObservers() {
         ListIterator list = verkeerstorens.listIterator();
-        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(status);
+        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(statusUpdate);
     }
 
     @Override
-    public void addVerkeerstorenObserver(Actor actor) {
-        verkeerstorens.add(actor);
+    public void addVerkeerstorenObserver(Actor verkeerstoren) {
+        verkeerstorens.add(verkeerstoren);
     }
 
     @Override
-    public void removeVerkeerstorenObserver(Actor actor) {
-        verkeerstorens.remove(actor);
+    public void removeVerkeerstorenObserver(Actor verkeerstoren) {
+        verkeerstorens.remove(verkeerstoren);
     }
     //endregion
 }

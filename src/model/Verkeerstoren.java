@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * Time: 11:38<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Verkeerstoren extends Actor {
+public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
 
     @Override
     public double getAfstand() {
@@ -18,9 +18,10 @@ public class Verkeerstoren extends Actor {
 
 
     //region StatusObserver
-    private LinkedList<ISchip> status;
-    public void statusUpdate(LinkedList<ISchip> status){
-        this.status = status;
+    private LinkedList<Actor> statusSchip;
+
+    public void statusUpdate(LinkedList<Actor> statusSchip){
+        this.statusSchip = statusSchip;
     }
     //endregion
 
