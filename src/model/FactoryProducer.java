@@ -14,7 +14,6 @@ public class FactoryProducer {
     public static AbstractActorFactory getFactory(Actors actor){
 
         switch (actor){
-
             case HULPDIENST:
                 return new HulpdienstFactory();
             case SCHIP:

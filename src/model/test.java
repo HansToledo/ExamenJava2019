@@ -44,9 +44,9 @@ public void test() {
     System.out.println("CONTAINERSCHIP");
     container1.getLocatie();
     container1.getAfstand();
-    container1.setStrategy(geenStrategy);
+    container1.setHulpdienstStrategy(geenStrategy);
     System.out.println(container1.getHulpdienstStrategy());
-    container1.setStrategy(pickupStrategy);
+    container1.setHulpdienstStrategy(pickupStrategy);
     System.out.println(container1.getHulpdienstStrategy());
 //    container1.setCapaciteit(10);
 //    container1.setGrootte(50);

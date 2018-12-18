@@ -10,21 +10,23 @@ import com.sun.xml.internal.bind.v2.runtime.Coordinator;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Actor   {
-    private IHulpdienstStrategy hulpdienstStrategy;
-
 
     public abstract double getAfstand();
 
 
     public Coördinaten getLocatie(){ return new Coördinaten(); }
 
+    //region Strategy Code
+    private IHulpdienstStrategy hulpdienstStrategy;
+
     public IHulpdienstStrategy getHulpdienstStrategy() {
         return hulpdienstStrategy;
     }
 
-    public void setStrategy(IHulpdienstStrategy hulpdienstStrategy) {
+    public void setHulpdienstStrategy(IHulpdienstStrategy hulpdienstStrategy) {
         this.hulpdienstStrategy = hulpdienstStrategy;
     }
+    //endregion
 
     @Override
     public String toString() {

@@ -31,6 +31,4 @@ public class HulpdienstFactory extends AbstractActorFactory {
     public Actor getSchip(Schepen schip) {
         return null;
     }
-
-
 }
