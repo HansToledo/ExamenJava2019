@@ -1,7 +1,5 @@
 package model;
 
-import com.sun.xml.internal.bind.v2.runtime.Coordinator;
-
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>

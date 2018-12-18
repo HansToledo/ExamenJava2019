@@ -30,9 +30,7 @@ public class SchipFactory extends AbstractActorFactory{
                 return new Tanker();
             case ZEILBOOT:
                 return new Zeilboot();
-
         }
-
         return null;
     }
 }

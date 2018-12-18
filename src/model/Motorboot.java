@@ -71,23 +71,4 @@ public class Motorboot extends Schepen  {
     public void setKoers(int koers) {
 
     }
-
-
-    //region StatusObserver
-    private List<Verkeerstoren> verkeerstorens;
-    private LinkedList<ISchip> status;
-
-    public void notifyVerkeerstorenObservers(){                                             //Naar alle observers een statusupdate versturen.
-        ListIterator list = verkeerstorens.listIterator();
-        while(list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(status);
-    }
-    public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
-        verkeerstorens.add(verkeerstorenObserver);                                          //lijst met observers wordt aangepast door toevoegen van observer.
-    }
-    public void removeVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver){
-        verkeerstorens.remove(verkeerstorenObserver);                                       //lijst met observers wordt aangepast door verwijderen van observer.
-    }
-    //endregion
-
-
 }

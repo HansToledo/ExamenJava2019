@@ -3,9 +3,9 @@ package model;
 import enums.Actors;
 import enums.Hulpdiensten;
 import enums.Schepen;
-import strategies.GeenStrategy;
-import strategies.MeldingStrategy;
-import strategies.PickupStrategy;
+import strategy.GeenStrategy;
+import strategy.MeldingStrategy;
+import strategy.PickupStrategy;
 
 
 /**
@@ -20,7 +20,7 @@ public class test {
     // dit is een test classe mag weg
 
 public void test() {
-    //Initialiseren mogelijke strategies.
+    //Initialiseren mogelijke strategy.
     IHulpdienstStrategy pickupStrategy = new PickupStrategy();
     IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
@@ -30,6 +30,7 @@ public void test() {
     Actor sk1 = hulpdiensten.getHulpDienst(Hulpdiensten.SEAKING);
     Actor sk2 = hulpdiensten.getHulpDienst(Hulpdiensten.SEAKING);
     Actor vt1 = hulpdiensten.getHulpDienst(Hulpdiensten.VERKEERSTOREN);
+    vt1.setHulpdienstStrategy(geenStrategy);
     Actor vt2 = hulpdiensten.getHulpDienst(Hulpdiensten.VERKEERSTOREN);
     Actor svp1 = hulpdiensten.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
     Actor svp2 = hulpdiensten.getHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
@@ -52,6 +53,12 @@ public void test() {
 //    container1.setGrootte(50);
 //    container1.setKoers(50);
 //    container1.setSnelheid(10);
+
+
+    //Vuurtoren toevoegen als observer van schip
+    ContainerSchip con = new ContainerSchip();
+    con.setHulpdienstStrategy(geenStrategy);
+//    con.addVerkeerstorenObserver(vt1);  //TODO Observer toevoegen aan schip error.
 
 
 //    System.out.println("ZEILBOOT");

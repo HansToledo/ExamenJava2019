@@ -1,8 +1,8 @@
-package strategies;
+package strategy;
 
 import model.IHulpdienstStrategy;
 
-public class PickupStrategy implements IHulpdienstStrategy{
+public class PickupStrategy implements IHulpdienstStrategy {
     public void Reddingstype(){
 
     };
