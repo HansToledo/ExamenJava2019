@@ -10,5 +10,6 @@ package enums;
 public enum Hulpdiensten {
 
     SCHEEPSVAARTPOLITIE,
-    SEAKING
+    SEAKING,
+    VERKEERSTOREN
 }

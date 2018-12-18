@@ -1,8 +1,6 @@
 package view;
 
 import com.mysql.jdbc.Connection;
-import enums.Actors;
-import enums.Hulpdiensten;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,9 +24,9 @@ public class Main extends Application {
 
         test test = new test();
         test.test();
-        Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
-        launch(args);
+//        Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
+//        launch(args);
 
 
     }

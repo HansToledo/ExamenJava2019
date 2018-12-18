@@ -7,7 +7,7 @@ package model;
  * Time: 19:17<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Vaartuigen extends Actor implements INoodObserver{
+public class Voertuigen extends Actor implements INoodObserver{
 
     public double getSnelheid(){
 

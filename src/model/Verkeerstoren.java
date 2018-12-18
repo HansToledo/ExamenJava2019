@@ -11,14 +11,10 @@ import java.util.LinkedList;
  */
 public class Verkeerstoren extends Actor {
 
-
-
-
-
-
-
-
-
+    @Override
+    public double getAfstand() {
+        return 0;
+    }
 
 
     //region StatusObserver

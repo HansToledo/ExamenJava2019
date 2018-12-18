@@ -13,15 +13,23 @@ public abstract class Actor   {
     private IHulpdienstStrategy hulpdienstStrategy;
 
 
-    public Coördinaten getLocatie(){
-
-        return new Coördinaten();
-    }
-
     public abstract double getAfstand();
 
 
+    public Coördinaten getLocatie(){ return new Coördinaten(); }
 
+    public IHulpdienstStrategy getHulpdienstStrategy() {
+        return hulpdienstStrategy;
+    }
 
+    public void setStrategy(IHulpdienstStrategy hulpdienstStrategy) {
+        this.hulpdienstStrategy = hulpdienstStrategy;
+    }
 
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "hulpdienstStrategy=" + hulpdienstStrategy +
+                '}';
+    }
 }

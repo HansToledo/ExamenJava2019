@@ -12,11 +12,6 @@ import enums.Schepen;
  */
 public class HulpdienstFactory extends AbstractActorFactory {
     @Override
-    public Actor getVerkeersToren(String verkeersToren) {
-        return null;
-    }
-
-    @Override
     public Actor getHulpDienst(Hulpdiensten hulpdienst) {
 
         switch (hulpdienst) {
@@ -25,6 +20,8 @@ public class HulpdienstFactory extends AbstractActorFactory {
                 return new ScheepsvaartPolitie();
             case SEAKING:
                 return new Seaking();
+            case VERKEERSTOREN:
+                return new Verkeerstoren();
         }
 
         return null;

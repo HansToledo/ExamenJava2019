@@ -9,9 +9,7 @@ import states.ISchipState;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Schepen extends Vaartuigen implements IStatusSubject, ISchipState {
-
-
+public class Schepen extends Voertuigen implements IStatusSubject, ISchipState {
     @Override
     public void addVerkeerstorenObserver(Verkeerstoren verkeerstorenObserver) {
 

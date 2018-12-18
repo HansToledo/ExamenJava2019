@@ -2,6 +2,7 @@ package model;
 
 import enums.Hulpdiensten;
 import enums.Schepen;
+import enums.Actors;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -11,11 +12,6 @@ import enums.Schepen;
  * To change this template use File | Settings | File Templates.
  */
 public class SchipFactory extends AbstractActorFactory{
-    @Override
-    public Actor getVerkeersToren(String verkeersToren) {
-        return null;
-    }
-
     @Override
     public Actor getHulpDienst(Hulpdiensten hulpdienst) {
         return null;

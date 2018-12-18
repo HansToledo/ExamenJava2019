@@ -19,9 +19,6 @@ public class FactoryProducer {
                 return new HulpdienstFactory();
             case SCHIP:
                 return new SchipFactory();
-            case VERKEERSTOREN:
-                return new VerkeersTorenFactory();
-
         }
         return null;
     }

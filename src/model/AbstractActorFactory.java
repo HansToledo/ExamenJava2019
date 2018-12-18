@@ -12,7 +12,6 @@ import enums.Schepen;
  */
 public abstract class AbstractActorFactory {
 
-    public abstract Actor getVerkeersToren(String verkeersToren);
     public abstract Actor getHulpDienst(Hulpdiensten hulpdienst);
     public abstract Actor getSchip(Schepen schip);
 
