@@ -30,7 +30,6 @@ public void test() {
     Actor sk1 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
     Actor sk2 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
     Actor vt1 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
-    vt1.setHulpdienstStrategy(geenStrategy);
     Actor vt2 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
     Actor svp1 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
     Actor svp2 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
