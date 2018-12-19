@@ -12,6 +12,16 @@ import java.util.ListIterator;
  */
 public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
+    public Schepen(){
+
+    }
+
+    public Schepen(double snelheid, double grootte, double capaciteit, int koers) {
+
+        super(snelheid,grootte,capaciteit,koers);
+
+    }
+
     //regiopublic n StatusObserver
     private LinkedList<Actor> verkeerstorens;
     private LinkedList<Actor> statusUpdate;
