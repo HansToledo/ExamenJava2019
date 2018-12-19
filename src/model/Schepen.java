@@ -16,9 +16,9 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     }
 
-    public Schepen(double snelheid, double grootte, double capaciteit, int koers) {
+    public Schepen(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
 
-        super(snelheid,grootte,capaciteit,koers);
+        super(coördinaten,snelheid,grootte,capaciteit,koers);
 
     }
 

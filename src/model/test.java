@@ -24,60 +24,62 @@ public class test {
 
     public void test() {
 
-        List<Actor> actoren = new ArrayList<Actor>();
-        AbstractActorFactory test = FactoryProducer.getFactory(Actors.SCHIP);
-        Actor rr = test.setSchip(Schepen.CONTAINERSCHIP);
-        double fff = ((Vervoermiddel) rr).getSnelheid();
-        ((Vervoermiddel) rr).getGrootte();
-//   double testff = rr.getAfstand();
-        Coördinaten vv = new Coördinaten();
-       vv = rr.getLocatie();
-       double ff = vv.getBreedte();
-
-
-//    //rr.getKoers();
-//    rr.getLocatie();
-        actoren.add(rr);
+//       List<Actor> actoren = new ArrayList<Actor>();
+//       AbstractActorFactory test = FactoryProducer.getFactory(Actors.SCHIP);
+//        Coördinaten coördinaten = new Coördinaten();
+//       Actor rr = test.setSchip(Schepen.CONTAINERSCHIP,coördinaten,10,10,10,1010);
+//       double e2= ((Vervoermiddel) rr).getGrootte();
+//        double fff = ((Vervoermiddel) rr).getSnelheid();
+//        ((Vervoermiddel) rr).getGrootte();
+////   double testff = rr.getAfstand();
+//        Coördinaten vv = new Coördinaten();
+//       vv = rr.getLocatie();
+//       double ff = vv.getBreedte();
 //
-//    Vervoermiddel tt = test.setHulpDienst(Hulpdiensten.SEAKING);
-//    tt.getGrootte();
 //
-//    actoren.add(tt);
-//
-//    AbstractActorFactory test2 = FactoryProducer.getFactory(Actors.HULPDIENST);
+////    //rr.getKoers();
+////    rr.getLocatie();
 
-
-        //Schepen schip = test.setS =  chip(Schepen.CONTAINERSCHIP);
-        //Initialiseren mogelijke strategy.
-    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
-    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
-    IHulpdienstStrategy geenStrategy = new GeenStrategy();
+////
+////    Vervoermiddel tt = test.setHulpDienst(Hulpdiensten.SEAKING);
+////    tt.getGrootte();
+////
+////    actoren.add(tt);
+////
+////    AbstractActorFactory test2 = FactoryProducer.getFactory(Actors.HULPDIENST);
 //
-//    //Aanmaken hulpdiensten
-    AbstractActorFactory hulpdiensten = FactoryProducer.getFactory(Actors.HULPDIENST);
-    Actor sk1 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
-    Actor sk2 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
-    Actor vt1 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
-    Actor vt2 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
-    Actor svp1 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
-    Actor svp2 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
 //
-    //Aanmaken schepen
-    AbstractActorFactory schepen = FactoryProducer.getFactory(Actors.SCHIP);
-    Actor container1 = schepen.setSchip(Schepen.CONTAINERSCHIP);
-    Actor zeilboot1 = schepen.setSchip(Schepen.ZEILBOOT);
-    Actor tanker1 = schepen.setSchip(Schepen.TANKER);
-    Actor motorboot = schepen.setSchip(Schepen.MOTORBOOT);
-
-    System.out.println("CONTAINERSCHIP");
-    container1.getLocatie();
-    container1.getAfstand();
-    double tee = ((Vervoermiddel) container1).getGrootte();
- actoren.add(container1);
-    container1.setHulpdienstStrategy(geenStrategy);
-    System.out.println(container1.getHulpdienstStrategy());
-    container1.setHulpdienstStrategy(pickupStrategy);
-    System.out.println(container1.getHulpdienstStrategy());
+//        //Schepen schip = test.setS =  chip(Schepen.CONTAINERSCHIP);
+//        //Initialiseren mogelijke strategy.
+//    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
+//    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
+//    IHulpdienstStrategy geenStrategy = new GeenStrategy();
+////
+////    //Aanmaken hulpdiensten
+//    AbstractActorFactory hulpdiensten = FactoryProducer.getFactory(Actors.HULPDIENST);
+//    Actor sk1 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
+//    Actor sk2 = hulpdiensten.setHulpDienst(Hulpdiensten.SEAKING);
+//    Actor vt1 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
+//    Actor vt2 = hulpdiensten.setHulpDienst(Hulpdiensten.VERKEERSTOREN);
+//    Actor svp1 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+//    Actor svp2 = hulpdiensten.setHulpDienst(Hulpdiensten.SCHEEPSVAARTPOLITIE);
+////
+//    //Aanmaken schepen
+//    AbstractActorFactory schepen = FactoryProducer.getFactory(Actors.SCHIP);
+//    Actor container1 = schepen.setSchip(Schepen.CONTAINERSCHIP);
+//    Actor zeilboot1 = schepen.setSchip(Schepen.ZEILBOOT);
+//    Actor tanker1 = schepen.setSchip(Schepen.TANKER);
+//    Actor motorboot = schepen.setSchip(Schepen.MOTORBOOT);
+//
+//    System.out.println("CONTAINERSCHIP");
+//    container1.getLocatie();
+//    container1.getAfstand();
+//    double tee = ((Vervoermiddel) container1).getGrootte();
+// actoren.add(container1);
+//    container1.setHulpdienstStrategy(geenStrategy);
+//    System.out.println(container1.getHulpdienstStrategy());
+//    container1.setHulpdienstStrategy(pickupStrategy);
+//    System.out.println(container1.getHulpdienstStrategy());
 
 
 //

@@ -12,9 +12,9 @@ import enums.Schepen;
  */
 public abstract class AbstractActorFactory {
 
-    public abstract Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst);
+    public abstract Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers);
 
-    public abstract Vervoermiddel setSchip(Schepen schip);
+    public abstract Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers);
 
     public abstract Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren);
 

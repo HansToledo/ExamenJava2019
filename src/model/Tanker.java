@@ -9,63 +9,15 @@ package model;
  */
 public class Tanker extends Schepen {
 
-//    @Override
-//    public double getAfstand(){ return 0;};
-//
-//    @Override
-//    public double getSnelheid() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public double getReactieTijd() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public double getWendbaarheid() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public double getGrootte() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public double getCapaciteit() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public int getKoers() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void setLocatie() {
-//
-//    }
-//
-//    @Override
-//    public void setSnelheid() {
-//
-//    }
-//
-//    @Override
-//    public void setGrootte() {
-//
-//    }
-//
-//    @Override
-//    public void setCapaciteit() {
-//
-//    }
-//
-//    @Override
-//    public void setKoers() {
-//
-//    }
+    public Tanker(){
+
+    }
+
+    public Tanker(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
+
+        super(coördinaten,snelheid,grootte,capaciteit,koers);
+
+    }
 
 
 }

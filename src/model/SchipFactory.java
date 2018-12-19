@@ -12,23 +12,23 @@ import enums.Schepen;
  */
 public class SchipFactory extends AbstractActorFactory{
     @Override
-    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst) {
+    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
         return null;
     }
 
     @Override
-    public Vervoermiddel setSchip(Schepen schip) {
+    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
 
         switch (schip) {
 
             case CONTAINERSCHIP:
-                return new ContainerSchip();
+                return new ContainerSchip(coördinaten,snelheid,grootte,capaciteit,koers);
             case MOTORBOOT:
-                return new Motorboot();
+                return new Motorboot(coördinaten,snelheid,grootte,capaciteit,koers);
             case TANKER:
-                return new Tanker();
+                return new Tanker(coördinaten,snelheid,grootte,capaciteit,koers);
             case ZEILBOOT:
-                return new Zeilboot();
+                return new Zeilboot(coördinaten,snelheid,grootte,capaciteit,koers);
         }
         return null;
     }

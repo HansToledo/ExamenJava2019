@@ -16,13 +16,16 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private double grootte;
     private double capaciteit;
     private int koers;
+    private Coördinaten coördinaten;
 
     public Vervoermiddel(){
 
     }
 
-    public Vervoermiddel (double snelheid,double grootte,double capaciteit,int koers){
+    public Vervoermiddel (Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers){
 
+        coördinaten = new Coördinaten();
+        this.coördinaten = coördinaten;
         this.snelheid = snelheid;
         this.grootte = grootte;
         this.capaciteit = capaciteit;

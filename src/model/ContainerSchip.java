@@ -13,11 +13,14 @@ public class ContainerSchip extends Schepen {
 
     }
 
-    public ContainerSchip(double snelheid, double grootte, double capaciteit, int koers) {
+    public ContainerSchip(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
 
-        super(snelheid,grootte,capaciteit,koers);
+        super(coördinaten,snelheid,grootte,capaciteit,koers);
 
     }
 
-
+    @Override
+    public String toString() {
+        return "ContainerSchip{} " + super.toString();
+    }
 }

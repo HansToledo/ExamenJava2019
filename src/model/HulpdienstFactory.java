@@ -11,28 +11,32 @@ import enums.Schepen;
  * To change this template use File | Settings | File Templates.
  */
 public class HulpdienstFactory extends AbstractActorFactory {
+
+
     @Override
-    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst) {
+    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
 
         switch (hulpdienst) {
 
             case SCHEEPSVAARTPOLITIE:
-                return new ScheepsvaartPolitie();
+                return new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers);
             case SEAKING:
-                return new Seaking();
+                return new Seaking(coördinaten,snelheid,grootte,capaciteit,koers);
         }
 
         return null;
     }
 
+
     @Override
-    public Vervoermiddel setSchip(Schepen schip) {
+    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
+
         return null;
     }
 
+
     @Override
     public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren) {
-
 
         switch (verkeerstoren) {
 
