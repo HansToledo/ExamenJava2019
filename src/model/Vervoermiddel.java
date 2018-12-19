@@ -9,30 +9,90 @@ package model;
  */
 public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
-
-    public abstract double getSnelheid();
-
-    public abstract double getReactieTijd();
-
-
-    public abstract double getWendbaarheid();
-
-    public abstract double getGrootte();
+    private double afstand;
+    private double snelheid;
+    private double reactieTijd;
+    private double wendbaarheid;
+    private double grootte;
+    private double capaciteit;
+    private int koers;
 
 
-    public abstract double getCapaciteit();
+    public double getAfstand() {
 
-    public abstract int getKoers();
+        return this.afstand;
+    };
 
-    public abstract void setLocatie();
 
-    public abstract void setSnelheid();
+    public double getSnelheid() { // snelheid in knopen containerschip
 
-    public abstract void setGrootte();
+        return this.snelheid;
+    }
 
-    public abstract void setCapaciteit();
+    public double getReactieTijd() {
 
-    public abstract void setKoers();
+        return this.reactieTijd;
+    }
+
+
+    public double getWendbaarheid() {
+
+        return this.wendbaarheid;
+    }
+
+
+    public double getGrootte() {
+
+        return this.grootte;
+
+    }
+
+
+    public double getCapaciteit() {
+
+        return this.capaciteit;
+    }
+
+
+    public int getKoers() {
+
+        return this.koers;
+    }
+
+
+    public void setLocatie() {
+
+
+
+    }
+
+
+    public void setSnelheid(double snelheid) {
+
+        this.snelheid = snelheid;
+
+    }
+
+
+    public void setGrootte(double grootte) {
+
+        this.grootte = grootte;
+
+    }
+
+
+    public void setCapaciteit(double capaciteit) {
+
+        this.capaciteit = capaciteit;
+
+    }
+
+
+    public void setKoers(int koers) {
+
+        this.koers = koers;
+
+    }
 
 
 }
