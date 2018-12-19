@@ -7,7 +7,7 @@ package model;
  * Time: 19:17<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Vervoermiddel extends Actor implements INoodObserver,IHulpdienstStrategy{
+public class Vervoermiddel extends Actor implements INoodObserver{
 
     public double getSnelheid(){
 

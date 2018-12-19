@@ -31,8 +31,7 @@ public void test() {
     tt.getGrootte();
 
     actoren.add(tt);
-
-
+    
     AbstractActorFactory test2 = FactoryProducer.getFactory(Actors.HULPDIENST);
 
 
