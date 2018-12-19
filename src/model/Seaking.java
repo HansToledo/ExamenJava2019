@@ -7,7 +7,12 @@ package model;
  * Time: 12:05<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Seaking extends Voertuigen {
+public class Seaking extends Vervoermiddel {
+
+    public Seaking(){
+
+        super();
+    }
 
 
     @Override

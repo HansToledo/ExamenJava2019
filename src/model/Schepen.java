@@ -12,10 +12,14 @@ import java.util.ListIterator;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Schepen extends Voertuigen implements IStatusSubject, ISchipState {
+public class Schepen extends Vervoermiddel implements IStatusSubject, ISchipState {
 
+    public Schepen(){
 
-    //region StatusObserver
+        super.getGrootte();
+    }
+
+    //regiopublic n StatusObserver
     private LinkedList<Actor> verkeerstorens;
     private LinkedList<Actor> statusUpdate;
 

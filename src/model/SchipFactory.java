@@ -2,7 +2,6 @@ package model;
 
 import enums.Hulpdiensten;
 import enums.Schepen;
-import enums.Actors;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -13,12 +12,12 @@ import enums.Actors;
  */
 public class SchipFactory extends AbstractActorFactory{
     @Override
-    public Actor setHulpDienst(Hulpdiensten hulpdienst) {
+    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst) {
         return null;
     }
 
     @Override
-    public Actor setSchip(Schepen schip) {
+    public Vervoermiddel setSchip(Schepen schip) {
 
         switch (schip) {
 
@@ -31,6 +30,11 @@ public class SchipFactory extends AbstractActorFactory{
             case ZEILBOOT:
                 return new Zeilboot();
         }
+        return null;
+    }
+
+    @Override
+    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren) {
         return null;
     }
 }

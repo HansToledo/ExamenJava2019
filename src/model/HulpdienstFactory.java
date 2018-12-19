@@ -12,7 +12,7 @@ import enums.Schepen;
  */
 public class HulpdienstFactory extends AbstractActorFactory {
     @Override
-    public Actor setHulpDienst(Hulpdiensten hulpdienst) {
+    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst) {
 
         switch (hulpdienst) {
 
@@ -20,15 +20,28 @@ public class HulpdienstFactory extends AbstractActorFactory {
                 return new ScheepsvaartPolitie();
             case SEAKING:
                 return new Seaking();
-            case VERKEERSTOREN:
-                return new Verkeerstoren();
         }
 
         return null;
     }
 
     @Override
-    public Actor setSchip(Schepen schip) {
+    public Vervoermiddel setSchip(Schepen schip) {
         return null;
+    }
+
+    @Override
+    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren) {
+
+
+        switch (verkeerstoren) {
+
+            case VERKEERSTOREN:
+                return new Verkeerstoren();
+
+        }
+
+        return null;
+
     }
 }

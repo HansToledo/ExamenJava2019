@@ -1,9 +1,5 @@
 package model;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -12,6 +8,11 @@ import java.util.ListIterator;
  * To change this template use File | Settings | File Templates.
  */
 public class ContainerSchip extends Schepen {
+
+    public ContainerSchip(){
+
+        super.getKoers();
+    }
 
 
     @Override

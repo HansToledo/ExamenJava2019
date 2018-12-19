@@ -1,9 +1,5 @@
 package model;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -11,7 +7,7 @@ import java.util.ListIterator;
  * Time: 11:58<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Zeilboot extends Schepen  {
+public class Zeilboot extends Schepen {
 
 
     @Override
