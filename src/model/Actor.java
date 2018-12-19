@@ -7,7 +7,7 @@ package model;
  * Time: 11:10<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Actor implements IHulpdienstStrategy {
+public abstract class Actor  {
 
 
     //region Strategy Code

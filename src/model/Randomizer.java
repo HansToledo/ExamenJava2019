@@ -40,7 +40,7 @@ public class Randomizer {
 
             ++teller;
 
-            System.out.println(actor.toString());
+            System.out.println(actor.toString() );
 
         }while (teller<10);
 
