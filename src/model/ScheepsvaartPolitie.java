@@ -19,8 +19,8 @@ public class ScheepsvaartPolitie extends Vervoermiddel {
 
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "ScheepsvaartPolitie{} " + super.toString();
+    }
 }

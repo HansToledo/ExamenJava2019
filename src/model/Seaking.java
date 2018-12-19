@@ -19,7 +19,8 @@ public class Seaking extends Vervoermiddel {
 
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Seaking{} " + super.toString();
+    }
 }

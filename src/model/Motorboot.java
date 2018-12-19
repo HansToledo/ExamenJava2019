@@ -20,6 +20,8 @@ public class Motorboot extends Schepen {
 
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Motorboot{} " + super.toString();
+    }
 }

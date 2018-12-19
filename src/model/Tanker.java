@@ -19,5 +19,8 @@ public class Tanker extends Schepen {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Tanker{} " + super.toString();
+    }
 }
