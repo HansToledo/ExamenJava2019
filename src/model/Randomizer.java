@@ -23,6 +23,8 @@ public class Randomizer {
 
             actoren.add(actor);
             ++teller;
+            
+            System.out.println(actor.toString());
 
         }while (teller<10);
 
