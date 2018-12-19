@@ -17,6 +17,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
 
+
     //region StatusObserver
     private LinkedList<Actor> statusSchip;
 

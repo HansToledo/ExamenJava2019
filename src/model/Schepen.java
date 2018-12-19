@@ -16,7 +16,7 @@ public class Schepen extends Vervoermiddel implements IStatusSubject, ISchipStat
 
     public Schepen(){
 
-        super.getGrootte();
+
     }
 
     //regiopublic n StatusObserver
@@ -38,5 +38,7 @@ public class Schepen extends Vervoermiddel implements IStatusSubject, ISchipStat
     public void removeVerkeerstorenObserver(Actor verkeerstoren) {
         verkeerstorens.remove(verkeerstoren);
     }
+
+
     //endregion
 }

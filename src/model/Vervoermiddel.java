@@ -9,6 +9,7 @@ package model;
  */
 public class Vervoermiddel extends Actor implements INoodObserver{
 
+
     public double getSnelheid(){
 
         return 0.0;
@@ -53,5 +54,7 @@ public class Vervoermiddel extends Actor implements INoodObserver{
     public double getAfstand() {
         return 0;
     }
+
+
 
 }

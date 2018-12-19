@@ -19,24 +19,30 @@ public class test {
 
     // dit is een test classe mag weg
 
-public void test() {
+    public void test() {
 
-    List<Actor> actoren = new ArrayList<Actor>();
-    AbstractActorFactory test = FactoryProducer.getFactory(Actors.SCHIP);
-    Vervoermiddel rr = test.setSchip(Schepen.CONTAINERSCHIP);
-    rr.getKoers();
-    actoren.add(rr);
+        List<Actor> actoren = new ArrayList<Actor>();
+        AbstractActorFactory test = FactoryProducer.getFactory(Actors.SCHIP);
+        Actor rr = test.setSchip(Schepen.CONTAINERSCHIP);
+//   double testff = rr.getAfstand();
+        Coördinaten vv = new Coördinaten();
+       vv = rr.getLocatie();
+       double ff = vv.getBreedte();
 
-    Vervoermiddel tt = test.setHulpDienst(Hulpdiensten.SEAKING);
-    tt.getGrootte();
+//    //rr.getKoers();
+//    rr.getLocatie();
+        actoren.add(rr);
+//
+//    Vervoermiddel tt = test.setHulpDienst(Hulpdiensten.SEAKING);
+//    tt.getGrootte();
+//
+//    actoren.add(tt);
+//
+//    AbstractActorFactory test2 = FactoryProducer.getFactory(Actors.HULPDIENST);
 
-    actoren.add(tt);
-    
-    AbstractActorFactory test2 = FactoryProducer.getFactory(Actors.HULPDIENST);
 
-
-    //Schepen schip = test.setS =  chip(Schepen.CONTAINERSCHIP);
-    //Initialiseren mogelijke strategy.
+        //Schepen schip = test.setS =  chip(Schepen.CONTAINERSCHIP);
+        //Initialiseren mogelijke strategy.
 //    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
 //    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
 //    IHulpdienstStrategy geenStrategy = new GeenStrategy();
@@ -82,7 +88,6 @@ public void test() {
 //    zeilboot1.setKoers(5);
 //    zeilboot1.setSnelheid(1);
 //    System.out.println("ZEILBOOT");
-
 
 
 //    Coördinaten cotest = new Coördinaten();

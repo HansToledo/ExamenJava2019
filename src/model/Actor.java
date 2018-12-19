@@ -12,7 +12,11 @@ public abstract class Actor  implements  IHulpdienstStrategy {
     public abstract double getAfstand();
 
 
-    public Coördinaten getLocatie(){ return new Coördinaten(); }
+    public  Coördinaten getLocatie(){
+
+        return new Coördinaten();
+
+    };
 
     //region Strategy Code
     private IHulpdienstStrategy hulpdienstStrategy;
