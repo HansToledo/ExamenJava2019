@@ -44,27 +44,29 @@ public class Zeilboot extends Schepen {
     }
 
     @Override
-    public void setLocatie(Coördinaten locatie) {
+    public void setLocatie() {
 
     }
 
     @Override
-    public void setSnelheid(double snelheid) {
+    public void setSnelheid() {
 
     }
 
     @Override
-    public void setGrootte(double grootte) {
+    public void setGrootte() {
 
     }
 
     @Override
-    public void setCapaciteit(double capaciteit) {
+    public void setCapaciteit() {
 
     }
 
     @Override
-    public void setKoers(int koers) {
+    public void setKoers() {
 
     }
+
+
 }

@@ -10,7 +10,7 @@ import java.util.ListIterator;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Schepen extends Vervoermiddel implements IStatusSubject {
+public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     //regiopublic n StatusObserver
     private LinkedList<Actor> verkeerstorens;

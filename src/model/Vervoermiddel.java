@@ -7,54 +7,32 @@ package model;
  * Time: 19:17<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Vervoermiddel extends Actor implements INoodObserver{
+public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
 
-    public double getSnelheid(){
+    public abstract double getSnelheid();
 
-        return 0.0;
-    };
-
-    public double getReactieTijd(){
-
-        return 0.0;
-    };
+    public abstract double getReactieTijd();
 
 
-    public double getWendbaarheid(){
+    public abstract double getWendbaarheid();
 
-        return 0.0;
-};
-
-    public double getGrootte(){
-
-        return 0.0;
-    };
+    public abstract double getGrootte();
 
 
-    public double getCapaciteit(){
-        return 0.0;
-    };
+    public abstract double getCapaciteit();
 
-    public int getKoers(){
-        return 0;
-    };
+    public abstract int getKoers();
 
-    public void setLocatie(Coördinaten locatie){};
+    public abstract void setLocatie();
 
-    public void setSnelheid(double snelheid){};
+    public abstract void setSnelheid();
 
-    public void setGrootte(double grootte){};
+    public abstract void setGrootte();
 
-    public void setCapaciteit(double capaciteit){};
+    public abstract void setCapaciteit();
 
-    public void setKoers(int koers){};
-
-    @Override
-    public double getAfstand() {
-        return 0;
-    }
-
+    public abstract void setKoers();
 
 
 }
