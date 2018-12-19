@@ -9,12 +9,6 @@ package model;
  */
 public class ContainerSchip extends Schepen {
 
-    public ContainerSchip(){
-
-        super.getKoers();
-    }
-
-
     @Override
     public double getAfstand() {
         return 0;

@@ -11,13 +11,6 @@ import java.util.LinkedList;
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
 
-    @Override
-    public double getAfstand() {
-        return 0;
-    }
-
-
-
     //region StatusObserver
     private LinkedList<Actor> statusSchip;
 

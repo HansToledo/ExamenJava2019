@@ -1,7 +1,5 @@
 package model;
 
-import states.ISchipState;
-
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -12,12 +10,7 @@ import java.util.ListIterator;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Schepen extends Vervoermiddel implements IStatusSubject, ISchipState {
-
-    public Schepen(){
-
-
-    }
+public class Schepen extends Vervoermiddel implements IStatusSubject {
 
     //regiopublic n StatusObserver
     private LinkedList<Actor> verkeerstorens;

@@ -9,12 +9,6 @@ package model;
  */
 public class Seaking extends Vervoermiddel {
 
-    public Seaking(){
-
-        super();
-    }
-
-
     @Override
     public double getAfstand(){ return 0;};
 

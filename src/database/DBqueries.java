@@ -8,6 +8,7 @@ package database;
  */
 
 import com.mysql.jdbc.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -16,15 +17,14 @@ public class DBqueries {
     private PreparedStatement selectAllBoats;
 
 
-    public DBqueries(){
+    public DBqueries() {
         try {
             dbConnection = database.DBConnection.getConnection();
 
             // EXMAPLE: query that selects all boats entries
             selectAllBoats = dbConnection.prepareStatement(
                     "SELECT * FROM boats ORDER BY BoatName, Name");
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             System.exit(1);
         }

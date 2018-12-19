@@ -7,16 +7,8 @@ package model;
  * Time: 11:10<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Actor  implements  IHulpdienstStrategy {
+public abstract class Actor implements IHulpdienstStrategy {
 
-    public abstract double getAfstand();
-
-
-    public  Coördinaten getLocatie(){
-
-        return new Coördinaten();
-
-    };
 
     //region Strategy Code
     private IHulpdienstStrategy hulpdienstStrategy;
@@ -29,6 +21,17 @@ public abstract class Actor  implements  IHulpdienstStrategy {
         this.hulpdienstStrategy = hulpdienstStrategy;
     }
     //endregion
+
+    public double getAfstand() {
+
+        return 0.0;
+    };
+
+    public Coördinaten getLocatie() {
+
+        return new Coördinaten();
+
+    };
 
     @Override
     public String toString() {

@@ -8,6 +8,7 @@ package database;
  */
 
 import com.mysql.jdbc.Connection;
+
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.File;
@@ -23,7 +24,7 @@ public class DBConnection {
 
     static {
         try {
-            InputStream file = new FileInputStream(new File("resources/config/db.properties")) ;
+            InputStream file = new FileInputStream(new File("resources/config/db.properties"));
             Properties props = new Properties();
             props.load(file);
 

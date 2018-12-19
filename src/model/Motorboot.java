@@ -9,11 +9,6 @@ package model;
  */
 public class Motorboot extends Schepen {
 
-    public Motorboot(){
-      super.getKoers();
-    }
-
-
     @Override
     public double getAfstand(){ return 0;};
 

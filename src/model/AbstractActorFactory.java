@@ -13,7 +13,9 @@ import enums.Schepen;
 public abstract class AbstractActorFactory {
 
     public abstract Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst);
+
     public abstract Vervoermiddel setSchip(Schepen schip);
+
     public abstract Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren);
 
 }
