@@ -22,12 +22,31 @@ public class SchipFactory extends AbstractActorFactory{
         switch (schip) {
 
             case CONTAINERSCHIP:
-                return new ContainerSchip(coördinaten,snelheid,grootte,capaciteit,koers);
+
+                ContainerSchip containerSchip = new ContainerSchip(coördinaten,snelheid,grootte,capaciteit,koers);
+                Actor.mogelijkeHulpdiensten.add(containerSchip);
+                Actor.schepenOpWater.add(containerSchip);
+                return containerSchip;
+
             case MOTORBOOT:
+
+                Motorboot motorboot = new Motorboot(coördinaten,snelheid,grootte,capaciteit,koers);
+                Actor.mogelijkeHulpdiensten.add(motorboot);
+                Actor.schepenOpWater.add(motorboot);
                 return new Motorboot(coördinaten,snelheid,grootte,capaciteit,koers);
+
             case TANKER:
-                return new Tanker(coördinaten,snelheid,grootte,capaciteit,koers);
+
+                Tanker tanker = new Tanker(coördinaten,snelheid,grootte,capaciteit,koers);
+                Actor.mogelijkeHulpdiensten.add(tanker);
+                Actor.schepenOpWater.add(tanker);
+                return tanker;
+
             case ZEILBOOT:
+
+                Zeilboot zeilboot = new Zeilboot(coördinaten,snelheid,grootte,capaciteit,koers);
+                Actor.mogelijkeHulpdiensten.add(zeilboot);
+                Actor.schepenOpWater.add(zeilboot);
                 return new Zeilboot(coördinaten,snelheid,grootte,capaciteit,koers);
         }
         return null;

@@ -19,9 +19,16 @@ public class HulpdienstFactory extends AbstractActorFactory {
         switch (hulpdienst) {
 
             case SCHEEPSVAARTPOLITIE:
-                return new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers);
+
+                ScheepsvaartPolitie scheepsvaartPolitie = new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers);
+                Actor.mogelijkeHulpdiensten.add(scheepsvaartPolitie);
+                return scheepsvaartPolitie;
+
             case SEAKING:
-                return new Seaking(coördinaten,snelheid,grootte,capaciteit,koers);
+
+                Seaking seaking = new Seaking(coördinaten,snelheid,grootte,capaciteit,koers);
+                Actor.mogelijkeHulpdiensten.add(seaking);
+                return seaking;
         }
 
         return null;
