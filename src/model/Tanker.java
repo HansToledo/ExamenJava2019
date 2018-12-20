@@ -17,6 +17,7 @@ public class Tanker extends Schepen {
 
         super(coördinaten,snelheid,grootte,capaciteit,koers);
 
+
     }
 
     @Override

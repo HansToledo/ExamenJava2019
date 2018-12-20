@@ -24,6 +24,9 @@ public class test {
 
     public void test() {
 
+        AbstractActorFactory test = FactoryProducer.getFactory(Actors.SCHIP);
+
+
 //       List<Actor> actoren = new ArrayList<Actor>();
 //       AbstractActorFactory test = FactoryProducer.getFactory(Actors.SCHIP);
 //        Coördinaten coördinaten = new Coördinaten();

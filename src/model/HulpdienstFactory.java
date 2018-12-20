@@ -36,12 +36,15 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren) {
+    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeersToren) {
 
-        switch (verkeerstoren) {
+        switch (verkeersToren) {
 
             case VERKEERSTOREN:
-                return new Verkeerstoren();
+
+                Verkeerstoren verkeerstoren = new Verkeerstoren();
+                Actor.verkeerstorens.add(verkeerstoren);
+                return verkeerstoren;
 
         }
 

@@ -1,7 +1,13 @@
 package model;
 
+import enums.SOS;
+
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Set;
+
+import static enums.SOS.SOS_NOOD;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -11,6 +17,9 @@ import java.util.ListIterator;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
+
+    private SOS noodSignaal;
+    private Set<IStatusObserver> verkeerstorens;
 
     public Schepen(){
 
@@ -22,26 +31,35 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     }
 
-    //regiopublic n StatusObserver
-    private LinkedList<Actor> verkeerstorens;
-    private LinkedList<Actor> statusUpdate;
-
     @Override
-    public void notifyVerkeerstorenObservers() {
-        ListIterator list = verkeerstorens.listIterator();
-        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(statusUpdate);
-    }
-
-    @Override
-    public void addVerkeerstorenObserver(Actor verkeerstoren) {
+    public void addVerkeerstorenObserver(IStatusObserver verkeerstoren) {
         verkeerstorens.add(verkeerstoren);
     }
 
     @Override
-    public void removeVerkeerstorenObserver(Actor verkeerstoren) {
+    public void removeVerkeerstorenObserver(IStatusObserver verkeerstoren) {
         verkeerstorens.remove(verkeerstoren);
     }
+    @Override
+    public void notifyVerkeerstorenObservers() {
 
+        Iterator<IStatusObserver> it = verkeerstorens.iterator();
+
+        while (it.hasNext()){
+
+            IStatusObserver verkeerstoren = it.next();
+            verkeerstoren.statusUpdate(noodSignaal);
+
+        }
+
+    }
+
+    public void setNoodSignaal(SOS sos){
+
+        this.noodSignaal = sos;
+        notifyVerkeerstorenObservers();
+
+    }
 
     //endregion
 

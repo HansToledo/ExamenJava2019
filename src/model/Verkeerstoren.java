@@ -1,5 +1,7 @@
 package model;
 
+import enums.SOS;
+
 import java.util.LinkedList;
 
 /**
@@ -11,11 +13,15 @@ import java.util.LinkedList;
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
 
-    //region StatusObserver
-    private LinkedList<Actor> statusSchip;
 
-    public void statusUpdate(LinkedList<Actor> statusSchip){
-        this.statusSchip = statusSchip;
+    private SOS noodsignaal;
+
+    //region StatusObserver
+
+    public void statusUpdate(SOS noodsignaal){
+
+       this.noodsignaal = noodsignaal;
+
     }
     //endregion
 

@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -9,7 +12,23 @@ package model;
  */
 public abstract class Actor  {
 
+    public static ArrayList<Verkeerstoren> verkeerstorens = new ArrayList<Verkeerstoren>(); //via factory komen verkeerstorens in lijst
 
+    public void clearVerkeerstorenLijst(){
+
+        verkeerstorens.clear();
+
+    }
+    public double getAfstand() {
+
+        return 0.0;
+    };
+
+    public Coördinaten getLocatie() {
+
+        return new Coördinaten();
+
+    };
     //region Strategy Code
     private IHulpdienstStrategy hulpdienstStrategy;
 
@@ -22,16 +41,7 @@ public abstract class Actor  {
     }
     //endregion
 
-    public double getAfstand() {
 
-        return 0.0;
-    };
-
-    public Coördinaten getLocatie() {
-
-        return new Coördinaten();
-
-    };
 
     @Override
     public String toString() {
