@@ -14,19 +14,19 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
+    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (hulpdienst) {
 
             case SCHEEPSVAARTPOLITIE:
 
-                ScheepsvaartPolitie scheepsvaartPolitie = new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers);
+                ScheepsvaartPolitie scheepsvaartPolitie = new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
                 Actor.mogelijkeHulpdiensten.add(scheepsvaartPolitie);
                 return scheepsvaartPolitie;
 
             case SEAKING:
 
-                Seaking seaking = new Seaking(coördinaten,snelheid,grootte,capaciteit,koers);
+                Seaking seaking = new Seaking(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
                 Actor.mogelijkeHulpdiensten.add(seaking);
                 return seaking;
         }
@@ -36,20 +36,20 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
+    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
         return null;
     }
 
 
     @Override
-    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeersToren) {
+    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeersToren,Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (verkeersToren) {
 
             case VERKEERSTOREN:
 
-                Verkeerstoren verkeerstoren = new Verkeerstoren();
+                Verkeerstoren verkeerstoren = new Verkeerstoren(coördinaten,hulpdienstStrategy);
                 Actor.verkeerstorens.add(verkeerstoren);               //static list in actor class
                 return verkeerstoren;
 

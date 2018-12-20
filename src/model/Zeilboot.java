@@ -15,14 +15,19 @@ public class Zeilboot extends Schepen {
     }
 
 
-    public Zeilboot(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
+    public Zeilboot(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(coördinaten,snelheid,grootte,capaciteit,koers);
+        super(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
+    @Override
+    public void doUpdate() {
 
+    }
     @Override
     public String toString() {
         return "Zeilboot{} " + super.toString();
     }
+
+
 }

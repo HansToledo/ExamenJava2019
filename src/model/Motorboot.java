@@ -14,14 +14,19 @@ public class Motorboot extends Schepen {
 
     }
 
-    public Motorboot(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
+    public Motorboot(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(coördinaten,snelheid,grootte,capaciteit,koers);
+        super(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
+  @Override
+    public void doUpdate() {
 
+    }
     @Override
     public String toString() {
         return "Motorboot{} " + super.toString();
     }
+
+
 }

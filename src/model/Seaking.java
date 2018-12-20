@@ -13,14 +13,33 @@ public class Seaking extends Vervoermiddel {
 
     }
 
-    public Seaking(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
+    public Seaking(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(coördinaten,snelheid,grootte,capaciteit,koers);
+        super(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+    }
+    @Override
+    public void doUpdate() {
+
+    }
+    @Override
+    public String toString() {
+        return "Seaking{} " + super.toString();
+    }
+
+
+    @Override
+    public void addVerkeerstorenObserver(IStatusObserver statusObserver) {
 
     }
 
     @Override
-    public String toString() {
-        return "Seaking{} " + super.toString();
+    public void removeVerkeerstorenObserver(IStatusObserver statusObserver) {
+
+    }
+
+    @Override
+    public void notifyVerkeerstorenObservers() {
+
     }
 }

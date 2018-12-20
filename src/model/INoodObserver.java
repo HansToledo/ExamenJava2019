@@ -1,5 +1,7 @@
 package model;
 
+import enums.SOS;
+
 import java.util.LinkedList;
 
 /**
@@ -11,4 +13,6 @@ import java.util.LinkedList;
  */
 public interface INoodObserver {
 
+    public void doUpdate();
+    
 }

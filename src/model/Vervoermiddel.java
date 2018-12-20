@@ -7,7 +7,7 @@ package model;
  * Time: 19:17<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Vervoermiddel extends Actor implements INoodObserver{
+public abstract class Vervoermiddel extends Actor implements INoodObserver,IStatusSubject{
 
     private double afstand;
     private double snelheid;
@@ -17,12 +17,13 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private double capaciteit;
     private int koers;
     private Coördinaten coördinaten;
+    private String status = "OK";
 
     public Vervoermiddel(){
 
     }
 
-    public Vervoermiddel (Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers){
+    public Vervoermiddel (Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy){
 
         coördinaten = new Coördinaten();
         this.coördinaten = coördinaten;
@@ -30,8 +31,12 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         this.grootte = grootte;
         this.capaciteit = capaciteit;
         this.koers = koers;
+        super.setHulpdienstStrategy(hulpdienstStrategy);
 
     }
+
+
+
 
 
     public double getAfstand() {
