@@ -1,5 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -7,7 +12,7 @@ package model;
  * Time: 19:17<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Vervoermiddel extends Actor implements INoodObserver{
+public abstract class Vervoermiddel extends Actor implements INoodObserver, IStatusSubject{
 
     private double afstand;
     private double snelheid;
@@ -17,12 +22,13 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private double capaciteit;
     private int koers;
     private Coördinaten coördinaten;
+    private String status = "OK";
 
     public Vervoermiddel(){
 
     }
 
-    public Vervoermiddel (Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers){
+    public Vervoermiddel (Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
 
         coördinaten = new Coördinaten();
         this.coördinaten = coördinaten;
@@ -30,8 +36,29 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         this.grootte = grootte;
         this.capaciteit = capaciteit;
         this.koers = koers;
-
+        super.setHulpdienstStrategy(hulpdienstStrategy);
     }
+
+    //region StatusObserver
+    private List<Actor> verkeerstorens = new ArrayList<Actor>();
+    private LinkedList<Actor> statusUpdate = new LinkedList<Actor>();
+
+    @Override
+    public void notifyVerkeerstorenObservers(String status) {
+        ListIterator list = verkeerstorens.listIterator();
+        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(statusUpdate);
+    }
+
+    @Override
+    public void addVerkeerstorenObserver(Actor verkeerstoren) {
+        verkeerstorens.add(verkeerstoren);
+    }
+
+    @Override
+    public void removeVerkeerstorenObserver(Actor verkeerstoren) {
+        verkeerstorens.remove(verkeerstoren);
+    }
+    //endregion
 
 
     public double getAfstand() {
@@ -77,7 +104,6 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
 
     public void setLocatie() {
-
 
     }
 

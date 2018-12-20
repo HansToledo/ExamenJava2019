@@ -14,38 +14,34 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
+    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (hulpdienst) {
 
             case SCHEEPSVAARTPOLITIE:
-                return new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers);
+                return new ScheepsvaartPolitie(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
             case SEAKING:
-                return new Seaking(coördinaten,snelheid,grootte,capaciteit,koers);
+                return new Seaking(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
         }
+        return null;
+    }
+
+
+    @Override
+    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
         return null;
     }
 
 
     @Override
-    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers) {
-
-        return null;
-    }
-
-
-    @Override
-    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren) {
+    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (verkeerstoren) {
 
             case VERKEERSTOREN:
-                return new Verkeerstoren();
-
+                return new Verkeerstoren(coördinaten,hulpdienstStrategy);
         }
-
         return null;
-
     }
 }

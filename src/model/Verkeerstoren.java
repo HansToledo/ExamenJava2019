@@ -10,6 +10,17 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
+    private Coördinaten coördinaten;
+
+    public Verkeerstoren(){
+
+    }
+
+    public Verkeerstoren (Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+        coördinaten = new Coördinaten();
+        this.coördinaten = coördinaten;
+        super.setHulpdienstStrategy(hulpdienstStrategy);
+    }
 
     //region StatusObserver
     private LinkedList<Actor> statusSchip;
@@ -19,4 +30,11 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
     //endregion
 
+    @Override
+    public String toString() {
+        return "Verkeerstoren{" +
+                "coördinaten=" + coördinaten +
+                ", statusSchip=" + statusSchip +
+                '}'  + super.toString() ;
+    }
 }

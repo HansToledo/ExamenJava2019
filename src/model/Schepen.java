@@ -10,40 +10,17 @@ import java.util.ListIterator;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
+public abstract class Schepen extends Vervoermiddel{
 
     public Schepen(){
 
     }
 
-    public Schepen(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers) {
+    public Schepen(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(coördinaten,snelheid,grootte,capaciteit,koers);
+        super(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
-
-    //regiopublic n StatusObserver
-    private LinkedList<Actor> verkeerstorens;
-    private LinkedList<Actor> statusUpdate;
-
-    @Override
-    public void notifyVerkeerstorenObservers() {
-        ListIterator list = verkeerstorens.listIterator();
-        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(statusUpdate);
-    }
-
-    @Override
-    public void addVerkeerstorenObserver(Actor verkeerstoren) {
-        verkeerstorens.add(verkeerstoren);
-    }
-
-    @Override
-    public void removeVerkeerstorenObserver(Actor verkeerstoren) {
-        verkeerstorens.remove(verkeerstoren);
-    }
-
-
-    //endregion
 
     @Override
     public String toString() {
