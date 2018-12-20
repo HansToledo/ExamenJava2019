@@ -11,7 +11,7 @@ import enums.SOS;
 
 import java.util.LinkedList;
 
-public interface IStatusObserver {
+public interface IStatusObserver { //is deze wel nodig??
 
     public void statusUpdate(SOS sos);
 

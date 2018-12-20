@@ -11,7 +11,7 @@ import java.util.Observer;
  * @Purpose: Observer voor doorgeven van status schepen.
  */
 
-public interface IStatusSubject {
+public interface IStatusSubject { //is deze wel nodig??
 
     public void addVerkeerstorenObserver(IStatusObserver statusObserver);
     public void removeVerkeerstorenObserver(IStatusObserver statusObserver);
