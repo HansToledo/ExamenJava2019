@@ -43,7 +43,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
             case VERKEERSTOREN:
 
                 Verkeerstoren verkeerstoren = new Verkeerstoren();
-                Actor.verkeerstorens.add(verkeerstoren);
+                Actor.verkeerstorens.add(verkeerstoren);               //static list in actor class
                 return verkeerstoren;
 
         }
