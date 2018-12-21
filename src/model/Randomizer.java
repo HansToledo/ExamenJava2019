@@ -7,6 +7,7 @@ import enums.StatusVoertuig;
 import strategy.GeenStrategy;
 import strategy.MeldingStrategy;
 import strategy.PickupStrategy;
+import database.DBqueries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Random;
 
 public class Randomizer {
     private static Random random = new Random();
+    private final DBqueries kustwachtQueries = new DBqueries();
 
     public String naamAddon() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -46,7 +48,7 @@ public class Randomizer {
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
 
-            Verkeerstoren actor3 = random3.setVerkeersToren("vt"+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
+            Verkeerstoren actor3 = random3.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
 
             Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
@@ -61,6 +63,20 @@ public class Randomizer {
             actoren.add(actor);
             actoren.add(actor2);
             actoren.add(actor3);
+
+            //Actoren toevoegen aan database
+            kustwachtQueries.addSchip(actor.getNaam(),actor.getSnelheid(),
+                    actor.getReactieTijd(),actor.getWendbaarheid(),
+                    actor.getGrootte(),actor.getCapaciteit(),
+                    actor.getKoers(),actor.getStatus());
+
+            kustwachtQueries.addHulpdienst(actor2.getNaam(),actor2.getSnelheid(),
+                    actor2.getReactieTijd(),actor2.getWendbaarheid(),
+                    actor2.getGrootte(),actor2.getCapaciteit(),
+                    actor2.getKoers(),actor2.getStatus());
+
+            kustwachtQueries.addVerkeerstoren(actor3.getNaam());
+
 
             actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern
             actor.notifyVerkeerstorenObservers(StatusVoertuig.OK.toString());   //Alles mogelijke statussen bevinden zich in de enum StatusVoertuig.

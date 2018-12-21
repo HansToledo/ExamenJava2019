@@ -24,6 +24,14 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
     //region StatusObserver
     private LinkedList<Actor> statusSchip;
 
