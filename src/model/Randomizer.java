@@ -10,8 +10,24 @@ import strategy.PickupStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Randomizer {
+    private static Random random = new Random();
+
+    public String naamAddon() {
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuffer randomNaam = new StringBuffer();
+        randomNaam.append("-");
+        for (int i = 0; i < 2; i++) {
+            randomNaam.append(letters.charAt(random.nextInt(26)));
+        }
+        randomNaam.append("-");
+        for (int i = 0; i < 2; i++) {
+            randomNaam.append(random.nextInt(10));
+        }
+        return randomNaam.toString();
+    }
 
     public void generetaData() {
 
@@ -30,14 +46,14 @@ public class Randomizer {
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
 
-            Verkeerstoren actor3 = random3.setVerkeersToren(Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
+            Verkeerstoren actor3 = random3.setVerkeersToren("vt"+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
 
-            Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst,coördinaten,
+            Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);
 
-            Vervoermiddel actor = random.setSchip(schip, coördinaten,
+            Vervoermiddel actor = random.setSchip(schip.toString()+naamAddon(),schip, coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);

@@ -12,29 +12,29 @@ import enums.Schepen;
  */
 public class SchipFactory extends AbstractActorFactory{
     @Override
-    public Vervoermiddel setHulpDienst(Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
+    public Vervoermiddel setHulpDienst(String naam,Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
         return null;
     }
 
     @Override
-    public Vervoermiddel setSchip(Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
+    public Vervoermiddel setSchip(String naam, Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (schip) {
 
             case CONTAINERSCHIP:
-                return new ContainerSchip(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                return new ContainerSchip(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
             case MOTORBOOT:
-                return new Motorboot(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                return new Motorboot(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
             case TANKER:
-                return new Tanker(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                return new Tanker(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
             case ZEILBOOT:
-                return new Zeilboot(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                return new Zeilboot(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
         }
         return null;
     }
 
     @Override
-    public Verkeerstoren setVerkeersToren(Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+    public Verkeerstoren setVerkeersToren(String naam,Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
         return null;
     }
 }

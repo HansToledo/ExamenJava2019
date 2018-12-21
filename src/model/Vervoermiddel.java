@@ -14,6 +14,7 @@ import java.util.ListIterator;
  */
 public abstract class Vervoermiddel extends Actor implements INoodObserver, IStatusSubject{
 
+    private String naam;
     private double afstand;
     private double snelheid;
     private double reactieTijd;
@@ -28,8 +29,8 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
 
     }
 
-    public Vervoermiddel (Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
-
+    public Vervoermiddel (String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
+        this.naam = naam;
         coördinaten = new Coördinaten();
         this.coördinaten = coördinaten;
         this.snelheid = snelheid;
@@ -61,10 +62,15 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
     //endregion
 
 
+    public String getNaam() {
+
+        return this.naam;
+    }
+
     public double getAfstand() {
 
         return this.afstand;
-    };
+    }
 
 
     public double getSnelheid() { // snelheid in knopen containerschip
@@ -103,6 +109,11 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
     }
 
 
+    public void setNaam() {
+
+        this.naam = naam;
+    }
+
     public void setLocatie() {
 
     }
@@ -138,7 +149,8 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
     @Override
     public String toString() {
         return "Vervoermiddel{" +
-                "afstand=" + afstand +
+                "naam=" + naam +
+                ", afstand=" + afstand +
                 ", snelheid=" + snelheid +
                 ", reactieTijd=" + reactieTijd +
                 ", wendbaarheid=" + wendbaarheid +

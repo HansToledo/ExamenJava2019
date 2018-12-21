@@ -13,9 +13,9 @@ public class ScheepsvaartPolitie extends Vervoermiddel {
 
     }
 
-    public ScheepsvaartPolitie (Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy) {
+    public ScheepsvaartPolitie (String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+        super(naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
 

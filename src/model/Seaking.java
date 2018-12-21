@@ -13,9 +13,9 @@ public class Seaking extends Vervoermiddel {
 
     }
 
-    public Seaking(Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy) {
+    public Seaking(String naam,Coördinaten coördinaten,double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+        super(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
 

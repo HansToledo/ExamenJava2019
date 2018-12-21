@@ -21,17 +21,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
         Randomizer random = new Randomizer();
         random.generetaData();
 
-        //test test = new test();
-        //test.test();
-
-//        Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
-//        launch(args);
-
-
+        launch(args);
     }
 
 
