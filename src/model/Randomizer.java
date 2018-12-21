@@ -64,6 +64,7 @@ public class Randomizer {
             actoren.add(actor2);
             actoren.add(actor3);
 
+
             //Actoren toevoegen aan database
             kustwachtQueries.addSchip(actor.getNaam(),actor.getSnelheid(),
                     actor.getReactieTijd(),actor.getWendbaarheid(),

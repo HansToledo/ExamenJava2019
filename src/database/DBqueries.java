@@ -10,7 +10,11 @@ package database;
 import com.mysql.jdbc.Connection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBqueries {
     private Connection dbConnection; // manages the connection
@@ -24,27 +28,26 @@ public class DBqueries {
         try {
             dbConnection = database.DBConnection.getConnection();
 
-            newActor = dbConnection.prepareStatement(
+
+            newActor = dbConnection.prepareStatement((
                     "INSERT INTO actoren " +
                             "(Naam) " +
-                            "VALUES (?)");
+                            "VALUES (?)"), Statement.RETURN_GENERATED_KEYS);
 
             newVerkeerstoren = dbConnection.prepareStatement(
-                    "INSERT INTO verkeerstoren " +
-                            "(Naam) " +
+                    "INSERT INTO verkeerstorens " +
+                            "(ActorID) " +
                             "VALUES (?)");
 
             newHulpdienst = dbConnection.prepareStatement(
                     "INSERT INTO voertuigen " +
-                            "(Naam,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
+                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
                             "VALUES (?,?,?,?,?,?,?,?)");
 
             newSchip = dbConnection.prepareStatement(
                     "INSERT INTO voertuigen " +
-                            "(Naam,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
+                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
                             "VALUES (?,?,?,?,?,?,?,?)");
-
-
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -52,23 +55,21 @@ public class DBqueries {
         }
     }
 
-    // actor toevoegen
-    public int addActor(String naam) {
-        try {
-            newActor.setString(1,naam);
-            return newActor.executeUpdate();
-        }
-        catch (SQLException sqlException) {
-            sqlErrorMessageDBqueries = sqlException.getMessage();
-            sqlException.printStackTrace();
-            return 0;
-        }
-    }
+
 
     // verkeerstoren toevoegen
     public int addVerkeerstoren(String naam) {
         try {
-            newVerkeerstoren.setString(1,naam);
+            newActor.setString(1,naam);
+            newActor.executeUpdate();
+
+            ResultSet rs = null;
+            int ActorID = 0;
+
+            rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
+            if(rs.next()) ActorID = rs.getInt(1);
+
+            newVerkeerstoren.setDouble(1,ActorID);
             return newVerkeerstoren.executeUpdate();
         }
         catch (SQLException sqlException) {
@@ -79,9 +80,18 @@ public class DBqueries {
     }
 
     // hulpdienst toevoegen
-    public int addHulpdienst(String naam,double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public void addHulpdienst(String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
         try {
-            newHulpdienst.setString(1,naam);
+            newActor.setString(1,naam);
+            newActor.executeUpdate();
+
+            ResultSet rs = null;
+            int ActorID = 0;
+
+            rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
+            if(rs.next()) ActorID = rs.getInt(1);
+
+            newHulpdienst.setDouble(1,ActorID);
             newHulpdienst.setDouble(2,snelheid);
             newHulpdienst.setDouble(3,reactietijd);
             newHulpdienst.setDouble(4,wendbaarheid);
@@ -89,19 +99,27 @@ public class DBqueries {
             newHulpdienst.setDouble(6,capaciteit);
             newHulpdienst.setDouble(7,koers);
             newHulpdienst.setString(8,status);
-            return newHulpdienst.executeUpdate();
+            newHulpdienst.executeUpdate();
         }
         catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
-            return 0;
         }
     }
 
     // schip toevoegen
-    public int addSchip(String naam,double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public int addSchip(String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
         try {
-            newSchip.setString(1,naam);
+            newActor.setString(1,naam);
+            newActor.executeUpdate();
+
+            ResultSet rs = null;
+            int ActorID = 0;
+
+            rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
+            if(rs.next()) ActorID = rs.getInt(1);
+
+            newSchip.setDouble(1,ActorID);
             newSchip.setDouble(2,snelheid);
             newSchip.setDouble(3,reactietijd);
             newSchip.setDouble(4,wendbaarheid);
