@@ -161,7 +161,4 @@ public class Randomizer {
             System.out.println(actoren.get(i));
         }
     }
-
-
-
 }
