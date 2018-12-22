@@ -22,13 +22,32 @@ public class SchipFactory extends AbstractActorFactory{
         switch (schip) {
 
             case CONTAINERSCHIP:
-                return new ContainerSchip(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+                ContainerSchip containerSchip = new ContainerSchip(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                Actor.mogelijkeHulpdiensten.add(containerSchip);
+                Actor.schepenOpWater.add(containerSchip);
+                return containerSchip;
+
             case MOTORBOOT:
-                return new Motorboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+                Motorboot motorboot = new Motorboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                Actor.mogelijkeHulpdiensten.add(motorboot);
+                Actor.schepenOpWater.add(motorboot);
+                return motorboot;
+
             case TANKER:
-                return new Tanker(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+                Tanker tanker = new Tanker(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                Actor.mogelijkeHulpdiensten.add(tanker);
+                Actor.schepenOpWater.add(tanker);
+                return tanker;
+
             case ZEILBOOT:
-                return new Zeilboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+                Zeilboot zeilboot = new Zeilboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                Actor.mogelijkeHulpdiensten.add(zeilboot);
+                Actor.schepenOpWater.add(zeilboot);
+                return zeilboot;
         }
         return null;
     }

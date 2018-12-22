@@ -28,12 +28,12 @@ public class Coördinaten {
 
     private double getRandomBreedte() {
 
-        return (-90.0 + Math.random() * 90.0);
+        return Math.floor(-90.0 + Math.random() * 90.0);
     }
 
     private double getRandomLengte() {
 
-        return (-180.0 + Math.random() * 180.0);
+        return Math.floor(-180.0 + Math.random() * 180.0);
     }
 
     public double getBreedte() {
@@ -46,5 +46,11 @@ public class Coördinaten {
         return this.lengte;
     }
 
-
+    @Override
+    public String toString() {
+        return "Coördinaten{" +
+                "breedte=" + breedte +
+                ", lengte=" + lengte +
+                '}';
+    }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -8,6 +10,10 @@ package model;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Actor  {
+
+    public static ArrayList<Verkeerstoren> verkeerstorens = new ArrayList<Verkeerstoren>(); //via factory komen verkeerstorens in lijst
+    public static ArrayList<Schepen> schepenOpWater = new ArrayList<Schepen>();
+    public static ArrayList<Vervoermiddel> mogelijkeHulpdiensten = new ArrayList<Vervoermiddel>();
 
 
     //region Strategy Code

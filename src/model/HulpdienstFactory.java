@@ -19,9 +19,16 @@ public class HulpdienstFactory extends AbstractActorFactory {
         switch (hulpdienst) {
 
             case SCHEEPSVAARTPOLITIE:
-                return new ScheepsvaartPolitie(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+                ScheepsvaartPolitie scheepsvaartPolitie = new ScheepsvaartPolitie(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                Actor.mogelijkeHulpdiensten.add(scheepsvaartPolitie);
+                return scheepsvaartPolitie;
+
             case SEAKING:
-                return new Seaking(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+
+                Seaking seaking = new Seaking(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                Actor.mogelijkeHulpdiensten.add(seaking);
+                return seaking;
         }
         return null;
     }
@@ -35,12 +42,15 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Verkeerstoren setVerkeersToren(String enumNaam, String naam,Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+    public Verkeerstoren setVerkeersToren(String enumNaam, String naam,Hulpdiensten verkeersToren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
-        switch (verkeerstoren) {
+        switch (verkeersToren) {
 
             case VERKEERSTOREN:
-                return new Verkeerstoren(enumNaam,naam,coördinaten,hulpdienstStrategy);
+
+                Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam,naam,coördinaten,hulpdienstStrategy);
+                Actor.verkeerstorens.add(verkeerstoren);
+                return verkeerstoren;
         }
         return null;
     }
