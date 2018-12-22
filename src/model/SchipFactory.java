@@ -79,7 +79,7 @@ public class SchipFactory extends AbstractActorFactory{
         Verkeerstoren verkeerstorenKortste = new Verkeerstoren();
         GPSDistance berekenAfstand= new GPSDistance();
         Coördinaten coördinatenS = new Coördinaten();
-        Coördinaten coördinatenVT;
+        Coördinaten coördinatenVT = new Coördinaten();
 
         coördinatenS = schepen.getLocatie();
         double breedte = coördinatenS.getBreedte();
@@ -88,8 +88,6 @@ public class SchipFactory extends AbstractActorFactory{
 
         for (Verkeerstoren item : Actor.verkeerstorens) {
 
-
-            coördinatenVT = new Coördinaten();
             coördinatenVT = item.getLocatie();
             afstandBereken = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
             item.setAfstand(afstandBereken); //als test
@@ -103,7 +101,6 @@ public class SchipFactory extends AbstractActorFactory{
             if (afstandKortste > afstandBereken){
 
                 afstandKortste = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
-
                 verkeerstorenKortste = item;
             }
 
