@@ -7,8 +7,12 @@ package model;
  * @Purpose: Observer voor doorgeven van status schepen.
  */
 
+import enums.StatusVoertuig;
+
 import java.util.LinkedList;
 
 public interface IStatusObserver {
-    public void statusUpdate(LinkedList<Actor> statusSchip);
+
+    public void doUpdate(StatusVoertuig statusSchip,Coördinaten coördinaten,String naam);
+
 }

@@ -24,4 +24,7 @@ public class Motorboot extends Schepen {
     public String toString() {
         return "Motorboot{} " + super.toString();
     }
+
+
+
 }

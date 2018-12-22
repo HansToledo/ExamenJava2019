@@ -1,6 +1,9 @@
 package model;
 
+import enums.StatusVoertuig;
+
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -10,6 +13,7 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
+
     private String enumNaam;
     private String naam;
     private Coördinaten coördinaten;
@@ -19,11 +23,13 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
     public Verkeerstoren (String enumNaam, String naam,Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+
         coördinaten = new Coördinaten();
         this.enumNaam = enumNaam;
         this.naam = naam;
         this.coördinaten = coördinaten;
         super.setHulpdienstStrategy(hulpdienstStrategy);
+
     }
 
     public String getNaam() {
@@ -43,11 +49,18 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
     //region StatusObserver
-    private LinkedList<Actor> statusSchip;
 
-    public void statusUpdate(LinkedList<Actor> statusSchip){
-        this.statusSchip = statusSchip;
+    @Override
+    public void doUpdate(StatusVoertuig statusSchip, Coördinaten coördinaten, String naam) {
+
+        if (statusSchip != StatusVoertuig.OK) {
+
+            System.out.println("TEST of Istatusobserver werkt" + naam);
+            // deze moet andere observer aansturen
+        }
+
     }
+
     //endregion
 
     @Override
@@ -55,7 +68,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         return "Verkeerstoren{" +
                 "naam=" + naam +
                 ", coördinaten=" + coördinaten +
-                ", statusSchip=" + statusSchip +
+                ", statusSchip=" +
                 '}'  + super.toString() ;
     }
+
+
 }
