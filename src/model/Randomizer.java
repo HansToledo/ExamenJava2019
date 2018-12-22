@@ -65,6 +65,15 @@ public class Randomizer {
             actoren.add(actor3);
 
 
+            //Alle mogelijke enums toevoegen aan database
+            int enumi=0;
+            List enumList = java.util.Arrays.asList(Hulpdiensten.values());
+            while(enumi < enumList.size())
+            {
+                kustwachtQueries.addEnum(enumList.get(enumi).toString());
+                enumi++;
+            }
+
             //Actoren toevoegen aan database
             kustwachtQueries.addSchip(actor.getNaam(),actor.getSnelheid(),
                     actor.getReactieTijd(),actor.getWendbaarheid(),

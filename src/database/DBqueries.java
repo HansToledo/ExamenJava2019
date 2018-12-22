@@ -22,6 +22,7 @@ public class DBqueries {
     private PreparedStatement newVerkeerstoren;
     private PreparedStatement newHulpdienst;
     private PreparedStatement newSchip;
+    private PreparedStatement newEnum;
     public static String sqlErrorMessageDBqueries = null;
 
     public DBqueries() {
@@ -33,6 +34,11 @@ public class DBqueries {
                     "INSERT INTO actoren " +
                             "(Naam) " +
                             "VALUES (?)"), Statement.RETURN_GENERATED_KEYS);
+
+            newEnum = dbConnection.prepareStatement(
+                    "INSERT INTO enums " +
+                            "(EnumID) " +
+                            "VALUES (?)");
 
             newVerkeerstoren = dbConnection.prepareStatement(
                     "INSERT INTO verkeerstorens " +
@@ -56,6 +62,18 @@ public class DBqueries {
     }
 
 
+    // enum toevoegen
+    public int addEnum(String naam) {
+        try {
+            newEnum.setString(1,naam);
+            return newEnum.executeUpdate();
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+            return 0;
+        }
+    }
 
     // verkeerstoren toevoegen
     public int addVerkeerstoren(String naam) {
