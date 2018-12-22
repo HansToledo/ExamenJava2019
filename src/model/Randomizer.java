@@ -31,6 +31,41 @@ public class Randomizer {
         return randomNaam.toString();
     }
 
+    public void addEnumsToDB(){
+        //Alle mogelijke enums toevoegen aan database
+        int enumi=0;
+        List alleBestaandeEnums = kustwachtQueries.getAllVervoermiddelTypes();
+        List hulpdienstenList = java.util.Arrays.asList(Hulpdiensten.values()); //lijst met hulpdiensten enums
+        List schepenList = java.util.Arrays.asList(Schepen.values());   //lijst met schepen enums
+
+        while(enumi < hulpdienstenList.size())  //hulpdiensten enums inlezen in database
+        {
+            String gezocht = hulpdienstenList.get(enumi).toString();
+            if ((alleBestaandeEnums.contains(gezocht))==false){
+                kustwachtQueries.addTypeVervoermiddel(hulpdienstenList.get(enumi).toString());
+                enumi++;
+            }
+            else
+            {
+                enumi++;
+            }
+        }
+
+        enumi = 0;  //enumi terug op 0 zetten voor de volgende lijst te controleren
+        while(enumi < schepenList.size())   //schepen enums inlezen in database
+        {
+            String gezocht = schepenList.get(enumi).toString();
+            if ((alleBestaandeEnums.contains(gezocht))==false){
+                kustwachtQueries.addTypeVervoermiddel(schepenList.get(enumi).toString());
+                enumi++;
+            }
+            else
+            {
+                enumi++;
+            }
+        }
+    }
+
     public void generetaData() {
 
         int teller = 0;
@@ -48,14 +83,14 @@ public class Randomizer {
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
 
-            Verkeerstoren actor3 = random3.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
+            Verkeerstoren actor3 = random3.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
 
-            Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
+            Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst.toString(),hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);
 
-            Vervoermiddel actor = random.setSchip(schip.toString()+naamAddon(),schip, coördinaten,
+            Vervoermiddel actor = random.setSchip(schip.toString(),schip.toString()+naamAddon(),schip, coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);
@@ -65,27 +100,18 @@ public class Randomizer {
             actoren.add(actor3);
 
 
-            //Alle mogelijke enums toevoegen aan database
-            int enumi=0;
-            List enumList = java.util.Arrays.asList(Hulpdiensten.values());
-            while(enumi < enumList.size())
-            {
-                kustwachtQueries.addEnum(enumList.get(enumi).toString());
-                enumi++;
-            }
-
             //Actoren toevoegen aan database
-            kustwachtQueries.addSchip(actor.getNaam(),actor.getSnelheid(),
+            kustwachtQueries.addSchip(actor.getEnumNaam(),actor.getNaam(),actor.getSnelheid(),
                     actor.getReactieTijd(),actor.getWendbaarheid(),
                     actor.getGrootte(),actor.getCapaciteit(),
                     actor.getKoers(),actor.getStatus());
 
-            kustwachtQueries.addHulpdienst(actor2.getNaam(),actor2.getSnelheid(),
+            kustwachtQueries.addHulpdienst(actor2.getEnumNaam(),actor2.getNaam(),actor2.getSnelheid(),
                     actor2.getReactieTijd(),actor2.getWendbaarheid(),
                     actor2.getGrootte(),actor2.getCapaciteit(),
                     actor2.getKoers(),actor2.getStatus());
 
-            kustwachtQueries.addVerkeerstoren(actor3.getNaam());
+            kustwachtQueries.addVerkeerstoren(actor3.getEnumNaam(),actor3.getNaam());
 
 
             actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern

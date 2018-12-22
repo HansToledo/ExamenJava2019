@@ -22,7 +22,9 @@ public class DBqueries {
     private PreparedStatement newVerkeerstoren;
     private PreparedStatement newHulpdienst;
     private PreparedStatement newSchip;
-    private PreparedStatement newEnum;
+    private PreparedStatement newTypeVervoermiddel;
+    private PreparedStatement getTypeVervoermiddelID;
+    private PreparedStatement getAllVervoermiddelTypes;
     public static String sqlErrorMessageDBqueries = null;
 
     public DBqueries() {
@@ -32,12 +34,12 @@ public class DBqueries {
 
             newActor = dbConnection.prepareStatement((
                     "INSERT INTO actoren " +
-                            "(Naam) " +
-                            "VALUES (?)"), Statement.RETURN_GENERATED_KEYS);
+                            "(Naam,EnumID) " +
+                            "VALUES (?,?)"), Statement.RETURN_GENERATED_KEYS);
 
-            newEnum = dbConnection.prepareStatement(
-                    "INSERT INTO enums " +
-                            "(EnumID) " +
+            newTypeVervoermiddel = dbConnection.prepareStatement(
+                    "INSERT INTO type_vervoermiddel " +
+                            "(Naam) " +
                             "VALUES (?)");
 
             newVerkeerstoren = dbConnection.prepareStatement(
@@ -46,14 +48,20 @@ public class DBqueries {
                             "VALUES (?)");
 
             newHulpdienst = dbConnection.prepareStatement(
-                    "INSERT INTO voertuigen " +
+                    "INSERT INTO vervoermiddel " +
                             "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
                             "VALUES (?,?,?,?,?,?,?,?)");
 
             newSchip = dbConnection.prepareStatement(
-                    "INSERT INTO voertuigen " +
+                    "INSERT INTO vervoermiddel " +
                             "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
                             "VALUES (?,?,?,?,?,?,?,?)");
+
+            getTypeVervoermiddelID = dbConnection.prepareStatement(
+                    "SELECT EnumID FROM type_vervoermiddel WHERE naam LIKE ?");
+
+            getAllVervoermiddelTypes = dbConnection.prepareStatement(
+                    "SELECT naam FROM type_vervoermiddel");
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -62,11 +70,29 @@ public class DBqueries {
     }
 
 
-    // enum toevoegen
-    public int addEnum(String naam) {
+    // opvragen bestaande types vervoermiddels
+    public List getAllVervoermiddelTypes(){
         try {
-            newEnum.setString(1,naam);
-            return newEnum.executeUpdate();
+        ResultSet resultSet = getAllVervoermiddelTypes.executeQuery();
+        List<String> results = new ArrayList<String>();
+            while (resultSet.next()) {
+                results.add( resultSet.getString("Naam"));
+            }
+        return results;
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+
+    // vervoermiddel_type toevoegen
+    public int addTypeVervoermiddel(String naam) {
+        try {
+            newTypeVervoermiddel.setString(1,naam);
+            return newTypeVervoermiddel.executeUpdate();
         }
         catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
@@ -76,9 +102,15 @@ public class DBqueries {
     }
 
     // verkeerstoren toevoegen
-    public int addVerkeerstoren(String naam) {
+    public int addVerkeerstoren(String enumNaam, String naam) {
         try {
+            getTypeVervoermiddelID.setString(1,enumNaam);
+            ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
+            resultSet.next();
+            int EnumID = resultSet.getInt("EnumID");
+
             newActor.setString(1,naam);
+            newActor.setInt(2,EnumID);
             newActor.executeUpdate();
 
             ResultSet rs = null;
@@ -98,9 +130,15 @@ public class DBqueries {
     }
 
     // hulpdienst toevoegen
-    public void addHulpdienst(String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public void addHulpdienst(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
         try {
+            getTypeVervoermiddelID.setString(1,enumNaam);
+            ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
+            resultSet.next();
+            int EnumID = resultSet.getInt("EnumID");
+
             newActor.setString(1,naam);
+            newActor.setInt(2,EnumID);
             newActor.executeUpdate();
 
             ResultSet rs = null;
@@ -126,9 +164,15 @@ public class DBqueries {
     }
 
     // schip toevoegen
-    public int addSchip(String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public int addSchip(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
         try {
+            getTypeVervoermiddelID.setString(1,enumNaam);
+            ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
+            resultSet.next();
+            int EnumID = resultSet.getInt("EnumID");
+
             newActor.setString(1,naam);
+            newActor.setInt(2,EnumID);
             newActor.executeUpdate();
 
             ResultSet rs = null;

@@ -16,9 +16,9 @@ public abstract class Schepen extends Vervoermiddel{
 
     }
 
-    public Schepen(String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
+    public Schepen(String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+        super(enumNaam, naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
 

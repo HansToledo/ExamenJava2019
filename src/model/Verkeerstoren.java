@@ -10,6 +10,7 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
+    private String enumNaam;
     private String naam;
     private Coördinaten coördinaten;
 
@@ -17,8 +18,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     }
 
-    public Verkeerstoren (String naam,Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+    public Verkeerstoren (String enumNaam, String naam,Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
         coördinaten = new Coördinaten();
+        this.enumNaam = enumNaam;
         this.naam = naam;
         this.coördinaten = coördinaten;
         super.setHulpdienstStrategy(hulpdienstStrategy);
@@ -30,6 +32,14 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     public void setNaam(String naam) {
         this.naam = naam;
+    }
+
+    public String getEnumNaam() {
+        return enumNaam;
+    }
+
+    public void setEnumNaam(String enumNaam) {
+        this.enumNaam = enumNaam;
     }
 
     //region StatusObserver

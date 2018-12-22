@@ -13,7 +13,7 @@ import java.util.ListIterator;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Vervoermiddel extends Actor implements INoodObserver, IStatusSubject{
-
+    private String enumNaam;
     private String naam;
     private double afstand;
     private double snelheid;
@@ -29,7 +29,8 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
 
     }
 
-    public Vervoermiddel (String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
+    public Vervoermiddel (String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
+        this.enumNaam = enumNaam;
         this.naam = naam;
         coördinaten = new Coördinaten();
         this.coördinaten = coördinaten;
@@ -68,6 +69,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getEnumNaam(){
+        return this.enumNaam;
     }
 
     public String getNaam() {
@@ -116,6 +121,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
         return this.koers;
     }
 
+    public void setEnumNaam(){
+
+        this.enumNaam = enumNaam;
+    }
 
     public void setNaam() {
 

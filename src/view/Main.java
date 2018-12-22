@@ -24,6 +24,7 @@ public class Main extends Application {
         Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
         Randomizer random = new Randomizer();
+        random.addEnumsToDB();
         random.generetaData();
 
         launch(args);

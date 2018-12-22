@@ -14,33 +14,33 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Vervoermiddel setHulpDienst(String naam,Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
+    public Vervoermiddel setHulpDienst(String enumNaam, String naam,Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (hulpdienst) {
 
             case SCHEEPSVAARTPOLITIE:
-                return new ScheepsvaartPolitie(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                return new ScheepsvaartPolitie(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
             case SEAKING:
-                return new Seaking(naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+                return new Seaking(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
         }
         return null;
     }
 
 
     @Override
-    public Vervoermiddel setSchip(String naam,Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
+    public Vervoermiddel setSchip(String enumNaam, String naam,Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
         return null;
     }
 
 
     @Override
-    public Verkeerstoren setVerkeersToren(String naam,Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+    public Verkeerstoren setVerkeersToren(String enumNaam, String naam,Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (verkeerstoren) {
 
             case VERKEERSTOREN:
-                return new Verkeerstoren(naam,coördinaten,hulpdienstStrategy);
+                return new Verkeerstoren(enumNaam,naam,coördinaten,hulpdienstStrategy);
         }
         return null;
     }

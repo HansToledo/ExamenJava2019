@@ -13,9 +13,9 @@ public class Tanker extends Schepen {
 
     }
 
-    public Tanker(String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
+    public Tanker(String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
-        super(naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
+        super(enumNaam, naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
 
