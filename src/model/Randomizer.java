@@ -21,6 +21,9 @@ public class Randomizer {
     IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
+    Coördinaten coördinaten = new Coördinaten();
+    List<Actor> actoren = new ArrayList<Actor>();
+
     public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
 
         double x = (Math.random()*((max-min)+1))+min;
@@ -98,60 +101,66 @@ public class Randomizer {
 
     public void generateVerkeerstores(){
         int teller = 0;
-        Coördinaten coördinaten = new Coördinaten();
-        List<Actor> actoren = new ArrayList<Actor>();
-        Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)];
+        AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
-        AbstractActorFactory random3 = FactoryProducer.getFactory(Actors.HULPDIENST);
-        Verkeerstoren actor3 = random3.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
+        do{
+            Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)];
 
-        actoren.add(actor3);
-        kustwachtQueries.addVerkeerstoren(actor3.getEnumNaam(),actor3.getNaam());   //Actor toevoegen aan database
+            Verkeerstoren verkeerstoren = random.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
+
+            actoren.add(verkeerstoren);
+            //Actor toevoegen aan database
+            kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(),verkeerstoren.getNaam());
+
+            ++teller;
+        }while (teller<10);
     }
 
-    public void generateData() {
+    public void generateHulpdiensten(){
         int teller = 0;
-        List<Actor> actoren = new ArrayList<Actor>();
+        AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
+
+        do{
+            Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
+
+            Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(),hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
+                    Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
+                    Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
+                    geenStrategy);
+
+            actoren.add(vervoermiddel);
+
+            //Actor toevoegen aan database
+            kustwachtQueries.addHulpdienst(vervoermiddel.getEnumNaam(),vervoermiddel.getNaam(),vervoermiddel.getSnelheid(),
+                    vervoermiddel.getReactieTijd(),vervoermiddel.getWendbaarheid(),
+                    vervoermiddel.getGrootte(),vervoermiddel.getCapaciteit(),
+                    vervoermiddel.getKoers(),vervoermiddel.getStatus());
+
+            ++teller;
+        }while (teller<10);
+    }
+
+    public void generateSchepen() {
+        int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.SCHIP);
-        AbstractActorFactory random2 = FactoryProducer.getFactory(Actors.HULPDIENST);
-        Coördinaten coördinaten = new Coördinaten();
 
         do {
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
-            Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
 
-            Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst.toString(),hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
+            Vervoermiddel vervoermiddel = random.setSchip(schip.toString(),schip.toString()+naamAddon(),schip, coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);
 
-            Vervoermiddel actor = random.setSchip(schip.toString(),schip.toString()+naamAddon(),schip, coördinaten,
-                    Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
-                    Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
-                    geenStrategy);
-
-            actoren.add(actor);
-            actoren.add(actor2);
-
-
+            actoren.add(vervoermiddel);
 
             //Actoren toevoegen aan database
-            kustwachtQueries.addSchip(actor.getEnumNaam(),actor.getNaam(),actor.getSnelheid(),
-                    actor.getReactieTijd(),actor.getWendbaarheid(),
-                    actor.getGrootte(),actor.getCapaciteit(),
-                    actor.getKoers(),actor.getStatus());
-
-            kustwachtQueries.addHulpdienst(actor2.getEnumNaam(),actor2.getNaam(),actor2.getSnelheid(),
-                    actor2.getReactieTijd(),actor2.getWendbaarheid(),
-                    actor2.getGrootte(),actor2.getCapaciteit(),
-                    actor2.getKoers(),actor2.getStatus());
-
-
-           // actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern
-           // actor.notifyVerkeerstorenObservers(StatusVervoermiddel.OK.toString());   //Alles mogelijke statussen bevinden zich in de enum StatusVervoermiddel.
+            kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(),vervoermiddel.getNaam(),vervoermiddel.getSnelheid(),
+                    vervoermiddel.getReactieTijd(),vervoermiddel.getWendbaarheid(),
+                    vervoermiddel.getGrootte(),vervoermiddel.getCapaciteit(),
+                    vervoermiddel.getKoers(),vervoermiddel.getStatus());
 
             ++teller;
-
         }while (teller<10);
 
 

@@ -27,7 +27,11 @@ public class Main extends Application {
         random.addEnumHulpdienstenEnSchepenToDB();
         random.addEnumStatusVervoermiddelToDB();
         random.generateVerkeerstores();
-        random.generateData();
+        random.generateHulpdiensten();
+        random.generateSchepen();
+
+        calculations.GPSDistance gpstest = new calculations.GPSDistance();
+        System.out.println(gpstest.GPSDistance(50.0359,5.4253,58.3838,3.0414));
 
         launch(args);
     }
