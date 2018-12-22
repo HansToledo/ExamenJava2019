@@ -93,6 +93,7 @@ public class DBqueries {
     }
 
     // opvragen alle verkeerstorens
+    //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
     public List<Verkeerstoren> getAllVerkeerstorens() {
         try (ResultSet resultSet = getAllVerkeerstorens.executeQuery()) {
             List<Verkeerstoren> results = new ArrayList<Verkeerstoren>();

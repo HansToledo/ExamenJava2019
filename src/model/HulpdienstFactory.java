@@ -54,7 +54,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
             case VERKEERSTOREN:
 
                 Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam,naam,coördinaten,hulpdienstStrategy);
-                List alleVerkeerstorens = kustwachtQueries.getAllVerkeerstorens();  //LATEN STAAN, TEST HANS
+                List alleVerkeerstorens = kustwachtQueries.getAllVerkeerstorens();  //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
                 Actor.verkeerstorens.add(verkeerstoren);
                 return verkeerstoren;
         }
