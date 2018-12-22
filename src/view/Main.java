@@ -26,9 +26,9 @@ public class Main extends Application {
         Randomizer random = new Randomizer();
         random.addEnumHulpdienstenEnSchepenToDB();
         random.addEnumStatusVervoermiddelToDB();
-        random.generateVerkeerstores();
-        random.generateHulpdiensten();
-        random.generateSchepen();
+        random.generateVerkeerstores(2);
+        random.generateHulpdiensten(5);
+        random.generateSchepen(5);
 
         calculations.GPSDistance gpstest = new calculations.GPSDistance();
         System.out.println(gpstest.GPSDistance(50.0359,5.4253,58.3838,3.0414));

@@ -99,7 +99,7 @@ public class Randomizer {
         }
     }
 
-    public void generateVerkeerstores(){
+    public void generateVerkeerstores(int aantal){
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
@@ -113,10 +113,10 @@ public class Randomizer {
             kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(),verkeerstoren.getNaam());
 
             ++teller;
-        }while (teller<10);
+        }while (teller<aantal);
     }
 
-    public void generateHulpdiensten(){
+    public void generateHulpdiensten(int aantal){
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
@@ -137,10 +137,10 @@ public class Randomizer {
                     vervoermiddel.getKoers(),vervoermiddel.getStatus());
 
             ++teller;
-        }while (teller<10);
+        }while (teller<aantal);
     }
 
-    public void generateSchepen() {
+    public void generateSchepen(int aantal) {
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.SCHIP);
 
@@ -161,7 +161,7 @@ public class Randomizer {
                     vervoermiddel.getKoers(),vervoermiddel.getStatus());
 
             ++teller;
-        }while (teller<10);
+        }while (teller<aantal);
 
 
         //Afdrukken van alle actoren.
