@@ -30,6 +30,15 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     }
 
+    public Verkeerstoren (String enumNaam, String naam,String Latitude,String Longitude) {
+
+        coördinaten = new Coördinaten();
+        this.enumNaam = enumNaam;
+        this.naam = naam;
+        this.coördinaten = coördinaten;
+
+    }
+
     public String getNaam() {
         return naam;
     }
@@ -56,7 +65,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             System.out.println("TEST of Istatusobserver werkt" + naam);
             // deze moet andere observer aansturen
         }
-
     }
 
     //endregion

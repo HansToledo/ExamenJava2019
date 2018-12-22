@@ -3,6 +3,9 @@ package model;
 import calculations.Coördinaten;
 import enums.Hulpdiensten;
 import enums.Schepen;
+import database.DBqueries;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -12,6 +15,7 @@ import enums.Schepen;
  * To change this template use File | Settings | File Templates.
  */
 public class HulpdienstFactory extends AbstractActorFactory {
+    private final DBqueries kustwachtQueries = new DBqueries();
 
 
     @Override
@@ -50,6 +54,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
             case VERKEERSTOREN:
 
                 Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam,naam,coördinaten,hulpdienstStrategy);
+                List alleVerkeerstorens = kustwachtQueries.getAllVerkeerstorens();  //LATEN STAAN, TEST HANS
                 Actor.verkeerstorens.add(verkeerstoren);
                 return verkeerstoren;
         }

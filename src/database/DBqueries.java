@@ -8,6 +8,7 @@ package database;
  */
 
 import com.mysql.jdbc.Connection;
+import model.Verkeerstoren;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.*;
 
 public class DBqueries {
     private Connection dbConnection; // manages the connection
@@ -28,12 +30,19 @@ public class DBqueries {
     private PreparedStatement getStatusVervoermiddelID;
     private PreparedStatement getAllVervoermiddelTypes;
     private PreparedStatement getAllVervoermiddelStatussen;
+    private PreparedStatement getAllVerkeerstorens;
+    private PreparedStatement getAllSchepen;
+    private PreparedStatement getAllHulpdiensten;
     public static String sqlErrorMessageDBqueries = null;
 
     public DBqueries() {
         try {
             dbConnection = database.DBConnection.getConnection();
 
+            getAllVerkeerstorens = dbConnection.prepareStatement(
+                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, verkeerstorens.hulpdienststrategy as strategy, verkeerstorens.longitude as longitude, verkeerstorens.latitude as latitude FROM verkeerstorens " +
+                            "join actoren on (verkeerstorens.ActorID = actoren.ActorID)" +
+                            "join type_actor on (type_actor.EnumID = actoren.EnumID);");
 
             newActor = dbConnection.prepareStatement((
                     "INSERT INTO actoren " +
@@ -41,7 +50,7 @@ public class DBqueries {
                             "VALUES (?,?)"), Statement.RETURN_GENERATED_KEYS);
 
             newTypeVervoermiddel = dbConnection.prepareStatement(
-                    "INSERT INTO type_vervoermiddel " +
+                    "INSERT INTO type_actor " +
                             "(Naam) " +
                             "VALUES (?)");
 
@@ -66,13 +75,13 @@ public class DBqueries {
                             "VALUES (?,?,?,?,?,?,?,?)");
 
             getTypeVervoermiddelID = dbConnection.prepareStatement(
-                    "SELECT EnumID FROM type_vervoermiddel WHERE naam LIKE ?");
+                    "SELECT EnumID FROM type_actor WHERE naam LIKE ?");
 
             getStatusVervoermiddelID = dbConnection.prepareStatement(
                     "SELECT StatusID FROM status_vervoermiddel WHERE situatie LIKE ?");
 
             getAllVervoermiddelTypes = dbConnection.prepareStatement(
-                    "SELECT naam FROM type_vervoermiddel");
+                    "SELECT naam FROM type_actor");
 
             getAllVervoermiddelStatussen= dbConnection.prepareStatement(
                     "SELECT situatie FROM status_vervoermiddel");
@@ -82,6 +91,27 @@ public class DBqueries {
             System.exit(1);
         }
     }
+
+    // opvragen alle verkeerstorens
+    public List<Verkeerstoren> getAllVerkeerstorens() {
+        try (ResultSet resultSet = getAllVerkeerstorens.executeQuery()) {
+            List<Verkeerstoren> results = new ArrayList<Verkeerstoren>();
+
+            while (resultSet.next()) {
+                results.add(new Verkeerstoren(resultSet.getString("typenaam"),
+                        resultSet.getString("naam"),
+                        resultSet.getString("Longitude"),
+                        resultSet.getString("Latitude")));
+            }
+            return results;
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
 
     // opvragen bestaande statussen vervoermiddels
     public List getAllVervoermiddelStatussen(){
