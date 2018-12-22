@@ -9,9 +9,6 @@ package model;
 
 public interface IStatusSubject {
 
-//    public void addVerkeerstorenObserver(Actor actor);
-//    public void removeVerkeerstorenObserver(Actor actor);
-//    public void notifyVerkeerstorenObservers(String status);
     public void addStatusObserver(IStatusObserver statusObserver);
     public void removeStatusObserver(IStatusObserver statusObserver);
     public void doNotifyStatusObservers();

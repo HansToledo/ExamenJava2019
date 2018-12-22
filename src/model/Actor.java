@@ -15,6 +15,8 @@ public abstract class Actor  {
     public static ArrayList<Schepen> schepenOpWater = new ArrayList<Schepen>();
     public static ArrayList<Vervoermiddel> mogelijkeHulpdiensten = new ArrayList<Vervoermiddel>();
 
+    private double afstand;
+
 
     //region Strategy Code
     private IHulpdienstStrategy hulpdienstStrategy;
@@ -30,7 +32,12 @@ public abstract class Actor  {
 
     public double getAfstand() {
 
-        return 0.0;
+        return this.afstand;
+    };
+
+    public void setAfstand(double afstand){
+
+        this.afstand = afstand;
     };
 
     public Coördinaten getLocatie() {

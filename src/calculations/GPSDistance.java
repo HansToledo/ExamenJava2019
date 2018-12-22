@@ -30,4 +30,5 @@ public class GPSDistance {
         }
         return afstand;
     }
+
 }
