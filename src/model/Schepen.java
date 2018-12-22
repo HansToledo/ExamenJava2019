@@ -35,6 +35,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     @Override
     public void removeStatusObserver(IStatusObserver statusObserver) {
+
         verkeerstorens.remove(statusObserver);
     }
 
