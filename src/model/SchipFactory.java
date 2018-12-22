@@ -1,5 +1,6 @@
 package model;
 
+import calculations.Coördinaten;
 import calculations.GPSDistance;
 import enums.Hulpdiensten;
 import enums.Schepen;
@@ -16,7 +17,7 @@ public class SchipFactory extends AbstractActorFactory{
     private GPSDistance afstand = new GPSDistance();
     
     @Override
-    public Vervoermiddel setHulpDienst(String enumNaam, String naam,Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
+    public Vervoermiddel setHulpDienst(String enumNaam, String naam, Hulpdiensten hulpdienst, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy) {
         return null;
     }
 
@@ -40,6 +41,9 @@ public class SchipFactory extends AbstractActorFactory{
                 Motorboot motorboot = new Motorboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
                 Actor.mogelijkeHulpdiensten.add(motorboot);
                 Actor.schepenOpWater.add(motorboot);
+
+                //motorboot.addStatusObserver(zoekVerkeerstorenDichtsbij(motorboot));
+
                 return motorboot;
 
             case TANKER:
@@ -47,6 +51,9 @@ public class SchipFactory extends AbstractActorFactory{
                 Tanker tanker = new Tanker(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
                 Actor.mogelijkeHulpdiensten.add(tanker);
                 Actor.schepenOpWater.add(tanker);
+
+                //tanker.addStatusObserver(zoekVerkeerstorenDichtsbij(tanker));
+
                 return tanker;
 
             case ZEILBOOT:
@@ -54,6 +61,9 @@ public class SchipFactory extends AbstractActorFactory{
                 Zeilboot zeilboot = new Zeilboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
                 Actor.mogelijkeHulpdiensten.add(zeilboot);
                 Actor.schepenOpWater.add(zeilboot);
+
+                //zeilboot.addStatusObserver(zoekVerkeerstorenDichtsbij(zeilboot));
+
                 return zeilboot;
         }
         return null;

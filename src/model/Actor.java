@@ -1,5 +1,7 @@
 package model;
 
+import calculations.Coördinaten;
+
 import java.util.ArrayList;
 
 /**

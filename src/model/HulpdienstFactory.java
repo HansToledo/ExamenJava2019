@@ -1,5 +1,6 @@
 package model;
 
+import calculations.Coördinaten;
 import enums.Hulpdiensten;
 import enums.Schepen;
 
@@ -14,7 +15,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
 
 
     @Override
-    public Vervoermiddel setHulpDienst(String enumNaam, String naam,Hulpdiensten hulpdienst,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers,IHulpdienstStrategy hulpdienstStrategy) {
+    public Vervoermiddel setHulpDienst(String enumNaam, String naam, Hulpdiensten hulpdienst, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
         switch (hulpdienst) {
 

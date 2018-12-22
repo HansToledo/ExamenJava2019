@@ -7,6 +7,7 @@ package model;
  * @Purpose: Observer voor doorgeven van status schepen.
  */
 
+import calculations.Coördinaten;
 import enums.StatusVervoermiddel;
 
 public interface IStatusObserver {

@@ -1,5 +1,6 @@
 package model;
 
+import calculations.Coördinaten;
 import enums.StatusVervoermiddel;
 
 import java.util.*;

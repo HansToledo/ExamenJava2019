@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import calculations.Coördinaten;
 
 /**
  * Created by IntelliJ IDEA.<br/>

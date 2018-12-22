@@ -1,5 +1,6 @@
 package model;
 
+import calculations.Coördinaten;
 import enums.Actors;
 import enums.Hulpdiensten;
 import enums.Schepen;
