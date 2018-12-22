@@ -51,7 +51,7 @@ public abstract class Actor  {
     @Override
     public String toString() {
         return "Actor{" +
-                "hulpdienstStrategy=" + hulpdienstStrategy +
+                "hulpdienstStrategy=" + hulpdienstStrategy + "Afstand="+afstand +
                 '}';
     }
 }
