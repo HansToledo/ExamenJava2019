@@ -31,7 +31,7 @@ public class Randomizer {
         return randomNaam.toString();
     }
 
-    public void addEnumsToDB(){
+    public void addEnumHulpdienstenEnSchepenToDB(){
         //Alle mogelijke enums toevoegen aan database
         int enumi=0;
         List alleBestaandeEnums = kustwachtQueries.getAllVervoermiddelTypes();
@@ -57,6 +57,26 @@ public class Randomizer {
             String gezocht = schepenList.get(enumi).toString();
             if ((alleBestaandeEnums.contains(gezocht))==false){
                 kustwachtQueries.addTypeVervoermiddel(schepenList.get(enumi).toString());
+                enumi++;
+            }
+            else
+            {
+                enumi++;
+            }
+        }
+    }
+
+    public void addEnumStatusVervoermiddelToDB(){
+        //Alle mogelijke enums toevoegen aan database
+        int enumi=0;
+        List alleBestaandeStatussen = kustwachtQueries.getAllVervoermiddelStatussen();
+        List statusVervoermiddelList = java.util.Arrays.asList(StatusVoertuig.values()); //lijst met status enums
+
+        while(enumi < statusVervoermiddelList.size())  //hulpdiensten enums inlezen in database
+        {
+            String gezocht = statusVervoermiddelList.get(enumi).toString();
+            if ((alleBestaandeStatussen.contains(gezocht))==false){
+                kustwachtQueries.addStatusVervoermiddel(statusVervoermiddelList.get(enumi).toString());
                 enumi++;
             }
             else

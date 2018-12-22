@@ -23,8 +23,11 @@ public class DBqueries {
     private PreparedStatement newHulpdienst;
     private PreparedStatement newSchip;
     private PreparedStatement newTypeVervoermiddel;
+    private PreparedStatement newStatusVervoermiddel;
     private PreparedStatement getTypeVervoermiddelID;
+    private PreparedStatement getStatusVervoermiddelID;
     private PreparedStatement getAllVervoermiddelTypes;
+    private PreparedStatement getAllVervoermiddelStatussen;
     public static String sqlErrorMessageDBqueries = null;
 
     public DBqueries() {
@@ -42,6 +45,11 @@ public class DBqueries {
                             "(Naam) " +
                             "VALUES (?)");
 
+            newStatusVervoermiddel = dbConnection.prepareStatement(
+                    "INSERT INTO status_vervoermiddel " +
+                            "(Situatie) " +
+                            "VALUES (?)");
+
             newVerkeerstoren = dbConnection.prepareStatement(
                     "INSERT INTO verkeerstorens " +
                             "(ActorID) " +
@@ -49,23 +57,59 @@ public class DBqueries {
 
             newHulpdienst = dbConnection.prepareStatement(
                     "INSERT INTO vervoermiddel " +
-                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
+                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,StatusID) " +
                             "VALUES (?,?,?,?,?,?,?,?)");
 
             newSchip = dbConnection.prepareStatement(
                     "INSERT INTO vervoermiddel " +
-                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Status) " +
+                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,StatusID) " +
                             "VALUES (?,?,?,?,?,?,?,?)");
 
             getTypeVervoermiddelID = dbConnection.prepareStatement(
                     "SELECT EnumID FROM type_vervoermiddel WHERE naam LIKE ?");
 
+            getStatusVervoermiddelID = dbConnection.prepareStatement(
+                    "SELECT StatusID FROM status_vervoermiddel WHERE situatie LIKE ?");
+
             getAllVervoermiddelTypes = dbConnection.prepareStatement(
                     "SELECT naam FROM type_vervoermiddel");
+
+            getAllVervoermiddelStatussen= dbConnection.prepareStatement(
+                    "SELECT situatie FROM status_vervoermiddel");
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             System.exit(1);
+        }
+    }
+
+    // opvragen bestaande statussen vervoermiddels
+    public List getAllVervoermiddelStatussen(){
+        try {
+            ResultSet resultSet = getAllVervoermiddelStatussen.executeQuery();
+            List<String> results = new ArrayList<String>();
+            while (resultSet.next()) {
+                results.add( resultSet.getString("Situatie"));
+            }
+            return results;
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+    // vervoermiddel_status toevoegen
+    public int addStatusVervoermiddel(String situatie) {
+        try {
+            newStatusVervoermiddel.setString(1,situatie);
+            return newStatusVervoermiddel.executeUpdate();
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+            return 0;
         }
     }
 
@@ -130,7 +174,7 @@ public class DBqueries {
     }
 
     // hulpdienst toevoegen
-    public void addHulpdienst(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public int addHulpdienst(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
         try {
             getTypeVervoermiddelID.setString(1,enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
@@ -154,12 +198,20 @@ public class DBqueries {
             newHulpdienst.setDouble(5,grootte);
             newHulpdienst.setDouble(6,capaciteit);
             newHulpdienst.setDouble(7,koers);
-            newHulpdienst.setString(8,status);
-            newHulpdienst.executeUpdate();
+
+            //VANAF HIER-------------------------------------------------------------------------------------------------
+            getStatusVervoermiddelID.setString(1,status);
+            ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
+            resultSetStatus.next();
+            int StatusID = resultSetStatus.getInt("StatusID");
+
+            newHulpdienst.setInt(8,StatusID);
+            return newHulpdienst.executeUpdate();
         }
         catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
+            return 0;
         }
     }
 
@@ -188,7 +240,14 @@ public class DBqueries {
             newSchip.setDouble(5,grootte);
             newSchip.setDouble(6,capaciteit);
             newSchip.setDouble(7,koers);
-            newSchip.setString(8,status);
+
+            //VANAF HIER-------------------------------------------------------------------------------------------------
+            getStatusVervoermiddelID.setString(1,status);
+            ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
+            resultSetStatus.next();
+            int StatusID = resultSetStatus.getInt("StatusID");
+
+            newSchip.setInt(8,StatusID);
             return newSchip.executeUpdate();
         }
         catch (SQLException sqlException) {
