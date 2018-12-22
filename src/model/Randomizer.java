@@ -17,6 +17,9 @@ import java.util.Random;
 public class Randomizer {
     private static Random random = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
+    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
+    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
+    IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
     public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
 
@@ -93,24 +96,29 @@ public class Randomizer {
         }
     }
 
-    public void generetaData() {
+    public void generateVerkeerstores(){
+        int teller = 0;
+        Coördinaten coördinaten = new Coördinaten();
+        List<Actor> actoren = new ArrayList<Actor>();
+        Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)];
 
+        AbstractActorFactory random3 = FactoryProducer.getFactory(Actors.HULPDIENST);
+        Verkeerstoren actor3 = random3.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
+
+        actoren.add(actor3);
+        kustwachtQueries.addVerkeerstoren(actor3.getEnumNaam(),actor3.getNaam());   //Actor toevoegen aan database
+    }
+
+    public void generateData() {
         int teller = 0;
         List<Actor> actoren = new ArrayList<Actor>();
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.SCHIP);
         AbstractActorFactory random2 = FactoryProducer.getFactory(Actors.HULPDIENST);
-        AbstractActorFactory random3 = FactoryProducer.getFactory(Actors.HULPDIENST);
         Coördinaten coördinaten = new Coördinaten();
-        IHulpdienstStrategy pickupStrategy = new PickupStrategy();
-        IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
-        IHulpdienstStrategy geenStrategy = new GeenStrategy();
-
 
         do {
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
-
-            Verkeerstoren actor3 = random3.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
 
             Vervoermiddel actor2 = random2.setHulpDienst(hulpdienst.toString(),hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
@@ -124,7 +132,7 @@ public class Randomizer {
 
             actoren.add(actor);
             actoren.add(actor2);
-            actoren.add(actor3);
+
 
 
             //Actoren toevoegen aan database
@@ -137,8 +145,6 @@ public class Randomizer {
                     actor2.getReactieTijd(),actor2.getWendbaarheid(),
                     actor2.getGrootte(),actor2.getCapaciteit(),
                     actor2.getKoers(),actor2.getStatus());
-
-            kustwachtQueries.addVerkeerstoren(actor3.getEnumNaam(),actor3.getNaam());
 
 
            // actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern
