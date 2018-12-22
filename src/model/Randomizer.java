@@ -17,6 +17,13 @@ public class Randomizer {
     private static Random random = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
 
+    public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
+
+        double x = (Math.random()*((max-min)+1))+min;
+        return x;
+
+    }
+
     public String naamAddon() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuffer randomNaam = new StringBuffer();
