@@ -14,7 +14,7 @@ import java.util.*;
  */
 public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
-    private Set<IStatusObserver> verkeerstorens;
+    private ArrayList<IStatusObserver> verkeerstorens = new ArrayList<IStatusObserver>();
     private StatusVervoermiddel noodSignaal;
 
     public Schepen() {
@@ -29,6 +29,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     @Override
     public void addStatusObserver(IStatusObserver statusObserver) {
+
         verkeerstorens.add(statusObserver);
     }
 
