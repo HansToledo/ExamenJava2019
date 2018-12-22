@@ -23,4 +23,7 @@ public class Tanker extends Schepen {
     public String toString() {
         return "Tanker{} " + super.toString();
     }
+
+
+
 }
