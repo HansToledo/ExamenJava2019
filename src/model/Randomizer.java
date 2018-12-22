@@ -21,7 +21,6 @@ public class Randomizer {
 
         double x = (Math.random()*((max-min)+1))+min;
         return x;
-
     }
 
     public String naamAddon() {

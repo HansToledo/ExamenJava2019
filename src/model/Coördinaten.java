@@ -28,12 +28,12 @@ public class Coördinaten {
 
     private double getRandomBreedte() {
 
-        return Math.floor(-90.0 + Math.random() * 90.0);
+        return getRandomDoubleBetweenRange(-90.0,90.0);
     }
 
     private double getRandomLengte() {
 
-        return Math.floor(-180.0 + Math.random() * 180.0);
+        return getRandomDoubleBetweenRange(-180.0,180.0);
     }
 
     public double getBreedte() {
@@ -44,6 +44,13 @@ public class Coördinaten {
     public double getLengte() {
 
         return this.lengte;
+    }
+
+    public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
+
+        double x = (Math.random()*((max-min)+1))+min;
+        return Math.floor(x);
+
     }
 
     @Override

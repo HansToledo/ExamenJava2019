@@ -31,7 +31,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(containerSchip);
                 Actor.schepenOpWater.add(containerSchip);
 
-                containerSchip.addStatusObserver(zoekVerkeerstorenDichtsbij(containerSchip));
+                //containerSchip.addStatusObserver(zoekVerkeerstorenDichtsbij(containerSchip)); //bereken welke toren kortste bij
 
                 return containerSchip;
 
