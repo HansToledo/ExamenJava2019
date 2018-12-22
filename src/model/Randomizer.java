@@ -114,8 +114,8 @@ public class Randomizer {
             kustwachtQueries.addVerkeerstoren(actor3.getEnumNaam(),actor3.getNaam());
 
 
-            actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern
-            actor.notifyVerkeerstorenObservers(StatusVoertuig.OK.toString());   //Alles mogelijke statussen bevinden zich in de enum StatusVoertuig.
+           // actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern
+           // actor.notifyVerkeerstorenObservers(StatusVoertuig.OK.toString());   //Alles mogelijke statussen bevinden zich in de enum StatusVoertuig.
 
             ++teller;
 

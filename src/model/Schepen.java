@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -10,7 +12,10 @@ import java.util.ListIterator;
  * Time: 19:37<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Schepen extends Vervoermiddel{
+public abstract class Schepen extends Vervoermiddel implements IStatusSubject{
+
+    private List<Actor> verkeerstorens = new ArrayList<Actor>();
+    private LinkedList<Actor> statusUpdate = new LinkedList<Actor>();
 
     public Schepen(){
 
@@ -21,6 +26,23 @@ public abstract class Schepen extends Vervoermiddel{
         super(enumNaam, naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
 
     }
+
+    @Override
+    public void notifyVerkeerstorenObservers(String status) {
+        ListIterator list = verkeerstorens.listIterator();
+        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(statusUpdate);
+    }
+
+    @Override
+    public void addVerkeerstorenObserver(Actor verkeerstoren) {
+        verkeerstorens.add(verkeerstoren);
+    }
+
+    @Override
+    public void removeVerkeerstorenObserver(Actor verkeerstoren) {
+        verkeerstorens.remove(verkeerstoren);
+    }
+    //endregion
 
     @Override
     public String toString() {

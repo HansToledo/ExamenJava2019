@@ -12,7 +12,7 @@ import java.util.ListIterator;
  * Time: 19:17<br/>
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Vervoermiddel extends Actor implements INoodObserver, IStatusSubject{
+public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private String enumNaam;
     private String naam;
     private double afstand;
@@ -41,26 +41,6 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver, ISta
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
-    //region StatusObserver
-    private List<Actor> verkeerstorens = new ArrayList<Actor>();
-    private LinkedList<Actor> statusUpdate = new LinkedList<Actor>();
-
-    @Override
-    public void notifyVerkeerstorenObservers(String status) {
-        ListIterator list = verkeerstorens.listIterator();
-        while (list.hasNext()) ((Verkeerstoren) list.next()).statusUpdate(statusUpdate);
-    }
-
-    @Override
-    public void addVerkeerstorenObserver(Actor verkeerstoren) {
-        verkeerstorens.add(verkeerstoren);
-    }
-
-    @Override
-    public void removeVerkeerstorenObserver(Actor verkeerstoren) {
-        verkeerstorens.remove(verkeerstoren);
-    }
-    //endregion
 
 
     public String getStatus() {
