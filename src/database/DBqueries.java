@@ -199,7 +199,6 @@ public class DBqueries {
             newHulpdienst.setDouble(6,capaciteit);
             newHulpdienst.setDouble(7,koers);
 
-            //VANAF HIER-------------------------------------------------------------------------------------------------
             getStatusVervoermiddelID.setString(1,status);
             ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
             resultSetStatus.next();
@@ -241,7 +240,6 @@ public class DBqueries {
             newSchip.setDouble(6,capaciteit);
             newSchip.setDouble(7,koers);
 
-            //VANAF HIER-------------------------------------------------------------------------------------------------
             getStatusVervoermiddelID.setString(1,status);
             ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
             resultSetStatus.next();

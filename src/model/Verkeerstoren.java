@@ -1,9 +1,6 @@
 package model;
 
-import enums.StatusVoertuig;
-
-import java.util.LinkedList;
-import java.util.Set;
+import enums.StatusVervoermiddel;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -51,9 +48,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     //region StatusObserver
 
     @Override
-    public void doUpdate(StatusVoertuig statusSchip, Coördinaten coördinaten, String naam) {
+    public void doUpdate(StatusVervoermiddel statusSchip, Coördinaten coördinaten, String naam) {
 
-        if (statusSchip != StatusVoertuig.OK) {
+        if (statusSchip != StatusVervoermiddel.OK) {
 
             System.out.println("TEST of Istatusobserver werkt" + naam);
             // deze moet andere observer aansturen

@@ -3,7 +3,7 @@ package model;
 import enums.Actors;
 import enums.Hulpdiensten;
 import enums.Schepen;
-import enums.StatusVoertuig;
+import enums.StatusVervoermiddel;
 import strategy.GeenStrategy;
 import strategy.MeldingStrategy;
 import strategy.PickupStrategy;
@@ -70,7 +70,7 @@ public class Randomizer {
         //Alle mogelijke enums toevoegen aan database
         int enumi=0;
         List alleBestaandeStatussen = kustwachtQueries.getAllVervoermiddelStatussen();
-        List statusVervoermiddelList = java.util.Arrays.asList(StatusVoertuig.values()); //lijst met status enums
+        List statusVervoermiddelList = java.util.Arrays.asList(StatusVervoermiddel.values()); //lijst met status enums
 
         while(enumi < statusVervoermiddelList.size())  //hulpdiensten enums inlezen in database
         {
@@ -135,7 +135,7 @@ public class Randomizer {
 
 
            // actor.addVerkeerstorenObserver(actor3);                             //TODO Observer pattern
-           // actor.notifyVerkeerstorenObservers(StatusVoertuig.OK.toString());   //Alles mogelijke statussen bevinden zich in de enum StatusVoertuig.
+           // actor.notifyVerkeerstorenObservers(StatusVervoermiddel.OK.toString());   //Alles mogelijke statussen bevinden zich in de enum StatusVervoermiddel.
 
             ++teller;
 

@@ -1,6 +1,6 @@
 package model;
 
-import enums.StatusVoertuig;
+import enums.StatusVervoermiddel;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ import java.util.*;
 public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     private Set<IStatusObserver> verkeerstorens;
-    private StatusVoertuig noodSignaal;
+    private StatusVervoermiddel noodSignaal;
 
     public Schepen() {
 
@@ -50,7 +50,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     }
 
-    public void setNoodSignaal(StatusVoertuig noodSignaal) {
+    public void setNoodSignaal(StatusVervoermiddel noodSignaal) {
 
         doNotifyStatusObservers();
 

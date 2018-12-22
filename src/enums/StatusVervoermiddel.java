@@ -1,6 +1,6 @@
 package enums;
 
-public enum StatusVoertuig {
+public enum StatusVervoermiddel {
     OK,
     BRAND,
     ZINKEND,
