@@ -109,7 +109,7 @@ public class Randomizer {
 
             Verkeerstoren verkeerstoren = random.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
 
-            actoren.add(verkeerstoren);
+            //actoren.add(verkeerstoren);
             //Actor toevoegen aan database
             kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(),verkeerstoren.getNaam());
 
@@ -129,7 +129,7 @@ public class Randomizer {
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);
 
-            actoren.add(vervoermiddel);
+            //actoren.add(vervoermiddel);
 
             //Actor toevoegen aan database
             kustwachtQueries.addHulpdienst(vervoermiddel.getEnumNaam(),vervoermiddel.getNaam(),vervoermiddel.getSnelheid(),
@@ -153,7 +153,7 @@ public class Randomizer {
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
                     geenStrategy);
 
-            actoren.add(vervoermiddel);
+            //actoren.add(vervoermiddel);
 
             //Actoren toevoegen aan database
             kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(),vervoermiddel.getNaam(),vervoermiddel.getSnelheid(),
@@ -179,17 +179,81 @@ public class Randomizer {
         }
     }
 
+    public void inlezenSchepen(){
+        AbstractActorFactory actor = FactoryProducer.getFactory(Actors.SCHIP);
+        ArrayList<Vervoermiddel> schepen = kustwachtQueries.getAllSchepen();
+        schepen.size();
+
+        for(Vervoermiddel item : schepen) {
+            String typeNaam = item.getEnumNaam();
+            String naam = item.getNaam();
+            Coördinaten coördinaten = item.getCoördinaten();
+            double snelheid = item.getSnelheid();
+            double reactietijd = item.getReactieTijd();
+            double wendbaarheid = item.getWendbaarheid();
+            double grootte = item.getGrootte();
+            double capaciteit = item.getCapaciteit();
+            int koers = item.getKoers();
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+            Vervoermiddel vervoermiddel;
+            switch (typeNaam) {
+                case "CONTAINERSCHIP":
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.CONTAINERSCHIP,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    break;
+                case "MOTORBOOT":
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.MOTORBOOT,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    break;
+                case "TANKER":
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.TANKER,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    break;
+                case "ZEILBOOT":
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.ZEILBOOT,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    break;
+            }
+        }
+    }
+
+    public void inlezenHulpdiensten(){
+        AbstractActorFactory actor = FactoryProducer.getFactory(Actors.HULPDIENST);
+        ArrayList<Vervoermiddel> hulpdiensten = kustwachtQueries.getAllHulpdiensten();
+        hulpdiensten.size();
+
+        for(Vervoermiddel item : hulpdiensten) {
+            String typeNaam = item.getEnumNaam();
+            String naam = item.getNaam();
+            Coördinaten coördinaten = item.getCoördinaten();
+            double snelheid = item.getSnelheid();
+            double reactietijd = item.getReactieTijd();
+            double wendbaarheid = item.getWendbaarheid();
+            double grootte = item.getGrootte();
+            double capaciteit = item.getCapaciteit();
+            int koers = item.getKoers();
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+            Vervoermiddel vervoermiddel;
+            switch (typeNaam) {
+                case "SEAKING":
+                    vervoermiddel = actor.setHulpDienst(typeNaam,naam,Hulpdiensten.SEAKING,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    break;
+                case "SCHEEPSVAARTPOLITIE":
+                    vervoermiddel = actor.setHulpDienst(typeNaam,naam,Hulpdiensten.SCHEEPSVAARTPOLITIE,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    break;
+            }
+        }
+    }
+
     //Afdrukken van alle actoren.
     public void printAllActors(){
-        System.out.println("");
+        System.out.println("VERKEERSTORENS");
         for (int i=0; i < Actor.verkeerstorens.size();i++) {
             System.out.println(Actor.verkeerstorens.get(i));
         }
-        System.out.println("");
+        System.out.println("HULPDIENSTEN");
         for (int i=0; i < Actor.mogelijkeHulpdiensten.size();i++) {
             System.out.println(Actor.mogelijkeHulpdiensten.get(i));
         }
-        System.out.println("");
+        System.out.println("SCHEPEN");
         for (int i=0; i < Actor.schepenOpWater.size();i++) {
             System.out.println(Actor.schepenOpWater.get(i));
         }

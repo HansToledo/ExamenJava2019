@@ -54,6 +54,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         return this.enumNaam;
     }
 
+    public Coördinaten getCoördinaten() {
+        return coördinaten;
+    }
+
     public String getNaam() {
 
         return this.naam;
