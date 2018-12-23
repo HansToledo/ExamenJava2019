@@ -11,6 +11,6 @@ public interface INoodSubject {
 
     public void addNoodObserver(INoodObserver noodObserver);
     public void removeNoodObserver(INoodObserver noodObserver);
-    public void deNotify();
+    public void doNotify();
 
 }
