@@ -21,7 +21,7 @@ public class Randomizer {
     IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
-    Coördinaten coördinaten = new Coördinaten().getRandomCoordinaten();
+    Coördinaten coördinaten;
     List<Actor> actoren = new ArrayList<Actor>();
 
 
@@ -106,13 +106,14 @@ public class Randomizer {
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
         do{
+            coördinaten = new Coördinaten().getRandomCoordinaten();
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)];
 
             Verkeerstoren verkeerstoren = random.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(),hulpdienst.VERKEERSTOREN.toString()+naamAddon(),Hulpdiensten.VERKEERSTOREN,coördinaten, geenStrategy);
 
             //actoren.add(verkeerstoren);
             //Actor toevoegen aan database
-            kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(),verkeerstoren.getNaam());
+            kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(),verkeerstoren.getNaam(),coördinaten);
 
             ++teller;
         }while (teller<aantal);
@@ -123,6 +124,7 @@ public class Randomizer {
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
         do{
+            coördinaten = new Coördinaten().getRandomCoordinaten();
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int)(Math.random()*(Hulpdiensten.values().length)-1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
 
             Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(),hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
@@ -136,7 +138,7 @@ public class Randomizer {
             kustwachtQueries.addHulpdienst(vervoermiddel.getEnumNaam(),vervoermiddel.getNaam(),vervoermiddel.getSnelheid(),
                     vervoermiddel.getReactieTijd(),vervoermiddel.getWendbaarheid(),
                     vervoermiddel.getGrootte(),vervoermiddel.getCapaciteit(),
-                    vervoermiddel.getKoers(),vervoermiddel.getStatus());
+                    vervoermiddel.getKoers(),vervoermiddel.getStatus(),coördinaten);
 
             ++teller;
         }while (teller<aantal);
@@ -147,6 +149,7 @@ public class Randomizer {
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.SCHIP);
 
         do {
+            coördinaten = new Coördinaten().getRandomCoordinaten();
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
 
             Vervoermiddel vervoermiddel = random.setSchip(schip.toString(),schip.toString()+naamAddon(),schip, coördinaten,
@@ -160,7 +163,7 @@ public class Randomizer {
             kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(),vervoermiddel.getNaam(),vervoermiddel.getSnelheid(),
                     vervoermiddel.getReactieTijd(),vervoermiddel.getWendbaarheid(),
                     vervoermiddel.getGrootte(),vervoermiddel.getCapaciteit(),
-                    vervoermiddel.getKoers(),vervoermiddel.getStatus());
+                    vervoermiddel.getKoers(),vervoermiddel.getStatus(),coördinaten);
 
             ++teller;
         }while (teller<aantal);

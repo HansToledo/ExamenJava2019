@@ -31,7 +31,6 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     public Vervoermiddel (String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
         this.enumNaam = enumNaam;
         this.naam = naam;
-        coördinaten = new Coördinaten();
         this.coördinaten = coördinaten;
         this.snelheid = snelheid;
         this.grootte = grootte;

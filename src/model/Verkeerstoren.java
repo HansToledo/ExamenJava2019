@@ -29,7 +29,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     public Verkeerstoren (String enumNaam, String naam,Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
-        coördinaten = new Coördinaten();
+        this.coördinaten = coördinaten;
         this.enumNaam = enumNaam;
         this.naam = naam;
         this.coördinaten = coördinaten;

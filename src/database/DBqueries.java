@@ -82,18 +82,18 @@ public class DBqueries {
 
             newVerkeerstoren = dbConnection.prepareStatement(
                     "INSERT INTO verkeerstorens " +
-                            "(ActorID) " +
-                            "VALUES (?)");
+                            "(ActorID, latitude, longitude) " +
+                            "VALUES (?,?,?)");
 
             newHulpdienst = dbConnection.prepareStatement(
                     "INSERT INTO vervoermiddel " +
-                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,StatusID) " +
-                            "VALUES (?,?,?,?,?,?,?,?)");
+                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Latitude,Longitude,StatusID) " +
+                            "VALUES (?,?,?,?,?,?,?,?,?,?)");
 
             newSchip = dbConnection.prepareStatement(
                     "INSERT INTO vervoermiddel " +
-                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,StatusID) " +
-                            "VALUES (?,?,?,?,?,?,?,?)");
+                            "(ActorID,Snelheid,Reactietijd,Wendbaarheid,Grootte,Capaciteit,Koers,Latitude,Longitude,StatusID) " +
+                            "VALUES (?,?,?,?,?,?,?,?,?,?)");
 
             getTypeVervoermiddelID = dbConnection.prepareStatement(
                     "SELECT EnumID FROM type_actor WHERE naam LIKE ?");
@@ -217,7 +217,7 @@ public class DBqueries {
     }
 
 
-    // opvragen bestaande statussen vervoermiddels
+    // opvragen bestaande statussen vervoermiddelen
     public List getAllVervoermiddelStatussen(){
         try {
             ResultSet resultSet = getAllVervoermiddelStatussen.executeQuery();
@@ -282,7 +282,7 @@ public class DBqueries {
     }
 
     // verkeerstoren toevoegen
-    public int addVerkeerstoren(String enumNaam, String naam) {
+    public int addVerkeerstoren(String enumNaam, String naam,Coördinaten coördinaten) {
         try {
             getTypeVervoermiddelID.setString(1,enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
@@ -299,7 +299,12 @@ public class DBqueries {
             rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
             if(rs.next()) ActorID = rs.getInt(1);
 
+            double lat = coördinaten.getBreedte();
+            double lon = coördinaten.getLengte();
+
             newVerkeerstoren.setDouble(1,ActorID);
+            newVerkeerstoren.setDouble(2,lat);
+            newVerkeerstoren.setDouble(3,lon);
             return newVerkeerstoren.executeUpdate();
         }
         catch (SQLException sqlException) {
@@ -310,7 +315,7 @@ public class DBqueries {
     }
 
     // hulpdienst toevoegen
-    public int addHulpdienst(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public int addHulpdienst(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status, Coördinaten coördinaten) {
         try {
             getTypeVervoermiddelID.setString(1,enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
@@ -327,6 +332,9 @@ public class DBqueries {
             rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
             if(rs.next()) ActorID = rs.getInt(1);
 
+            double lat = coördinaten.getBreedte();
+            double lon = coördinaten.getLengte();
+
             newHulpdienst.setDouble(1,ActorID);
             newHulpdienst.setDouble(2,snelheid);
             newHulpdienst.setDouble(3,reactietijd);
@@ -334,13 +342,15 @@ public class DBqueries {
             newHulpdienst.setDouble(5,grootte);
             newHulpdienst.setDouble(6,capaciteit);
             newHulpdienst.setDouble(7,koers);
+            newHulpdienst.setDouble(8,lat);
+            newHulpdienst.setDouble(9,lon);
 
             getStatusVervoermiddelID.setString(1,status);
             ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
             resultSetStatus.next();
             int StatusID = resultSetStatus.getInt("StatusID");
 
-            newHulpdienst.setInt(8,StatusID);
+            newHulpdienst.setInt(10,StatusID);
             return newHulpdienst.executeUpdate();
         }
         catch (SQLException sqlException) {
@@ -351,7 +361,7 @@ public class DBqueries {
     }
 
     // schip toevoegen
-    public int addSchip(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status) {
+    public int addSchip(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status,Coördinaten coördinaten) {
         try {
             getTypeVervoermiddelID.setString(1,enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
@@ -368,6 +378,9 @@ public class DBqueries {
             rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
             if(rs.next()) ActorID = rs.getInt(1);
 
+            double lat = coördinaten.getBreedte();
+            double lon = coördinaten.getLengte();
+
             newSchip.setDouble(1,ActorID);
             newSchip.setDouble(2,snelheid);
             newSchip.setDouble(3,reactietijd);
@@ -375,13 +388,15 @@ public class DBqueries {
             newSchip.setDouble(5,grootte);
             newSchip.setDouble(6,capaciteit);
             newSchip.setDouble(7,koers);
+            newSchip.setDouble(8,lat);
+            newSchip.setDouble(9,lon);
 
             getStatusVervoermiddelID.setString(1,status);
             ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
             resultSetStatus.next();
             int StatusID = resultSetStatus.getInt("StatusID");
 
-            newSchip.setInt(8,StatusID);
+            newSchip.setInt(10,StatusID);
             return newSchip.executeUpdate();
         }
         catch (SQLException sqlException) {
