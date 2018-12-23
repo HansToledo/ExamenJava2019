@@ -1,5 +1,7 @@
 package model;
 
+import calculations.Coördinaten;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -11,6 +13,6 @@ public interface INoodSubject {
 
     public void addNoodObserver(INoodObserver noodObserver);
     public void removeNoodObserver(INoodObserver noodObserver);
-    public void doNotifyNoodObserver();
+    public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam);
 
 }

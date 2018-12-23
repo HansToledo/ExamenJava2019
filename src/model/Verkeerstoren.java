@@ -2,6 +2,8 @@ package model;
 
 import calculations.Coördinaten;
 import enums.StatusVervoermiddel;
+import strategy.MeldingStrategy;
+import strategy.PickupStrategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -64,12 +66,17 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip == StatusVervoermiddel.OK) {
 
             System.out.println("Schip ok");
+            // strategy melding strategy meegeven
         }
 
 
         if (statusSchip != StatusVervoermiddel.OK) {
 
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
+
+            PickupStrategy pickupTEST = new PickupStrategy();
+            //this.reddingsType = pickupTEST;
+            doNotifyNoodObserver(pickupTEST,coördinaten,naam);
             // deze moet andere observer aansturen
         }
     }
@@ -83,6 +90,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     }
 
+    //region NoodObserver
+
     @Override
     public void removeNoodObserver(INoodObserver noodObserver) {
 
@@ -90,7 +99,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
     @Override
-    public void doNotifyNoodObserver() {
+    public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam) {
 
         Iterator<INoodObserver> it = hulpdiensten.iterator();
 
@@ -102,6 +111,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         }
 
     }
+
+    //endregion
+
     @Override
     public String toString() {
         return "Verkeerstoren{" +
