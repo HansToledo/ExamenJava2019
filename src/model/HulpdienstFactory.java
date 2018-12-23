@@ -4,6 +4,9 @@ import calculations.Coördinaten;
 import enums.Hulpdiensten;
 import enums.Schepen;
 import database.DBqueries;
+import strategy.GeenStrategy;
+import strategy.MeldingStrategy;
+import strategy.PickupStrategy;
 
 import java.util.List;
 
@@ -16,6 +19,9 @@ import java.util.List;
  */
 public class HulpdienstFactory extends AbstractActorFactory {
     private final DBqueries kustwachtQueries = new DBqueries();
+    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
+    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
+    IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
 
     @Override
@@ -52,9 +58,7 @@ public class HulpdienstFactory extends AbstractActorFactory {
         switch (verkeersToren) {
 
             case VERKEERSTOREN:
-
-                Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam,naam,coördinaten,hulpdienstStrategy);
-                List alleVerkeerstorens = kustwachtQueries.getAllVerkeerstorens();  //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
+                Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam, naam, coördinaten, hulpdienstStrategy);
                 Actor.verkeerstorens.add(verkeerstoren);
                 return verkeerstoren;
         }

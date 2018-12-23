@@ -56,7 +56,7 @@ public class Randomizer {
         {
             String gezocht = hulpdienstenList.get(enumi).toString();
             if ((alleBestaandeEnums.contains(gezocht))==false){
-                kustwachtQueries.addTypeVervoermiddel(hulpdienstenList.get(enumi).toString());
+                kustwachtQueries.addTypeVervoermiddel(hulpdienstenList.get(enumi).toString(),0);
                 enumi++;
             }
             else
@@ -70,7 +70,7 @@ public class Randomizer {
         {
             String gezocht = schepenList.get(enumi).toString();
             if ((alleBestaandeEnums.contains(gezocht))==false){
-                kustwachtQueries.addTypeVervoermiddel(schepenList.get(enumi).toString());
+                kustwachtQueries.addTypeVervoermiddel(schepenList.get(enumi).toString(),1);
                 enumi++;
             }
             else
@@ -163,11 +163,39 @@ public class Randomizer {
 
             ++teller;
         }while (teller<aantal);
+    }
 
+    public void inlezenVerkeerstorens(){
+        Verkeerstoren verkeerstoren = null;
+        List alleVerkeerstorens = kustwachtQueries.getAllVerkeerstorens();  //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
+        int i = 0;
+        while (i < alleVerkeerstorens.size()){
+            String lTypeNaam = alleVerkeerstorens.get(i).toString();
+            String lNaam = alleVerkeerstorens.get(i+1).toString();
+            double lLon = Double.parseDouble(alleVerkeerstorens.get(i+2).toString());
+            double lLat = Double.parseDouble(alleVerkeerstorens.get(i+3).toString());
+            coördinaten = new Coördinaten(lLat,lLon);
 
-        //Afdrukken van alle actoren.
-        for (int i=0; i < actoren.size();i++){
-            System.out.println(actoren.get(i));
+            verkeerstoren = new Verkeerstoren(lTypeNaam,lNaam,coördinaten,geenStrategy);
+            Actor.verkeerstorens.add(verkeerstoren);
+            i+=4;
+        }
+
+    }
+
+    //Afdrukken van alle actoren.
+    public void printAllActors(){
+        System.out.println("");
+        for (int i=0; i < Actor.verkeerstorens.size();i++) {
+            System.out.println(Actor.verkeerstorens.get(i));
+        }
+        System.out.println("");
+        for (int i=0; i < Actor.mogelijkeHulpdiensten.size();i++) {
+            System.out.println(Actor.mogelijkeHulpdiensten.get(i));
+        }
+        System.out.println("");
+        for (int i=0; i < Actor.schepenOpWater.size();i++) {
+            System.out.println(Actor.schepenOpWater.get(i));
         }
     }
 }

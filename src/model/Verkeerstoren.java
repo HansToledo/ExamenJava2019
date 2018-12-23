@@ -30,16 +30,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     }
 
-    //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
-    public Verkeerstoren (String enumNaam, String naam,String Latitude,String Longitude) {
-
-        coördinaten = new Coördinaten();
-        this.enumNaam = enumNaam;
-        this.naam = naam;
-        this.coördinaten = coördinaten;
-
-    }
-
     public String getNaam() {
         return naam;
     }

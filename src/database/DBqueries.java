@@ -8,15 +8,13 @@ package database;
  */
 
 import com.mysql.jdbc.Connection;
-import model.Verkeerstoren;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.*;
+
 
 public class DBqueries {
     private Connection dbConnection; // manages the connection
@@ -44,6 +42,24 @@ public class DBqueries {
                             "join actoren on (verkeerstorens.ActorID = actoren.ActorID)" +
                             "join type_actor on (type_actor.EnumID = actoren.EnumID);");
 
+            getAllSchepen = dbConnection.prepareStatement(
+                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, vervoermiddel.hulpdienststrategy as strategy, \n" +
+                            "vervoermiddel.longitude as longitude, vervoermiddel.latitude as latitude, \n" +
+                            "type_actor.IsSchip as IsSchip\n" +
+                            "FROM vervoermiddel \n" +
+                            "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
+                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "WHERE (IsSchip = '1');");
+
+            getAllHulpdiensten = dbConnection.prepareStatement(
+                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, vervoermiddel.hulpdienststrategy as strategy, \n" +
+                            "vervoermiddel.longitude as longitude, vervoermiddel.latitude as latitude, \n" +
+                            "type_actor.IsSchip as IsSchip\n" +
+                            "FROM vervoermiddel \n" +
+                            "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
+                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "WHERE (IsSchip = '0');");
+
             newActor = dbConnection.prepareStatement((
                     "INSERT INTO actoren " +
                             "(Naam,EnumID) " +
@@ -51,8 +67,8 @@ public class DBqueries {
 
             newTypeVervoermiddel = dbConnection.prepareStatement(
                     "INSERT INTO type_actor " +
-                            "(Naam) " +
-                            "VALUES (?)");
+                            "(Naam,IsSchip) " +
+                            "VALUES (?,?)");
 
             newStatusVervoermiddel = dbConnection.prepareStatement(
                     "INSERT INTO status_vervoermiddel " +
@@ -94,15 +110,15 @@ public class DBqueries {
 
     // opvragen alle verkeerstorens
     //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
-    public List<Verkeerstoren> getAllVerkeerstorens() {
+    public List getAllVerkeerstorens() {
         try (ResultSet resultSet = getAllVerkeerstorens.executeQuery()) {
-            List<Verkeerstoren> results = new ArrayList<Verkeerstoren>();
+            ArrayList<String> results = new ArrayList<>();
 
             while (resultSet.next()) {
-                results.add(new Verkeerstoren(resultSet.getString("typenaam"),
-                        resultSet.getString("naam"),
-                        resultSet.getString("Longitude"),
-                        resultSet.getString("Latitude")));
+                results.add(resultSet.getString("typenaam"));
+                results.add(resultSet.getString("naam"));
+                results.add(resultSet.getString("Longitude"));
+                results.add(resultSet.getString("Latitude"));
             }
             return results;
         }
@@ -164,9 +180,10 @@ public class DBqueries {
 
 
     // vervoermiddel_type toevoegen
-    public int addTypeVervoermiddel(String naam) {
+    public int addTypeVervoermiddel(String naam,int IsSchip) {
         try {
             newTypeVervoermiddel.setString(1,naam);
+            newTypeVervoermiddel.setInt(2,IsSchip);
             return newTypeVervoermiddel.executeUpdate();
         }
         catch (SQLException sqlException) {
