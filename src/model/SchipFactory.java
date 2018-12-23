@@ -2,6 +2,7 @@ package model;
 
 import calculations.Coördinaten;
 import calculations.GPSDistance;
+import calculations.KortsteAfstand;
 import enums.Hulpdiensten;
 import enums.Schepen;
 
@@ -26,6 +27,8 @@ public class SchipFactory extends AbstractActorFactory{
     @Override
     public Vervoermiddel setSchip(String enumNaam, String naam, Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
+        KortsteAfstand kortsteAfstand = new KortsteAfstand();
+
         switch (schip) {
 
             case CONTAINERSCHIP:
@@ -34,7 +37,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(containerSchip);
                 Actor.schepenOpWater.add(containerSchip);
 
-                containerSchip.addStatusObserver(zoekVerkeerstorenDichtsbij(containerSchip)); //bereken welke toren kortste bij
+                containerSchip.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(containerSchip)); //bereken welke toren kortste bij
 
                 return containerSchip;
 
@@ -44,7 +47,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(motorboot);
                 Actor.schepenOpWater.add(motorboot);
 
-                motorboot.addStatusObserver(zoekVerkeerstorenDichtsbij(motorboot));
+                motorboot.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(motorboot));
 
                 return motorboot;
 
@@ -54,7 +57,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(tanker);
                 Actor.schepenOpWater.add(tanker);
 
-                tanker.addStatusObserver(zoekVerkeerstorenDichtsbij(tanker));
+                tanker.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(tanker));
 
                 return tanker;
 
@@ -64,48 +67,13 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(zeilboot);
                 Actor.schepenOpWater.add(zeilboot);
 
-                zeilboot.addStatusObserver(zoekVerkeerstorenDichtsbij(zeilboot));
+                zeilboot.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(zeilboot));
 
                 return zeilboot;
         }
         return null;
     }
     
-    public Verkeerstoren zoekVerkeerstorenDichtsbij(Vervoermiddel schepen){
-
-        double afstandKortste = 0;
-        double afstandBereken = 0;
-        Verkeerstoren verkeerstorenKortste = new Verkeerstoren();
-        GPSDistance berekenAfstand= new GPSDistance();
-        Coördinaten coördinatenS = new Coördinaten();
-        Coördinaten coördinatenVT = new Coördinaten();
-
-        coördinatenS = schepen.getLocatie();
-        double breedte = coördinatenS.getBreedte();
-        double lengte = coördinatenS.getLengte();
-
-
-        for (Verkeerstoren item : Actor.verkeerstorens) {
-
-            coördinatenVT = item.getLocatie();
-            afstandBereken = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
-
-            if (afstandKortste == 0.0){
-
-                afstandKortste = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
-                verkeerstorenKortste = item;
-            }
-
-            if (afstandKortste > afstandBereken){
-
-                afstandKortste = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
-                verkeerstorenKortste = item;
-            }
-
-        }
-
-        return verkeerstorenKortste;
-    }
 
     @Override
     public Verkeerstoren setVerkeersToren(String enumNaam, String naam,Hulpdiensten verkeerstoren, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
