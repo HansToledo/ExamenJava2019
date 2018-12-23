@@ -7,7 +7,10 @@ package database;
  * @Purpose: Klasse bevat alle preparedstatemens queries.
  */
 
+import calculations.Coördinaten;
 import com.mysql.jdbc.Connection;
+import model.*;
+import strategy.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +21,10 @@ import java.util.List;
 
 public class DBqueries {
     private Connection dbConnection; // manages the connection
+    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
+    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
+    IHulpdienstStrategy geenStrategy = new GeenStrategy();
+
     private PreparedStatement newActor;
     private PreparedStatement newVerkeerstoren;
     private PreparedStatement newHulpdienst;
@@ -38,12 +45,12 @@ public class DBqueries {
             dbConnection = database.DBConnection.getConnection();
 
             getAllVerkeerstorens = dbConnection.prepareStatement(
-                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, verkeerstorens.hulpdienststrategy as strategy, verkeerstorens.longitude as longitude, verkeerstorens.latitude as latitude FROM verkeerstorens " +
+                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, verkeerstorens.longitude as longitude, verkeerstorens.latitude as latitude FROM verkeerstorens " +
                             "join actoren on (verkeerstorens.ActorID = actoren.ActorID)" +
                             "join type_actor on (type_actor.EnumID = actoren.EnumID);");
 
             getAllSchepen = dbConnection.prepareStatement(
-                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, vervoermiddel.hulpdienststrategy as strategy, \n" +
+                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, \n" +
                             "vervoermiddel.longitude as longitude, vervoermiddel.latitude as latitude, \n" +
                             "type_actor.IsSchip as IsSchip\n" +
                             "FROM vervoermiddel \n" +
@@ -52,7 +59,7 @@ public class DBqueries {
                             "WHERE (IsSchip = '1');");
 
             getAllHulpdiensten = dbConnection.prepareStatement(
-                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, vervoermiddel.hulpdienststrategy as strategy, \n" +
+                    "SELECT type_actor.naam as typenaam, actoren.naam as naam, \n" +
                             "vervoermiddel.longitude as longitude, vervoermiddel.latitude as latitude, \n" +
                             "type_actor.IsSchip as IsSchip\n" +
                             "FROM vervoermiddel \n" +
@@ -109,16 +116,18 @@ public class DBqueries {
     }
 
     // opvragen alle verkeerstorens
-    //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
-    public List getAllVerkeerstorens() {
+    public ArrayList<Verkeerstoren> getAllVerkeerstorens() {
         try (ResultSet resultSet = getAllVerkeerstorens.executeQuery()) {
-            ArrayList<String> results = new ArrayList<>();
+            ArrayList<Verkeerstoren> results = new ArrayList<Verkeerstoren>();
 
             while (resultSet.next()) {
-                results.add(resultSet.getString("typenaam"));
-                results.add(resultSet.getString("naam"));
-                results.add(resultSet.getString("Longitude"));
-                results.add(resultSet.getString("Latitude"));
+                String typeNaam = resultSet.getString("typenaam");
+                String naam = resultSet.getString("naam");
+                double lon = Double.parseDouble(resultSet.getString("longitude"));
+                double lat = Double.parseDouble(resultSet.getString("latitude"));
+                Coördinaten coördinaten = new Coördinaten(lat,lon);
+
+                results.add(new Verkeerstoren(typeNaam,naam, coördinaten, geenStrategy));
             }
             return results;
         }
@@ -146,6 +155,7 @@ public class DBqueries {
         }
         return null;
     }
+
 
     // vervoermiddel_status toevoegen
     public int addStatusVervoermiddel(String situatie) {

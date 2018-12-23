@@ -9,6 +9,6 @@ public class GeenStrategy implements IHulpdienstStrategy {
     }
 
     public String toString(){
-        return "Geen strategy toegekend.";
+        return "geenStrategy";
     }
 };

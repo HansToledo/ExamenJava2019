@@ -31,7 +31,7 @@ public class Main extends Application {
         random.generateHulpdiensten(5);
         random.generateSchepen(5);
 
-        random.inlezenVerkeerstorens();
+        //random.inlezenVerkeerstorens();
 
         random.printAllActors();
 
