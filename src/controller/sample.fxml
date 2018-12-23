@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -8,8 +11,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -18,9 +20,151 @@
    </rowConstraints>
    <children>
       <BorderPane prefHeight="633.0" prefWidth="758.0">
-         <center>
+         <right>
             <Button fx:id="randomNoodButton" mnemonicParsing="false" onAction="#randomNoodButton_Clicked" text="RandomNood" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <Label fx:id="lblVerkeerstorens" text="Verkeerstorens" BorderPane.alignment="TOP_LEFT">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets left="32.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <left>
+            <ListView fx:id="lstViewVerkeerstorens" maxWidth="160.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" />
+               </BorderPane.margin>
+            </ListView>
+         </left>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="61.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="407.0" minWidth="0.0" prefWidth="76.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="407.0" minWidth="10.0" prefWidth="339.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="178.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblVerkeerstorenLongitude" text="Longitude:" />
+                  <Label fx:id="lblLatitude" text="Latitude:" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtVerkeerstorenLongitude" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtVerkeerstorenLatitude" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
          </center>
+         <bottom>
+            <BorderPane prefHeight="370.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" />
+                        <Label fx:id="lblSchepen" text="Schepen" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblHulpdiensten" text="Hulpdiensten" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="21.0" />
+                           </padding>
+                        </Label>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </top>
+               <left>
+                  <ListView fx:id="lstViewSchepen" maxWidth="160.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" />
+                     </BorderPane.margin>
+                  </ListView>
+               </left>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="178.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="300.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ListView fx:id="lstHulpdiensten" maxWidth="160.0" prefWidth="160.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="20.0" right="10.0" />
+                           </GridPane.margin>
+                        </ListView>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="lblSchipSnelheid" text="Snelheid:" />
+                              <Label fx:id="lblSchipReactietijd" text="Reactietijd:" GridPane.rowIndex="1" />
+                              <Label fx:id="lblSchipWendbaarheid" text="Wendbaarheid:" GridPane.rowIndex="2" />
+                              <Label fx:id="lblSchipGrootte" text="Grootte:" GridPane.rowIndex="3" />
+                              <Label fx:id="lblSchipCapaciteit" text="Capaciteit:" GridPane.rowIndex="4" />
+                              <Label fx:id="lblSchipKoers" text="Koers:" GridPane.rowIndex="5" />
+                              <Label fx:id="lblSchipLongitude" text="Longitude:" GridPane.rowIndex="6" />
+                              <Label fx:id="lblSchipLatitude" text="Latitude:" GridPane.rowIndex="7" />
+                              <Label fx:id="lblSchipStatus" text="Status:" GridPane.rowIndex="8" />
+                              <TextField fx:id="txtSchipSnelheid" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtSchipReactietijd" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtSchipWendbaarheid" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtSchipGrootte" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtSchipCapaciteit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtSchipKoers" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtSchipLongitude" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtSchipLatitude" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtSchipStatus" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </center>
+               <right>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+               </right>
+               <bottom>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </bottom>
       </BorderPane>
    </children>
 </GridPane>
