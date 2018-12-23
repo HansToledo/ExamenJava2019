@@ -56,6 +56,12 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void doUpdate(StatusVervoermiddel statusSchip, Coördinaten coördinaten, String naam) {
 
+        if (statusSchip == StatusVervoermiddel.OK) {
+
+            System.out.println("Schip ok");
+        }
+
+
         if (statusSchip != StatusVervoermiddel.OK) {
 
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
