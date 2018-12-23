@@ -3,8 +3,7 @@ package model;
 import calculations.Coördinaten;
 import calculations.KortsteAfstand;
 import enums.StatusVervoermiddel;
-import strategy.MeldingStrategy;
-import strategy.PickupStrategy;
+import strategy.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;

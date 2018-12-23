@@ -8,6 +8,8 @@ import model.Actor;
 import model.IHulpdienstStrategy;
 import model.Schepen;
 import strategy.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Random;
 
@@ -34,7 +36,7 @@ public class Controller {
         return schip;
     }
 
-    public void kiesStrategy(){
+    public void kiesStrategy(Schepen schip){
         // Prepare strategies
         IHulpdienstStrategy brandStrategy = new BrandStrategy();
         IHulpdienstStrategy geenStrategy = new GeenStrategy();
@@ -43,5 +45,6 @@ public class Controller {
         IHulpdienstStrategy stormStrategy = new StormStrategy();
         IHulpdienstStrategy ziekteStrategy = new ZiekteStrategy();
         IHulpdienstStrategy zinkendStrategy = new ZinkendStrategy();
+
     }
 }

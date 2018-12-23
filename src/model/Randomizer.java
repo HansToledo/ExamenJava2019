@@ -5,9 +5,7 @@ import enums.Actors;
 import enums.Hulpdiensten;
 import enums.Schepen;
 import enums.StatusVervoermiddel;
-import strategy.GeenStrategy;
-import strategy.MeldingStrategy;
-import strategy.PickupStrategy;
+import strategy.*;
 import database.DBqueries;
 
 import java.util.ArrayList;
@@ -17,8 +15,6 @@ import java.util.Random;
 public class Randomizer {
     private static Random random = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
-    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
-    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
     Coördinaten coördinaten;

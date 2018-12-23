@@ -4,5 +4,8 @@ public enum StatusVervoermiddel {
     OK,
     BRAND,
     ZINKEND,
-    PIRATEN
+    PIRATEN,
+    GEKAPSEISD,
+    STORM,
+    ZIEKTE,
 }
