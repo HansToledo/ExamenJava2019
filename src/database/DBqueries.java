@@ -10,10 +10,7 @@ package database;
 import calculations.Coördinaten;
 import com.mysql.jdbc.Connection;
 import model.*;
-import strategy.GeenStrategy;
-import strategy.MeldingStrategy;
-import strategy.PickupStrategy;
-
+import strategy.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

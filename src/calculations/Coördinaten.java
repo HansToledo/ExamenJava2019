@@ -52,7 +52,7 @@ public class Coördinaten {
         return this.lengte;
     }
 
-    public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
+    public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor random met range
 
         double x = (Math.random()*((max-min)+1))+min;
         return Math.floor(x);

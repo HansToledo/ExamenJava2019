@@ -2,9 +2,9 @@ package strategy;
 
 import model.IHulpdienstStrategy;
 
-public class MeldingStrategy implements IHulpdienstStrategy {
+public class GekapseisdStrategy implements IHulpdienstStrategy {
     public String Reddingstype(){
-        return "Noodsituatie gemeld.";
+        return "Duikers & reddingsvesten paraat. Drenkelingen redden.";
     };
 
     public String toString(){
