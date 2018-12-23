@@ -141,6 +141,11 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     }
 
     @Override
+    public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
+
+    }
+
+    @Override
     public String toString() {
         return "Vervoermiddel{" +
                 "naam=" + naam +

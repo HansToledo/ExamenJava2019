@@ -1,5 +1,7 @@
 package model;
 
+import calculations.Coördinaten;
+
 import java.util.LinkedList;
 
 /**
@@ -10,5 +12,7 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public interface INoodObserver {
+
+    public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam);
 
 }

@@ -67,6 +67,20 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     //endregion
 
     @Override
+    public void addNoodObserver(INoodObserver noodObserver) {
+
+    }
+
+    @Override
+    public void removeNoodObserver(INoodObserver noodObserver) {
+
+    }
+
+    @Override
+    public void deNotify() {
+
+    }
+    @Override
     public String toString() {
         return "Verkeerstoren{" +
                 "naam=" + naam +
