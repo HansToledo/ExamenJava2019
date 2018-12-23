@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import model.Actor;
 import model.Schepen;
+import strategy.GekapseisdStrategy;
 
 import java.util.Random;
 
@@ -27,6 +28,7 @@ public class Controller {
     {
         int index = randomGenerator.nextInt(Actor.schepenOpWater.size());
         Schepen schip = Actor.schepenOpWater.get(index);
+
         System.out.println("Random schip gekozen " + schip.getNaam());
         return schip;
     }
