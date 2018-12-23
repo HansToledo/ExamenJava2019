@@ -22,18 +22,18 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
+        database.DBConnection.getConnection(); //connectie maken met de database
 
         Randomizer random = new Randomizer();
         random.addEnumHulpdienstenEnSchepenToDB();
         random.addEnumStatusVervoermiddelToDB();
-        //random.generateVerkeerstores(2);
-        //random.generateHulpdiensten(2);
-        //random.generateSchepen(2);
+        random.generateVerkeerstores(10);
+        random.generateHulpdiensten(10);
+        random.generateSchepen(10);
 
-        random.inlezenVerkeerstorens();
-        random.inlezenSchepen();
-        random.inlezenHulpdiensten();
+        //random.inlezenVerkeerstorens();
+        //random.inlezenSchepen();
+        //random.inlezenHulpdiensten();
 
         random.printAllActors();
 

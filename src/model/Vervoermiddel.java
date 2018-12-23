@@ -40,7 +40,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     }
 
 
-
+    //region Getters & Setters
     public String getStatus() {
         return status;
     }
@@ -117,13 +117,11 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     }
 
-
     public void setSnelheid(double snelheid) {
 
         this.snelheid = snelheid;
 
     }
-
 
     public void setGrootte(double grootte) {
 
@@ -131,19 +129,19 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     }
 
-
     public void setCapaciteit(double capaciteit) {
 
         this.capaciteit = capaciteit;
 
     }
 
-
     public void setKoers(int koers) {
 
         this.koers = koers;
 
     }
+    //endregion
+
 
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
