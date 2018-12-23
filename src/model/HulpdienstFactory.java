@@ -61,8 +61,6 @@ public class HulpdienstFactory extends AbstractActorFactory {
                 Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam, naam, coördinaten, hulpdienstStrategy);
                 Actor.verkeerstorens.add(verkeerstoren);
 
-                //verkeerstoren.addNoodObserver(); nog bekijken
-
                 return verkeerstoren;
         }
         return null;

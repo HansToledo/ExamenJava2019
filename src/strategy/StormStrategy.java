@@ -2,13 +2,12 @@ package strategy;
 
 import model.IHulpdienstStrategy;
 
-public class GeenStrategy implements IHulpdienstStrategy {
-
+public class StormStrategy implements IHulpdienstStrategy {
     public String Reddingstype(){
-        return "Geen";
+        return "Opvarenden ophalen.";
     };
 
     public String toString(){
-        return "geenStrategy";
+        return "stormStrategy";
     }
-};
+}
