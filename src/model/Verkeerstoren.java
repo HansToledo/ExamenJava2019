@@ -4,6 +4,7 @@ import calculations.Coördinaten;
 import enums.StatusVervoermiddel;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -17,7 +18,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private String enumNaam;
     private String naam;
     private Coördinaten coördinaten;
-    private ArrayList<IStatusObserver> hulpdiensten = new ArrayList<IStatusObserver>();
+    private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>();
+    private IHulpdienstStrategy reddingsType;
 
     public Verkeerstoren(){
 
@@ -77,15 +79,27 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void addNoodObserver(INoodObserver noodObserver) {
 
+        hulpdiensten.add(noodObserver);
+
     }
 
     @Override
     public void removeNoodObserver(INoodObserver noodObserver) {
 
+        hulpdiensten.remove(noodObserver);
     }
 
     @Override
     public void deNotify() {
+
+        Iterator<INoodObserver> it = hulpdiensten.iterator();
+
+        while (it.hasNext()) {
+
+            INoodObserver hulpdienst = it.next();
+            hulpdienst.ontvangNoodsignaal(reddingsType, coördinaten,naam);
+
+        }
 
     }
     @Override
@@ -99,3 +113,5 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
 
 }
+
+
