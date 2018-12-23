@@ -27,7 +27,7 @@ public class Main extends Application {
         Randomizer random = new Randomizer();
         random.addEnumHulpdienstenEnSchepenToDB();
         random.addEnumStatusVervoermiddelToDB();
-        //random.generateVerkeerstores(3);
+        random.generateVerkeerstores(3);
         random.generateHulpdiensten(5);
         random.generateSchepen(5);
 
