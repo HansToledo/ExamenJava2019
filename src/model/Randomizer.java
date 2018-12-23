@@ -24,6 +24,7 @@ public class Randomizer {
     Coördinaten coördinaten = new Coördinaten();
     List<Actor> actoren = new ArrayList<Actor>();
 
+
     public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
 
         double x = (Math.random()*((max-min)+1))+min;
