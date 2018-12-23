@@ -14,9 +14,6 @@ public class Coördinaten {
 
     public Coördinaten() {
 
-        this.breedte = getRandomBreedte();
-        this.lengte = getRandomLengte();
-
     }
 
     public Coördinaten(double breedte, double lengte) {

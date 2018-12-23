@@ -21,7 +21,7 @@ public class Randomizer {
     IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
-    Coördinaten coördinaten = new Coördinaten();
+    Coördinaten coördinaten = new Coördinaten().getRandomCoordinaten();
     List<Actor> actoren = new ArrayList<Actor>();
 
 
@@ -44,6 +44,7 @@ public class Randomizer {
         }
         return randomNaam.toString();
     }
+
 
     public void addEnumHulpdienstenEnSchepenToDB(){
         //Alle mogelijke enums toevoegen aan database

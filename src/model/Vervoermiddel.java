@@ -149,7 +149,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
 
-        System.out.println("Noodsignaal ontvangen door hulpdienst : " + this.getNaam()); //ALS TEST
+        System.out.println("Noodsignaal ontvangen door hulpdienst: " + this.getNaam()); //ALS TEST
 
     }
 
