@@ -1,6 +1,7 @@
 package model;
 
 import calculations.Coördinaten;
+import calculations.KortsteAfstand;
 import enums.StatusVervoermiddel;
 import strategy.MeldingStrategy;
 import strategy.PickupStrategy;
@@ -72,16 +73,43 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
         if (statusSchip != StatusVervoermiddel.OK) {
 
-            System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
+            ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+            PickupStrategy pickupTEST = new PickupStrategy(); // als test
+            KortsteAfstand kortsteAfstand = new KortsteAfstand();
+            Vervoermiddel vervoermiddel;
 
-            PickupStrategy pickupTEST = new PickupStrategy();
-            //this.reddingsType = pickupTEST;
+            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(naam); //TODO rekeing houden met strategy volgens type nood
+
+            for (Vervoermiddel item : beschikbareHulpdiensten){
+
+                vervoermiddel = kortsteAfstand.zoekHulpdienstDichtsbij(item); //niet juist
+
+            }
+
+
+            System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
             doNotifyNoodObserver(pickupTEST,coördinaten,naam);
             // deze moet andere observer aansturen
         }
     }
 
     //endregion
+
+    public ArrayList<Vervoermiddel>  zoekBeschikbareHulpdienst(String naam){
+
+        ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+
+        for(Vervoermiddel item : Actor.mogelijkeHulpdiensten){
+
+            if (item.getNaam() != naam && item.getStatus() == StatusVervoermiddel.OK.toString()){ //TODO getstatus enum teruggeven statsusen in klasse nog controleren moeten ok zijn bij start en aanpassen indien niet ok actor list
+
+                beschikbareHulpdiensten.add(item);
+            }
+
+        }
+
+        return beschikbareHulpdiensten;
+    }
 
     @Override
     public void addNoodObserver(INoodObserver noodObserver) {
