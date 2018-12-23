@@ -73,7 +73,6 @@ public class SchipFactory extends AbstractActorFactory{
     
     public Verkeerstoren zoekVerkeerstorenDichtsbij(Vervoermiddel schepen){
 
-        ArrayList<Verkeerstoren> test = new ArrayList<Verkeerstoren>(); // als test
         double afstandKortste = 0;
         double afstandBereken = 0;
         Verkeerstoren verkeerstorenKortste = new Verkeerstoren();
@@ -90,8 +89,7 @@ public class SchipFactory extends AbstractActorFactory{
 
             coördinatenVT = item.getLocatie();
             afstandBereken = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
-            item.setAfstand(afstandBereken); //als test
-            test.add(item);  // als test
+
             if (afstandKortste == 0.0){
 
                 afstandKortste = berekenAfstand.GPSDistance(breedte,lengte,coördinatenVT.getBreedte(),coördinatenVT.getLengte());
