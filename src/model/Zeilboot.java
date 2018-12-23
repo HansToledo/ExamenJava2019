@@ -23,11 +23,5 @@ public class Zeilboot extends Schepen {
 
     }
 
-    @Override
-    public String toString() {
-        return "Zeilboot{} " + super.toString();
-    }
-
-
 
 }

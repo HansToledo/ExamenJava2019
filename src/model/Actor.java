@@ -32,7 +32,6 @@ public abstract class Actor  {
     }
     //endregion
 
-
     public double getAfstand() {
 
         return this.afstand;
@@ -52,7 +51,7 @@ public abstract class Actor  {
     @Override
     public String toString() {
         return "Actor{" +
-                "hulpdienstStrategy=" + hulpdienstStrategy + " Afstand="+afstand +
+                "hulpdienstStrategy=" + hulpdienstStrategy + "Afstand="+afstand +
                 '}';
     }
 }

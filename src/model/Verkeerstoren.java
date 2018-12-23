@@ -143,11 +143,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     @Override
     public String toString() {
-        return "Verkeerstoren{" +
-                "naam=" + naam +
-                ", coördinaten=" + coördinaten +
-                ", statusSchip=" +
-                '}'  + super.toString() ;
+        return naam;
     }
 
 

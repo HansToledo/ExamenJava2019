@@ -19,9 +19,4 @@ public class ScheepsvaartPolitie extends Vervoermiddel {
         super(enumNaam, naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy);
     }
 
-
-    @Override
-    public String toString() {
-        return "ScheepsvaartPolitie{} " + super.toString();
-    }
 }

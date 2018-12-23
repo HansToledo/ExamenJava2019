@@ -152,17 +152,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     @Override
     public String toString() {
-        return "Vervoermiddel{" +
-                "naam=" + naam +
-                ", afstand=" + afstand +
-                ", snelheid=" + snelheid +
-                ", reactieTijd=" + reactieTijd +
-                ", wendbaarheid=" + wendbaarheid +
-                ", grootte=" + grootte +
-                ", capaciteit=" + capaciteit +
-                ", koers=" + koers +
-                ", coördinaten=" + coördinaten +
-                "} " + super.toString();
+        return naam;
     }
 }
 

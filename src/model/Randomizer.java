@@ -18,7 +18,7 @@ public class Randomizer {
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
     Coördinaten coördinaten;
-    List<Actor> actoren = new ArrayList<Actor>();
+    //List<Actor> actoren = new ArrayList<Actor>();
 
 
     public static double getRandomDoubleBetweenRange(double min, double max){ // gebruikt worden voor ramdom met range
@@ -245,17 +245,23 @@ public class Randomizer {
 
     //Afdrukken van alle actoren.
     public void printAllActors(){
-        System.out.println("VERKEERSTORENS");
+        System.out.println("\nVERKEERSTORENS");
         for (int i=0; i < Actor.verkeerstorens.size();i++) {
-            System.out.println(Actor.verkeerstorens.get(i));
+            System.out.println("Actor: " + Actor.verkeerstorens.get(i).getEnumNaam() + "   Naam: " + Actor.verkeerstorens.get(i).getNaam() + "   Coördinaten: " + Actor.verkeerstorens.get(i).getCoördinaten());
         }
-        System.out.println("HULPDIENSTEN");
+        System.out.println("\nHULPDIENSTEN");
         for (int i=0; i < Actor.mogelijkeHulpdiensten.size();i++) {
-            System.out.println(Actor.mogelijkeHulpdiensten.get(i));
+            System.out.println("Actor: " + Actor.mogelijkeHulpdiensten.get(i).getEnumNaam() + "   Naam: " + Actor.mogelijkeHulpdiensten.get(i).getNaam() + "   Status: " + Actor.mogelijkeHulpdiensten.get(i).getStatus()
+                    + "   Capaciteit: " + Actor.mogelijkeHulpdiensten.get(i).getCapaciteit() + "   Coördinaten: " + Actor.mogelijkeHulpdiensten.get(i).getCoördinaten() + "   Grootte: " + Actor.mogelijkeHulpdiensten.get(i).getGrootte()
+                    + "   Koers: " + Actor.mogelijkeHulpdiensten.get(i).getKoers() + "   Reactietijd: " + Actor.mogelijkeHulpdiensten.get(i).getReactieTijd() + "   Snelheid: " + Actor.mogelijkeHulpdiensten.get(i).getSnelheid()
+                    + "   Wendbaarheid: " + Actor.mogelijkeHulpdiensten.get(i).getWendbaarheid() + "   Strategy: " + Actor.mogelijkeHulpdiensten.get(i).getHulpdienstStrategy());
         }
-        System.out.println("SCHEPEN");
+        System.out.println("\nSCHEPEN");
         for (int i=0; i < Actor.schepenOpWater.size();i++) {
-            System.out.println(Actor.schepenOpWater.get(i));
+            System.out.println("Actor: " + Actor.schepenOpWater.get(i).getEnumNaam() + "   Naam: " + Actor.schepenOpWater.get(i).getNaam() + "   Status: " + Actor.schepenOpWater.get(i).getStatus()
+                    + "   Capaciteit: " + Actor.schepenOpWater.get(i).getCapaciteit() + "   Coördinaten: " + Actor.schepenOpWater.get(i).getCoördinaten() + "   Grootte: " + Actor.schepenOpWater.get(i).getGrootte()
+                    + "   Koers: " + Actor.schepenOpWater.get(i).getKoers() + "   Reactietijd: " + Actor.schepenOpWater.get(i).getReactieTijd() + "   Snelheid: " + Actor.schepenOpWater.get(i).getSnelheid()
+                    + "   Wendbaarheid: " + Actor.schepenOpWater.get(i).getWendbaarheid() + "   Strategy: " + Actor.schepenOpWater.get(i).getHulpdienstStrategy());
         }
     }
 }

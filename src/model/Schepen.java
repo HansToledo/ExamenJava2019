@@ -60,8 +60,4 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     }
 
-    @Override
-    public String toString() {
-        return "Schepen{} " + super.toString();
-    }
 }

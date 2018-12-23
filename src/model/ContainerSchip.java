@@ -21,11 +21,5 @@ public class ContainerSchip extends Schepen {
 
     }
 
-    @Override
-    public String toString() {
-        return "ContainerSchip{} " + super.toString();
-    }
-
-
 
 }
