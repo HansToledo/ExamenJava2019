@@ -19,7 +19,8 @@ public class Controller {
     @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
 
-        kiesRandomSchip().setNoodSignaal(StatusVervoermiddel.ZINKEND);
+        StatusVervoermiddel nieuwNoodSignaal = StatusVervoermiddel.values()[(int)(Math.random()*StatusVervoermiddel.values().length)];
+        kiesRandomSchip().setNoodSignaal(nieuwNoodSignaal);
 
     }
 
@@ -31,5 +32,6 @@ public class Controller {
         System.out.println("Random schip gekozen " + schip.getNaam());
         return schip;
     }
+
 
 }

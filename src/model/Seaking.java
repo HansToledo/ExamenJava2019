@@ -2,6 +2,8 @@ package model;
 
 import calculations.Coördinaten;
 
+import java.util.ArrayList;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>

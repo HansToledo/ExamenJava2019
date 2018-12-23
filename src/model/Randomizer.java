@@ -176,12 +176,15 @@ public class Randomizer {
             double lLat = Double.parseDouble(alleVerkeerstorens.get(i+3).toString());
             coördinaten = new Coördinaten(lLat,lLon);
 
+
             verkeerstoren = new Verkeerstoren(lTypeNaam,lNaam,coördinaten,geenStrategy);
             Actor.verkeerstorens.add(verkeerstoren);
             i+=4;
         }
 
     }
+
+
 
     //Afdrukken van alle actoren.
     public void printAllActors(){
