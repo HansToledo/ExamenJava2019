@@ -90,7 +90,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
     @Override
-    public void deNotify() {
+    public void doNotify() {
 
         Iterator<INoodObserver> it = hulpdiensten.iterator();
 
