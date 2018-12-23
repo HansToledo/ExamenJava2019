@@ -3,6 +3,8 @@ package model;
 import calculations.Coördinaten;
 import enums.StatusVervoermiddel;
 
+import java.util.ArrayList;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -15,6 +17,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private String enumNaam;
     private String naam;
     private Coördinaten coördinaten;
+    private ArrayList<IStatusObserver> hulpdiensten = new ArrayList<IStatusObserver>();
 
     public Verkeerstoren(){
 
