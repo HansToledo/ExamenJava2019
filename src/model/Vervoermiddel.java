@@ -2,6 +2,8 @@ package model;
 
 import calculations.Coördinaten;
 
+import java.util.Iterator;
+
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -164,3 +166,4 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
                 "} " + super.toString();
     }
 }
+
