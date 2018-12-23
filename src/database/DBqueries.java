@@ -10,7 +10,10 @@ package database;
 import calculations.Coördinaten;
 import com.mysql.jdbc.Connection;
 import model.*;
-import strategy.*;
+import strategy.GeenStrategy;
+import strategy.MeldingStrategy;
+import strategy.PickupStrategy;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,10 +24,6 @@ import java.util.List;
 
 public class DBqueries {
     private Connection dbConnection; // manages the connection
-    IHulpdienstStrategy pickupStrategy = new PickupStrategy();
-    IHulpdienstStrategy meldingStrategy = new MeldingStrategy();
-    IHulpdienstStrategy geenStrategy = new GeenStrategy();
-
     private PreparedStatement newActor;
     private PreparedStatement newVerkeerstoren;
     private PreparedStatement newHulpdienst;
@@ -39,6 +38,7 @@ public class DBqueries {
     private PreparedStatement getAllSchepen;
     private PreparedStatement getAllHulpdiensten;
     public static String sqlErrorMessageDBqueries = null;
+    IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
     public DBqueries() {
         try {
@@ -51,8 +51,7 @@ public class DBqueries {
 
             getAllSchepen = dbConnection.prepareStatement(
                     "SELECT type_actor.naam as typenaam, actoren.naam as naam, \n" +
-                            "vervoermiddel.longitude as longitude, vervoermiddel.latitude as latitude, \n" +
-                            "type_actor.IsSchip as IsSchip\n" +
+                            "longitude, latitude,snelheid,reactietijd,wendbaarheid,grootte,capaciteit,koers\n" +
                             "FROM vervoermiddel \n" +
                             "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
                             "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
@@ -60,12 +59,11 @@ public class DBqueries {
 
             getAllHulpdiensten = dbConnection.prepareStatement(
                     "SELECT type_actor.naam as typenaam, actoren.naam as naam, \n" +
-                            "vervoermiddel.longitude as longitude, vervoermiddel.latitude as latitude, \n" +
-                            "type_actor.IsSchip as IsSchip\n" +
-                            "FROM vervoermiddel \n" +
+                            "longitude, latitude,snelheid,reactietijd,wendbaarheid,grootte,capaciteit,koers\n" +
+                            "FROM vervoermiddel\n" +
                             "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
                             "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
-                            "WHERE (IsSchip = '0');");
+                            "WHERE not (type_actor.naam ='VERKEERSTOREN') AND (IsSchip = '0');");
 
             newActor = dbConnection.prepareStatement((
                     "INSERT INTO actoren " +
@@ -128,6 +126,86 @@ public class DBqueries {
                 Coördinaten coördinaten = new Coördinaten(lat,lon);
 
                 results.add(new Verkeerstoren(typeNaam,naam, coördinaten, geenStrategy));
+            }
+            return results;
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+
+    // opvragen alle schepen
+    public ArrayList<Vervoermiddel> getAllSchepen() {
+        try (ResultSet resultSet = getAllSchepen.executeQuery()) {
+            ArrayList<Vervoermiddel> results = new ArrayList<Vervoermiddel>();
+
+            while (resultSet.next()) {
+                String typeNaam = resultSet.getString("typenaam");
+                String naam = resultSet.getString("naam");
+                double lon = Double.parseDouble(resultSet.getString("longitude"));
+                double lat = Double.parseDouble(resultSet.getString("latitude"));
+                Coördinaten coördinaten = new Coördinaten(lat,lon);
+                double snelheid = Double.parseDouble(resultSet.getString("snelheid"));
+                double reactietijd = Double.parseDouble(resultSet.getString("reactietijd"));
+                double wendbaarheid = Double.parseDouble(resultSet.getString("wendbaarheid"));
+                double grootte = Double.parseDouble(resultSet.getString("grootte"));
+                double capaciteit = Double.parseDouble(resultSet.getString("capaciteit"));
+                int koers = Integer.parseInt(resultSet.getString("koers"));
+
+                switch (typeNaam) {
+                    case "CONTAINERSCHIP":
+                        results.add(new ContainerSchip(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        break;
+                    case "MOTORBOOT":
+                        results.add(new Motorboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        break;
+                    case "TANKER":
+                        results.add(new Tanker(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        break;
+                    case "ZEILBOOT":
+                        results.add(new Zeilboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        break;
+                }
+            }
+            return results;
+        }
+        catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
+
+    // opvragen alle hulpdiensten
+    public ArrayList<Vervoermiddel> getAllHulpdiensten() {
+        try (ResultSet resultSet = getAllHulpdiensten.executeQuery()) {
+            ArrayList<Vervoermiddel> results = new ArrayList<Vervoermiddel>();
+
+            while (resultSet.next()) {
+                String typeNaam = resultSet.getString("typenaam");
+                String naam = resultSet.getString("naam");
+                double lon = Double.parseDouble(resultSet.getString("longitude"));
+                double lat = Double.parseDouble(resultSet.getString("latitude"));
+                Coördinaten coördinaten = new Coördinaten(lat,lon);
+                double snelheid = Double.parseDouble(resultSet.getString("snelheid"));
+                double reactietijd = Double.parseDouble(resultSet.getString("reactietijd"));
+                double wendbaarheid = Double.parseDouble(resultSet.getString("wendbaarheid"));
+                double grootte = Double.parseDouble(resultSet.getString("grootte"));
+                double capaciteit = Double.parseDouble(resultSet.getString("capaciteit"));
+                int koers = Integer.parseInt(resultSet.getString("koers"));
+
+                switch (typeNaam) {
+                    case "SEAKING":
+                        results.add(new Seaking(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        break;
+                    case "SCHEEPSVAARTPOLITIE":
+                        results.add(new ScheepsvaartPolitie(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        break;
+                }
             }
             return results;
         }
