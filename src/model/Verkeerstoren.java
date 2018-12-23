@@ -74,7 +74,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip != StatusVervoermiddel.OK) {
 
             ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
-            PickupStrategy pickupTEST = new PickupStrategy(); // als test
+            //PickupStrategy pickupTEST = new PickupStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
             Vervoermiddel vervoermiddel;
 
