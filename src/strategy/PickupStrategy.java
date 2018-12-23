@@ -8,6 +8,6 @@ public class PickupStrategy implements IHulpdienstStrategy {
     };
 
     public String toString(){
-        return "Pickup strategy toegekend.";
+        return "pickupStrategy";
     }
 }

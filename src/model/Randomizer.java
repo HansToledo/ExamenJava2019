@@ -166,21 +166,17 @@ public class Randomizer {
     }
 
     public void inlezenVerkeerstorens(){
-        Verkeerstoren verkeerstoren = null;
-        List alleVerkeerstorens = kustwachtQueries.getAllVerkeerstorens();  //TODO: TEST HANS OPHALEN VERKEERSTORENS UIT DATABASE
-        int i = 0;
-        while (i < alleVerkeerstorens.size()){
-            String lTypeNaam = alleVerkeerstorens.get(i).toString();
-            String lNaam = alleVerkeerstorens.get(i+1).toString();
-            double lLon = Double.parseDouble(alleVerkeerstorens.get(i+2).toString());
-            double lLat = Double.parseDouble(alleVerkeerstorens.get(i+3).toString());
-            coördinaten = new Coördinaten(lLat,lLon);
+        AbstractActorFactory actor = FactoryProducer.getFactory(Actors.HULPDIENST);
+        ArrayList<Verkeerstoren> verkeerstorens = kustwachtQueries.getAllVerkeerstorens();
 
-            verkeerstoren = new Verkeerstoren(lTypeNaam,lNaam,coördinaten,geenStrategy);
-            Actor.verkeerstorens.add(verkeerstoren);
-            i+=4;
+        for(Verkeerstoren item : verkeerstorens) {
+            String typeNaam = item.getEnumNaam();
+            String naam = item.getNaam();
+            Coördinaten coördinaten = item.getCoördinaten();
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+            Verkeerstoren verkeerstoren = actor.setVerkeersToren(typeNaam,naam,Hulpdiensten.VERKEERSTOREN,coördinaten,strategy);
         }
-
     }
 
     //Afdrukken van alle actoren.

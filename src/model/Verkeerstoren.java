@@ -46,7 +46,12 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         this.enumNaam = enumNaam;
     }
 
-    //region StatusObserver
+    public Coördinaten getCoördinaten() {
+        return coördinaten;
+    }
+
+
+//region StatusObserver
 
     @Override
     public void doUpdate(StatusVervoermiddel statusSchip, Coördinaten coördinaten, String naam) {

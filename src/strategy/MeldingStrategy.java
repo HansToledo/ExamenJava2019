@@ -8,6 +8,6 @@ public class MeldingStrategy implements IHulpdienstStrategy {
     };
 
     public String toString(){
-        return "Melding strategy toegekend.";
+        return "meldingStrategy";
     }
 }
