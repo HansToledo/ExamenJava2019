@@ -16,11 +16,12 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/controller/sample.fxml"));
         primaryStage.setTitle("Examen2019");
         primaryStage.setScene(new Scene(root, 300, 275));
-        //primaryStage.show();
+        primaryStage.show();
     }
 
 
     public static void main(String[] args) {
+        
         Connection dbConnection = database.DBConnection.getConnection(); //connectie maken met de database
 
         Randomizer random = new Randomizer();
@@ -32,8 +33,8 @@ public class Main extends Application {
 
         calculations.GPSDistance gpstest = new calculations.GPSDistance();
         System.out.println(gpstest.GPSDistance(50.0359,5.4253,58.3838,3.0414));
-
         launch(args);
+
     }
 
 

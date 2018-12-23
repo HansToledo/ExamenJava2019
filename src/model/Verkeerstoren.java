@@ -63,7 +63,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
         if (statusSchip != StatusVervoermiddel.OK) {
 
-            System.out.println("TEST of Istatusobserver werkt" + naam);
+            System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
             // deze moet andere observer aansturen
         }
     }

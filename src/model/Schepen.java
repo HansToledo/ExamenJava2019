@@ -53,8 +53,9 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     }
 
-    public void setNoodSignaal(StatusVervoermiddel noodSignaal) {
+    public void setNoodSignaal(StatusVervoermiddel nieuwNoodSignaal) {
 
+        this.noodSignaal = nieuwNoodSignaal;
         doNotifyStatusObservers();
 
     }
