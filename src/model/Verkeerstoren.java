@@ -96,6 +96,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             //TODO coordinaten lijken at runtime te wijzigen => bkijken
             //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done nog testen
             //TODO capaciteiten vergelijken
+            //TODO versturen naar alle observers + statergy naar 1 of meer
 
 
 
