@@ -61,7 +61,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 //region StatusObserver
 
     @Override
-    public void doUpdate(StatusVervoermiddel statusSchip, Coördinaten coördinaten, String naam) {
+    public void doUpdate(StatusVervoermiddel statusSchip, Schepen schipInNood) {
 
         if (statusSchip == StatusVervoermiddel.OK) {
 
@@ -79,7 +79,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             Vervoermiddel vervoermiddelInNood;//kan met schepen
             Vervoermiddel vervoermiddelKorstebij;
 
-            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(naam); //TODO rekeing houden met strategy volgens type nood
+            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam()); //TODO rekeing houden met strategy volgens type nood
 
             for(Schepen item : Actor.schepenOpWater){
 
