@@ -22,6 +22,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private Coördinaten coördinaten;
     private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>();
     private IHulpdienstStrategy reddingsType;
+    private ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
 
     public Verkeerstoren() {
 
@@ -73,7 +74,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip != StatusVervoermiddel.OK) {
 
             ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
-            ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
+            //ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
@@ -139,7 +140,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
-        Iterator<Vervoermiddel> it = Actor.mogelijkeHulpdiensten.iterator();
+        //Iterator<Vervoermiddel> it = Actor.mogelijkeHulpdiensten.iterator();
+        Iterator<Vervoermiddel> it = vervoermiddelKorstebij.iterator();
 
         while (it.hasNext()) {
 
