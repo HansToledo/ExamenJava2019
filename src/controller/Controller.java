@@ -133,10 +133,10 @@ public class Controller {
         ArrayList<Verkeerstoren> verkeerstorens = Actor.verkeerstorens;
         try {
             verkeerstorenList.setAll(verkeerstorens);
-            //verkeerstorenList.setAll(kustwachtQueries.getAllVerkeerstorens());
+            //verkeerstorenList.setAll(kustwachtQueries.getAllVerkeerstorens()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
             }
             catch (Exception E){
-                displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de vuurtorens uit de database.");
+                displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de verkeerstorens.");
             }
     }
     
@@ -145,10 +145,10 @@ public class Controller {
         ArrayList<Schepen> schepen = Actor.schepenOpWater;
         try {
             schepenList.setAll(schepen);
-            //schepenList.setAll(kustwachtQueries.getAllSchepen());
+            //schepenList.setAll(kustwachtQueries.getAllSchepen()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
         }
         catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de schepen uit de database.");
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de schepen.");
         }
     }
 
@@ -157,10 +157,10 @@ public class Controller {
         ArrayList<Vervoermiddel> hulpdiensten = Actor.mogelijkeHulpdiensten;
         try {
             hulpdienstenList.setAll(hulpdiensten);
-            //hulpdienstenList.setAll(kustwachtQueries.getAllHulpdiensten());
+            //hulpdienstenList.setAll(kustwachtQueries.getAllHulpdiensten()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
         }
         catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de hulpdiensten uit de database.");
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de hulpdiensten.");
         }
     }
 
