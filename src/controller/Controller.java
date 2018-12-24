@@ -251,7 +251,6 @@ public class Controller {
         }
     }
 
-
     public void kiesStrategy(Schepen schip){
         // Prepare strategies
         IHulpdienstStrategy brandStrategy = new BrandStrategy();

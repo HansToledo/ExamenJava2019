@@ -149,7 +149,10 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     //endregion
 
-
+    @Override
+    public String toString() {
+        return naam;
+    }
 
 
 }
