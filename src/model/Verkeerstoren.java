@@ -78,14 +78,14 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
 
-            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam()); //TODO rekeing houden met strategy volgens type nood
+            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens afstand + reactiesnelhied in list
 
 
-
+            //TODO rekeing houden met strategy volgens type nood
             //TODO coordinaten lijken at runtime te wijzigen
-            //TODO tijd berekenen volgens snelheid afstand en wendbaarheid
-            //TODO capaciteit berekenen
+            //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done nog testen
+            //TODO capaciteiten vergelijken
 
 
 
