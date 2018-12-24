@@ -82,6 +82,12 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
 
+          if (vervoermiddelKorstebij.get(0).getCapaciteit() > schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+
+
+          }
+
+
             //TODO rekeing houden met strategy volgens type nood
             //TODO coordinaten lijken at runtime te wijzigen
             //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done nog testen
@@ -92,7 +98,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
 
 
-            doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+            doNotifyNoodObserver(brandStrategy, coördinaten, naam); //kan ook naar al de observers verstuurd worden
             // deze moet andere observer aansturen
         }
     }
