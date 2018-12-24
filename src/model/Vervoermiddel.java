@@ -23,6 +23,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private int koers;
     private Coördinaten coördinaten;
     private String status = "OK";
+    private int ID;
 
     public Vervoermiddel(){
 
@@ -36,6 +37,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         this.grootte = grootte;
         this.capaciteit = capaciteit;
         this.koers = koers;
+        this.ID = ID;
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
