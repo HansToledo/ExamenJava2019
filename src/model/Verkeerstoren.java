@@ -83,7 +83,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
 
-          if (vervoermiddelKorstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+          if (vervoermiddelKorstebij.get(0).getCapaciteit() > schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
 
               Vervoermiddel test = vervoermiddelKorstebij.get(0);
               vervoermiddelKorstebij.clear();
@@ -91,9 +91,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
           }
 
-
+            //TODO status wijzigen at runetime in klasse
             //TODO rekeing houden met strategy volgens type nood
-            //TODO coordinaten lijken at runtime te wijzigen
+            //TODO coordinaten lijken at runtime te wijzigen => bkijken
             //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done nog testen
             //TODO capaciteiten vergelijken
 
