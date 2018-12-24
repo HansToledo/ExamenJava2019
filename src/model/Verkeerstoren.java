@@ -81,6 +81,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam()); //TODO rekeing houden met strategy volgens type nood
             vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens afstand
             //TODO coordinaten lijken at runtime te wijzigen
+            //TODO tijd berekenen volgens snelheid afstand en wendbaarheid
+            //TODO capaciteit berekenen
 
 
 
