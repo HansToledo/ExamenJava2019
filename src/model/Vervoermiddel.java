@@ -66,7 +66,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     public double getAfstand() {
 
-        return this.afstand;
+        return super.getAfstand();
     }
 
 

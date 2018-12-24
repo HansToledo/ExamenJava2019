@@ -73,19 +73,20 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip != StatusVervoermiddel.OK) {
 
             ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+            ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
 
-            Vervoermiddel vervoermiddelKorstebij;
-
             beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam()); //TODO rekeing houden met strategy volgens type nood
+            vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens afstand
+            //TODO coordinaten lijken at runtime te wijzigen
 
-
-          vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood);
 
 
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
+
+
             doNotifyNoodObserver(brandStrategy, coördinaten, naam);
             // deze moet andere observer aansturen
         }
