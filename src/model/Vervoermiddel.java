@@ -143,6 +143,12 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     }
 
+    public void setReactieTijd(double reactieTijd){
+
+        this.reactieTijd = reactieTijd;
+
+    }
+
     //endregion
 
 

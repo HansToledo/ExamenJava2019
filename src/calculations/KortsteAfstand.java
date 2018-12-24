@@ -54,6 +54,7 @@ public class KortsteAfstand {
 
         }
 
+
         return verkeerstorenKortste;
     }
 
@@ -88,6 +89,11 @@ public class KortsteAfstand {
 
             }
         });
+
+        for (Vervoermiddel item : vervoermiddelen){ //reactietijd berekenen
+
+            item.setReactieTijd(Math.floor(item.getAfstand()/item.getSnelheid()+item.getWendbaarheid())); //TODO data wendwaarheid tijd in minuten+ snelheid is in zeemijl/uur nog aanpassen
+        }
 
         return vervoermiddelen;
 
