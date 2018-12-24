@@ -80,20 +80,21 @@ public class KortsteAfstand {
 
         }
 
+        for (Vervoermiddel item : vervoermiddelen){ //reactietijd berekenen
+
+            item.setReactieTijd(Math.floor(item.getAfstand()/item.getSnelheid()+item.getWendbaarheid())); //TODO data wendwaarheid tijd in minuten+ snelheid is in zeemijl/uur nog aanpassen
+        }
+
         Collections.sort(vervoermiddelen, new Comparator<Vervoermiddel>() {
 
             @Override
             public int compare(Vervoermiddel o1, Vervoermiddel o2) {
 
-                return Double.valueOf(o1.getAfstand()).compareTo(o2.getAfstand());  //lijst sorteren volgens afstand
+                return Double.valueOf(o1.getReactieTijd()).compareTo(o2.getReactieTijd());  //lijst sorteren volgens afstand
 
             }
         });
 
-        for (Vervoermiddel item : vervoermiddelen){ //reactietijd berekenen
-
-            item.setReactieTijd(Math.floor(item.getAfstand()/item.getSnelheid()+item.getWendbaarheid())); //TODO data wendwaarheid tijd in minuten+ snelheid is in zeemijl/uur nog aanpassen
-        }
 
         return vervoermiddelen;
 
