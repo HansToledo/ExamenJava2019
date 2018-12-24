@@ -76,22 +76,13 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
-            Vervoermiddel vervoermiddelInNood;//kan met schepen
+
             Vervoermiddel vervoermiddelKorstebij;
 
             beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam()); //TODO rekeing houden met strategy volgens type nood
 
-            for(Schepen item : Actor.schepenOpWater){
 
-                if (item.getNaam() == naam){//schip meegeven van observer
-
-                    vervoermiddelInNood = item;
-
-                }
-
-            }
-
-          //  vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(vervoermiddelInNood); //niet juist
+          vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood);
 
 
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);

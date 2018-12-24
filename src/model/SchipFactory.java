@@ -28,6 +28,7 @@ public class SchipFactory extends AbstractActorFactory{
     public Vervoermiddel setSchip(String enumNaam, String naam, Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy) {
 
         KortsteAfstand kortsteAfstand = new KortsteAfstand();
+        Verkeerstoren verkeerstorenDichtsteBij = new Verkeerstoren();
 
         switch (schip) {
 

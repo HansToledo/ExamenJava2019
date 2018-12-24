@@ -140,6 +140,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         this.koers = koers;
 
     }
+
     //endregion
 
 
