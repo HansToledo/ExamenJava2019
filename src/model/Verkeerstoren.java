@@ -15,7 +15,7 @@ import java.util.Iterator;
  * Time: 11:38<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver{
+public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver {
 
     private String enumNaam;
     private String naam;
@@ -23,11 +23,11 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>();
     private IHulpdienstStrategy reddingsType;
 
-    public Verkeerstoren(){
+    public Verkeerstoren() {
 
     }
 
-    public Verkeerstoren (String enumNaam, String naam,Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
+    public Verkeerstoren(String enumNaam, String naam, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
         this.coördinaten = coördinaten;
         this.enumNaam = enumNaam;
@@ -61,7 +61,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 //region StatusObserver
 
     @Override
-    public void doUpdate(StatusVervoermiddel statusSchip, Coördinaten coördinaten, String naam) {
+    public void doUpdate(StatusVervoermiddel statusSchip, Schepen schipInNood) {
 
         if (statusSchip == StatusVervoermiddel.OK) {
 
@@ -73,34 +73,42 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip != StatusVervoermiddel.OK) {
 
             ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
-            Vervoermiddel vervoermiddel;
+            Vervoermiddel vervoermiddelInNood;//kan met schepen
+            Vervoermiddel vervoermiddelKorstebij;
 
-            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(naam); //TODO rekeing houden met strategy volgens type nood
+            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam()); //TODO rekeing houden met strategy volgens type nood
 
-            for (Vervoermiddel item : beschikbareHulpdiensten){
+            for(Schepen item : Actor.schepenOpWater){
 
-                vervoermiddel = kortsteAfstand.zoekHulpdienstDichtsbij(item); //niet juist
+                if (item.getNaam() == naam){//schip meegeven van observer
+
+                    vervoermiddelInNood = item;
+
+                }
 
             }
 
+          //  vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(vervoermiddelInNood); //niet juist
+
 
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip);
-            doNotifyNoodObserver(brandStrategy,coördinaten,naam);
+            doNotifyNoodObserver(brandStrategy, coördinaten, naam);
             // deze moet andere observer aansturen
         }
     }
 
     //endregion
 
-    public ArrayList<Vervoermiddel>  zoekBeschikbareHulpdienst(String naam){
+    public ArrayList<Vervoermiddel> zoekBeschikbareHulpdienst(String naam) {
 
         ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
-        for(Vervoermiddel item : Actor.mogelijkeHulpdiensten){
+        for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
 
-            if (item.getNaam() != naam && item.getStatus() == StatusVervoermiddel.OK.toString()){ //TODO getstatus enum teruggeven statsusen in klasse nog controleren moeten ok zijn bij start en aanpassen indien niet ok actor list
+            if (item.getNaam() != naam && item.getStatus() == StatusVervoermiddel.OK.toString()) { //TODO getstatus enum teruggeven statsusen in klasse nog controleren moeten ok zijn bij start en aanpassen indien niet ok actor list
 
                 beschikbareHulpdiensten.add(item);
             }
@@ -126,14 +134,14 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
     @Override
-    public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam) {
+    public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
         Iterator<Vervoermiddel> it = Actor.mogelijkeHulpdiensten.iterator();
 
         while (it.hasNext()) {
 
             INoodObserver hulpdienst = it.next();
-            hulpdienst.ontvangNoodsignaal(reddingsType, coördinaten,naam);
+            hulpdienst.ontvangNoodsignaal(reddingsType, coördinaten, naam);
 
         }
 
@@ -141,10 +149,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     //endregion
 
-    @Override
-    public String toString() {
-        return naam;
-    }
+
 
 
 }

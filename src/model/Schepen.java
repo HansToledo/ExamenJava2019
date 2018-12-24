@@ -47,7 +47,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
         while (it.hasNext()) {
 
             IStatusObserver verkeerstoren = it.next();
-            verkeerstoren.doUpdate(noodSignaal, getLocatie(), getNaam());
+            verkeerstoren.doUpdate(noodSignaal,this);
 
         }
 
