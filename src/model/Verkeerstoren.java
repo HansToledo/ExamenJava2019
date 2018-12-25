@@ -20,7 +20,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private String enumNaam;
     private String naam;
     private Coördinaten coördinaten;
-    private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>();
+    private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>(); //TODO bekijken
     private IHulpdienstStrategy reddingsType;
     private ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
 
@@ -74,7 +74,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip != StatusVervoermiddel.OK) {
 
             ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
-            //ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
@@ -91,14 +90,17 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
           }
 
+
             //TODO status wijzigen at runetime in klasse
-            //TODO rekeing houden met strategy volgens type nood
-            //TODO coordinaten lijken at runtime te wijzigen => bkijken
-            //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done nog testen
+            //TODO rekeing houden met strategy volgens type nood keuze maken in gui
+            //TODO coordinaten lijken at runtime te wijzigen => bekijken
+            //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done, nog testen
             //TODO capaciteiten vergelijken
             //TODO versturen naar alle observers + statergy naar 1 of meer
-            //TODO bij aanmaak nieuw schip at runtime ook inoodobserver voorzien
-
+            //TODO bij aanmaak nieuw schip at runtime ook inoodobserver voorzienq
+            //TODO tijden omrekenen naar minuten
+            //TODO later eventueel observable list actor voor schrijven naar database??
+            //TODO add + remove observer
 
 
             System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip );
@@ -130,7 +132,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void addNoodObserver(INoodObserver noodObserver) {
 
-        hulpdiensten.add(noodObserver);
+        hulpdiensten.add(noodObserver); //TODO bekijken
 
     }
 
@@ -139,13 +141,13 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void removeNoodObserver(INoodObserver noodObserver) {
 
-        hulpdiensten.remove(noodObserver);
+        hulpdiensten.remove(noodObserver); //TODO bekijken
     }
 
     @Override
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
-        //Iterator<Vervoermiddel> it = Actor.mogelijkeHulpdiensten.iterator();
+
         Iterator<Vervoermiddel> it = vervoermiddelKorstebij.iterator();
 
         while (it.hasNext()) {
