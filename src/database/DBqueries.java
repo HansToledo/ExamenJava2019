@@ -48,18 +48,20 @@ public class DBqueries {
 
             getAllSchepen = dbConnection.prepareStatement(
                     "SELECT type_actor.naam as typenaam, actoren.naam as naam, \n" +
-                            "longitude, latitude,snelheid,reactietijd,wendbaarheid,grootte,capaciteit,koers\n" +
+                            "longitude, latitude,snelheid,reactietijd,wendbaarheid,grootte,capaciteit,koers,situatie\n" +
                             "FROM vervoermiddel \n" +
                             "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
                             "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "join status_vervoermiddel on (vervoermiddel.StatusID = status_vervoermiddel.StatusID)\n" +
                             "WHERE (IsSchip = '1');");
 
             getAllHulpdiensten = dbConnection.prepareStatement(
                     "SELECT type_actor.naam as typenaam, actoren.naam as naam, \n" +
-                            "longitude, latitude,snelheid,reactietijd,wendbaarheid,grootte,capaciteit,koers\n" +
+                            "longitude, latitude,snelheid,reactietijd,wendbaarheid,grootte,capaciteit,koers,situatie\n" +
                             "FROM vervoermiddel\n" +
                             "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
                             "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "join status_vervoermiddel on (vervoermiddel.StatusID = status_vervoermiddel.StatusID)\n" +
                             "WHERE not (type_actor.naam ='VERKEERSTOREN') AND (IsSchip = '0');");
 
             newActor = dbConnection.prepareStatement((
@@ -151,19 +153,20 @@ public class DBqueries {
                 double grootte = Double.parseDouble(resultSet.getString("grootte"));
                 double capaciteit = Double.parseDouble(resultSet.getString("capaciteit"));
                 int koers = Integer.parseInt(resultSet.getString("koers"));
+                String status = resultSet.getString("situatie");
 
                 switch (typeNaam) {
                     case "CONTAINERSCHIP":
-                        results.add(new ContainerSchip(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        results.add(new ContainerSchip(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
                         break;
                     case "MOTORBOOT":
-                        results.add(new Motorboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        results.add(new Motorboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
                         break;
                     case "TANKER":
-                        results.add(new Tanker(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        results.add(new Tanker(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
                         break;
                     case "ZEILBOOT":
-                        results.add(new Zeilboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        results.add(new Zeilboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
                         break;
                 }
             }
@@ -194,13 +197,14 @@ public class DBqueries {
                 double grootte = Double.parseDouble(resultSet.getString("grootte"));
                 double capaciteit = Double.parseDouble(resultSet.getString("capaciteit"));
                 int koers = Integer.parseInt(resultSet.getString("koers"));
+                String status = resultSet.getString("situatie");
 
                 switch (typeNaam) {
                     case "SEAKING":
-                        results.add(new Seaking(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        results.add(new Seaking(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
                         break;
                     case "SCHEEPSVAARTPOLITIE":
-                        results.add(new ScheepsvaartPolitie(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy));
+                        results.add(new ScheepsvaartPolitie(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
                         break;
                 }
             }

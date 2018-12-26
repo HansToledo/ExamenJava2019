@@ -22,14 +22,13 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private double capaciteit;
     private int koers;
     private Coördinaten coördinaten;
-    private String status = "OK";
-    private int ID;
+    private String status;
 
     public Vervoermiddel(){
 
     }
 
-    public Vervoermiddel (String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy){
+    public Vervoermiddel (String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy, String status){
         this.enumNaam = enumNaam;
         this.naam = naam;
         this.coördinaten = coördinaten;
@@ -37,7 +36,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         this.grootte = grootte;
         this.capaciteit = capaciteit;
         this.koers = koers;
-        this.ID = ID;
+        this.status = status;
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
