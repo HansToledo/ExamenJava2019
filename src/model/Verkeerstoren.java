@@ -6,6 +6,8 @@ import enums.StatusVervoermiddel;
 import strategy.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -24,6 +26,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private IHulpdienstStrategy reddingsType;
     private ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
     private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+    private ArrayList<Vervoermiddel> vervoermiddelCapaciteitHoogLaag = new ArrayList<Vervoermiddel>();
 
     public Verkeerstoren() {
 
@@ -83,14 +86,32 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
 
-          if (vervoermiddelKorstebij.get(0).getCapaciteit() > schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
 
-              Vervoermiddel test = vervoermiddelKorstebij.get(0);
-              vervoermiddelKorstebij.clear();
-              vervoermiddelKorstebij.add(test);
-              //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+            // LIJST OPVULLEN EN SORTEREN VOLGENS CAPACITEIT
+            for(Vervoermiddel item : vervoermiddelKorstebij){
+                if (item.getCapaciteit() > schipInNood.getCapaciteit()) { // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+                    vervoermiddelCapaciteitHoogLaag.add(item);
+                }
+            }
+            Collections.sort(vervoermiddelCapaciteitHoogLaag, new Comparator<Vervoermiddel>() {
+                @Override
+                public int compare(Vervoermiddel o1, Vervoermiddel o2) {
+                    return Double.valueOf(o1.getCapaciteit()).compareTo(o2.getCapaciteit());  //lijst sorteren volgens capaciteit
+                }
+            });
 
-          }
+
+
+
+
+//          if (vervoermiddelKorstebij.get(0).getCapaciteit() > schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+//
+//              Vervoermiddel test = vervoermiddelKorstebij.get(0);
+//              vervoermiddelKorstebij.clear();
+//              vervoermiddelKorstebij.add(test);
+//              //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+//
+//          }
 
           //TODO momenteel maar 1 schip in nood per button klik
             //TODO rekening houden met strategy volgens type nood keuze maken in gui

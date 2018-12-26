@@ -71,33 +71,27 @@ public class KortsteAfstand {
         double breedte = coördinatenS.getBreedte();
         double lengte = coördinatenS.getLengte();
 
+
         for (Vervoermiddel item : vervoermiddelenBeschikbaar) {    // Actor.verkeerstorens
-
-
             afstandBereken = berekenAfstand.GPSDistance(breedte, lengte, item.getCoördinaten().getBreedte(), item.getCoördinaten().getLengte());
             item.setAfstand(afstandBereken);
             vervoermiddelen.add(item);
-
         }
 
-        for (Vervoermiddel item : vervoermiddelen){ //reactietijd berekenen
 
+        for (Vervoermiddel item : vervoermiddelen){ //reactietijd berekenen
             item.setReactieTijd(Math.floor(item.getAfstand()/item.getSnelheid()+((item.getWendbaarheid()*3.6)/1.852))); //TODO <= Hans:IN ORDE ZO? data wendwaarheid tijd in minuten (1m/u = 3.6km/u), (1kmu/1.852 = 1 mijl per uur) + snelheid is in zeemijl/uur nog aanpassen
         }
 
-        Collections.sort(vervoermiddelen, new Comparator<Vervoermiddel>() {
 
+        Collections.sort(vervoermiddelen, new Comparator<Vervoermiddel>() {
             @Override
             public int compare(Vervoermiddel o1, Vervoermiddel o2) {
-
                 return Double.valueOf(o1.getReactieTijd()).compareTo(o2.getReactieTijd());  //lijst sorteren volgens afstand
-
             }
         });
 
-
         return vervoermiddelen;
-
 
     }
 

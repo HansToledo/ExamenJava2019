@@ -29,7 +29,7 @@ public class Main extends Application {
         random.addEnumStatusVervoermiddelToDB();
         //random.generateVerkeerstores(5);
         //random.generateHulpdiensten(5);
-        //random.generateSchepen(2);
+        //random.generateSchepen(5);
 
         random.inlezenVerkeerstorens();
         random.inlezenSchepen();
