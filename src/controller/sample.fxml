@@ -209,7 +209,7 @@
                            </GridPane.margin>
                         </TextField>
                         <Label fx:id="lblVerkeerstorenNaam" text="Naam:" />
-                        <Button fx:id="randomNoodButton" mnemonicParsing="false" onAction="#randomNoodButton_Clicked" prefHeight="94.0" prefWidth="91.0" text="RandomNood" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="randomNoodButton" mnemonicParsing="false" onAction="#randomNoodButton_Clicked" prefHeight="94.0" prefWidth="91.0" text="RandomNood" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="85.0" />
