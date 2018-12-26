@@ -82,7 +82,7 @@ public class KortsteAfstand {
 
         for (Vervoermiddel item : vervoermiddelen){ //reactietijd berekenen
 
-            item.setReactieTijd(Math.floor(item.getAfstand()/item.getSnelheid()+item.getWendbaarheid())); //TODO data wendwaarheid tijd in minuten+ snelheid is in zeemijl/uur nog aanpassen
+            item.setReactieTijd(Math.floor(item.getAfstand()/item.getSnelheid()+item.getWendbaarheid())); //TODO data wendwaarheid tijd in minuten + snelheid is in zeemijl/uur nog aanpassen
         }
 
         Collections.sort(vervoermiddelen, new Comparator<Vervoermiddel>() {
