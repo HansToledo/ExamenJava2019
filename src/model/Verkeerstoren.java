@@ -79,15 +79,16 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse();
-
+            Redders.clear();
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
-
+            System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
 
             if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {
                 int totaleCapaciteit = 0;
                 int i = 0;
+
 
                 while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
 
@@ -118,7 +119,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             //TODO add + remove observer
 
 
-            System.out.println("Schip in nood " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
+
         }
     }
 

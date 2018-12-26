@@ -103,7 +103,7 @@ public class Controller {
         int index = randomGenerator.nextInt(Actor.schepenOpWater.size());
         Schepen schip = Actor.schepenOpWater.get(index);
 
-        System.out.println("Random schip gekozen " + schip.getNaam());
+        System.out.println("\nRandom schip gekozen " + schip.getNaam());
         return schip;
     }
 
