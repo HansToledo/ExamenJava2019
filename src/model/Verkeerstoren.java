@@ -83,20 +83,19 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKortstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
-
-
-
-
-
             double noodCapaciteit = schipInNood.getCapaciteit();
             double totaleReactietijd = 0;
             int totaleCapaciteit = 0;
 
             if (vervoermiddelKortstebij.get(0).getCapaciteit() > noodCapaciteit) {
-                double enkelschipReactietijd = vervoermiddelKortstebij.get(0).getReactieTijd();
 
+                Redders.add( vervoermiddelKortstebij.get(0));
+                doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+
+                double enkelschipReactietijd = vervoermiddelKortstebij.get(0).getReactieTijd();
                 int i = 0;
                 while (totaleCapaciteit < noodCapaciteit && i < vervoermiddelKortstebij.size()) {
+
                         totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                         totaleReactietijd += vervoermiddelKortstebij.get(i).getReactieTijd();
                         Redders.add( vervoermiddelKortstebij.get(i));
@@ -104,24 +103,25 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
                     if (totaleCapaciteit >= vervoermiddelKortstebij.get(0).getCapaciteit() && totaleReactietijd < vervoermiddelKortstebij.get(0).getReactieTijd()){
                         //versturen redders lijst.
-                        //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                        doNotifyNoodObserver(brandStrategy, coördinaten, naam);
                     }
                     else
                     {
                         Vervoermiddel schipKortsteBij = vervoermiddelKortstebij.get(0);
                         Redders.add(schipKortsteBij);
-                        //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                        doNotifyNoodObserver(brandStrategy, coördinaten, naam);
                     }
             }
             else
             {
                 int i = 0;
                 while (totaleCapaciteit < noodCapaciteit && i < vervoermiddelKortstebij.size()) {
+
                     totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     totaleReactietijd += vervoermiddelKortstebij.get(i).getReactieTijd();
                     //versturen redderst lijst, ookal is dit aantal onvoldoende kunnen er toch x opvarenden gered worden.
                     Redders.add( vervoermiddelKortstebij.get(i));
-                    //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                    doNotifyNoodObserver(brandStrategy, coördinaten, naam);
                 }
             }
 
@@ -140,7 +140,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             System.out.println("Schip in nood " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
 
-            doNotifyNoodObserver(brandStrategy, coördinaten, naam); //kan ook naar al de observers verstuurd worden
+            //doNotifyNoodObserver(brandStrategy, coördinaten, naam); //kan ook naar al de observers verstuurd worden
             // deze moet andere observer aansturen
         }
     }
