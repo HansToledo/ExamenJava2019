@@ -102,7 +102,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
 
 
-
+//
 
 //          if (vervoermiddelKorstebij.get(0).getCapaciteit() > schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
 //
