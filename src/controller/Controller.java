@@ -84,8 +84,9 @@ public class Controller {
     @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
 
-        int aantalRandomInNood = randomGenerator.nextInt(Actor.schepenOpWater.size()/2);
-        int teller = 0;
+        int aantalRandomInNood = randomGenerator.nextInt(Actor.schepenOpWater.size()/2)+1;
+
+        int teller = 0; //TODO soms 2 x hetzelfde schip in nood nog voorkomen
 
         do {
 
