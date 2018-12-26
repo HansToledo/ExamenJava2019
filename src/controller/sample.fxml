@@ -26,16 +26,6 @@
                   <Insets right="10.0" />
                </BorderPane.margin></Button>
          </right>
-         <top>
-            <Label fx:id="lblVerkeerstorens" text="Verkeerstorens" BorderPane.alignment="TOP_LEFT">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets left="55.0" />
-               </BorderPane.margin>
-            </Label>
-         </top>
          <left>
             <ListView fx:id="lstViewVerkeerstorens" maxWidth="200.0" prefHeight="186.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
@@ -43,29 +33,6 @@
                </BorderPane.margin>
             </ListView>
          </left>
-         <center>
-            <GridPane prefHeight="341.0" prefWidth="679.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="75.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="407.0" minWidth="0.0" prefWidth="212.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="505.0" minWidth="10.0" prefWidth="474.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label fx:id="lblVerkeerstorenLongitude" text="Longitude:" GridPane.rowIndex="1" />
-                  <Label fx:id="lblLatitude" text="Latitude:" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtVerkeerstorenLongitude" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtVerkeerstorenLatitude" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtVerkeerstorenNaam" GridPane.columnIndex="1" />
-                  <Label fx:id="lblVerkeerstorenNaam" text="Naam:" />
-               </children>
-            </GridPane>
-         </center>
          <bottom>
             <BorderPane prefHeight="370.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
@@ -224,6 +191,88 @@
                </bottom>
             </BorderPane>
          </bottom>
+         <center>
+            <GridPane prefHeight="270.0" prefWidth="807.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="380.0" minWidth="10.0" prefWidth="306.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="463.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane maxWidth="587.0" prefHeight="280.0" prefWidth="587.0">
+                     <children>
+                        <Label fx:id="lblVerkeerstorenLongitude" text="Longitude:" GridPane.rowIndex="1" />
+                        <Label fx:id="lblLatitude" text="Latitude:" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtVerkeerstorenLongitude" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtVerkeerstorenLatitude" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtVerkeerstorenNaam" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="lblVerkeerstorenNaam" text="Naam:" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="75.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <ListView fx:id="lstViewSchepenInNood" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </GridPane>
+         </center>
+         <top>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblVerkeerstorens" text="Verkeerstorens">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="55.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="lblSchepenInNood" text="Schepen In Nood" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+         </top>
       </BorderPane>
    </children>
 </GridPane>
