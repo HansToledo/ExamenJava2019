@@ -92,7 +92,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             double totaleReactietijd = 0;
             int totaleCapaciteit = 0;
 
-            if (vervoermiddelKortstebij.get(0).getCapaciteit() > noodCapaciteit) { // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+            if (vervoermiddelKortstebij.get(0).getCapaciteit() > noodCapaciteit) {
                 double enkelschipReactietijd = vervoermiddelKortstebij.get(0).getReactieTijd();
 
                 int i = 0;
