@@ -6,8 +6,6 @@ import enums.StatusVervoermiddel;
 import strategy.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -24,9 +22,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private Coördinaten coördinaten;
     private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>(); //TODO bekijken
     private IHulpdienstStrategy reddingsType;
-    private ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
+    private ArrayList<Vervoermiddel> vervoermiddelKortstebij = new ArrayList<Vervoermiddel>();
     private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
-    private ArrayList<Vervoermiddel> vervoermiddelCapaciteitHoogLaag = new ArrayList<Vervoermiddel>();
+    private ArrayList<Vervoermiddel> Redders = new ArrayList<Vervoermiddel>();
 
     public Verkeerstoren() {
 
@@ -83,37 +81,53 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
 
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
-            vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
+            vervoermiddelKortstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
 
 
-            // LIJST OPVULLEN EN SORTEREN VOLGENS CAPACITEIT
-            for(Vervoermiddel item : vervoermiddelKorstebij){
-                if (item.getCapaciteit() > schipInNood.getCapaciteit()) {
-                    vervoermiddelCapaciteitHoogLaag.add(item);
+
+
+
+            double noodCapaciteit = schipInNood.getCapaciteit();
+            double totaleReactietijd = 0;
+            int totaleCapaciteit = 0;
+
+            if (vervoermiddelKortstebij.get(0).getCapaciteit() > noodCapaciteit) { // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+                double enkelschipReactietijd = vervoermiddelKortstebij.get(0).getReactieTijd();
+
+                int i = 0;
+                while (totaleCapaciteit < noodCapaciteit && i < vervoermiddelKortstebij.size()) {
+                        totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
+                        totaleReactietijd += vervoermiddelKortstebij.get(i).getReactieTijd();
+                        Redders.add( vervoermiddelKortstebij.get(i));
+                    }
+
+                    if (totaleCapaciteit >= vervoermiddelKortstebij.get(0).getCapaciteit() && totaleReactietijd < vervoermiddelKortstebij.get(0).getReactieTijd()){
+                        //versturen redders lijst.
+                        //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                    }
+                    else
+                    {
+                        Vervoermiddel schipKortsteBij = vervoermiddelKortstebij.get(0);
+                        Redders.add(schipKortsteBij);
+                        //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                    }
+            }
+            else
+            {
+                int i = 0;
+                while (totaleCapaciteit < noodCapaciteit && i < vervoermiddelKortstebij.size()) {
+                    totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
+                    totaleReactietijd += vervoermiddelKortstebij.get(i).getReactieTijd();
+                    //versturen redderst lijst, ookal is dit aantal onvoldoende kunnen er toch x opvarenden gered worden.
+                    Redders.add( vervoermiddelKortstebij.get(i));
+                    //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
                 }
             }
-            Collections.sort(vervoermiddelCapaciteitHoogLaag, new Comparator<Vervoermiddel>() {
-                @Override
-                public int compare(Vervoermiddel o1, Vervoermiddel o2) {
-                    return Double.valueOf(o1.getCapaciteit()).compareTo(o2.getCapaciteit());  //lijst sorteren volgens capaciteit
-                }
-            });
 
 
 
-//
-
-//          if (vervoermiddelKorstebij.get(0).getCapaciteit() > schipInNood.getCapaciteit()){ // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
-//
-//              Vervoermiddel test = vervoermiddelKorstebij.get(0);
-//              vervoermiddelKorstebij.clear();
-//              vervoermiddelKorstebij.add(test);
-//              //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
-//
-//          }
-
-          //TODO momenteel maar 1 schip in nood per button klik
+            //TODO momenteel maar 1 schip in nood per button klik
             //TODO rekening houden met strategy volgens type nood keuze maken in gui
             //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done, nog testen
             //TODO capaciteiten vergelijken
@@ -172,7 +186,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
 
-        Iterator<Vervoermiddel> it = vervoermiddelKorstebij.iterator();
+        Iterator<Vervoermiddel> it = vervoermiddelKortstebij.iterator();
 
         while (it.hasNext()) {
 
