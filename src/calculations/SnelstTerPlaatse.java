@@ -15,7 +15,7 @@ import java.util.Comparator;
  * Time: 16:08<br/>
  * To change this template use File | Settings | File Templates.
  */
-public class KortsteAfstand {
+public class SnelstTerPlaatse {
 
     public Verkeerstoren zoekVerkeerstorenDichtsbij(Vervoermiddel vervoermiddel) {
 

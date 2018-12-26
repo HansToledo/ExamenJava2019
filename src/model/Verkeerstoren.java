@@ -1,7 +1,7 @@
 package model;
 
 import calculations.Coördinaten;
-import calculations.KortsteAfstand;
+import calculations.SnelstTerPlaatse;
 import enums.StatusVervoermiddel;
 import strategy.*;
 
@@ -78,10 +78,10 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
-            KortsteAfstand kortsteAfstand = new KortsteAfstand();
+            SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse();
 
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
-            vervoermiddelKortstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
+            vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
 
 
