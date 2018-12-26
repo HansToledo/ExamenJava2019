@@ -2,11 +2,9 @@ package model;
 
 import calculations.Coördinaten;
 import calculations.GPSDistance;
-import calculations.KortsteAfstand;
+import calculations.SnelstTerPlaatse;
 import enums.Hulpdiensten;
 import enums.Schepen;
-
-import java.util.ArrayList;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -27,7 +25,7 @@ public class SchipFactory extends AbstractActorFactory{
     @Override
     public Vervoermiddel setSchip(String enumNaam, String naam, Schepen schip,Coördinaten coördinaten,double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy,String status) {
 
-        KortsteAfstand kortsteAfstand = new KortsteAfstand();
+        SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse();
         Verkeerstoren verkeerstorenDichtsteBij = new Verkeerstoren();
 
         switch (schip) {
@@ -38,7 +36,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(containerSchip);
                 Actor.schepenOpWater.add(containerSchip);
 
-                containerSchip.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(containerSchip)); //bereken welke toren kortste bij
+                containerSchip.addStatusObserver(snelstTerPlaatse.zoekVerkeerstorenDichtsbij(containerSchip)); //bereken welke toren kortste bij
 
                 return containerSchip;
 
@@ -48,7 +46,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(motorboot);
                 Actor.schepenOpWater.add(motorboot);
 
-                motorboot.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(motorboot));
+                motorboot.addStatusObserver(snelstTerPlaatse.zoekVerkeerstorenDichtsbij(motorboot));
 
                 return motorboot;
 
@@ -58,7 +56,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(tanker);
                 Actor.schepenOpWater.add(tanker);
 
-                tanker.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(tanker));
+                tanker.addStatusObserver(snelstTerPlaatse.zoekVerkeerstorenDichtsbij(tanker));
 
                 return tanker;
 
@@ -68,7 +66,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.mogelijkeHulpdiensten.add(zeilboot);
                 Actor.schepenOpWater.add(zeilboot);
 
-                zeilboot.addStatusObserver(kortsteAfstand.zoekVerkeerstorenDichtsbij(zeilboot));
+                zeilboot.addStatusObserver(snelstTerPlaatse.zoekVerkeerstorenDichtsbij(zeilboot));
 
                 return zeilboot;
         }
