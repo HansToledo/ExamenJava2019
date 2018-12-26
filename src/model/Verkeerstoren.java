@@ -23,7 +23,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>(); //TODO bekijken
     private IHulpdienstStrategy reddingsType;
     private ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
-    private   ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+    private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
     public Verkeerstoren() {
 
@@ -117,8 +117,12 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
         for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
+            String itemNaam = item.getNaam();
+            String itemStatus = item.getStatus();
+            String enumStatusOK = StatusVervoermiddel.OK.toString();
 
-            if (item.getNaam() != naam && item.getStatus() == StatusVervoermiddel.OK.toString()) {
+
+            if (itemNaam != naam && itemStatus.equals(enumStatusOK)) {
 
                 beschikbareHulpdiensten.add(item);
             }
