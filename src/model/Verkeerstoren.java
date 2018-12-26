@@ -93,7 +93,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
           }
 
           //TODO momenteel maar 1 schip in nood per button klik
-            //TODO status wijzigen at runetime in klasse
             //TODO rekeing houden met strategy volgens type nood keuze maken in gui
             //TODO coordinaten lijken at runtime te wijzigen => bekijken
             //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done, nog testen
@@ -120,7 +119,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
         for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
 
-            if (item.getNaam() != naam && item.getStatus() == StatusVervoermiddel.OK.toString()) { //TODO getstatus enum teruggeven statsusen in klasse nog controleren moeten ok zijn bij start en aanpassen indien niet ok actor list
+            if (item.getNaam() != naam && item.getStatus() == StatusVervoermiddel.OK.toString()) {
 
                 beschikbareHulpdiensten.add(item);
             }

@@ -27,7 +27,7 @@ public class KortsteAfstand {
 
 
         coördinatenS = vervoermiddel.getCoördinaten();
-        double breedte = coördinatenS.getBreedte(); //TODO nog fout in controleren
+        double breedte = coördinatenS.getBreedte();
         double lengte = coördinatenS.getLengte();
 
 

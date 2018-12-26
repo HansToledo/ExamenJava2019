@@ -56,6 +56,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
     public void setNoodSignaal(StatusVervoermiddel nieuwNoodSignaal) {
 
         this.noodSignaal = nieuwNoodSignaal;
+        super.setStatus(nieuwNoodSignaal.toString());   //status schip wordt gewijzigd in de nieuwe situatie.
         doNotifyStatusObservers();
 
     }
