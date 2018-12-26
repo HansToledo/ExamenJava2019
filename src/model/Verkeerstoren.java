@@ -117,6 +117,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             //TODO tijden omrekenen naar minuten
             //TODO later eventueel observable list actor voor schrijven naar database??
             //TODO add + remove observer
+            //TODO grootte is ook een propertei rekening mee houden voor capaciteit
+            //TODO melding indien niet genoeg capaciteit
+            //TODO exceptions voorzien
 
 
 
