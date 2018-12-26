@@ -172,9 +172,14 @@ public class Controller {
     // alle entries van de tabel met de hulpdiensten van de database opvragen en invullen in de hulpdienstenlijst
     private void getAllHulpdiensten() {
         ArrayList<Vervoermiddel> hulpdiensten = Actor.mogelijkeHulpdiensten;
+        ArrayList<Vervoermiddel> hulpdienstenOK = new ArrayList<>();
         try {
-            hulpdienstenList.setAll(hulpdiensten);
-            //hulpdienstenList.setAll(kustwachtQueries.getAllHulpdiensten()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
+            for(Vervoermiddel item: hulpdiensten){
+                if ((item.getStatus().equals(StatusVervoermiddel.OK.toString()))){
+                        hulpdienstenOK.add(item);
+                }
+            }
+            hulpdienstenList.setAll(hulpdienstenOK);
         }
         catch (Exception E){
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de hulpdiensten.");
