@@ -88,19 +88,20 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {
                 int totaleCapaciteit = 0;
                 int i = 0;
+
                 while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
+
                     totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     Redders.add(vervoermiddelKortstebij.get(i));
                     i++;
-                    //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
-                    // deze moet andere observer aansturen
                 }
+                doNotifyNoodObserver(brandStrategy, coördinaten, naam);
             }
             else
             {
                 Vervoermiddel schipKortsteBij = vervoermiddelKortstebij.get(0);
                 Redders.add(schipKortsteBij);
-                //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                doNotifyNoodObserver(brandStrategy, coördinaten, naam);
                 // deze moet andere observer aansturen
             }
 
@@ -162,7 +163,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
 
-        Iterator<Vervoermiddel> it = vervoermiddelKortstebij.iterator();
+        Iterator<Vervoermiddel> it = Redders.iterator();
 
         while (it.hasNext()) {
 
