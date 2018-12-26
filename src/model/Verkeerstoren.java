@@ -91,6 +91,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                 while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
                     totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     Redders.add(vervoermiddelKortstebij.get(i));
+                    i++;
                     //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
                     // deze moet andere observer aansturen
                 }
