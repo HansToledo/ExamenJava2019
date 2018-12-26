@@ -78,15 +78,24 @@ public class Controller {
     @FXML private ListView<Verkeerstoren> lstViewVerkeerstorens;
     @FXML private ListView<Vervoermiddel> lstViewSchepen;
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
+    private Random randomGenerator = new Random();
+    private final DBqueries kustwachtQueries = new DBqueries();
 
     @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
-        StatusVervoermiddel nieuwNoodSignaal = StatusVervoermiddel.values()[(int)(Math.random()*StatusVervoermiddel.values().length)];
-        kiesRandomSchip().setNoodSignaal(nieuwNoodSignaal);
-    }
 
-    private Random randomGenerator = new Random();
-    private final DBqueries kustwachtQueries = new DBqueries();
+        int aantalRandomInNood = randomGenerator.nextInt(Actor.schepenOpWater.size()/2);
+        int teller = 0;
+
+        do {
+
+            StatusVervoermiddel nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+            kiesRandomSchip().setNoodSignaal(nieuwNoodSignaal);
+            ++teller;
+
+        }while(aantalRandomInNood > teller);
+
+    }
 
 
     public Schepen kiesRandomSchip()
