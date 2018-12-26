@@ -30,8 +30,6 @@ public class Controller {
     @FXML private TextField txtSchipStatus;
     @FXML private TextField txtSchipLongitude;
     @FXML private TextField txtSchipCapaciteit;
-    @FXML private TextField txtSchipWendbaarheid;
-    @FXML private TextField txtSchipReactietijd;
     @FXML private TextField txtSchipGrootte;
     @FXML private TextField txtSchipLatitude;
     @FXML private TextField txtSchipSnelheid;
@@ -40,8 +38,6 @@ public class Controller {
     @FXML private TextField txtHulpdienstStatus;
     @FXML private TextField txtHulpdienstLongitude;
     @FXML private TextField txtHulpdienstCapaciteit;
-    @FXML private TextField txtHulpdienstWendbaarheid;
-    @FXML private TextField txtHulpdienstReactietijd;
     @FXML private TextField txtHulpdienstGrootte;
     @FXML private TextField txtHulpdienstLatitude;
     @FXML private TextField txtHulpdienstSnelheid;
@@ -51,23 +47,19 @@ public class Controller {
     @FXML private TextField txtVerkeerstorenNaam;
     @FXML private Label lblSchipNaam;
     @FXML private Label lblSchipLongitude;
-    @FXML private Label lblSchipWendbaarheid;
     @FXML private Label lblSchipSnelheid;
     @FXML private Label lblSchipCapaciteit;
     @FXML private Label lblSchipLatitude;
     @FXML private Label lblSchipStatus;
     @FXML private Label lblSchipGrootte;
-    @FXML private Label lblSchipReactietijd;
     @FXML private Label lblSchipKoers;
     @FXML private Label lblHulpdienstNaam;
     @FXML private Label lblHulpdienstLongitude;
-    @FXML private Label lblHulpdienstWendbaarheid;
     @FXML private Label lblHulpdienstSnelheid;
     @FXML private Label lblHulpdienstCapaciteit;
     @FXML private Label lblHulpdienstLatitude;
     @FXML private Label lblHulpdienstStatus;
     @FXML private Label lblHulpdienstGrootte;
-    @FXML private Label lblHulpdienstReactietijd;
     @FXML private Label lblHulpdienstKoers;
     @FXML private Label lblVerkeerstorenNaam;
     @FXML private Label lblVerkeerstorenLongitude;
@@ -162,6 +154,7 @@ public class Controller {
         ArrayList<Schepen> schepen = Actor.schepenOpWater;
         try {
             schepenList.setAll(schepen);
+            schepenList.get(0).getStatus();
             //schepenList.setAll(kustwachtQueries.getAllSchepen()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
         }
         catch (Exception E){
@@ -230,8 +223,6 @@ public class Controller {
             if (vervoermiddel != null) {
                 txtSchipNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtSchipSnelheid.setText(String.valueOf(vervoermiddel.getSnelheid()));
-                txtSchipReactietijd.setText(String.valueOf(vervoermiddel.getReactieTijd()));
-                txtSchipWendbaarheid.setText(String.valueOf(vervoermiddel.getWendbaarheid()));
                 txtSchipGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
                 txtSchipCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
                 txtSchipKoers.setText(String.valueOf(vervoermiddel.getKoers()));
@@ -242,8 +233,6 @@ public class Controller {
             else {
                 txtSchipNaam.clear();
                 txtSchipSnelheid.clear();
-                txtSchipReactietijd.clear();
-                txtSchipWendbaarheid.clear();
                 txtSchipGrootte.clear();
                 txtSchipCapaciteit.clear();
                 txtSchipKoers.clear();
@@ -263,8 +252,6 @@ public class Controller {
             if (vervoermiddel != null) {
                 txtHulpdienstNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtHulpdienstSnelheid.setText(String.valueOf(vervoermiddel.getSnelheid()));
-                txtHulpdienstReactietijd.setText(String.valueOf(vervoermiddel.getReactieTijd()));
-                txtHulpdienstWendbaarheid.setText(String.valueOf(vervoermiddel.getWendbaarheid()));
                 txtHulpdienstGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
                 txtHulpdienstCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
                 txtHulpdienstKoers.setText(String.valueOf(vervoermiddel.getKoers()));
@@ -275,8 +262,6 @@ public class Controller {
             else {
                 txtHulpdienstNaam.clear();
                 txtHulpdienstSnelheid.clear();
-                txtHulpdienstReactietijd.clear();
-                txtHulpdienstWendbaarheid.clear();
                 txtHulpdienstGrootte.clear();
                 txtHulpdienstCapaciteit.clear();
                 txtHulpdienstKoers.clear();
