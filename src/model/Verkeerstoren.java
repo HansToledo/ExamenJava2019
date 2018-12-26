@@ -88,7 +88,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
               Vervoermiddel test = vervoermiddelKorstebij.get(0);
               vervoermiddelKorstebij.clear();
               vervoermiddelKorstebij.add(test);
-              //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+              doNotifyNoodObserver(brandStrategy, coördinaten, naam);
 
           }
 
@@ -105,7 +105,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             System.out.println("Schip in nood " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
 
-            doNotifyNoodObserver(brandStrategy, coördinaten, naam); //kan ook naar al de observers verstuurd worden
+            //doNotifyNoodObserver(brandStrategy, coördinaten, naam); //kan ook naar al de observers verstuurd worden
             // deze moet andere observer aansturen
         }
     }
