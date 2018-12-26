@@ -89,7 +89,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             // LIJST OPVULLEN EN SORTEREN VOLGENS CAPACITEIT
             for(Vervoermiddel item : vervoermiddelKorstebij){
-                if (item.getCapaciteit() > schipInNood.getCapaciteit()) { // zorgen voor remove uit list => list naar waar versturen nog niet helemaal correct
+                if (item.getCapaciteit() > schipInNood.getCapaciteit()) {
                     vervoermiddelCapaciteitHoogLaag.add(item);
                 }
             }
