@@ -126,7 +126,7 @@ public class Randomizer {
             Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(),hulpdienst.toString()+naamAddon(),hulpdienst,coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
-                    geenStrategy);
+                    geenStrategy,StatusVervoermiddel.OK.toString());
 
             //actoren.add(vervoermiddel);
 
@@ -151,7 +151,7 @@ public class Randomizer {
             Vervoermiddel vervoermiddel = random.setSchip(schip.toString(),schip.toString()+naamAddon(),schip, coördinaten,
                     Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
                     Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
-                    geenStrategy);
+                    geenStrategy,StatusVervoermiddel.OK.toString());
 
             //actoren.add(vervoermiddel);
 
@@ -173,7 +173,7 @@ public class Randomizer {
             String typeNaam = item.getEnumNaam();
             String naam = item.getNaam();
             Coördinaten coördinaten = item.getCoördinaten();
-            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere clients moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
 
             Verkeerstoren verkeerstoren = actor.setVerkeersToren(typeNaam,naam,Hulpdiensten.VERKEERSTOREN,coördinaten,strategy);
         }
@@ -194,21 +194,22 @@ public class Randomizer {
             double grootte = item.getGrootte();
             double capaciteit = item.getCapaciteit();
             int koers = item.getKoers();
-            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+            String status = item.getStatus();
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere clients moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
 
             Vervoermiddel vervoermiddel;
             switch (typeNaam) {
                 case "CONTAINERSCHIP":
-                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.CONTAINERSCHIP,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.CONTAINERSCHIP,coördinaten,snelheid,grootte,capaciteit,koers,strategy,status);
                     break;
                 case "MOTORBOOT":
-                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.MOTORBOOT,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.MOTORBOOT,coördinaten,snelheid,grootte,capaciteit,koers,strategy,status);
                     break;
                 case "TANKER":
-                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.TANKER,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.TANKER,coördinaten,snelheid,grootte,capaciteit,koers,strategy,status);
                     break;
                 case "ZEILBOOT":
-                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.ZEILBOOT,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    vervoermiddel = actor.setSchip(typeNaam,naam,Schepen.ZEILBOOT,coördinaten,snelheid,grootte,capaciteit,koers,strategy,status);
                     break;
             }
         }
@@ -229,15 +230,16 @@ public class Randomizer {
             double grootte = item.getGrootte();
             double capaciteit = item.getCapaciteit();
             int koers = item.getKoers();
+            String status = item.getStatus();
             IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
 
             Vervoermiddel vervoermiddel;
             switch (typeNaam) {
                 case "SEAKING":
-                    vervoermiddel = actor.setHulpDienst(typeNaam,naam,Hulpdiensten.SEAKING,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    vervoermiddel = actor.setHulpDienst(typeNaam,naam,Hulpdiensten.SEAKING,coördinaten,snelheid,grootte,capaciteit,koers,strategy,status);
                     break;
                 case "SCHEEPSVAARTPOLITIE":
-                    vervoermiddel = actor.setHulpDienst(typeNaam,naam,Hulpdiensten.SCHEEPSVAARTPOLITIE,coördinaten,snelheid,grootte,capaciteit,koers,strategy);
+                    vervoermiddel = actor.setHulpDienst(typeNaam,naam,Hulpdiensten.SCHEEPSVAARTPOLITIE,coördinaten,snelheid,grootte,capaciteit,koers,strategy,status);
                     break;
             }
         }
