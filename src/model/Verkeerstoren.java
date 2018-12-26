@@ -129,6 +129,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
         //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
+        beschikbareHulpdiensten.clear();
+
         for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
             String itemNaam = item.getNaam();
             String itemStatus = item.getStatus();
