@@ -33,13 +33,13 @@ public class Coördinaten {
     }
 
     private double getRandomBreedte() {
-
-        return getRandomDoubleBetweenRange(-90.0,90.0);
+                                                    //TODO coordinaten range misschien via gui kiezen
+        return getRandomDoubleBetweenRange(50,55); //getRandomDoubleBetweenRange(-90.0,90.0);
     }
 
     private double getRandomLengte() {
 
-        return getRandomDoubleBetweenRange(-180.0,180.0);
+        return getRandomDoubleBetweenRange(5,10); //getRandomDoubleBetweenRange(-180.0,180.0);
     }
 
     public double getBreedte() {
