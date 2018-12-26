@@ -78,6 +78,7 @@ public class Controller {
     @FXML private ListView<Verkeerstoren> lstViewVerkeerstorens;
     @FXML private ListView<Vervoermiddel> lstViewSchepen;
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
+    @FXML private ListView<Vervoermiddel> lstViewSchepenInNood;
     private Random randomGenerator = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
 
@@ -96,6 +97,10 @@ public class Controller {
 
         }while(aantalRandomInNood > teller);
 
+        getAllVerkeerstorenEntries();
+        getAllSchepenEntries();
+        getAllHulpdiensten();
+        getAllSchepenInNood();
     }
 
 
@@ -113,11 +118,13 @@ public class Controller {
     private final ObservableList<Verkeerstoren> verkeerstorenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> hulpdienstenList = FXCollections.observableArrayList();
+    private final ObservableList<Vervoermiddel> schepenInNoodList = FXCollections.observableArrayList();
 
     public void initialize() {
         lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
         lstViewSchepen.setItems(schepenList); // Lijst van schepen koppelen aan de listview
         lstViewHulpdiensten.setItems(hulpdienstenList); // Lijst van hulpdiensten koppelen aan de listview
+        lstViewSchepenInNood.setItems(schepenInNoodList); // Lijst van hulpdiensten koppelen aan de listview
         getAllVerkeerstorenEntries();
         getAllSchepenEntries();
         getAllHulpdiensten();
@@ -171,6 +178,23 @@ public class Controller {
         }
         catch (Exception E){
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de hulpdiensten.");
+        }
+    }
+
+    // alle entries van de tabel met de schepen in nood van de database opvragen en invullen in de schepeninnoodlijst
+    private void getAllSchepenInNood() {
+        ArrayList<Schepen> schepen = Actor.schepenOpWater;
+        ArrayList<Schepen> schepenInNood = new ArrayList<>();
+        try {
+            for(Schepen item: schepen){
+                if (!(item.getStatus().equals(StatusVervoermiddel.OK.toString()))){
+                    schepenInNood.add(item);
+                }
+            }
+            schepenInNoodList.setAll(schepenInNood);
+        }
+        catch (Exception E){
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de schepen in nood.");
         }
     }
 
