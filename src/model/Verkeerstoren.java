@@ -23,6 +23,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>(); //TODO bekijken
     private IHulpdienstStrategy reddingsType;
     private ArrayList<Vervoermiddel> vervoermiddelKorstebij = new ArrayList<Vervoermiddel>();
+    private   ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
     public Verkeerstoren() {
 
@@ -73,12 +74,12 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
         if (statusSchip != StatusVervoermiddel.OK) {
 
-            ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+            //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
             BrandStrategy brandStrategy = new BrandStrategy(); // als test
             KortsteAfstand kortsteAfstand = new KortsteAfstand();
 
-            beschikbareHulpdiensten = zoekBeschikbareHulpdienst(schipInNood.getNaam());
+            zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKorstebij = kortsteAfstand.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
 
 
@@ -87,10 +88,11 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
               Vervoermiddel test = vervoermiddelKorstebij.get(0);
               vervoermiddelKorstebij.clear();
               vervoermiddelKorstebij.add(test);
+              //doNotifyNoodObserver(brandStrategy, coördinaten, naam);
 
           }
 
-
+          //TODO momenteel maar 1 schip in nood per button klik
             //TODO status wijzigen at runetime in klasse
             //TODO rekeing houden met strategy volgens type nood keuze maken in gui
             //TODO coordinaten lijken at runtime te wijzigen => bekijken
@@ -103,8 +105,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             //TODO add + remove observer
 
 
-            System.out.println("Schip in nood" + naam + "ontvangen door verkeerstoren: " + this.naam + "Noodsignaal is : " + statusSchip );
-
+            System.out.println("Schip in nood " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
 
             doNotifyNoodObserver(brandStrategy, coördinaten, naam); //kan ook naar al de observers verstuurd worden
             // deze moet andere observer aansturen
@@ -113,9 +114,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     //endregion
 
-    public ArrayList<Vervoermiddel> zoekBeschikbareHulpdienst(String naam) {
+    public void zoekBeschikbareHulpdienst(String naam) {
 
-        ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+        //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
 
         for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
 
@@ -126,7 +127,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
         }
 
-        return beschikbareHulpdiensten;
+        //return beschikbareHulpdiensten;
     }
 
     @Override
