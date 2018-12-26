@@ -17,6 +17,9 @@ public class Randomizer {
     private final DBqueries kustwachtQueries = new DBqueries();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
+    //TODO randomizer knop voorzien in gui
+    //TODO methods voor schrijven en lezen uit randomizer klasse halen
+
     Coördinaten coördinaten;
     //List<Actor> actoren = new ArrayList<Actor>();
 
@@ -140,6 +143,7 @@ public class Randomizer {
         }while (teller<aantal);
     }
 
+
     public void generateSchepen(int aantal) {
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.SCHIP);
@@ -148,10 +152,11 @@ public class Randomizer {
             coördinaten = new Coördinaten().getRandomCoordinaten();
             Schepen schip = Schepen.values()[(int)(Math.random()*Schepen.values().length)]; //random enum schip genereren
 
-            Vervoermiddel vervoermiddel = random.setSchip(schip.toString(),schip.toString()+naamAddon(),schip, coördinaten,
-                    Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
-                    Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
-                    geenStrategy,StatusVervoermiddel.OK.toString());
+                Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), schip.toString() + naamAddon(), schip, coördinaten,
+                        Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
+                        Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
+                        geenStrategy, StatusVervoermiddel.OK.toString());
+
 
             //actoren.add(vervoermiddel);
 
