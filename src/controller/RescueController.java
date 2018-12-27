@@ -31,15 +31,13 @@ public class RescueController {
 
     private Schepen schip;
     IStatusObserver vkObserver;
-    private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("GeenStrategy","BrandStrategy","GekapseisdStrategy","PiratenStrategy","StormStrategy","ZiekteStrategy","ZinkendStrategy");
+    private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("geenStrategy","brandStrategy","gekapseisdStrategy","piratenStrategy","stormStrategy","ziekteStrategy","zinkendStrategy");
 
     public void DataTransfer(String schipInNoodNaam, KustwachtController parent, ObservableList<Vervoermiddel> hulpdienstenList, IStatusObserver vkObserver){
-        cbStrategy.setValue("GeenStrategy");
         cbStrategy.setItems(StrategyOptions);
         lstViewHulpdiensten.setItems(hulpdienstenList);
         this.vkObserver = vkObserver;
         lblVerkeerstoren.setText(vkObserver.toString());
-
 
         // Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
@@ -58,6 +56,7 @@ public class RescueController {
                 txtKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
+                cbStrategy.setValue(lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().getHulpdienstStrategy().toString());
             }
             else {
                 txtNaam.clear();

@@ -174,9 +174,8 @@ public class KustwachtController {
 
                     //Doorgeven beschikbare hulpdiensten voor schip in nood.
                     ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
-                    ArrayList<Vervoermiddel> hulpdiensten = Verkeerstoren.mogelijkeHulpdiensten;
                     try {
-                        vkHulpdienstenList.setAll(hulpdiensten);
+                        vkHulpdienstenList.setAll( schepenNietInNood);
                     }
                     catch (Exception E){
                         displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
