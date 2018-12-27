@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import model.*;
 import strategy.*;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -149,7 +150,8 @@ public class RescueController {
             }
             output.add ("\n\n[Noodsituatie opgelost!");
 
-            displayAlert(Alert.AlertType.CONFIRMATION, "SUCCESS", output.toString());
+            displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
+            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
         }
     }
 
