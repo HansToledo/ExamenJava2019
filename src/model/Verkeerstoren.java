@@ -25,7 +25,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private IHulpdienstStrategy reddingsType;
     private ArrayList<Vervoermiddel> vervoermiddelKortstebij = new ArrayList<Vervoermiddel>();
     private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
-    private ArrayList<Vervoermiddel> Redders = new ArrayList<Vervoermiddel>();
+    public ArrayList<Vervoermiddel> Redders = new ArrayList<Vervoermiddel>();
 
     public Verkeerstoren() {
 

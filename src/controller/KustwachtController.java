@@ -169,21 +169,20 @@ public class KustwachtController {
                     Parent parent = fxmlLoader.load();
                     RescueController dialogFXController = fxmlLoader.getController();
 
+                    Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
                     String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-                    IStatusObserver vkObserver = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven();
-                    Verkeerstoren vk = new Verkeerstoren();
+                    String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                    ArrayList<Vervoermiddel> redders = null;
 
-
-                    //Doorgeven beschikbare hulpdiensten voor schip in nood.
-                    ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
-                    try {
-                        vkHulpdienstenList.setAll(schepenNietInNood);
-                    }
-                    catch (Exception E){
-                        displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
+                    //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
+                    for (Verkeerstoren item: verkeerstorenList){
+                        if (item.getNaam().equals(geregistreerdeVerkeerstoren)) {
+                            redders = item.Redders;
+                            break;
+                        }
                     }
 
-                    dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, vkHulpdienstenList, vkObserver);
+                    dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren,schipInNood);
                     Stage stage = new Stage();
                     stage.setTitle(schipInNoodNaam);
                     stage.setScene(new Scene(parent));
