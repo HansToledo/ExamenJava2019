@@ -96,13 +96,13 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                     Redders.add(vervoermiddelKortstebij.get(i));
                     i++;
                 }
-                doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                doNotifyNoodObserver(brandStrategy, schipInNood.getCoördinaten(), schipInNood.getNaam());
             }
             else
             {
                 Vervoermiddel schipKortsteBij = vervoermiddelKortstebij.get(0);
                 Redders.add(schipKortsteBij);
-                doNotifyNoodObserver(brandStrategy, coördinaten, naam);
+                doNotifyNoodObserver(brandStrategy, schipInNood.getCoördinaten(), schipInNood.getNaam());
                 // deze moet andere observer aansturen
             }
 
