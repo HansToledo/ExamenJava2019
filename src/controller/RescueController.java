@@ -49,7 +49,7 @@ public class RescueController {
                 (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
         );
 
-        //Selected Item Changed.
+        // Listened gekoppeld aan ChoiseBox zodat bij wijziging de strategie wordt weggeschreven.
         cbStrategy.getSelectionModel().selectedItemProperty().addListener(
                 (observableStrategyValue, oldStrategyValue, newStrategyValue) -> {
                     switch (newStrategyValue){
