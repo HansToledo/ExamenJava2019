@@ -26,6 +26,14 @@ import java.util.Random;
 
 public class Controller {
     @FXML private Button randomNoodButton;
+    @FXML private TextField txtNoodNaam;
+    @FXML private TextField txtNoodStatus;
+    @FXML private TextField txtNoodLongitude;
+    @FXML private TextField txtNoodCapaciteit;
+    @FXML private TextField txtNoodGrootte;
+    @FXML private TextField txtNoodLatitude;
+    @FXML private TextField txtNoodSnelheid;
+    @FXML private TextField txtNoodKoers;
     @FXML private TextField txtSchipNaam;
     @FXML private TextField txtSchipStatus;
     @FXML private TextField txtSchipLongitude;
@@ -45,6 +53,14 @@ public class Controller {
     @FXML private TextField txtVerkeerstorenLongitude;
     @FXML private TextField txtVerkeerstorenLatitude;
     @FXML private TextField txtVerkeerstorenNaam;
+    @FXML private Label lblNoodNaam;
+    @FXML private Label lblNoodLongitude;
+    @FXML private Label lblNoodSnelheid;
+    @FXML private Label lblNoodCapaciteit;
+    @FXML private Label lblNoodLatitude;
+    @FXML private Label lblNoodStatus;
+    @FXML private Label lblNoodGrootte;
+    @FXML private Label lblNoodKoers;
     @FXML private Label lblSchipNaam;
     @FXML private Label lblSchipLongitude;
     @FXML private Label lblSchipSnelheid;
@@ -136,6 +152,11 @@ public class Controller {
         // Listener gekoppeld aan de listview van de hulpdiensten zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
                 (observableHulpdienstValue, oldHulpdienstValue, newHulpdienstValue) -> { displayHulpdienst(newHulpdienstValue); }
+        );
+
+        // Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
+                (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> { displaySchepenInNood(newSchepenInNoodValue); }
         );
     }
 
@@ -270,6 +291,35 @@ public class Controller {
                 txtHulpdienstLatitude.clear();
                 txtHulpdienstLongitude.clear();
                 txtHulpdienstStatus.clear();
+            }
+        }
+        catch (Exception E){
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        }
+    }
+
+    // informatie schepen in nood tonen in de voorziene vakken
+    private void displaySchepenInNood(Vervoermiddel vervoermiddel) {
+        try {
+            if (vervoermiddel != null) {
+                txtNoodNaam.setText(String.valueOf(vervoermiddel.getNaam()));
+                txtNoodSnelheid.setText(String.valueOf(vervoermiddel.getSnelheid()));
+                txtNoodGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
+                txtNoodCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtNoodKoers.setText(String.valueOf(vervoermiddel.getKoers()));
+                txtNoodLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
+                txtNoodLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
+                txtNoodStatus.setText(String.valueOf(vervoermiddel.getStatus()));
+            }
+            else {
+                txtNoodNaam.clear();
+                txtNoodSnelheid.clear();
+                txtNoodGrootte.clear();
+                txtNoodCapaciteit.clear();
+                txtNoodKoers.clear();
+                txtNoodLatitude.clear();
+                txtNoodLongitude.clear();
+                txtNoodStatus.clear();
             }
         }
         catch (Exception E){

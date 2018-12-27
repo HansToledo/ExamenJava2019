@@ -19,13 +19,10 @@ public class Randomizer {
     private static Random random = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
+    Coördinaten coördinaten;
 
     //TODO randomizer knop voorzien in gui
     //TODO methods voor schrijven en lezen uit randomizer klasse halen
-
-    Coördinaten coördinaten;
-    //List<Actor> actoren = new ArrayList<Actor>();
-
 
     public static double getRandomDoubleBetweenRange(double min, double max) { // gebruikt worden voor ramdom met range
 
@@ -107,7 +104,6 @@ public class Randomizer {
 
             Verkeerstoren verkeerstoren = random.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(), hulpdienst.VERKEERSTOREN.toString() + naamAddon(), Hulpdiensten.VERKEERSTOREN, coördinaten, geenStrategy);
 
-            //actoren.add(verkeerstoren);
             //Actor toevoegen aan database
             kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(), verkeerstoren.getNaam(), coördinaten);
 
@@ -123,17 +119,10 @@ public class Randomizer {
             coördinaten = new Coördinaten().getRandomCoordinaten();
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int) (Math.random() * (Hulpdiensten.values().length) - 1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
 
-
-//            Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(), hulpdienst.toString() + naamAddon(), hulpdienst, coördinaten,
-//                    Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
-//                    Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
-//                    geenStrategy, StatusVervoermiddel.OK.toString());
-
             Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(), hulpdienst.toString() + naamAddon(), hulpdienst, coördinaten,
                     getSnelheid(hulpdienst.toString()), Math.round(100 + Math.random() * 100),
                     getCapaciteit(hulpdienst.toString()), (int) Math.random() * 90,
                     geenStrategy, StatusVervoermiddel.OK.toString());
-            //actoren.add(vervoermiddel);
 
             //Actor toevoegen aan database
             kustwachtQueries.addHulpdienst(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
@@ -154,18 +143,10 @@ public class Randomizer {
             coördinaten = new Coördinaten().getRandomCoordinaten();
             Schepen schip = Schepen.values()[(int) (Math.random() * Schepen.values().length)]; //random enum schip genereren
 
-//            Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), schip.toString() + naamAddon(), schip, coördinaten,
-//                    Math.round(1 + Math.random() * 40), Math.round(100 + Math.random() * 100),
-//                    Math.round(100 + Math.random() * 100), (int) Math.random() * 90,
-//                    geenStrategy, StatusVervoermiddel.OK.toString());
-
             Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), schip.toString() + naamAddon(), schip, coördinaten,
                     getSnelheid(schip.toString()), Math.round(100 + Math.random() * 100),
                     getCapaciteit(schip.toString()), (int) Math.random() * 90,
                     geenStrategy, StatusVervoermiddel.OK.toString());
-
-
-            //actoren.add(vervoermiddel);
 
             //Actoren toevoegen aan database
             kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
@@ -244,8 +225,6 @@ public class Randomizer {
             String naam = item.getNaam();
             Coördinaten coördinaten = item.getCoördinaten();
             double snelheid = item.getSnelheid();
-            double reactietijd = item.getReactieTijd();
-            double wendbaarheid = item.getWendbaarheid();
             double grootte = item.getGrootte();
             double capaciteit = item.getCapaciteit();
             int koers = item.getKoers();
@@ -280,8 +259,6 @@ public class Randomizer {
             String naam = item.getNaam();
             Coördinaten coördinaten = item.getCoördinaten();
             double snelheid = item.getSnelheid();
-            double reactietijd = item.getReactieTijd();
-            double wendbaarheid = item.getWendbaarheid();
             double grootte = item.getGrootte();
             double capaciteit = item.getCapaciteit();
             int koers = item.getKoers();
