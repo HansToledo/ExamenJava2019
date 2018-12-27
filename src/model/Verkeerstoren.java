@@ -108,10 +108,10 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
 
 
-            //TODO momenteel maar 1 schip in nood per button klik
+            //TODO momenteel maar 1 schip in nood per button klik => done
             //TODO rekening houden met strategy volgens type nood keuze maken in gui
             //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done, nog testen
-            //TODO capaciteiten vergelijken
+            //TODO capaciteiten vergelijken => done
             //TODO versturen naar alle observers + statergy naar 1 of meer
             //TODO bij aanmaak nieuw schip at runtime ook inoodobserver voorzienq
             //TODO tijden omrekenen naar minuten
