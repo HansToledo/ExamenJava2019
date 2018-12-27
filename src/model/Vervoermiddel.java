@@ -4,6 +4,7 @@ import calculations.Coördinaten;
 import enums.StatusVervoermiddel;
 
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by IntelliJ IDEA.<br/>
@@ -156,18 +157,36 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
 
+        int teller = 0;
         System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()+ "\n"+"Reddingsactie wordt gestart " + "\n" + "STRATEGY : " + reddingsType.Reddingstype()); //ALS TEST
 
-//        for(Vervoermiddel item : Actor.schepenOpWater){
-//
-//            if(item.getNaam().equals(naam)){
-//
-//                item.setStatus(StatusVervoermiddel.OK.toString());
-//            }
-//
-//        }
 
-        System.out.println("Reddingsactie is geslaagd");
+        try {
+
+            do {
+
+                TimeUnit.SECONDS.sleep(1);
+                System.out.print(+teller+1);
+                ++teller;
+
+            }while(teller < 5);
+        }
+        catch(Exception ex){
+
+            throw new IllegalArgumentException("rr");
+        }
+
+//            for (Vervoermiddel item : Actor.schepenOpWater) {
+//
+//                if (item.getNaam().equals(naam)) {
+//
+//                    item.setStatus(StatusVervoermiddel.OK.toString());
+//                }
+//
+//            }
+
+
+        System.out.println("\nReddingsactie is geslaagd\n");
     }
 
     @Override
