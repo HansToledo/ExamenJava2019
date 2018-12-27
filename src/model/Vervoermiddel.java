@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Vervoermiddel extends Actor implements INoodObserver{
+
     private String enumNaam;
     private String naam;
     private double afstand;
@@ -25,7 +26,6 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private int koers;
     private Coördinaten coördinaten;
     private String status;
-
     public Vervoermiddel(){
 
     }

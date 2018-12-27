@@ -1,5 +1,6 @@
 package model;
 
+import calculations.Coördinaten;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,8 +15,15 @@ import static org.junit.Assert.*;
  */
 public class ActorTest {
 
+    private double afstand = 100.0;
+    private Coördinaten coördinaten;
+
+
+
     @Before
     public void setUp() throws Exception {
+
+
     }
 
     @Test
@@ -28,6 +36,9 @@ public class ActorTest {
 
     @Test
     public void getAfstand() {
+
+
+
     }
 
     @Test

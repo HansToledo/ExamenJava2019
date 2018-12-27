@@ -17,6 +17,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
     private ArrayList<IStatusObserver> verkeerstorens = new ArrayList<IStatusObserver>();
     private StatusVervoermiddel noodSignaal;
 
+
     public Schepen() {
 
     }
@@ -39,6 +40,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
         verkeerstorens.remove(statusObserver);
     }
 
+
     @Override
     public void doNotifyStatusObservers() {
 
@@ -50,6 +52,12 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
             verkeerstoren.doUpdate(noodSignaal,this);
 
         }
+
+    }
+
+    public IStatusObserver getVerkeerstorenIngeschreven(){
+
+        return this.verkeerstorens.get(0);
 
     }
 
