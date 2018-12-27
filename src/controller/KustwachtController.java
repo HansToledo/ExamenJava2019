@@ -184,22 +184,17 @@ public class KustwachtController {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
                     Parent parent = fxmlLoader.load();
                     RescueController dialogFXController = fxmlLoader.getController();
-                    dialogFXController.DataTransfer(KustwachtController.this, schepenInNoodList);
+
+                    String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
+
+                    dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, schepenInNoodList);
+
                     //Schepen schipinnood = new ContainerSchip(); //test code
                     //dialogFXController.start(schipinnood); // test code
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
                     stage.show();
 
-//                    Stage reddingStage = new Stage();
-//                    reddingStage.setTitle("Reddingsmissie");
-//                    FXMLLoader loader = new FXMLLoader();
-//                    Pane root = loader.load(getClass().getResource("/controller/Rescue.fxml"));
-//                    RescueController rescueController = (RescueController) loader.getController();
-//                    rescueController.DataTransfer(KustwachtController.this, schepenInNoodList);
-//                    Scene reddingScene = new Scene(root);
-//                    reddingStage.setScene(reddingScene);
-//                    reddingStage.show();
                 } catch (Exception E) {
                     displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
                     System.out.println(E);
