@@ -37,7 +37,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.schepenOpWater.add(containerSchip);
 
                 verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(containerSchip);
-                verkeerstoren.schepenIngeschreven.add(containerSchip);
+
                 containerSchip.addStatusObserver(verkeerstoren); //bereken welke toren kortste bij
 
                 return containerSchip;
@@ -49,7 +49,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.schepenOpWater.add(motorboot);
 
                 verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(motorboot);
-                verkeerstoren.schepenIngeschreven.add(motorboot);
+
 
                 motorboot.addStatusObserver(verkeerstoren);
 
@@ -62,7 +62,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.schepenOpWater.add(tanker);
 
                 verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(tanker);
-                verkeerstoren.schepenIngeschreven.add(tanker);
+
 
                 tanker.addStatusObserver(verkeerstoren);
 
@@ -75,7 +75,7 @@ public class SchipFactory extends AbstractActorFactory{
                 Actor.schepenOpWater.add(zeilboot);
 
                 verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(zeilboot);
-                verkeerstoren.schepenIngeschreven.add(zeilboot);
+
 
 
                 zeilboot.addStatusObserver(verkeerstoren);

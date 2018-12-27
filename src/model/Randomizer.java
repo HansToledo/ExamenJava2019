@@ -18,6 +18,7 @@ import static enums.Hulpdiensten.SEAKING;
 public class Randomizer {
     private static Random random = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
+    public static ArrayList<String> output = new ArrayList<String>();
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
     Coördinaten coördinaten;
 
@@ -316,7 +317,7 @@ public class Randomizer {
 
     //Afdrukken van alle actoren.
     public void printAllActors() {
-        ArrayList<String> output = new ArrayList<String>();
+        //ArrayList<String> output = new ArrayList<String>();
 
         output.add("\nVERKEERSTORENS");
         for (int i = 0; i < Actor.verkeerstorens.size(); i++) {

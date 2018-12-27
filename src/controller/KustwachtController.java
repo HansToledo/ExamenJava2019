@@ -9,15 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 import model.Schepen;
 import java.util.ArrayList;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import java.util.Random;
 
 public class KustwachtController {
@@ -49,6 +45,7 @@ public class KustwachtController {
     @FXML private TextField txtVerkeerstorenLongitude;
     @FXML private TextField txtVerkeerstorenLatitude;
     @FXML private TextField txtVerkeerstorenNaam;
+    @FXML public TextArea txtAreaTerminal;
     @FXML private Label lblNoodNaam;
     @FXML private Label lblNoodLongitude;
     @FXML private Label lblNoodSnelheid;
@@ -91,7 +88,7 @@ public class KustwachtController {
     void randomNoodButton_Clicked(ActionEvent event) {
 
         int teller = 0;
-       //ArrayList<Schepen> schepenNietInNood = new ArrayList<Schepen>();
+
         //TODO soms 2 x hetzelfde schip in nood nog voorkomen Peter => mee bezig
         //TODO indien schip gered status veranderen?
         schepenNietInNood.clear();
@@ -103,21 +100,27 @@ public class KustwachtController {
                 schepenNietInNood.add(item);
 
             }
+
         }
 
         int aantalRandomInNood = randomGenerator.nextInt(schepenNietInNood.size()/2)+1;
-        //int aantalRandomInNood = 1;//test
+
+        txtAreaTerminal.clear();
 
         do {
 
             StatusVervoermiddel nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
-            kiesRandomSchip().setNoodSignaal(nieuwNoodSignaal);
+            Schepen schip = kiesRandomSchip();
+            schip.setNoodSignaal(nieuwNoodSignaal);
+
+            txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal);
             ++teller;
 
         }while(aantalRandomInNood > teller);
 
         getAllHulpdiensten();
         getAllSchepenInNood();
+
     }
 
 
@@ -126,7 +129,19 @@ public class KustwachtController {
         int index = randomGenerator.nextInt(schepenNietInNood.size());
         Schepen schip = schepenNietInNood.get(index);
 
-        System.out.println("\nRandom schip gekozen " + schip.getNaam());
+        for (Schepen item : schepenInNoodList){
+
+            if (item.getNaam() != schip.getNaam()){
+
+
+
+            }
+
+        }
+
+        //txtAreaTerminal.clear();
+        txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
+        System.out.println("\nRandom schip in nood gekozen " + schip.getNaam());
         return schip;
     }
     
@@ -143,6 +158,14 @@ public class KustwachtController {
         getAllVerkeerstorenEntries();
         getAllSchepenEntries();
         getAllHulpdiensten();
+
+        for(String item : Randomizer.output){
+
+            txtAreaTerminal.appendText(item + "\n");
+
+        }
+
+
 
         // Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().addListener(
@@ -362,6 +385,7 @@ public class KustwachtController {
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
+
 
     private void displayAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

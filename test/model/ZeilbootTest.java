@@ -63,20 +63,20 @@ public class ZeilbootTest {
     @Test
     public void getAfstand() {
 
-        assertEquals(100.0,zeilboot.getAfstand(),1);
+        assertEquals(100.0,zeilboot.getAfstand(),0);
     }
 
 
     @Test
     public void getSnelheid() {
 
-        assertEquals(200.0, zeilboot.getSnelheid(),1);
+        assertEquals(200.0, zeilboot.getSnelheid(),0);
     }
 
     @Test
     public void getNoodSignaal(){
 
-
+        assertEquals(StatusVervoermiddel.BRAND,zeilboot.getNoodSignaal());
     }
 
     @Test
