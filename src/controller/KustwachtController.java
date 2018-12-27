@@ -170,8 +170,7 @@ public class KustwachtController {
                     RescueController dialogFXController = fxmlLoader.getController();
 
                     String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-
-                    IStatusObserver test = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven();
+                    IStatusObserver vkObserver = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven();
 
                     //Doorgeven beschikbare hulpdiensten voor schip in nood.
                     ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
@@ -183,7 +182,7 @@ public class KustwachtController {
                         displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
                     }
 
-                    dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, vkHulpdienstenList);
+                    dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, vkHulpdienstenList, vkObserver);
                     Stage stage = new Stage();
                     stage.setTitle(schipInNoodNaam);
                     stage.setScene(new Scene(parent));

@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import model.IStatusObserver;
 import model.Schepen;
 import model.Verkeerstoren;
 import model.Vervoermiddel;
@@ -29,13 +30,16 @@ public class RescueController {
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
 
     private Schepen schip;
+    IStatusObserver vkObserver;
     private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("GeenStrategy","BrandStrategy","GekapseisdStrategy","PiratenStrategy","StormStrategy","ZiekteStrategy","ZinkendStrategy");
 
-    public void DataTransfer(String schipInNoodNaam, KustwachtController parent, ObservableList<Vervoermiddel> hulpdienstenList){
-        lblVerkeerstoren.setText("Verkeerstoren: ");
+    public void DataTransfer(String schipInNoodNaam, KustwachtController parent, ObservableList<Vervoermiddel> hulpdienstenList, IStatusObserver vkObserver){
         cbStrategy.setValue("GeenStrategy");
         cbStrategy.setItems(StrategyOptions);
         lstViewHulpdiensten.setItems(hulpdienstenList);
+        this.vkObserver = vkObserver;
+        lblVerkeerstoren.setText(vkObserver.toString());
+
 
         // Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(

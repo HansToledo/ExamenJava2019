@@ -101,13 +101,24 @@ public class Randomizer {
         do {
             coördinaten = new Coördinaten().getRandomCoordinaten();
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int) (Math.random() * (Hulpdiensten.values().length) - 1)];
+            String randomNaam = hulpdienst.VERKEERSTOREN.toString() + naamAddon();
+            boolean alreadyExists = false;
 
-            Verkeerstoren verkeerstoren = random.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(), hulpdienst.VERKEERSTOREN.toString() + naamAddon(), Hulpdiensten.VERKEERSTOREN, coördinaten, geenStrategy);
+            Verkeerstoren verkeerstoren = random.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(), randomNaam, Hulpdiensten.VERKEERSTOREN, coördinaten, geenStrategy);
 
             //Actor toevoegen aan database
-            kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(), verkeerstoren.getNaam(), coördinaten);
+            for (Verkeerstoren item: kustwachtQueries.getAllVerkeerstorens() ) {
+                if (!(item.getNaam().equals(randomNaam)) ){
+                } else {
+                    alreadyExists = true;
+                }
+            }
 
-            ++teller;
+            if (!alreadyExists){
+                kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(), verkeerstoren.getNaam(), coördinaten);
+                ++teller;
+            }
+
         } while (teller < aantal);
     }
 
@@ -118,19 +129,29 @@ public class Randomizer {
         do {
             coördinaten = new Coördinaten().getRandomCoordinaten();
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int) (Math.random() * (Hulpdiensten.values().length) - 1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
+            String randomNaam = hulpdienst.toString() + naamAddon();
+            boolean alreadyExists = false;
 
-            Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(), hulpdienst.toString() + naamAddon(), hulpdienst, coördinaten,
+            Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(), randomNaam, hulpdienst, coördinaten,
                     getSnelheid(hulpdienst.toString()), Math.round(100 + Math.random() * 100),
                     getCapaciteit(hulpdienst.toString()), getKoers(),
                     geenStrategy, StatusVervoermiddel.OK.toString());
 
             //Actor toevoegen aan database
-            kustwachtQueries.addHulpdienst(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
-                    vervoermiddel.getReactieTijd(), vervoermiddel.getWendbaarheid(),
-                    vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
-                    vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
+            for (Vervoermiddel item: kustwachtQueries.getAllHulpdiensten() ) {
+                if (!(item.getNaam().equals(randomNaam)) ){
+                } else {
+                    alreadyExists = true;
+                }
+            }
 
-            ++teller;
+            if (!alreadyExists) {
+                kustwachtQueries.addHulpdienst(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
+                        vervoermiddel.getReactieTijd(), vervoermiddel.getWendbaarheid(),
+                        vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
+                        vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
+                ++teller;
+            }
         } while (teller < aantal);
     }
 
@@ -142,19 +163,30 @@ public class Randomizer {
         do {
             coördinaten = new Coördinaten().getRandomCoordinaten();
             Schepen schip = Schepen.values()[(int) (Math.random() * Schepen.values().length)]; //random enum schip genereren
+            String randomNaam = schip.toString() + naamAddon();
+            boolean alreadyExists = false;
 
-            Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), schip.toString() + naamAddon(), schip, coördinaten,
+            Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), randomNaam, schip, coördinaten,
                     getSnelheid(schip.toString()), Math.round(100 + Math.random() * 100),
                     getCapaciteit(schip.toString()), getKoers(),
                     geenStrategy, StatusVervoermiddel.OK.toString());
 
             //Actoren toevoegen aan database
-            kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
-                    vervoermiddel.getReactieTijd(), vervoermiddel.getWendbaarheid(),
-                    vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
-                    vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
+            for (Vervoermiddel item: kustwachtQueries.getAllSchepen() ) {
+                if (!(item.getNaam().equals(randomNaam)) ){
+                } else {
+                    alreadyExists = true;
+                }
+            }
 
-            ++teller;
+            if (!alreadyExists) {
+                kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
+                        vervoermiddel.getReactieTijd(), vervoermiddel.getWendbaarheid(),
+                        vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
+                        vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
+                ++teller;
+            }
+
         } while (teller < aantal);
     }
 
