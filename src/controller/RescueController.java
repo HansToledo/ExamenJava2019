@@ -12,10 +12,6 @@ public class RescueController {
 
     private Schepen schip;
 
-    public RescueController(KustwachtController parent, ObservableList<Vervoermiddel> schepenInNood){
-
-    }
-
     public void DataTransfer(KustwachtController parent, ObservableList<Vervoermiddel> schepenInNood){
 
     }
