@@ -121,7 +121,7 @@ public class Randomizer {
 
             Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(), hulpdienst.toString() + naamAddon(), hulpdienst, coördinaten,
                     getSnelheid(hulpdienst.toString()), Math.round(100 + Math.random() * 100),
-                    getCapaciteit(hulpdienst.toString()), (int) Math.random() * 90,
+                    getCapaciteit(hulpdienst.toString()), getKoers(),
                     geenStrategy, StatusVervoermiddel.OK.toString());
 
             //Actor toevoegen aan database
@@ -145,7 +145,7 @@ public class Randomizer {
 
             Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), schip.toString() + naamAddon(), schip, coördinaten,
                     getSnelheid(schip.toString()), Math.round(100 + Math.random() * 100),
-                    getCapaciteit(schip.toString()), (int) Math.random() * 90,
+                    getCapaciteit(schip.toString()), getKoers(),
                     geenStrategy, StatusVervoermiddel.OK.toString());
 
             //Actoren toevoegen aan database
@@ -199,6 +199,11 @@ public class Randomizer {
         }
 
         return 0.0;
+    }
+
+    private int getKoers(){
+        Random r = new Random();
+        return r.nextInt(((359 - 1) + 1) + 1);
     }
 
     public void inlezenVerkeerstorens() {

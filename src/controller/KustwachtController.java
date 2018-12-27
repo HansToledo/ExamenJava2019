@@ -7,12 +7,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.*;
 import model.IHulpdienstStrategy;
 import model.Schepen;
 import strategy.*;
+import java.awt.event.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -24,7 +32,7 @@ import javafx.scene.control.TextField;
 
 import java.util.Random;
 
-public class Controller {
+public class KustwachtController {
     @FXML private Button randomNoodButton;
     @FXML private TextField txtNoodNaam;
     @FXML private TextField txtNoodStatus;
@@ -169,7 +177,23 @@ public class Controller {
 
         // Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
-                (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> { displaySchepenInNood(newSchepenInNoodValue); }
+        (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
+            displaySchepenInNood(newSchepenInNoodValue);
+                try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
+                    Stage reddingStage = new Stage();
+                    reddingStage.setTitle("Reddingsmissie");
+                    FXMLLoader loader = new FXMLLoader();
+                    Pane root = loader.load(getClass().getResource("/controller/Rescue.fxml"));
+                    RescueController rescueController = (RescueController) loader.getController();
+                    rescueController.DataTransfer(KustwachtController.this, schepenInNoodList);
+                    Scene reddingScene = new Scene(root);
+                    reddingStage.setScene(reddingScene);
+                    reddingStage.show();
+                } catch (Exception E) {
+                    displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+                    System.out.println(E);
+                }
+            }
         );
     }
 

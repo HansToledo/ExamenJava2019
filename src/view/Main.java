@@ -1,6 +1,5 @@
 package view;
 
-import com.mysql.jdbc.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/controller/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/controller/Kustwacht.fxml"));
         primaryStage.setTitle("Examen2019");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -27,13 +26,13 @@ public class Main extends Application {
         Randomizer random = new Randomizer();
         random.addEnumHulpdienstenEnSchepenToDB();
         random.addEnumStatusVervoermiddelToDB();
-//        random.generateVerkeerstores(5);
-//        random.generateHulpdiensten(5);
-//        random.generateSchepen(5);
+        random.generateVerkeerstores(50);
+        random.generateHulpdiensten(50);
+        random.generateSchepen(50);
 
-        random.inlezenVerkeerstorens();
-        random.inlezenSchepen();
-        random.inlezenHulpdiensten();
+//        random.inlezenVerkeerstorens();
+//        random.inlezenSchepen();
+//        random.inlezenHulpdiensten();
 
         random.printAllActors();
 
