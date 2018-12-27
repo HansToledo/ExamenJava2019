@@ -40,6 +40,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
+    //TODO algemeen limieten instellen op setters ook controle op double
 
     //region Getters & Setters
     public String getStatus() {

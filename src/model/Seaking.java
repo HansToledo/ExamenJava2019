@@ -2,8 +2,6 @@ package model;
 
 import calculations.Coördinaten;
 
-import java.util.ArrayList;
-
 /**
  * Created by IntelliJ IDEA.<br/>
  * User: peter<br/>
@@ -12,6 +10,8 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class Seaking extends Vervoermiddel {
+
+
 
     public Seaking(){
 
@@ -22,5 +22,6 @@ public class Seaking extends Vervoermiddel {
         super(enumNaam, naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
 
     }
+
 
 }

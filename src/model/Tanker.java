@@ -11,6 +11,8 @@ import calculations.Coördinaten;
  */
 public class Tanker extends Schepen {
 
+
+
     public Tanker(){
 
     }
@@ -20,5 +22,7 @@ public class Tanker extends Schepen {
         super(enumNaam, naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy, status);
 
     }
+
+
 
 }

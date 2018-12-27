@@ -11,6 +11,7 @@ import calculations.Coördinaten;
  */
 public class Zeilboot extends Schepen {
 
+
     public Zeilboot(){
 
 
@@ -22,6 +23,8 @@ public class Zeilboot extends Schepen {
         super(enumNaam, naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
 
     }
+
+
 
 
 }

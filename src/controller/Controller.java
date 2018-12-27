@@ -79,7 +79,9 @@ public class Controller {
 
         int aantalRandomInNood = randomGenerator.nextInt(Actor.schepenOpWater.size()/2)+1;
 
-        int teller = 0; //TODO soms 2 x hetzelfde schip in nood nog voorkomen
+        int teller = 0;
+        //TODO soms 2 x hetzelfde schip in nood nog voorkomen
+        //TODO indien schip gered status veranderen?
 
         do {
 

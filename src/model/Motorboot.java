@@ -11,6 +11,7 @@ import calculations.Coördinaten;
  */
 public class Motorboot extends Schepen {
 
+
     public Motorboot(){
 
 
@@ -21,5 +22,7 @@ public class Motorboot extends Schepen {
         super(enumNaam, naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
 
     }
+
+
 
 }
