@@ -164,20 +164,23 @@ public class KustwachtController {
 
         // Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
-        (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> { displaySchepenInNood(newSchepenInNoodValue);
-            try {
-                Stage reddingStage = new Stage();
-                reddingStage.setTitle("Reddingsmissie");
-                FXMLLoader loader = new FXMLLoader();
-                Pane root = loader.load(getClass().getResource("/controller/Rescue.fxml"));
-                RescueController rescueController = (new RescueController(KustwachtController.this, schepenInNoodList));
-                Scene reddingScene = new Scene(root);
-                reddingStage.setScene(reddingScene);
-                reddingStage.show();
-            } catch (Exception E){
-                displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n"+E);
-                System.out.println(E);
-            }; }
+        (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
+            displaySchepenInNood(newSchepenInNoodValue);
+                try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
+                    Stage reddingStage = new Stage();
+                    reddingStage.setTitle("Reddingsmissie");
+                    FXMLLoader loader = new FXMLLoader();
+                    Pane root = loader.load(getClass().getResource("/controller/Rescue.fxml"));
+                    RescueController rescueController = (RescueController) loader.getController();
+                    rescueController.DataTransfer(KustwachtController.this, schepenInNoodList);
+                    Scene reddingScene = new Scene(root);
+                    reddingStage.setScene(reddingScene);
+                    reddingStage.show();
+                } catch (Exception E) {
+                    displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+                    System.out.println(E);
+                }
+            }
         );
     }
 

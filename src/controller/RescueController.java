@@ -13,6 +13,10 @@ public class RescueController {
 
     }
 
+    public void DataTransfer(KustwachtController parent, ObservableList<Vervoermiddel> schepenInNood){
+
+    }
+
 }
 
 
