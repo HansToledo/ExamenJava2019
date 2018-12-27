@@ -26,6 +26,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private int koers;
     private Coördinaten coördinaten;
     private String status;
+
     public Vervoermiddel(){
 
     }
@@ -157,24 +158,24 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
 
-        int teller = 0;
-        System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()+ "\n"+"Reddingsactie wordt gestart " + "\n" + "STRATEGY : " + reddingsType.Reddingstype()); //ALS TEST
-
-
-        try {
-
-            do {
-
-                TimeUnit.SECONDS.sleep(1);
-                System.out.print(+teller+1);
-                ++teller;
-
-            }while(teller < 5);
-        }
-        catch(Exception ex){
-
-            throw new IllegalArgumentException("rr");
-        }
+//        int teller = 0;
+//        System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()+ "\n"+"Reddingsactie wordt gestart " + "\n" + "STRATEGY : " + reddingsType.Reddingstype()); //ALS TEST
+//
+//
+//        try {
+//
+//            do {
+//
+//                TimeUnit.SECONDS.sleep(1);
+//                System.out.print(+teller+1);
+//                ++teller;
+//
+//            }while(teller < 5);
+//        }
+//        catch(Exception ex){
+//
+//            throw new IllegalArgumentException("rr");
+//        }
 
 //            for (Vervoermiddel item : Actor.schepenOpWater) {
 //

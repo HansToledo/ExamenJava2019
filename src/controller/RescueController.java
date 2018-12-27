@@ -24,7 +24,6 @@ public class RescueController {
     @FXML private TextField txtNaam;
     @FXML private ChoiceBox<String> cbStrategy;
     @FXML private TextField txtCapaciteit;
-    @FXML private Label lblSchipInNood;
     @FXML private TextField txtGrootte;
     @FXML private Label lblLatitude;
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
@@ -34,7 +33,6 @@ public class RescueController {
 
     public void DataTransfer(String schipInNoodNaam, KustwachtController parent, ObservableList<Vervoermiddel> hulpdienstenList){
         lblVerkeerstoren.setText("Verkeerstoren: ");
-        lblSchipInNood.setText("Schip in nood: " + schipInNoodNaam);
         cbStrategy.setValue("GeenStrategy");
         cbStrategy.setItems(StrategyOptions);
         lstViewHulpdiensten.setItems(hulpdienstenList);

@@ -115,7 +115,7 @@ public class KustwachtController {
             ++teller;
 
         }while(aantalRandomInNood > teller);
-        
+
         getAllHulpdiensten();
         getAllSchepenInNood();
     }
@@ -169,8 +169,8 @@ public class KustwachtController {
                     Parent parent = fxmlLoader.load();
                     RescueController dialogFXController = fxmlLoader.getController();
 
-
                     String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
+
 
                     //Doorgeven beschikbare hulpdiensten voor schip in nood.
                     ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
@@ -184,6 +184,7 @@ public class KustwachtController {
 
                     dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, vkHulpdienstenList);
                     Stage stage = new Stage();
+                    stage.setTitle(schipInNoodNaam);
                     stage.setScene(new Scene(parent));
                     stage.show();
 
