@@ -184,8 +184,9 @@ public class KustwachtController {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
                     Parent parent = fxmlLoader.load();
                     RescueController dialogFXController = fxmlLoader.getController();
-                    Schepen schipinnood = new ContainerSchip(); //test code
-                    dialogFXController.start(schipinnood); // test code
+                    dialogFXController.DataTransfer(KustwachtController.this, schepenInNoodList);
+                    //Schepen schipinnood = new ContainerSchip(); //test code
+                    //dialogFXController.start(schipinnood); // test code
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
                     stage.show();
