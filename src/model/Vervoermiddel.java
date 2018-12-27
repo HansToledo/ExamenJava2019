@@ -156,19 +156,16 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
 
-        //String test = "";
         System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()+ "\n"+"Reddingsactie wordt gestart " + "\n" + "STRATEGY : " + reddingsType.Reddingstype()); //ALS TEST
 
-        for(Vervoermiddel item : Actor.schepenOpWater){
-
-            if(item.getNaam().equals(naam)){
-
-                item.setStatus(StatusVervoermiddel.OK.toString());
-                //test = StatusVervoermiddel.OK.toString();
-
-            }
-
-        }
+//        for(Vervoermiddel item : Actor.schepenOpWater){
+//
+//            if(item.getNaam().equals(naam)){
+//
+//                item.setStatus(StatusVervoermiddel.OK.toString());
+//            }
+//
+//        }
 
         System.out.println("Reddingsactie is geslaagd");
     }

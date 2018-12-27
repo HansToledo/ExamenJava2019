@@ -89,15 +89,28 @@ public class Controller {
     @FXML private ListView<Vervoermiddel> lstViewSchepenInNood;
     private Random randomGenerator = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
+    private ArrayList<Schepen> schepenNietInNood = new ArrayList<Schepen>();
 
     @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
 
-        int aantalRandomInNood = randomGenerator.nextInt(Actor.schepenOpWater.size()/2)+1;
-
         int teller = 0;
-        //TODO soms 2 x hetzelfde schip in nood nog voorkomen
+       //ArrayList<Schepen> schepenNietInNood = new ArrayList<Schepen>();
+        //TODO soms 2 x hetzelfde schip in nood nog voorkomen Peter => mee bezig
         //TODO indien schip gered status veranderen?
+        schepenNietInNood.clear();
+
+        for(Schepen item : Actor.schepenOpWater){
+
+            if(item.getStatus().equals(StatusVervoermiddel.OK.toString())){
+
+                schepenNietInNood.add(item);
+
+            }
+        }
+
+        int aantalRandomInNood = randomGenerator.nextInt(schepenNietInNood.size()/2)+1;
+        //int aantalRandomInNood = 1;//test
 
         do {
 
@@ -116,8 +129,8 @@ public class Controller {
 
     public Schepen kiesRandomSchip()
     {
-        int index = randomGenerator.nextInt(Actor.schepenOpWater.size());
-        Schepen schip = Actor.schepenOpWater.get(index);
+        int index = randomGenerator.nextInt(schepenNietInNood.size());
+        Schepen schip = schepenNietInNood.get(index);
 
         System.out.println("\nRandom schip gekozen " + schip.getNaam());
         return schip;
