@@ -176,36 +176,58 @@ public class KustwachtController {
         );
 
         // Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden.
+//        lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
+//        (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
+//            displaySchepenInNood(newSchepenInNoodValue);
+//                try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
+//
+//                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
+//                    Parent parent = fxmlLoader.load();
+//                    RescueController dialogFXController = fxmlLoader.getController();
+//                    Schepen schipinnood = new ContainerSchip(); //test code
+//                    dialogFXController.start(schipinnood); // test code
+//                    Stage stage = new Stage();
+//                    stage.setScene(new Scene(parent));
+//                    stage.show();
+//
+////                    Stage reddingStage = new Stage();
+////                    reddingStage.setTitle("Reddingsmissie");
+////                    FXMLLoader loader = new FXMLLoader();
+////                    Pane root = loader.load(getClass().getResource("/controller/Rescue.fxml"));
+////                    RescueController rescueController = (RescueController) loader.getController();
+////                    rescueController.DataTransfer(KustwachtController.this, schepenInNoodList);
+////                    Scene reddingScene = new Scene(root);
+////                    reddingStage.setScene(reddingScene);
+////                    reddingStage.show();
+//                } catch (Exception E) {
+//                    displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+//                    System.out.println(E);
+//                }
+//            }
+//        );
         lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
-        (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
-            displaySchepenInNood(newSchepenInNoodValue);
-                try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
+                (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
+                    displaySchepenInNood(newSchepenInNoodValue);
+                    try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
-                    Parent parent = fxmlLoader.load();
-                    RescueController dialogFXController = fxmlLoader.getController();
-                    Schepen schipinnood = new ContainerSchip(); //test code
-                    dialogFXController.start(schipinnood); // test code
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(parent));
-                    stage.show();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Rescue.fxml"));
+                        Parent parent = fxmlLoader.load();
+                        RescueController dialogFXController = fxmlLoader.getController();
+                        Schepen schipinnood = new ContainerSchip(); //test code
+                        dialogFXController.start(); // test code
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(parent));
+                        stage.show();
 
-//                    Stage reddingStage = new Stage();
-//                    reddingStage.setTitle("Reddingsmissie");
-//                    FXMLLoader loader = new FXMLLoader();
-//                    Pane root = loader.load(getClass().getResource("/controller/Rescue.fxml"));
-//                    RescueController rescueController = (RescueController) loader.getController();
-//                    rescueController.DataTransfer(KustwachtController.this, schepenInNoodList);
-//                    Scene reddingScene = new Scene(root);
-//                    reddingStage.setScene(reddingScene);
-//                    reddingStage.show();
-                } catch (Exception E) {
-                    displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
-                    System.out.println(E);
+
+                    } catch (Exception E) {
+                        displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+                        System.out.println(E);
+                    }
                 }
-            }
         );
     }
+
 
     // alle entries van de tabel met de leden van de database opvragen en invullen in de ledenlijst
     private void getAllVerkeerstorenEntries() {

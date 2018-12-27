@@ -20,12 +20,11 @@ public class RescueController {
 
     }
 
-    public void start(Schepen schipInNood) {
+    public void start() {
 
-         this.schip = schipInNood;
+         //this.schip = schipInNood;
 
     }
 
 }
-
 
