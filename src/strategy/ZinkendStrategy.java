@@ -8,6 +8,6 @@ public class ZinkendStrategy implements IHulpdienstStrategy {
     };
 
     public String toString(){
-        return "stormStrategy";
+        return "zinkendStrategy";
     }
 }

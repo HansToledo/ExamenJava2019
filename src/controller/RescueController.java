@@ -3,11 +3,9 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import model.IStatusObserver;
-import model.Schepen;
-import model.Verkeerstoren;
-import model.Vervoermiddel;
+import model.*;
 import javafx.fxml.FXML;
+import strategy.*;
 
 public class RescueController {
     @FXML private Button btnStartReddingsoperatie;
@@ -29,6 +27,13 @@ public class RescueController {
     @FXML private Label lblLatitude;
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
 
+    IHulpdienstStrategy geenStrategy = new GeenStrategy();
+    IHulpdienstStrategy piratenStrategy = new PiratenStrategy();
+    IHulpdienstStrategy brandStrategy = new BrandStrategy();
+    IHulpdienstStrategy gekapseisdStrategy = new GekapseisdStrategy();
+    IHulpdienstStrategy stormStrategy = new StormStrategy();
+    IHulpdienstStrategy ziekteStrategy = new ZiekteStrategy();
+    IHulpdienstStrategy zinkendStrategy = new ZinkendStrategy();
     private Schepen schip;
     IStatusObserver vkObserver;
     private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("geenStrategy","brandStrategy","gekapseisdStrategy","piratenStrategy","stormStrategy","ziekteStrategy","zinkendStrategy");
@@ -44,6 +49,34 @@ public class RescueController {
                 (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
         );
 
+        //Selected Item Changed.
+        cbStrategy.getSelectionModel().selectedItemProperty().addListener(
+                (observableStrategyValue, oldStrategyValue, newStrategyValue) -> {
+                    switch (newStrategyValue){
+                        case ("geenStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(geenStrategy);
+                            break;
+                        case ("piratenStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(piratenStrategy);
+                            break;
+                        case ("brandStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(brandStrategy);
+                            break;
+                        case ("gekapseisdStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(gekapseisdStrategy);
+                            break;
+                        case ("stormStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(stormStrategy);
+                            break;
+                        case ("ziekteStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(ziekteStrategy);
+                            break;
+                        case ("zinkendStrategy"):
+                            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(zinkendStrategy);
+                            break;
+                    }
+                }
+        );
     }
 
     // informatie schepen tonen in de voorziene vakken

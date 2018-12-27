@@ -171,11 +171,13 @@ public class KustwachtController {
 
                     String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
                     IStatusObserver vkObserver = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven();
+                    Verkeerstoren vk = new Verkeerstoren();
+
 
                     //Doorgeven beschikbare hulpdiensten voor schip in nood.
                     ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
                     try {
-                        vkHulpdienstenList.setAll( schepenNietInNood);
+                        vkHulpdienstenList.setAll(schepenNietInNood);
                     }
                     catch (Exception E){
                         displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());

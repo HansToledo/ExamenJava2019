@@ -8,6 +8,6 @@ public class ZiekteStrategy implements IHulpdienstStrategy {
     };
 
     public String toString(){
-        return "ZiekteStrategy";
+        return "ziekteStrategy";
     }
 }

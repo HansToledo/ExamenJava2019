@@ -8,6 +8,6 @@ public class GekapseisdStrategy implements IHulpdienstStrategy {
     };
 
     public String toString(){
-        return "meldingStrategy";
+        return "gekapseisdStrategy";
     }
 }

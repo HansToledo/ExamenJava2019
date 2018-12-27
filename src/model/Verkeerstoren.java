@@ -122,8 +122,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             //TODO melding indien niet genoeg capaciteit
             //TODO exceptions voorzien
 
-
-
         }
     }
 
