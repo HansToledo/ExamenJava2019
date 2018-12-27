@@ -1,6 +1,7 @@
 package model;
 
 import calculations.Coördinaten;
+import enums.StatusVervoermiddel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,14 +31,14 @@ public class ZeilbootTest {
 
     @Before
     public void setUp() throws Exception {
+
         zeilboot = new Zeilboot();
         zeilboot.setSnelheid(snelheid);
+        zeilboot.setAfstand(100.0);
+        zeilboot.setNoodSignaal(StatusVervoermiddel.BRAND);
 
     }
 
-    @Test
-    public void setNoodSignaal() {
-    }
 
     @Test
     public void getStatus() {
@@ -61,12 +62,20 @@ public class ZeilbootTest {
 
     @Test
     public void getAfstand() {
+
+        assertEquals(100.0,zeilboot.getAfstand(),1);
     }
+
 
     @Test
     public void getSnelheid() {
 
         assertEquals(200.0, zeilboot.getSnelheid(),1);
+    }
+
+    @Test
+    public void getNoodSignaal(){
+
 
     }
 

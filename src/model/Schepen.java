@@ -22,9 +22,9 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
     }
 
-    public Schepen(String enumNaam, String naam, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy,String status) {
+    public Schepen(String enumNaam, String naam, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
 
-        super(enumNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, hulpdienstStrategy,status);
+        super(enumNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, hulpdienstStrategy, status);
 
     }
 
@@ -49,13 +49,13 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
         while (it.hasNext()) {
 
             IStatusObserver verkeerstoren = it.next();
-            verkeerstoren.doUpdate(noodSignaal,this);
+            verkeerstoren.doUpdate(noodSignaal, this);
 
         }
 
     }
 
-    public IStatusObserver getVerkeerstorenIngeschreven(){
+    public IStatusObserver getVerkeerstorenIngeschreven() {
 
         return this.verkeerstorens.get(0);
 
@@ -67,6 +67,11 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
         super.setStatus(nieuwNoodSignaal.toString());   //status schip wordt gewijzigd in de nieuwe situatie.
         doNotifyStatusObservers();
 
+    }
+
+    public StatusVervoermiddel getNoodSignaal() {
+
+        return this.noodSignaal;
     }
 
 }

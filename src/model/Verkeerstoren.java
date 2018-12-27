@@ -21,6 +21,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private String naam;
     private Coördinaten coördinaten;
     private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>(); //TODO bekijken
+    public ArrayList<Schepen> schepenIngeschreven = new ArrayList<Schepen>();
     private IHulpdienstStrategy reddingsType;
     private ArrayList<Vervoermiddel> vervoermiddelKortstebij = new ArrayList<Vervoermiddel>();
     private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
