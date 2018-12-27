@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
 public class ZeilbootTest {
 
     private String enumNaam = "Zeilboot";
-    private String naam = "";
-    private double afstand;
-    private double snelheid;
+    private String naam = "Zeilboot-FX3";
+    private double afstand = 100.0;
+    private double snelheid = 200.0;
     private double reactieTijd;
     private double wendbaarheid;
     private double grootte;
@@ -26,10 +26,12 @@ public class ZeilbootTest {
     private int koers;
     private Coördinaten coördinaten;
     private String status;
+    private Zeilboot zeilboot;
 
     @Before
     public void setUp() throws Exception {
-
+        zeilboot = new Zeilboot();
+        zeilboot.setSnelheid(snelheid);
 
     }
 
@@ -63,10 +65,15 @@ public class ZeilbootTest {
 
     @Test
     public void getSnelheid() {
+
+        assertEquals(200.0, zeilboot.getSnelheid(),1);
+
     }
 
     @Test
     public void getReactieTijd() {
+
+
     }
 
     @Test

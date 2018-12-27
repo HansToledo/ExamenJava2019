@@ -82,7 +82,7 @@ public class KustwachtController {
     @FXML private ListView<Verkeerstoren> lstViewVerkeerstorens;
     @FXML private ListView<Vervoermiddel> lstViewSchepen;
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
-    @FXML private ListView<Vervoermiddel> lstViewSchepenInNood;
+    @FXML private ListView<Schepen> lstViewSchepenInNood;
     private Random randomGenerator = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
     private ArrayList<Schepen> schepenNietInNood = new ArrayList<Schepen>();
@@ -133,7 +133,7 @@ public class KustwachtController {
     private final ObservableList<Verkeerstoren> verkeerstorenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> hulpdienstenList = FXCollections.observableArrayList();
-    private final ObservableList<Vervoermiddel> schepenInNoodList = FXCollections.observableArrayList();
+    private final ObservableList<Schepen> schepenInNoodList = FXCollections.observableArrayList();
 
     public void initialize() {
         lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
@@ -171,6 +171,7 @@ public class KustwachtController {
 
                     String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
 
+                    IStatusObserver test = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven();
 
                     //Doorgeven beschikbare hulpdiensten voor schip in nood.
                     ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
