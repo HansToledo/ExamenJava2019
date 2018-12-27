@@ -8,12 +8,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="344.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RescueController">
    <children>
       <BorderPane prefHeight="392.0" prefWidth="610.0">
          <left>
-            <ListView maxHeight="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+            <ListView fx:id="lstViewHulpdiensten" maxHeight="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
                <BorderPane.margin>
                   <Insets left="25.0" />
                </BorderPane.margin>
@@ -81,12 +80,12 @@
                   <Label fx:id="lblLongitude" text="Longitude:" GridPane.rowIndex="4" />
                   <Label fx:id="lblLatitude" text="Latitude:" GridPane.rowIndex="5" />
                   <Label fx:id="lblStrategy" text="Toegepaste strategy:" GridPane.rowIndex="6" />
-                  <TextField fx:id="txtNaam" GridPane.columnIndex="1" />
-                  <TextField fx:id="txtGrootte" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtCapaciteit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtKoers" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtLongitude" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txtLatitude" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="txtNaam" editable="false" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtGrootte" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtCapaciteit" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtKoers" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtLongitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtLatitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
                <BorderPane.margin>
                   <Insets left="10.0" />
@@ -103,5 +102,3 @@
       </BorderPane>
    </children>
 </AnchorPane>
-
-

@@ -1,7 +1,6 @@
 package controller;
 
 import database.DBqueries;
-import enums.Hulpdiensten;
 import enums.StatusVervoermiddel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,24 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.*;
-import model.IHulpdienstStrategy;
 import model.Schepen;
-import strategy.*;
-import java.awt.event.*;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
-
 import java.util.Random;
 
 public class KustwachtController {
@@ -127,9 +115,7 @@ public class KustwachtController {
             ++teller;
 
         }while(aantalRandomInNood > teller);
-
-        getAllVerkeerstorenEntries();
-        getAllSchepenEntries();
+        
         getAllHulpdiensten();
         getAllSchepenInNood();
     }
@@ -143,8 +129,6 @@ public class KustwachtController {
         System.out.println("\nRandom schip gekozen " + schip.getNaam());
         return schip;
     }
-
-    
     
     private final ObservableList<Verkeerstoren> verkeerstorenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
@@ -185,12 +169,20 @@ public class KustwachtController {
                     Parent parent = fxmlLoader.load();
                     RescueController dialogFXController = fxmlLoader.getController();
 
+
                     String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
 
-                    dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, schepenInNoodList);
+                    //Doorgeven beschikbare hulpdiensten voor schip in nood.
+                    ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
+                    ArrayList<Vervoermiddel> hulpdiensten = Verkeerstoren.mogelijkeHulpdiensten;
+                    try {
+                        vkHulpdienstenList.setAll(hulpdiensten);
+                    }
+                    catch (Exception E){
+                        displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
+                    }
 
-                    //Schepen schipinnood = new ContainerSchip(); //test code
-                    //dialogFXController.start(schipinnood); // test code
+                    dialogFXController.DataTransfer(schipInNoodNaam,KustwachtController.this, vkHulpdienstenList);
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
                     stage.show();
@@ -368,18 +360,6 @@ public class KustwachtController {
         catch (Exception E){
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
-    }
-
-    public void kiesStrategy(Schepen schip){
-        // Prepare strategies
-        IHulpdienstStrategy brandStrategy = new BrandStrategy();
-        IHulpdienstStrategy geenStrategy = new GeenStrategy();
-        IHulpdienstStrategy gekapseisdStrategy = new GekapseisdStrategy();
-        IHulpdienstStrategy piratenStrategy = new PiratenStrategy();
-        IHulpdienstStrategy stormStrategy = new StormStrategy();
-        IHulpdienstStrategy ziekteStrategy = new ZiekteStrategy();
-        IHulpdienstStrategy zinkendStrategy = new ZinkendStrategy();
-
     }
 
     private void displayAlert(Alert.AlertType type, String title, String message) {

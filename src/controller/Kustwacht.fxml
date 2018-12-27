@@ -107,15 +107,15 @@
                               <Label fx:id="lblSchipLongitude" text="Longitude:" GridPane.rowIndex="5" />
                               <Label fx:id="lblSchipLatitude" text="Latitude:" GridPane.rowIndex="6" />
                               <Label fx:id="lblSchipStatus" text="Status:" GridPane.rowIndex="7" />
-                              <TextField fx:id="txtSchipSnelheid" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="txtSchipGrootte" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="txtSchipCapaciteit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="txtSchipKoers" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField fx:id="txtSchipLongitude" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextField fx:id="txtSchipLatitude" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextField fx:id="txtSchipStatus" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtSchipSnelheid" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtSchipGrootte" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtSchipCapaciteit" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtSchipKoers" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtSchipLongitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtSchipLatitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtSchipStatus" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                               <Label fx:id="lblSchipNaam" text="Naam:" />
-                              <TextField fx:id="txtSchipNaam" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtSchipNaam" editable="false" GridPane.columnIndex="1" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="10.0" right="10.0" />
@@ -146,14 +146,14 @@
                               <Label fx:id="lblHulpdienstLongitude" text="Longitude:" GridPane.rowIndex="5" />
                               <Label fx:id="lblHulpdienstLatitude" text="Latitude:" GridPane.rowIndex="6" />
                               <Label fx:id="lblHulpdienstStatus" text="Status:" GridPane.rowIndex="7" />
-                              <TextField fx:id="txtHulpdienstNaam" GridPane.columnIndex="1" />
-                              <TextField fx:id="txtHulpdienstSnelheid" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="txtHulpdienstGrootte" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="txtHulpdienstCapaciteit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="txtHulpdienstKoers" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField fx:id="txtHulpdienstLongitude" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextField fx:id="txtHulpdienstLatitude" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextField fx:id="txtHulpdienstStatus" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtHulpdienstNaam" editable="false" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtHulpdienstSnelheid" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtHulpdienstGrootte" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtHulpdienstCapaciteit" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtHulpdienstKoers" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtHulpdienstLongitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtHulpdienstLatitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtHulpdienstStatus" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="10.0" right="10.0" />
@@ -194,17 +194,17 @@
                      <children>
                         <Label fx:id="lblVerkeerstorenLongitude" text="Longitude:" GridPane.rowIndex="1" />
                         <Label fx:id="lblLatitude" text="Latitude:" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtVerkeerstorenLongitude" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="txtVerkeerstorenLongitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtVerkeerstorenLatitude" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="txtVerkeerstorenLatitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtVerkeerstorenNaam" GridPane.columnIndex="1">
+                        <TextField fx:id="txtVerkeerstorenNaam" editable="false" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
@@ -252,14 +252,14 @@
                         <Label fx:id="lblNoodKoers" text="Koers:" GridPane.rowIndex="5" />
                         <Label fx:id="lblNoodLongitude" text="Longitude:" GridPane.rowIndex="6" />
                         <Label fx:id="lblNoodLatitude" text="Latitude:" GridPane.rowIndex="7" />
-                        <TextField fx:id="txtNoodNaam" GridPane.columnIndex="1" />
-                        <TextField fx:id="txtNoodSnelheid" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtNoodGrootte" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="txtNoodCapaciteit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="txtNoodKoers" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField fx:id="txtNoodLongitude" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField fx:id="txtNoodLatitude" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField fx:id="txtNoodStatus" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtNoodNaam" editable="false" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtNoodSnelheid" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtNoodGrootte" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtNoodCapaciteit" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtNoodKoers" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txtNoodLongitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txtNoodLatitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="txtNoodStatus" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lblNoodStatus" text="Status:" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
