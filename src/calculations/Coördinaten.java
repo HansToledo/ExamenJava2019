@@ -1,10 +1,10 @@
 package calculations;
 
 /**
- * @Autor: Mathy Paesen
+ * @Autor:
  * @Date: 15/12/2018
  * @Project: Examen Januari 2019
- * @Purpose: Gegeven.
+ * @Purpose:
  */
 
 public class Coördinaten {

@@ -1,6 +1,7 @@
 package model;
 
 import calculations.Coördinaten;
+import enums.StatusVervoermiddel;
 
 import java.util.Iterator;
 
@@ -155,8 +156,19 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
 
-        System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()); //ALS TEST
+        System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()+ "\n"+"Reddingsactie wordt gestart " + "\n" + "STRATEGY : " + reddingsType.Reddingstype()); //ALS TEST
 
+        for(Vervoermiddel item : Actor.mogelijkeHulpdiensten){
+
+            if(item.getNaam().equals(naam)){
+
+                item.setStatus(StatusVervoermiddel.OK.toString());
+
+            }
+
+        }
+
+        System.out.println("Reddingsactie is geslaagd");
     }
 
     @Override
