@@ -13,16 +13,14 @@ import java.util.Iterator;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 11:38<br/>
- * To change this template use File | Settings | File Templates.
+ * Klasse voor verkeerstorens aan te maken, deze ontvangt het noodsignaal via statusobserver en stuurt signaal naar hulpdiensten
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver {
 
     private String enumNaam;
     private String naam;
     private Coördinaten coördinaten;
-    private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>(); //TODO bekijken
-    public ArrayList<Schepen> schepenIngeschreven = new ArrayList<Schepen>();
-    private IHulpdienstStrategy reddingsType;
+    private ArrayList<INoodObserver> hulpdiensten = new ArrayList<INoodObserver>();
     private ArrayList<Vervoermiddel> vervoermiddelKortstebij = new ArrayList<Vervoermiddel>();
     private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
     public ArrayList<Vervoermiddel> Redders = new ArrayList<Vervoermiddel>();
@@ -70,51 +68,34 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip == StatusVervoermiddel.OK) {
 
             System.out.println("Schip ok");
-            // strategy melding strategy meegeven
-        }
 
+        }
 
         if (statusSchip != StatusVervoermiddel.OK) {
 
-            //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
-
-            BrandStrategy brandStrategy = new BrandStrategy(); // als test
-            SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse();
+            SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse(); //klasse voor berekenen van afstand en snelheid gesorteerd volgens reactiesnelheid
             Redders.clear();
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
-            vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelhied in list + afstand
+            vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood, beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelheid
 
-            System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
+            System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
 
-            if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {
+            if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
+
                 int totaleCapaciteit = 0;
                 int i = 0;
-
 
                 while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
 
                     totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     Redders.add(vervoermiddelKortstebij.get(i));
-                    i++;
+                    ++i;
                 }
-                //doNotifyNoodObserver(brandStrategy, schipInNood.getCoördinaten(), schipInNood.getNaam());
-            }
-            else
-            {
+            } else {
                 Vervoermiddel schipKortsteBij = vervoermiddelKortstebij.get(0);
                 Redders.add(schipKortsteBij);
-                //doNotifyNoodObserver(brandStrategy, schipInNood.getCoördinaten(), schipInNood.getNaam());
-                // deze moet andere observer aansturen
             }
 
-
-
-            //TODO momenteel maar 1 schip in nood per button klik => done
-            //TODO rekening houden met strategy volgens type nood keuze maken in gui
-            //TODO tijd berekenen volgens snelheid afstand en wendbaarheid => done, nog testen
-            //TODO capaciteiten vergelijken => done
-            //TODO versturen naar alle observers + statergy naar 1 of meer
-            //TODO bij aanmaak nieuw schip at runtime ook inoodobserver voorzienq
             //TODO tijden omrekenen naar minuten
             //TODO later eventueel observable list actor voor schrijven naar database??
             //TODO add + remove observer
@@ -127,36 +108,38 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     //endregion
 
-    public void zoekBeschikbareHulpdienst(String naam) {
-
-        //ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
+    public boolean zoekBeschikbareHulpdienst(String naam) {            //controle van beschikbare hulpdiensten volgens status
 
         beschikbareHulpdiensten.clear();
+        try {
+            for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
+                String itemNaam = item.getNaam();
+                String itemStatus = item.getStatus();
+                String enumStatusOK = StatusVervoermiddel.OK.toString();
 
-        for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
-            String itemNaam = item.getNaam();
-            String itemStatus = item.getStatus();
-            String enumStatusOK = StatusVervoermiddel.OK.toString();
 
+                if (itemNaam != naam && itemStatus.equals(enumStatusOK)) {
 
-            if (itemNaam != naam && itemStatus.equals(enumStatusOK)) {
+                    beschikbareHulpdiensten.add(item);
+                }
 
-                beschikbareHulpdiensten.add(item);
             }
+            return true;
+        } catch (Exception ex) {
 
+            System.out.print(ex.getMessage());
+            return false;
         }
 
-        //return beschikbareHulpdiensten;
     }
 
+    //region NoodObserver
     @Override
     public void addNoodObserver(INoodObserver noodObserver) {
 
         hulpdiensten.add(noodObserver); //TODO bekijken
 
     }
-
-    //region NoodObserver
 
     @Override
     public void removeNoodObserver(INoodObserver noodObserver) {
@@ -174,7 +157,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             INoodObserver hulpdienst = it.next();
             hulpdienst.ontvangNoodsignaal(reddingsType, coördinaten, naam);
-
         }
 
     }

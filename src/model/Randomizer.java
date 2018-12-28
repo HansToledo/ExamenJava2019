@@ -205,36 +205,43 @@ public class Randomizer {
     }
 
     public void inlezenSchepen() {
-        AbstractActorFactory actor = FactoryProducer.getFactory(Actors.SCHIP);
-        ArrayList<Vervoermiddel> schepen = kustwachtQueries.getAllSchepen();
-        schepen.size();
 
-        for (Vervoermiddel item : schepen) {
-            String typeNaam = item.getEnumNaam();
-            String naam = item.getNaam();
-            Coördinaten coördinaten = item.getCoördinaten();
-            double snelheid = item.getSnelheid();
-            double grootte = item.getGrootte();
-            double capaciteit = item.getCapaciteit();
-            int koers = item.getKoers();
-            String status = item.getStatus();
-            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere clients moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+        try {
+            AbstractActorFactory actor = FactoryProducer.getFactory(Actors.SCHIP);
+            ArrayList<Vervoermiddel> schepen = kustwachtQueries.getAllSchepen();
+            schepen.size();
 
-            Vervoermiddel vervoermiddel;
-            switch (typeNaam) {
-                case "CONTAINERSCHIP":
-                    vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.CONTAINERSCHIP, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
-                    break;
-                case "MOTORBOOT":
-                    vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.MOTORBOOT, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
-                    break;
-                case "TANKER":
-                    vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.TANKER, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
-                    break;
-                case "ZEILBOOT":
-                    vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.ZEILBOOT, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
-                    break;
+            for (Vervoermiddel item : schepen) {
+                String typeNaam = item.getEnumNaam();
+                String naam = item.getNaam();
+                Coördinaten coördinaten = item.getCoördinaten();
+                double snelheid = item.getSnelheid();
+                double grootte = item.getGrootte();
+                double capaciteit = item.getCapaciteit();
+                int koers = item.getKoers();
+                String status = item.getStatus();
+                IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere clients moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+                Vervoermiddel vervoermiddel;
+                switch (typeNaam) {
+                    case "CONTAINERSCHIP":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.CONTAINERSCHIP, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                    case "MOTORBOOT":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.MOTORBOOT, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                    case "TANKER":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.TANKER, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                    case "ZEILBOOT":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.ZEILBOOT, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                }
             }
+        }
+        catch (Exception ex)
+        {
+
         }
     }
 

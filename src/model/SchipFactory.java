@@ -11,12 +11,10 @@ import enums.Schepen;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 13:29<br/>
- * To change this template use File | Settings | File Templates.
+ * Factory voor het aanmaken van schepen, toevoegen van schepen aan lijsten in actor klasse, kijken welke verkeertoren dichtste bij en inschrijven bij verkeertoren dichtste bij
  */
 public class SchipFactory extends AbstractActorFactory{
-    
-    private GPSDistance afstand = new GPSDistance();
-    
+
     @Override
     public Vervoermiddel setHulpDienst(String enumNaam, String naam, Hulpdiensten hulpdienst, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
         return null;
@@ -35,10 +33,8 @@ public class SchipFactory extends AbstractActorFactory{
                 ContainerSchip containerSchip = new ContainerSchip(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
                 Actor.mogelijkeHulpdiensten.add(containerSchip);
                 Actor.schepenOpWater.add(containerSchip);
-
-                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(containerSchip);
-
-                containerSchip.addStatusObserver(verkeerstoren); //bereken welke toren kortste bij
+                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(containerSchip);   //bereken welke verkeerstoren kortste bij
+                containerSchip.addStatusObserver(verkeerstoren);                               //deze verkeerstoren toevoegen aan statusobserverlijst, 1 op 1 relatie
 
                 return containerSchip;
 
@@ -47,11 +43,8 @@ public class SchipFactory extends AbstractActorFactory{
                 Motorboot motorboot = new Motorboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
                 Actor.mogelijkeHulpdiensten.add(motorboot);
                 Actor.schepenOpWater.add(motorboot);
-
-                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(motorboot);
-
-
-                motorboot.addStatusObserver(verkeerstoren);
+                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(motorboot);         //bereken welke verkeerstoren kortste bij
+                motorboot.addStatusObserver(verkeerstoren);                                     //deze verkeerstoren toevoegen aan statusobserverlijst, 1 op 1 relatie
 
                 return motorboot;
 
@@ -60,11 +53,8 @@ public class SchipFactory extends AbstractActorFactory{
                 Tanker tanker = new Tanker(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
                 Actor.mogelijkeHulpdiensten.add(tanker);
                 Actor.schepenOpWater.add(tanker);
-
-                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(tanker);
-
-
-                tanker.addStatusObserver(verkeerstoren);
+                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(tanker);            //bereken welke verkeerstoren kortste bij
+                tanker.addStatusObserver(verkeerstoren);                                        //deze verkeerstoren toevoegen aan statusobserverlijst, 1 op 1 relatie
 
                 return tanker;
 
@@ -73,12 +63,8 @@ public class SchipFactory extends AbstractActorFactory{
                 Zeilboot zeilboot = new Zeilboot(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
                 Actor.mogelijkeHulpdiensten.add(zeilboot);
                 Actor.schepenOpWater.add(zeilboot);
-
-                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(zeilboot);
-
-
-
-                zeilboot.addStatusObserver(verkeerstoren);
+                verkeerstoren = snelstTerPlaatse.zoekVerkeerstorenDichtsbij(zeilboot);        //bereken welke verkeerstoren kortste bij
+                zeilboot.addStatusObserver(verkeerstoren);                                     //deze verkeerstoren toevoegen aan statusobserverlijst, 1 op 1 relatie
 
                 return zeilboot;
         }

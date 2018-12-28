@@ -11,6 +11,7 @@ import calculations.Coördinaten;
 import com.mysql.jdbc.Connection;
 import model.*;
 import strategy.*;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -127,7 +128,7 @@ public class DBqueries {
             getAllVervoermiddelTypes = dbConnection.prepareStatement(
                     "SELECT naam FROM type_actor");
 
-            getAllVervoermiddelStatussen= dbConnection.prepareStatement(
+            getAllVervoermiddelStatussen = dbConnection.prepareStatement(
                     "SELECT situatie FROM status_vervoermiddel");
 
         } catch (SQLException sqlException) {
@@ -146,13 +147,12 @@ public class DBqueries {
                 String naam = resultSet.getString("naam");
                 double lon = Double.parseDouble(resultSet.getString("longitude"));
                 double lat = Double.parseDouble(resultSet.getString("latitude"));
-                Coördinaten coördinaten = new Coördinaten(lat,lon);
+                Coördinaten coördinaten = new Coördinaten(lat, lon);
 
-                results.add(new Verkeerstoren(typeNaam,naam, coördinaten, geenStrategy));
+                results.add(new Verkeerstoren(typeNaam, naam, coördinaten, geenStrategy));
             }
             return results;
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
         }
@@ -170,7 +170,7 @@ public class DBqueries {
                 String naam = resultSet.getString("naam");
                 double lon = Double.parseDouble(resultSet.getString("longitude"));
                 double lat = Double.parseDouble(resultSet.getString("latitude"));
-                Coördinaten coördinaten = new Coördinaten(lat,lon);
+                Coördinaten coördinaten = new Coördinaten(lat, lon);
                 double snelheid = Double.parseDouble(resultSet.getString("snelheid"));
                 double reactietijd = Double.parseDouble(resultSet.getString("reactietijd"));
                 double wendbaarheid = Double.parseDouble(resultSet.getString("wendbaarheid"));
@@ -181,22 +181,21 @@ public class DBqueries {
 
                 switch (typeNaam) {
                     case "CONTAINERSCHIP":
-                        results.add(new ContainerSchip(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
+                        results.add(new ContainerSchip(typeNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, geenStrategy, status));
                         break;
                     case "MOTORBOOT":
-                        results.add(new Motorboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
+                        results.add(new Motorboot(typeNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, geenStrategy, status));
                         break;
                     case "TANKER":
-                        results.add(new Tanker(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
+                        results.add(new Tanker(typeNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, geenStrategy, status));
                         break;
                     case "ZEILBOOT":
-                        results.add(new Zeilboot(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
+                        results.add(new Zeilboot(typeNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, geenStrategy, status));
                         break;
                 }
             }
             return results;
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
         }
@@ -214,7 +213,7 @@ public class DBqueries {
                 String naam = resultSet.getString("naam");
                 double lon = Double.parseDouble(resultSet.getString("longitude"));
                 double lat = Double.parseDouble(resultSet.getString("latitude"));
-                Coördinaten coördinaten = new Coördinaten(lat,lon);
+                Coördinaten coördinaten = new Coördinaten(lat, lon);
                 double snelheid = Double.parseDouble(resultSet.getString("snelheid"));
                 double reactietijd = Double.parseDouble(resultSet.getString("reactietijd"));
                 double wendbaarheid = Double.parseDouble(resultSet.getString("wendbaarheid"));
@@ -225,16 +224,15 @@ public class DBqueries {
 
                 switch (typeNaam) {
                     case "SEAKING":
-                        results.add(new Seaking(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
+                        results.add(new Seaking(typeNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, geenStrategy, status));
                         break;
                     case "SCHEEPSVAARTPOLITIE":
-                        results.add(new ScheepsvaartPolitie(typeNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,geenStrategy,status));
+                        results.add(new ScheepsvaartPolitie(typeNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, geenStrategy, status));
                         break;
                 }
             }
             return results;
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
         }
@@ -243,16 +241,15 @@ public class DBqueries {
 
 
     // opvragen bestaande statussen vervoermiddelen
-    public List getAllVervoermiddelStatussen(){
+    public List getAllVervoermiddelStatussen() {
         try {
             ResultSet resultSet = getAllVervoermiddelStatussen.executeQuery();
             List<String> results = new ArrayList<String>();
             while (resultSet.next()) {
-                results.add( resultSet.getString("Situatie"));
+                results.add(resultSet.getString("Situatie"));
             }
             return results;
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
         }
@@ -263,10 +260,9 @@ public class DBqueries {
     // vervoermiddel_status toevoegen
     public int addStatusVervoermiddel(String situatie) {
         try {
-            newStatusVervoermiddel.setString(1,situatie);
+            newStatusVervoermiddel.setString(1, situatie);
             return newStatusVervoermiddel.executeUpdate();
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
             return 0;
@@ -275,16 +271,15 @@ public class DBqueries {
 
 
     // opvragen bestaande types vervoermiddels
-    public List getAllVervoermiddelTypes(){
+    public List getAllVervoermiddelTypes() {
         try {
-        ResultSet resultSet = getAllVervoermiddelTypes.executeQuery();
-        List<String> results = new ArrayList<String>();
+            ResultSet resultSet = getAllVervoermiddelTypes.executeQuery();
+            List<String> results = new ArrayList<String>();
             while (resultSet.next()) {
-                results.add( resultSet.getString("Naam"));
+                results.add(resultSet.getString("Naam"));
             }
-        return results;
-        }
-        catch (SQLException sqlException) {
+            return results;
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
         }
@@ -293,13 +288,12 @@ public class DBqueries {
 
 
     // vervoermiddel_type toevoegen
-    public int addTypeVervoermiddel(String naam,int IsSchip) {
+    public int addTypeVervoermiddel(String naam, int IsSchip) {
         try {
-            newTypeVervoermiddel.setString(1,naam);
-            newTypeVervoermiddel.setInt(2,IsSchip);
+            newTypeVervoermiddel.setString(1, naam);
+            newTypeVervoermiddel.setInt(2, IsSchip);
             return newTypeVervoermiddel.executeUpdate();
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
             return 0;
@@ -307,32 +301,31 @@ public class DBqueries {
     }
 
     // verkeerstoren toevoegen
-    public int addVerkeerstoren(String enumNaam, String naam,Coördinaten coördinaten) {
+    public int addVerkeerstoren(String enumNaam, String naam, Coördinaten coördinaten) {
         try {
-            getTypeVervoermiddelID.setString(1,enumNaam);
+            getTypeVervoermiddelID.setString(1, enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
             resultSet.next();
             int EnumID = resultSet.getInt("EnumID");
 
-            newActor.setString(1,naam);
-            newActor.setInt(2,EnumID);
+            newActor.setString(1, naam);
+            newActor.setInt(2, EnumID);
             newActor.executeUpdate();
 
             ResultSet rs = null;
             int ActorID = 0;
 
             rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
-            if(rs.next()) ActorID = rs.getInt(1);
+            if (rs.next()) ActorID = rs.getInt(1);
 
             double lat = coördinaten.getBreedte();
             double lon = coördinaten.getLengte();
 
-            newVerkeerstoren.setDouble(1,ActorID);
-            newVerkeerstoren.setDouble(2,lat);
-            newVerkeerstoren.setDouble(3,lon);
+            newVerkeerstoren.setDouble(1, ActorID);
+            newVerkeerstoren.setDouble(2, lat);
+            newVerkeerstoren.setDouble(3, lon);
             return newVerkeerstoren.executeUpdate();
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
             return 0;
@@ -340,45 +333,44 @@ public class DBqueries {
     }
 
     // hulpdienst toevoegen
-    public int addHulpdienst(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status, Coördinaten coördinaten) {
+    public int addHulpdienst(String enumNaam, String naam, double snelheid, double reactietijd, double wendbaarheid, double grootte, double capaciteit, int koers, String status, Coördinaten coördinaten) {
         try {
-            getTypeVervoermiddelID.setString(1,enumNaam);
+            getTypeVervoermiddelID.setString(1, enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
             resultSet.next();
             int EnumID = resultSet.getInt("EnumID");
 
-            newActor.setString(1,naam);
-            newActor.setInt(2,EnumID);
+            newActor.setString(1, naam);
+            newActor.setInt(2, EnumID);
             newActor.executeUpdate();
 
             ResultSet rs = null;
             int ActorID = 0;
 
             rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
-            if(rs.next()) ActorID = rs.getInt(1);
+            if (rs.next()) ActorID = rs.getInt(1);
 
             double lat = coördinaten.getBreedte();
             double lon = coördinaten.getLengte();
 
-            newHulpdienst.setDouble(1,ActorID);
-            newHulpdienst.setDouble(2,snelheid);
-            newHulpdienst.setDouble(3,reactietijd);
-            newHulpdienst.setDouble(4,wendbaarheid);
-            newHulpdienst.setDouble(5,grootte);
-            newHulpdienst.setDouble(6,capaciteit);
-            newHulpdienst.setDouble(7,koers);
-            newHulpdienst.setDouble(8,lat);
-            newHulpdienst.setDouble(9,lon);
+            newHulpdienst.setDouble(1, ActorID);
+            newHulpdienst.setDouble(2, snelheid);
+            newHulpdienst.setDouble(3, reactietijd);
+            newHulpdienst.setDouble(4, wendbaarheid);
+            newHulpdienst.setDouble(5, grootte);
+            newHulpdienst.setDouble(6, capaciteit);
+            newHulpdienst.setDouble(7, koers);
+            newHulpdienst.setDouble(8, lat);
+            newHulpdienst.setDouble(9, lon);
 
-            getStatusVervoermiddelID.setString(1,status);
+            getStatusVervoermiddelID.setString(1, status);
             ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
             resultSetStatus.next();
             int StatusID = resultSetStatus.getInt("StatusID");
 
-            newHulpdienst.setInt(10,StatusID);
+            newHulpdienst.setInt(10, StatusID);
             return newHulpdienst.executeUpdate();
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
             return 0;
@@ -386,45 +378,44 @@ public class DBqueries {
     }
 
     // schip toevoegen
-    public int addSchip(String enumNaam, String naam, double snelheid,double reactietijd,double wendbaarheid,double grootte,double capaciteit,int koers,String status,Coördinaten coördinaten) {
+    public int addSchip(String enumNaam, String naam, double snelheid, double reactietijd, double wendbaarheid, double grootte, double capaciteit, int koers, String status, Coördinaten coördinaten) {
         try {
-            getTypeVervoermiddelID.setString(1,enumNaam);
+            getTypeVervoermiddelID.setString(1, enumNaam);
             ResultSet resultSet = getTypeVervoermiddelID.executeQuery();
             resultSet.next();
             int EnumID = resultSet.getInt("EnumID");
 
-            newActor.setString(1,naam);
-            newActor.setInt(2,EnumID);
+            newActor.setString(1, naam);
+            newActor.setInt(2, EnumID);
             newActor.executeUpdate();
 
             ResultSet rs = null;
             int ActorID = 0;
 
             rs = newActor.getGeneratedKeys();   //getGeneratedKeys() is een ingebouwde functie die je kan oproepen door ,Statement.RETURN_GENERATED_KEYS toe te voegen aan de prepared statement.
-            if(rs.next()) ActorID = rs.getInt(1);
+            if (rs.next()) ActorID = rs.getInt(1);
 
             double lat = coördinaten.getBreedte();
             double lon = coördinaten.getLengte();
 
-            newSchip.setDouble(1,ActorID);
-            newSchip.setDouble(2,snelheid);
-            newSchip.setDouble(3,reactietijd);
-            newSchip.setDouble(4,wendbaarheid);
-            newSchip.setDouble(5,grootte);
-            newSchip.setDouble(6,capaciteit);
-            newSchip.setDouble(7,koers);
-            newSchip.setDouble(8,lat);
-            newSchip.setDouble(9,lon);
+            newSchip.setDouble(1, ActorID);
+            newSchip.setDouble(2, snelheid);
+            newSchip.setDouble(3, reactietijd);
+            newSchip.setDouble(4, wendbaarheid);
+            newSchip.setDouble(5, grootte);
+            newSchip.setDouble(6, capaciteit);
+            newSchip.setDouble(7, koers);
+            newSchip.setDouble(8, lat);
+            newSchip.setDouble(9, lon);
 
-            getStatusVervoermiddelID.setString(1,status);
+            getStatusVervoermiddelID.setString(1, status);
             ResultSet resultSetStatus = getStatusVervoermiddelID.executeQuery();
             resultSetStatus.next();
             int StatusID = resultSetStatus.getInt("StatusID");
 
-            newSchip.setInt(10,StatusID);
+            newSchip.setInt(10, StatusID);
             return newSchip.executeUpdate();
-        }
-        catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlErrorMessageDBqueries = sqlException.getMessage();
             sqlException.printStackTrace();
             return 0;

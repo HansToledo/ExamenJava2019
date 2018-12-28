@@ -7,7 +7,7 @@ import calculations.Coördinaten;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 12:04<br/>
- * To change this template use File | Settings | File Templates.
+ * Klasse voor scheepsvaartpolitie aan te maken
  */
 public class ScheepsvaartPolitie extends Vervoermiddel {
 

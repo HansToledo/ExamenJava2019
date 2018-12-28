@@ -7,7 +7,7 @@ import enums.Actors;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 15:08<br/>
- * To change this template use File | Settings | File Templates.
+ * Abstracte factory, deze factory maakt factories aan voor schepenvia schipfactory en hulpdiensten verkeerstoren via hulpdienstfactory is ook een hulpdienst
  */
 public class FactoryProducer {
 

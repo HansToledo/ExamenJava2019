@@ -7,24 +7,20 @@ import calculations.Coördinaten;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 11:58<br/>
- * To change this template use File | Settings | File Templates.
+ * Klasse om zeilboot aan te maken
  */
 public class Zeilboot extends Schepen {
 
 
-    public Zeilboot(){
+    public Zeilboot() {
 
 
     }
-
 
     public Zeilboot(String enumNaam, String naam, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
 
-        super(enumNaam, naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
+        super(enumNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, hulpdienstStrategy, status);
 
     }
-
-
-
 
 }

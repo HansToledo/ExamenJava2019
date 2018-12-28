@@ -7,7 +7,7 @@ import calculations.Coördinaten;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 12:05<br/>
- * To change this template use File | Settings | File Templates.
+ * Klasse om seaking aan te maken
  */
 public class Seaking extends Vervoermiddel {
 

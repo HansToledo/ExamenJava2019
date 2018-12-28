@@ -7,7 +7,7 @@ import calculations.Coördinaten;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 12:45<br/>
- * To change this template use File | Settings | File Templates.
+ * Interface observer die de verkeerstoren gebruikt voor signaal naar observers te zenden. Subject is verkeerstoren.
  */
 public interface INoodSubject {
 

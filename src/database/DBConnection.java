@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.File;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
