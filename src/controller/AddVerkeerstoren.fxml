@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddVerkeerstorenController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="332.0">
+         <left>
+            <GridPane BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="lblActorSnelheid" text="Snelheid:" GridPane.rowIndex="2" />
+                  <Label fx:id="lblActorGrootte" text="Grootte:" GridPane.rowIndex="3" />
+                  <Label fx:id="lblActorCapaciteit" text="Capaciteit:" GridPane.rowIndex="4" />
+                  <Label fx:id="lblActorKoers" text="Koers:" GridPane.rowIndex="5" />
+                  <Label fx:id="lblActorLongitude" text="Longitude:" GridPane.rowIndex="6" />
+                  <Label fx:id="lblActorLatitude" text="Latitude:" GridPane.rowIndex="7" />
+                  <Label fx:id="lblActorStatus" text="Status:" GridPane.rowIndex="8" />
+                  <TextField fx:id="txtActorSnelheid" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtActorGrootte" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtActorCapaciteit" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtActorKoers" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="txtActorLongitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="txtActorLatitude" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="txtActorStatus" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label fx:id="lblActorNaam" text="Naam:" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtActorNaam" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lblActorType" text="Type:" />
+                  <ChoiceBox fx:id="cbActorType" prefHeight="25.0" prefWidth="208.0" GridPane.columnIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="86.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <opaqueInsets>
+                  <Insets left="200.0" />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets left="20.0" />
+               </BorderPane.margin>
+            </GridPane>
+         </left>
+         <top>
+            <Label fx:id="lblActorTitelNaam" text="Actornaam Toevoegen" BorderPane.alignment="CENTER_LEFT">
+               <BorderPane.margin>
+                  <Insets left="20.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </top>
+         <bottom>
+            <Button fx:id="btnToevoegen" mnemonicParsing="false" prefHeight="57.0" prefWidth="434.0" text="Voeg Toe" BorderPane.alignment="CENTER_LEFT">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </Button>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

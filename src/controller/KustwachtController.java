@@ -86,7 +86,20 @@ public class KustwachtController {
 
     @FXML
     void btnVerkeerstorenToevoegen_Clicked(ActionEvent event) {
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/AddVerkeerstoren.fxml"));
+            Parent parent = fxmlLoader.load();
+            AddVerkeerstorenController addVerkeerstorenController = fxmlLoader.getController();
+            addVerkeerstorenController.AddActorController(KustwachtController.this,"Verkeerstoren");
+            Stage stage = new Stage();
+            stage.setTitle("Verkeerstoren aanmaken");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+            System.out.println(E);
+        }
     }
 
     @FXML
@@ -96,7 +109,21 @@ public class KustwachtController {
 
     @FXML
     void btnSchipToevoegen_Clicked(ActionEvent event) {
+        try {
 
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/AddSchip.fxml"));
+            Parent parent = fxmlLoader.load();
+            AddSchipController addSchipController = fxmlLoader.getController();
+            addSchipController.AddActorController(KustwachtController.this,"Schip");
+            Stage stage = new Stage();
+            stage.setTitle("Schip aanmaken");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+            System.out.println(E);
+        }
     }
 
     @FXML
@@ -106,7 +133,20 @@ public class KustwachtController {
 
     @FXML
     void btnHulpdienstToevoegen_Clicked(ActionEvent event) {
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/AddHulpdienst.fxml"));
+            Parent parent = fxmlLoader.load();
+            AddHulpdienstController addHulpdienstController = fxmlLoader.getController();
+            addHulpdienstController.AddActorController(KustwachtController.this, "Hulpdienst");
+            Stage stage = new Stage();
+            stage.setTitle("Hulpdienst aanmaken");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+            System.out.println(E);
+        }
     }
 
     @FXML

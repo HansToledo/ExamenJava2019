@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import model.*;
 import strategy.*;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 
 public class RescueController {
