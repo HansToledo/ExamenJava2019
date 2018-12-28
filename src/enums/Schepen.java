@@ -7,7 +7,7 @@ package enums;
  * Time: 14:26<br/>
  * To change this template use File | Settings | File Templates.
  */
-public enum Schepen {
+public enum Schepen implements IActors {
 
     CONTAINERSCHIP,
     MOTORBOOT,

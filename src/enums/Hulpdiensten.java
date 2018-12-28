@@ -7,7 +7,7 @@ package enums;
  * Time: 14:13<br/>
  * To change this template use File | Settings | File Templates.
  */
-public enum Hulpdiensten {
+public enum Hulpdiensten implements IActors{
 
     SCHEEPSVAARTPOLITIE,
     SEAKING,
