@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 import model.*;
 import model.Schepen;
 import java.util.ArrayList;
@@ -93,6 +94,7 @@ public class KustwachtController {
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> hulpdienstenList = FXCollections.observableArrayList();
     private final ObservableList<Schepen> schepenInNoodList = FXCollections.observableArrayList();
+    private ArrayList<Stage> openWindows = new ArrayList<>();
 
     public void initialize() {
         lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
@@ -130,53 +132,63 @@ public class KustwachtController {
                 }
         );
         //endregion
+    }
 
-        //region Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden en het reddingsscherm wordt getoond.
-        lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
-                (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
-                    displaySchepenInNood(newSchepenInNoodValue);
-                    try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
-                        if (!schepenInNoodList.isEmpty()) {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
-                            Parent parent = fxmlLoader.load();
-                            RescueController dialogFXController = fxmlLoader.getController();
+    @FXML
+    void lstViewSchepenInNood_Clicked(MouseEvent getOnMouseClicked){
+        try {
+            if (!schepenInNoodList.isEmpty()) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
+                Parent parent = fxmlLoader.load();
+                RescueController dialogFXController = fxmlLoader.getController();
 
-                            Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
-                            String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-                            //String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
+                String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
+                //String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
 
-                            Verkeerstoren geregistreerdeVerkeerstoren = null;
-                            for (Verkeerstoren item : verkeerstorenList) {
-                                String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                                if (item.getNaam().equals(vk)) {
-                                    geregistreerdeVerkeerstoren = item;
-                                }
-                            }
-                            ArrayList<Vervoermiddel> redders = null;
-
-                            //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
-                            for (Verkeerstoren item : verkeerstorenList) {
-                                String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                                if (item.getNaam().equals(vk)) {
-                                    redders = item.Redders;
-                                    break;
-                                }
-                            }
-
-                            dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
-                            Stage stage = new Stage();
-                            stage.setResizable(false);
-                            stage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
-                            stage.setScene(new Scene(parent));
-                            stage.show();
-                        }
-                    } catch (Exception E) {
-                        displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
-                        System.out.println(E);
+                Verkeerstoren geregistreerdeVerkeerstoren = null;
+                for (Verkeerstoren item : verkeerstorenList) {
+                    String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                    if (item.getNaam().equals(vk)) {
+                        geregistreerdeVerkeerstoren = item;
                     }
                 }
-        );
-        //endregion
+                ArrayList<Vervoermiddel> redders = null;
+
+                //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
+                for (Verkeerstoren item : verkeerstorenList) {
+                    String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                    if (item.getNaam().equals(vk)) {
+                        redders = item.Redders;
+                        break;
+                    }
+                }
+
+                dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
+
+                Stage inNoodStage = new Stage();
+                inNoodStage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
+
+                boolean windowExists = false;
+                for (Stage item: openWindows){
+                    if((item.getTitle().equals(inNoodStage.getTitle()))){
+                        windowExists = true;
+                        break;
+                    }
+                }
+                if (!windowExists){
+                    openWindows.add(inNoodStage);
+                    inNoodStage.setResizable(false);
+                    inNoodStage.setScene(new Scene(parent));
+                    inNoodStage.setOnCloseRequest(
+                            event -> openWindows.remove(inNoodStage));
+                    inNoodStage.show();
+                }
+            }
+        } catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
+            System.out.println(E);
+        }
     }
 
     @FXML

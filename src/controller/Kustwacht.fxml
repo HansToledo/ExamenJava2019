@@ -268,7 +268,7 @@
                         <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <ListView fx:id="lstViewSchepenInNood" maxHeight="1.7976931348623157E308" maxWidth="200.0" prefHeight="357.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <ListView fx:id="lstViewSchepenInNood" maxHeight="1.7976931348623157E308" maxWidth="200.0" onMouseClicked="#lstViewSchepenInNood_Clicked" prefHeight="357.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" />
                      </GridPane.margin>
