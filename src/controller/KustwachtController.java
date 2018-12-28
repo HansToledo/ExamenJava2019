@@ -194,12 +194,21 @@ public class KustwachtController {
 
                         Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
                         String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-                        String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                        //String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+
+                        Verkeerstoren geregistreerdeVerkeerstoren = null;
+                        for (Verkeerstoren item: verkeerstorenList){
+                            String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                            if (item.getNaam().equals(vk)){
+                                geregistreerdeVerkeerstoren = item;
+                            }
+                        }
                         ArrayList<Vervoermiddel> redders = null;
 
                         //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
                         for (Verkeerstoren item : verkeerstorenList) {
-                            if (item.getNaam().equals(geregistreerdeVerkeerstoren)) {
+                            String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                            if (item.getNaam().equals(vk)) {
                                 redders = item.Redders;
                                 break;
                             }

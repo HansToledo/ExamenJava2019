@@ -50,12 +50,13 @@ public class RescueController {
     private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("geenStrategy","brandStrategy","gekapseisdStrategy","piratenStrategy","stormStrategy","ziekteStrategy","zinkendStrategy");
     String verkeerstorenNaam;
     KustwachtController parent;
+    Verkeerstoren geregistreerdeVerkeerstoren;
 
-    public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, String verkeerstorenNaam, Schepen schipInNood){
+    public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, Verkeerstoren geregistreerdeVerkeerstoren, Schepen schipInNood){
         cbStrategy.setItems(StrategyOptions);
         cbStrategy.setValue("geenStrategy");
         this.redders = redders;
-        this.verkeerstorenNaam = verkeerstorenNaam;
+        this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
         this.parent = parent;
 
         ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
@@ -67,7 +68,7 @@ public class RescueController {
         }
 
         lstViewHulpdiensten.setItems(vkHulpdienstenList);
-        lblVerkeerstoren.setText(verkeerstorenNaam);
+        lblVerkeerstoren.setText(geregistreerdeVerkeerstoren.getNaam());
         this.schipInNood = schipInNood;
 
         // Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
@@ -103,6 +104,7 @@ public class RescueController {
 
     @FXML
     void btnStartReddingsoperatie_Clicked(ActionEvent event) {
+        IHulpdienstStrategy gekozenStrategy = geenStrategy;
         if (cbStrategy.toString()==("geenStrategy")){
             displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve een redding strategie te bepalen.");
         }
@@ -111,28 +113,36 @@ public class RescueController {
                 switch (cbStrategy.getValue()) {
                     case ("geenStrategy"):
                         item.setHulpdienstStrategy(geenStrategy);
+                        gekozenStrategy = geenStrategy;
                         break;
                     case ("piratenStrategy"):
                         item.setHulpdienstStrategy(piratenStrategy);
+                        gekozenStrategy = piratenStrategy;
                         break;
                     case ("brandStrategy"):
                         item.setHulpdienstStrategy(brandStrategy);
+                        gekozenStrategy = brandStrategy;
                         break;
                     case ("gekapseisdStrategy"):
                         item.setHulpdienstStrategy(gekapseisdStrategy);
+                        gekozenStrategy = gekapseisdStrategy;
                         break;
                     case ("stormStrategy"):
                         item.setHulpdienstStrategy(stormStrategy);
+                        gekozenStrategy = stormStrategy;
                         break;
                     case ("ziekteStrategy"):
                         item.setHulpdienstStrategy(ziekteStrategy);
+                        gekozenStrategy = ziekteStrategy;
                         break;
                     case ("zinkendStrategy"):
                         item.setHulpdienstStrategy(zinkendStrategy);
+                        gekozenStrategy = zinkendStrategy;
                         break;
                 }
             }
 
+            geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
             schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
             ArrayList<String> output = new ArrayList<String>();
             output.add("Reddingsactie wordt gestart!]");
