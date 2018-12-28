@@ -152,6 +152,9 @@ public class RescueController {
                 item.setHulpdienstStrategy(geenStrategy);
             }
             output.add("\n\n[Noodsituatie opgelost!");
+
+            parent.txtAreaTerminal.appendText("\n"+output.toString()+"\n");
+
             displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
 
             geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
