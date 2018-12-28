@@ -15,24 +15,33 @@ public class Create {
     private static final DBqueries kustwachtQueries = new DBqueries();
 
     public static void addVerkeerstoren(String naam, double latitude, double longitude) {
-        AbstractActorFactory abstractVerkeerstoren = FactoryProducer.getFactory(Actors.HULPDIENST);
-        Coördinaten coördinaten = new Coördinaten(latitude, longitude);
-        Hulpdiensten hulpdienst = Hulpdiensten.VERKEERSTOREN;
 
-        boolean alreadyExists = false;
+        try {
 
-        Verkeerstoren verkeerstoren = abstractVerkeerstoren.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(), "VERKEERSTOREN-" + naam, Hulpdiensten.VERKEERSTOREN, coördinaten, geenStrategy);
+            AbstractActorFactory abstractVerkeerstoren = FactoryProducer.getFactory(Actors.HULPDIENST);
+            Coördinaten coördinaten = new Coördinaten(latitude, longitude);
+            Hulpdiensten hulpdienst = Hulpdiensten.VERKEERSTOREN;
 
-        //Actor toevoegen aan database
-        for (Verkeerstoren item: kustwachtQueries.getAllVerkeerstorens() ) {
-            if (!(item.getNaam().equals(naam)) ){
-            } else {
-                alreadyExists = true;
+            boolean alreadyExists = false;
+
+            Verkeerstoren verkeerstoren = abstractVerkeerstoren.setVerkeersToren(hulpdienst.VERKEERSTOREN.toString(), "VERKEERSTOREN-" + naam, Hulpdiensten.VERKEERSTOREN, coördinaten, geenStrategy);
+
+            //Actor toevoegen aan database
+            for (Verkeerstoren item : kustwachtQueries.getAllVerkeerstorens()) {
+                if (!(item.getNaam().equals(naam))) {
+                } else {
+                    alreadyExists = true;
+                }
+            }
+
+            if (!alreadyExists) {
+                kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(), verkeerstoren.getNaam(), coördinaten);
             }
         }
+        catch (Exception ex){
 
-        if (!alreadyExists){
-            kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(), verkeerstoren.getNaam(), coördinaten);
+            throw new IllegalArgumentException(ex.getMessage());
+
         }
     }
 
@@ -62,27 +71,37 @@ public class Create {
     }
 
     public static void addSchip(String naam, Schepen schip, double latitude, double longitude, double snelheid, double grootte, double capaciteit, int koers) {
-        AbstractActorFactory abstractSchip = FactoryProducer.getFactory(Actors.SCHIP);
-        Coördinaten coördinaten = new Coördinaten(latitude, longitude);
 
-        boolean alreadyExists = false;
+        try {
 
-        Vervoermiddel vervoermiddel = abstractSchip.setSchip(schip.toString(), (schip.toString() + "-" + naam), schip, coördinaten, snelheid, grootte, capaciteit, koers,
-                geenStrategy, StatusVervoermiddel.OK.toString());
+            AbstractActorFactory abstractSchip = FactoryProducer.getFactory(Actors.SCHIP);
+            Coördinaten coördinaten = new Coördinaten(latitude, longitude);
 
-        //Actor toevoegen aan database
-        for (Vervoermiddel item: kustwachtQueries.getAllSchepen() ) {
-            if (!(item.getNaam().equals(naam))) {
-            } else {
-                alreadyExists = true;
+            boolean alreadyExists = false;
+
+            Vervoermiddel vervoermiddel = abstractSchip.setSchip(schip.toString(), (schip.toString() + "-" + naam), schip, coördinaten, snelheid, grootte, capaciteit, koers,
+                    geenStrategy, StatusVervoermiddel.OK.toString());
+
+            //Actor toevoegen aan database
+            for (Vervoermiddel item : kustwachtQueries.getAllSchepen()) {
+                if (!(item.getNaam().equals(naam))) {
+                } else {
+                    alreadyExists = true;
+                }
+            }
+
+            if (!alreadyExists) {
+                kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
+                        vervoermiddel.getReactieTijd(), vervoermiddel.getWendbaarheid(),
+                        vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
+                        vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
             }
         }
 
-        if (!alreadyExists) {
-            kustwachtQueries.addSchip(vervoermiddel.getEnumNaam(), vervoermiddel.getNaam(), vervoermiddel.getSnelheid(),
-                    vervoermiddel.getReactieTijd(), vervoermiddel.getWendbaarheid(),
-                    vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
-                    vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
+    catch (Exception ex){
+
+
+
         }
     }
 }

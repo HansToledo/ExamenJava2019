@@ -37,8 +37,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         this.coördinaten = coördinaten;
         this.snelheid = snelheid;
         this.grootte = grootte;
+        //setGrootte(grootte);
         this.capaciteit = capaciteit;
         this.koers = koers;
+        //setKoers(koers);
         this.status = status;
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
@@ -46,16 +48,121 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     //TODO algemeen limieten instellen op setters ook controle op double
 
     //region Getters & Setters
-    public String getStatus() {
-        return status;
-    }
+
 
     public void setStatus(String status) {
-        this.status = status;
+
+        if (!status.isEmpty()) {
+
+            this.status = status;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen status ingegeven");
+        }
+
+    }
+    public void setEnumNaam(String enumNaam){
+
+        if (!enumNaam.isEmpty()) {
+
+            this.enumNaam = enumNaam;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen EnumNaam ingegeven");
+        }
+
+    }
+
+    public void setNaam(String naam) {
+
+        if (!naam.isEmpty()) {
+
+            this.naam = naam;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen naam ingegeven");
+        }
+
+    }
+
+    public void setSnelheid(double snelheid) {
+
+        if (snelheid != 0) {
+
+            this.snelheid = snelheid;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige snelheid ingegeven");
+        }
+
+    }
+
+    public void setGrootte(double grootte) {
+
+        if (grootte != 0.0) {
+
+            this.grootte = grootte;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige grootte ingegeven");
+        }
+
+    }
+
+    public void setCapaciteit(double capaciteit) {
+
+        if (capaciteit != 0.0) {
+
+            this.capaciteit = capaciteit;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige capaciteit ingegeven");
+        }
+
+    }
+
+    public void setKoers(int koers) {
+
+        if (koers < 360) {
+
+            this.koers = koers;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige koers ingegeven");
+        }
+
+    }
+
+    public void setReactieTijd(double reactieTijd){
+
+        if (reactieTijd != 0.0) {
+
+            this.reactieTijd = reactieTijd;
+        }
+        else{
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige reactietijd ingegeven");
+        }
+
+    }
+
+    public String getStatus() {
+
+        return status;
+
     }
 
     public String getEnumNaam(){
+
         return this.enumNaam;
+
     }
 
     public Coördinaten getCoördinaten() {
@@ -103,49 +210,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         return this.koers;
     }
 
-    public void setEnumNaam(){
 
-        this.enumNaam = enumNaam;
-    }
-
-    public void setNaam() {
-
-        this.naam = naam;
-    }
-
-    public void setLocatie() {
-
-    }
-
-    public void setSnelheid(double snelheid) {
-
-        this.snelheid = snelheid;
-
-    }
-
-    public void setGrootte(double grootte) {
-
-        this.grootte = grootte;
-
-    }
-
-    public void setCapaciteit(double capaciteit) {
-
-        this.capaciteit = capaciteit;
-
-    }
-
-    public void setKoers(int koers) {
-
-        this.koers = koers;
-
-    }
-
-    public void setReactieTijd(double reactieTijd){
-
-        this.reactieTijd = reactieTijd;
-
-    }
 
     //endregion
 
