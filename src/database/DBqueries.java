@@ -34,12 +34,36 @@ public class DBqueries {
     private PreparedStatement getAllVerkeerstorens;
     private PreparedStatement getAllSchepen;
     private PreparedStatement getAllHulpdiensten;
+    private PreparedStatement deleteVerkeerstoren;
+    private PreparedStatement deleteHulpdienst;
+    private PreparedStatement deleteSchip;
     public static String sqlErrorMessageDBqueries = null;
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
     public DBqueries() {
         try {
             dbConnection = database.DBConnection.getConnection();
+
+            deleteVerkeerstoren = dbConnection.prepareStatement(
+                    "DELETE verkeerstorens\n" +
+                            "FROM verkeerstorens \n" +
+                            "join actoren on (verkeerstorens.ActorID = actoren.ActorID)\n" +
+                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "WHERE actoren.naam=?;");
+
+            deleteHulpdienst = dbConnection.prepareStatement(
+                    "DELETE vervoermiddel\n" +
+                            "FROM vervoermiddel \n" +
+                            "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
+                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "WHERE actoren.naam=?");
+
+            deleteSchip = dbConnection.prepareStatement(
+                    "DELETE vervoermiddel\n" +
+                            "FROM vervoermiddel \n" +
+                            "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
+                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                            "WHERE actoren.naam=?");
 
             getAllVerkeerstorens = dbConnection.prepareStatement(
                     "SELECT type_actor.naam as typenaam, actoren.naam as naam, verkeerstorens.longitude as longitude, verkeerstorens.latitude as latitude FROM verkeerstorens " +
@@ -405,5 +429,44 @@ public class DBqueries {
             sqlException.printStackTrace();
             return 0;
         }
+    }
+
+    // verkeerstoren verwijderen
+    public int deleteVerkeerstoren(String naam) {
+        try {
+            deleteVerkeerstoren.setString(1, naam);
+            deleteVerkeerstoren.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+            return 0;
+        }
+        return 1;
+    }
+
+    // hulpdienst verwijderen
+    public int deleteHulpdienst(String naam) {
+        try {
+            deleteHulpdienst.setString(1, naam);
+            deleteHulpdienst.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+            return 0;
+        }
+        return 1;
+    }
+
+    // schip verwijderen
+    public int deleteSchip(String naam) {
+        try {
+            deleteSchip.setString(1, naam);
+            deleteSchip.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlErrorMessageDBqueries = sqlException.getMessage();
+            sqlException.printStackTrace();
+            return 0;
+        }
+        return 1;
     }
 }

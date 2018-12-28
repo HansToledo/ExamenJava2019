@@ -43,7 +43,7 @@
                         <ToolBar prefHeight="52.0" prefWidth="550.0">
                            <items>
                               <Button fx:id="btnVerkeerstorenToevoegen" mnemonicParsing="false" onAction="#btnVerkeerstorenToevoegen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Verkeerstoren Toevoegen" />
-                              <Button fx:id="btnVerkeerstorenWissen" mnemonicParsing="false" onAction="#btnVerkeerstorenWissen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Verkeerstoren Wissen" />
+                              <Button fx:id="btnVerkeerstorenWissen" mnemonicParsing="false" onAction="#btnVerkeerstorenWissen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Verkeerstoren Verwijderen" />
                            </items>
                            <GridPane.margin>
                               <Insets />
@@ -200,7 +200,7 @@
                                     <ToolBar prefHeight="40.0" prefWidth="200.0">
                                       <items>
                                         <Button fx:id="btnSchipToevoegen" mnemonicParsing="false" onAction="#btnSchipToevoegen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Schip Toevoegen" />
-                                          <Button fx:id="btnSchipWissen" mnemonicParsing="false" onAction="#btnSchipWissen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Schip Wissen" />
+                                          <Button fx:id="btnSchipWissen" mnemonicParsing="false" onAction="#btnSchipWissen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Schip Verwijderen" />
                                       </items>
                                        <GridPane.margin>
                                           <Insets />
@@ -212,7 +212,7 @@
                                     <ToolBar prefHeight="40.0" prefWidth="537.0" GridPane.columnIndex="1">
                                       <items>
                                         <Button fx:id="btnHulpdienstToevoegen" mnemonicParsing="false" onAction="#btnHulpdienstToevoegen_Clicked" prefHeight="25.0" prefWidth="200.0" text="HulpdienstToevoegen" />
-                                          <Button fx:id="btnHulpdienstWissen" mnemonicParsing="false" onAction="#btnHulpdienstWissen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Hulpdienst Wissen" />
+                                          <Button fx:id="btnHulpdienstWissen" mnemonicParsing="false" onAction="#btnHulpdienstWissen_Clicked" prefHeight="25.0" prefWidth="200.0" text="Hulpdienst Verwijderen" />
                                       </items>
                                     </ToolBar>
                                  </children>
