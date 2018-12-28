@@ -4,7 +4,7 @@ package calculations;
  * @Autor:
  * @Date: 15/12/2018
  * @Project: Examen Januari 2019
- * @Purpose:
+ * @Purpose: Coordinaten klasse coordinaten met random generator
  */
 
 public class Coördinaten {
@@ -33,7 +33,7 @@ public class Coördinaten {
     }
 
     private double getRandomBreedte() {
-                                                    //TODO coordinaten range misschien via gui kiezen
+
         return getRandomDoubleBetweenRange(50,55); //getRandomDoubleBetweenRange(-90.0,90.0);
     }
 

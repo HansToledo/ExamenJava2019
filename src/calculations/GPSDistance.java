@@ -5,7 +5,7 @@ package calculations;
  * User: peter<br/>
  * Date: 16/12/2018<br/>
  * Time: 17:31<br/>
- * To change this template use File | Settings | File Templates.
+ * Klasse voor berekenen van afstanden uitgedrukt in zeemijl
  */
 public class GPSDistance {
 
