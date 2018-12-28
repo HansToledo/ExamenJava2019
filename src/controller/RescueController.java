@@ -149,6 +149,7 @@ public class RescueController {
             output.add ("\nHulpdiensten onderweg: ");
             for (Vervoermiddel item: redders){
                 output.add("\nNaam: " + item.getNaam() + "Strategy: " + item.getHulpdienstStrategy().Reddingstype());
+                item.setHulpdienstStrategy(geenStrategy);
             }
             output.add ("\n\n[Noodsituatie opgelost!");
 
