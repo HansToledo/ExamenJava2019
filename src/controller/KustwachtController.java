@@ -173,6 +173,7 @@ public class KustwachtController {
                 for (Stage item: openWindows){
                     if((item.getTitle().equals(inNoodStage.getTitle()))){
                         windowExists = true;
+                        item.toFront();
                         break;
                     }
                 }
