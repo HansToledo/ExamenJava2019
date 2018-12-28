@@ -49,11 +49,13 @@ public class RescueController {
     ArrayList<Vervoermiddel> redders;
     private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("geenStrategy","brandStrategy","gekapseisdStrategy","piratenStrategy","stormStrategy","ziekteStrategy","zinkendStrategy");
     String verkeerstorenNaam;
+    KustwachtController parent;
 
     public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, String verkeerstorenNaam, Schepen schipInNood){
         cbStrategy.setItems(StrategyOptions);
         this.redders = redders;
         this.verkeerstorenNaam = verkeerstorenNaam;
+        this.parent = parent;
 
         ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
         try {
@@ -152,6 +154,8 @@ public class RescueController {
 
             displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
             ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+            parent.getAllHulpdiensten();
+            parent.getAllSchepenInNood();
         }
     }
 

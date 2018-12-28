@@ -187,30 +187,30 @@ public class KustwachtController {
         (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
             displaySchepenInNood(newSchepenInNoodValue);
                 try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
+                    if (!schepenInNoodList.isEmpty()) {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
+                        Parent parent = fxmlLoader.load();
+                        RescueController dialogFXController = fxmlLoader.getController();
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
-                    Parent parent = fxmlLoader.load();
-                    RescueController dialogFXController = fxmlLoader.getController();
+                        Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
+                        String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
+                        String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                        ArrayList<Vervoermiddel> redders = null;
 
-                    Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
-                    String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-                    String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                    ArrayList<Vervoermiddel> redders = null;
-
-                    //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
-                    for (Verkeerstoren item: verkeerstorenList){
-                        if (item.getNaam().equals(geregistreerdeVerkeerstoren)) {
-                            redders = item.Redders;
-                            break;
+                        //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
+                        for (Verkeerstoren item : verkeerstorenList) {
+                            if (item.getNaam().equals(geregistreerdeVerkeerstoren)) {
+                                redders = item.Redders;
+                                break;
+                            }
                         }
+
+                        dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
+                        Stage stage = new Stage();
+                        stage.setTitle(schipInNoodNaam);
+                        stage.setScene(new Scene(parent));
+                        stage.show();
                     }
-
-                    dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren,schipInNood);
-                    Stage stage = new Stage();
-                    stage.setTitle(schipInNoodNaam);
-                    stage.setScene(new Scene(parent));
-                    stage.show();
-
                 } catch (Exception E) {
                     displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
                     System.out.println(E);
@@ -220,7 +220,7 @@ public class KustwachtController {
     }
 
     // alle entries van de tabel met de leden van de database opvragen en invullen in de ledenlijst
-    private void getAllVerkeerstorenEntries() {
+    public void getAllVerkeerstorenEntries() {
         ArrayList<Verkeerstoren> verkeerstorens = Actor.verkeerstorens;
         try {
             verkeerstorenList.setAll(verkeerstorens);
@@ -232,7 +232,7 @@ public class KustwachtController {
     }
     
     // alle entries van de tabel met de schepen van de database opvragen en invullen in de schepenlijst
-    private void getAllSchepenEntries() {
+    public void getAllSchepenEntries() {
         ArrayList<Schepen> schepen = Actor.schepenOpWater;
         try {
             schepenList.setAll(schepen);
@@ -245,7 +245,7 @@ public class KustwachtController {
     }
 
     // alle entries van de tabel met de hulpdiensten van de database opvragen en invullen in de hulpdienstenlijst
-    private void getAllHulpdiensten() {
+    public void getAllHulpdiensten() {
         ArrayList<Vervoermiddel> hulpdiensten = Actor.mogelijkeHulpdiensten;
         ArrayList<Vervoermiddel> hulpdienstenOK = new ArrayList<>();
         try {
@@ -262,7 +262,7 @@ public class KustwachtController {
     }
 
     // alle entries van de tabel met de schepen in nood van de database opvragen en invullen in de schepeninnoodlijst
-    private void getAllSchepenInNood() {
+    public void getAllSchepenInNood() {
         ArrayList<Schepen> schepen = Actor.schepenOpWater;
         ArrayList<Schepen> schepenInNood = new ArrayList<>();
         try {
@@ -271,6 +271,7 @@ public class KustwachtController {
                     schepenInNood.add(item);
                 }
             }
+            schepenInNoodList.clear();
             schepenInNoodList.setAll(schepenInNood);
         }
         catch (Exception E){
