@@ -108,21 +108,27 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     //endregion
 
-    public void zoekBeschikbareHulpdienst(String naam) {            //controle van beschikbare hulpdiensten volgens status
+    public boolean zoekBeschikbareHulpdienst(String naam) {            //controle van beschikbare hulpdiensten volgens status
 
         beschikbareHulpdiensten.clear();
+        try {
+            for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
+                String itemNaam = item.getNaam();
+                String itemStatus = item.getStatus();
+                String enumStatusOK = StatusVervoermiddel.OK.toString();
 
-        for (Vervoermiddel item : Actor.mogelijkeHulpdiensten) {
-            String itemNaam = item.getNaam();
-            String itemStatus = item.getStatus();
-            String enumStatusOK = StatusVervoermiddel.OK.toString();
 
+                if (itemNaam != naam && itemStatus.equals(enumStatusOK)) {
 
-            if (itemNaam != naam && itemStatus.equals(enumStatusOK)) {
+                    beschikbareHulpdiensten.add(item);
+                }
 
-                beschikbareHulpdiensten.add(item);
             }
+            return true;
+        } catch (Exception ex) {
 
+            System.out.print(ex.getMessage());
+            return false;
         }
 
     }
