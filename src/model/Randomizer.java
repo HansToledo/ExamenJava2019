@@ -297,7 +297,8 @@ public class Randomizer {
         }
 
         for (String object : output) {
-            System.out.println(object);
+            EventLogger.logger.info(String.format(object));
+            //System.out.println(object);
         }
     }
 }

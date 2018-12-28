@@ -401,8 +401,9 @@ public class KustwachtController {
 
         if (schipAlGekozen == false) {
 
+            EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
             txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
-            System.out.println("\nRandom schip in nood gekozen " + schip.getNaam());
+            //System.out.println("\nRandom schip in nood gekozen " + schip.getNaam());
             schepenAlGekozen.add(schip);
             return schip;
         } else if (schipAlGekozen == true) {
@@ -418,8 +419,9 @@ public class KustwachtController {
 
             } while (schipAlGekozen2 == true);
 
+            EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
             txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip2.getNaam());
-            System.out.println("\nRandom schip in nood gekozen " + schip2.getNaam());
+            //System.out.println("\nRandom schip in nood gekozen " + schip2.getNaam());
             schepenAlGekozen.add(schip2);
             return schip2;
         }
