@@ -3,6 +3,7 @@ package model;
 import calculations.Coördinaten;
 import calculations.SnelstTerPlaatse;
 import enums.StatusVervoermiddel;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import strategy.*;
 
@@ -26,6 +27,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     private ArrayList<Vervoermiddel> beschikbareHulpdiensten = new ArrayList<Vervoermiddel>();
     public ArrayList<Vervoermiddel> Redders = new ArrayList<Vervoermiddel>();
 
+
     public Verkeerstoren() {
 
     }
@@ -37,8 +39,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         this.naam = naam;
         this.coördinaten = coördinaten;
         super.setHulpdienstStrategy(hulpdienstStrategy);
-        EventLogger.logger.setLevel(Level.WARN );
-
     }
 
     public String getNaam() {
@@ -67,10 +67,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void doUpdate(StatusVervoermiddel statusSchip, Schepen schipInNood) {
 
-
-
         if (statusSchip == StatusVervoermiddel.OK) {
-            EventLogger.logger.info("Schip ok");
+            EventLogger.logger.info(String.format("Schip ok"));
             //System.out.println("Schip ok");
 
         }
@@ -82,7 +80,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood, beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelheid
 
-            EventLogger.logger.info("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
+            EventLogger.logger.info(String.format("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip));
             //System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
 
             if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
