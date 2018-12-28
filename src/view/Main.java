@@ -1,8 +1,5 @@
 package view;
 
-import enums.Hulpdiensten;
-import enums.IActors;
-import enums.Schepen;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,10 +22,11 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         database.DBConnection.getConnection(); //connectie maken met de database
+        database.Create.addEnumHulpdienstenEnSchepenToDB();
+        database.Create.addEnumStatusVervoermiddelToDB();
 
         Randomizer random = new Randomizer();
-        random.addEnumHulpdienstenEnSchepenToDB();
-        random.addEnumStatusVervoermiddelToDB();
+
 //        random.generateVerkeerstores(5);
 //        random.generateHulpdiensten(5);
 //        random.generateSchepen(5);
@@ -36,10 +34,9 @@ public class Main extends Application {
         random.inlezenVerkeerstorens();
         random.inlezenSchepen();
         random.inlezenHulpdiensten();
+
         random.printAllActors();
 
-        calculations.GPSDistance gpstest = new calculations.GPSDistance();
-        System.out.println(gpstest.GPSDistance(50.0359,5.4253,58.3838,3.0414));
         launch(args);
 
     }

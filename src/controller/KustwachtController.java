@@ -1,5 +1,8 @@
 package controller;
 
+import controller.create.AddHulpdienstController;
+import controller.create.AddSchipController;
+import controller.create.AddVerkeerstorenController;
 import database.DBqueries;
 import enums.StatusVervoermiddel;
 import javafx.collections.FXCollections;
@@ -152,7 +155,7 @@ public class KustwachtController {
     @FXML
     void btnVerkeerstorenToevoegen_Clicked(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/AddVerkeerstoren.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/create/AddVerkeerstoren.fxml"));
             Parent parent = fxmlLoader.load();
             AddVerkeerstorenController addVerkeerstorenController = fxmlLoader.getController();
             addVerkeerstorenController.AddActorController(KustwachtController.this,"Verkeerstoren");
@@ -176,7 +179,7 @@ public class KustwachtController {
     void btnSchipToevoegen_Clicked(ActionEvent event) {
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/AddSchip.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/create/AddSchip.fxml"));
             Parent parent = fxmlLoader.load();
             AddSchipController addSchipController = fxmlLoader.getController();
             addSchipController.AddActorController(KustwachtController.this,"Schip");
@@ -199,7 +202,7 @@ public class KustwachtController {
     @FXML
     void btnHulpdienstToevoegen_Clicked(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/AddHulpdienst.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/create/AddHulpdienst.fxml"));
             Parent parent = fxmlLoader.load();
             AddHulpdienstController addHulpdienstController = fxmlLoader.getController();
             addHulpdienstController.AddActorController(KustwachtController.this, "Hulpdienst");
