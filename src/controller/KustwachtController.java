@@ -131,7 +131,7 @@ public class KustwachtController {
         );
         //endregion
 
-        //region Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        //region Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden en het reddingsscherm wordt getoond.
         lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
                 (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
                     displaySchepenInNood(newSchepenInNoodValue);
@@ -165,6 +165,7 @@ public class KustwachtController {
 
                             dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
                             Stage stage = new Stage();
+                            stage.setResizable(false);
                             stage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
                             stage.setScene(new Scene(parent));
                             stage.show();
@@ -186,6 +187,7 @@ public class KustwachtController {
             AddVerkeerstorenController addVerkeerstorenController = fxmlLoader.getController();
             addVerkeerstorenController.AddActorController(KustwachtController.this,"Verkeerstoren");
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Verkeerstoren aanmaken");
             stage.setScene(new Scene(parent));
             stage.show();
@@ -234,6 +236,7 @@ public class KustwachtController {
             AddSchipController addSchipController = fxmlLoader.getController();
             addSchipController.AddActorController(KustwachtController.this,"Schip");
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Schip aanmaken");
             stage.setScene(new Scene(parent));
             stage.show();
@@ -284,6 +287,7 @@ public class KustwachtController {
             AddHulpdienstController addHulpdienstController = fxmlLoader.getController();
             addHulpdienstController.AddActorController(KustwachtController.this, "Hulpdienst");
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Hulpdienst aanmaken");
             stage.setScene(new Scene(parent));
             stage.show();
