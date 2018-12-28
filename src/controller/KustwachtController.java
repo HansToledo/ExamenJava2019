@@ -13,76 +13,141 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 import model.Schepen;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class KustwachtController {
-    @FXML private Button randomNoodButton;
-    @FXML private TextField txtNoodNaam;
-    @FXML private TextField txtNoodStatus;
-    @FXML private TextField txtNoodLongitude;
-    @FXML private TextField txtNoodCapaciteit;
-    @FXML private TextField txtNoodGrootte;
-    @FXML private TextField txtNoodLatitude;
-    @FXML private TextField txtNoodSnelheid;
-    @FXML private TextField txtNoodKoers;
-    @FXML private TextField txtSchipNaam;
-    @FXML private TextField txtSchipStatus;
-    @FXML private TextField txtSchipLongitude;
-    @FXML private TextField txtSchipCapaciteit;
-    @FXML private TextField txtSchipGrootte;
-    @FXML private TextField txtSchipLatitude;
-    @FXML private TextField txtSchipSnelheid;
-    @FXML private TextField txtSchipKoers;
-    @FXML private TextField txtHulpdienstNaam;
-    @FXML private TextField txtHulpdienstStatus;
-    @FXML private TextField txtHulpdienstLongitude;
-    @FXML private TextField txtHulpdienstCapaciteit;
-    @FXML private TextField txtHulpdienstGrootte;
-    @FXML private TextField txtHulpdienstLatitude;
-    @FXML private TextField txtHulpdienstSnelheid;
-    @FXML private TextField txtHulpdienstKoers;
-    @FXML private TextField txtVerkeerstorenLongitude;
-    @FXML private TextField txtVerkeerstorenLatitude;
-    @FXML private TextField txtVerkeerstorenNaam;
-    @FXML public TextArea txtAreaTerminal;
-    @FXML private Label lblNoodNaam;
-    @FXML private Label lblNoodLongitude;
-    @FXML private Label lblNoodSnelheid;
-    @FXML private Label lblNoodCapaciteit;
-    @FXML private Label lblNoodLatitude;
-    @FXML private Label lblNoodStatus;
-    @FXML private Label lblNoodGrootte;
-    @FXML private Label lblNoodKoers;
-    @FXML private Label lblSchipNaam;
-    @FXML private Label lblSchipLongitude;
-    @FXML private Label lblSchipSnelheid;
-    @FXML private Label lblSchipCapaciteit;
-    @FXML private Label lblSchipLatitude;
-    @FXML private Label lblSchipStatus;
-    @FXML private Label lblSchipGrootte;
-    @FXML private Label lblSchipKoers;
-    @FXML private Label lblHulpdienstNaam;
-    @FXML private Label lblHulpdienstLongitude;
-    @FXML private Label lblHulpdienstSnelheid;
-    @FXML private Label lblHulpdienstCapaciteit;
-    @FXML private Label lblHulpdienstLatitude;
-    @FXML private Label lblHulpdienstStatus;
-    @FXML private Label lblHulpdienstGrootte;
-    @FXML private Label lblHulpdienstKoers;
-    @FXML private Label lblVerkeerstorenNaam;
-    @FXML private Label lblVerkeerstorenLongitude;
-    @FXML private Label lblVerkeerstorens;
-    @FXML private Label lblSchepen;
-    @FXML private Label lblHulpdiensten;
-    @FXML private Label lblLatitude;
-    @FXML private ListView<Verkeerstoren> lstViewVerkeerstorens;
-    @FXML private ListView<Vervoermiddel> lstViewSchepen;
-    @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
-    @FXML private ListView<Schepen> lstViewSchepenInNood;
+    @FXML
+    private Button randomNoodButton;
+    @FXML
+    private TextField txtNoodNaam;
+    @FXML
+    private TextField txtNoodStatus;
+    @FXML
+    private TextField txtNoodLongitude;
+    @FXML
+    private TextField txtNoodCapaciteit;
+    @FXML
+    private TextField txtNoodGrootte;
+    @FXML
+    private TextField txtNoodLatitude;
+    @FXML
+    private TextField txtNoodSnelheid;
+    @FXML
+    private TextField txtNoodKoers;
+    @FXML
+    private TextField txtSchipNaam;
+    @FXML
+    private TextField txtSchipStatus;
+    @FXML
+    private TextField txtSchipLongitude;
+    @FXML
+    private TextField txtSchipCapaciteit;
+    @FXML
+    private TextField txtSchipGrootte;
+    @FXML
+    private TextField txtSchipLatitude;
+    @FXML
+    private TextField txtSchipSnelheid;
+    @FXML
+    private TextField txtSchipKoers;
+    @FXML
+    private TextField txtHulpdienstNaam;
+    @FXML
+    private TextField txtHulpdienstStatus;
+    @FXML
+    private TextField txtHulpdienstLongitude;
+    @FXML
+    private TextField txtHulpdienstCapaciteit;
+    @FXML
+    private TextField txtHulpdienstGrootte;
+    @FXML
+    private TextField txtHulpdienstLatitude;
+    @FXML
+    private TextField txtHulpdienstSnelheid;
+    @FXML
+    private TextField txtHulpdienstKoers;
+    @FXML
+    private TextField txtVerkeerstorenLongitude;
+    @FXML
+    private TextField txtVerkeerstorenLatitude;
+    @FXML
+    private TextField txtVerkeerstorenNaam;
+    @FXML
+    public TextArea txtAreaTerminal;
+    @FXML
+    private Label lblNoodNaam;
+    @FXML
+    private Label lblNoodLongitude;
+    @FXML
+    private Label lblNoodSnelheid;
+    @FXML
+    private Label lblNoodCapaciteit;
+    @FXML
+    private Label lblNoodLatitude;
+    @FXML
+    private Label lblNoodStatus;
+    @FXML
+    private Label lblNoodGrootte;
+    @FXML
+    private Label lblNoodKoers;
+    @FXML
+    private Label lblSchipNaam;
+    @FXML
+    private Label lblSchipLongitude;
+    @FXML
+    private Label lblSchipSnelheid;
+    @FXML
+    private Label lblSchipCapaciteit;
+    @FXML
+    private Label lblSchipLatitude;
+    @FXML
+    private Label lblSchipStatus;
+    @FXML
+    private Label lblSchipGrootte;
+    @FXML
+    private Label lblSchipKoers;
+    @FXML
+    private Label lblHulpdienstNaam;
+    @FXML
+    private Label lblHulpdienstLongitude;
+    @FXML
+    private Label lblHulpdienstSnelheid;
+    @FXML
+    private Label lblHulpdienstCapaciteit;
+    @FXML
+    private Label lblHulpdienstLatitude;
+    @FXML
+    private Label lblHulpdienstStatus;
+    @FXML
+    private Label lblHulpdienstGrootte;
+    @FXML
+    private Label lblHulpdienstKoers;
+    @FXML
+    private Label lblVerkeerstorenNaam;
+    @FXML
+    private Label lblVerkeerstorenLongitude;
+    @FXML
+    private Label lblVerkeerstorens;
+    @FXML
+    private Label lblSchepen;
+    @FXML
+    private Label lblHulpdiensten;
+    @FXML
+    private Label lblLatitude;
+    @FXML
+    private ListView<Verkeerstoren> lstViewVerkeerstorens;
+    @FXML
+    private ListView<Vervoermiddel> lstViewSchepen;
+    @FXML
+    private ListView<Vervoermiddel> lstViewHulpdiensten;
+    @FXML
+    private ListView<Schepen> lstViewSchepenInNood;
     private Random randomGenerator = new Random();
     private final DBqueries kustwachtQueries = new DBqueries();
     private ArrayList<Schepen> schepenNietInNood = new ArrayList<Schepen>();
+    private ArrayList<Schepen> schepenAlGekozen = new ArrayList<Schepen>();
 
     @FXML
     void btnVerkeerstorenToevoegen_Clicked(ActionEvent event) {
@@ -122,10 +187,11 @@ public class KustwachtController {
         //TODO soms 2 x hetzelfde schip in nood nog voorkomen Peter => mee bezig
         //TODO indien schip gered status veranderen?
         schepenNietInNood.clear();
+        schepenAlGekozen.clear();
 
-        for(Schepen item : Actor.schepenOpWater){
+        for (Schepen item : Actor.schepenOpWater) {
 
-            if(item.getStatus().equals(StatusVervoermiddel.OK.toString())){
+            if (item.getStatus().equals(StatusVervoermiddel.OK.toString())) {
 
                 schepenNietInNood.add(item);
 
@@ -133,7 +199,7 @@ public class KustwachtController {
 
         }
 
-        int aantalRandomInNood = randomGenerator.nextInt(schepenNietInNood.size()/2)+1;
+        int aantalRandomInNood = randomGenerator.nextInt(schepenNietInNood.size() / 2) + 1;
 
         txtAreaTerminal.clear();
 
@@ -146,7 +212,7 @@ public class KustwachtController {
             txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal);
             ++teller;
 
-        }while(aantalRandomInNood > teller);
+        } while (aantalRandomInNood > teller);
 
         getAllHulpdiensten();
         getAllSchepenInNood();
@@ -154,27 +220,55 @@ public class KustwachtController {
     }
 
 
-    public Schepen kiesRandomSchip()
-    {
+    public Schepen kiesRandomSchip() {
         int index = randomGenerator.nextInt(schepenNietInNood.size());
         Schepen schip = schepenNietInNood.get(index);
+        boolean schipAlGekozen = schipAlGekozen(schip);
 
-        for (Schepen item : schepenInNoodList){
+        if (schipAlGekozen == false) {
 
-            if (item.getNaam() != schip.getNaam()){
+            txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
+            System.out.println("\nRandom schip in nood gekozen " + schip.getNaam());
+            schepenAlGekozen.add(schip);
+            return schip;
+        } else if (schipAlGekozen == true) {
+
+            int index2;
+            Schepen schip2;
+            boolean schipAlGekozen2 = false;
+
+            do {
+                index2 = randomGenerator.nextInt(schepenNietInNood.size());
+                schip2 = schepenNietInNood.get(index);
+                schipAlGekozen2 = schipAlGekozen(schip2);
+
+            } while (schipAlGekozen2 == true);
 
 
+            txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip2.getNaam());
+            System.out.println("\nRandom schip in nood gekozen " + schip2.getNaam());
+            schepenAlGekozen.add(schip2);
+            return schip2;
+        }
 
+        return null;
+        //txtAreaTerminal.clear();
+
+    }
+
+    public boolean schipAlGekozen(Schepen schip) {
+
+        for (Schepen item : schepenAlGekozen) {
+
+            if (item.getNaam().equals(schip.getNaam())) {
+
+                return true;
             }
 
         }
-
-        //txtAreaTerminal.clear();
-        txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
-        System.out.println("\nRandom schip in nood gekozen " + schip.getNaam());
-        return schip;
+        return false;
     }
-    
+
     private final ObservableList<Verkeerstoren> verkeerstorenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> hulpdienstenList = FXCollections.observableArrayList();
@@ -189,72 +283,77 @@ public class KustwachtController {
         getAllSchepenEntries();
         getAllHulpdiensten();
 
-        for(String item : Randomizer.output){
+        for (String item : Randomizer.output) {
 
             txtAreaTerminal.appendText(item + "\n");
 
         }
 
 
-
         // Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().addListener(
-                (observableVerkeerstorenValue, oldVerkeerstorenValue, newVerkeerstorenValue) -> { displayVerkeertoren(newVerkeerstorenValue); }
+                (observableVerkeerstorenValue, oldVerkeerstorenValue, newVerkeerstorenValue) -> {
+                    displayVerkeertoren(newVerkeerstorenValue);
+                }
         );
 
         // Listener gekoppeld aan de listview van de schepen zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewSchepen.getSelectionModel().selectedItemProperty().addListener(
-                (observableSchipValue, oldSchipValue, newSchipValue) -> { displaySchip(newSchipValue); }
+                (observableSchipValue, oldSchipValue, newSchipValue) -> {
+                    displaySchip(newSchipValue);
+                }
         );
 
         // Listener gekoppeld aan de listview van de hulpdiensten zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
-                (observableHulpdienstValue, oldHulpdienstValue, newHulpdienstValue) -> { displayHulpdienst(newHulpdienstValue); }
+                (observableHulpdienstValue, oldHulpdienstValue, newHulpdienstValue) -> {
+                    displayHulpdienst(newHulpdienstValue);
+                }
         );
 
         // Listener gekoppeld aan de listview van de schepen in nood zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewSchepenInNood.getSelectionModel().selectedItemProperty().addListener(
-        (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
-            displaySchepenInNood(newSchepenInNoodValue);
-                try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
-                    if (!schepenInNoodList.isEmpty()) {
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
-                        Parent parent = fxmlLoader.load();
-                        RescueController dialogFXController = fxmlLoader.getController();
+                (observableSchepenInNoodValue, oldSchepenInNoodValue, newSchepenInNoodValue) -> {
+                    displaySchepenInNood(newSchepenInNoodValue);
+                    try { //TODO GUI: HIER ZIT ERROR BIJ OPENEN NIEUW VENSTER MAARD VIND NIET WAT HET PROBLEEM IS.
+                        if (!schepenInNoodList.isEmpty()) {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
+                            Parent parent = fxmlLoader.load();
+                            RescueController dialogFXController = fxmlLoader.getController();
 
-                        Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
-                        String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-                        //String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                            Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
+                            String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
+                            //String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
 
-                        Verkeerstoren geregistreerdeVerkeerstoren = null;
-                        for (Verkeerstoren item: verkeerstorenList){
-                            String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                            if (item.getNaam().equals(vk)){
-                                geregistreerdeVerkeerstoren = item;
+                            Verkeerstoren geregistreerdeVerkeerstoren = null;
+                            for (Verkeerstoren item : verkeerstorenList) {
+                                String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                                if (item.getNaam().equals(vk)) {
+                                    geregistreerdeVerkeerstoren = item;
+                                }
                             }
-                        }
-                        ArrayList<Vervoermiddel> redders = null;
+                            ArrayList<Vervoermiddel> redders = null;
 
-                        //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
-                        for (Verkeerstoren item : verkeerstorenList) {
-                            String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                            if (item.getNaam().equals(vk)) {
-                                redders = item.Redders;
-                                break;
+                            //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
+                            for (Verkeerstoren item : verkeerstorenList) {
+                                String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
+                                if (item.getNaam().equals(vk)) {
+                                    redders = item.Redders;
+                                    break;
+                                }
                             }
-                        }
 
-                        dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
-                        Stage stage = new Stage();
-                        stage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
-                        stage.setScene(new Scene(parent));
-                        stage.show();
+                            dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
+                            Stage stage = new Stage();
+                            stage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
+                            stage.setScene(new Scene(parent));
+                            stage.show();
+                        }
+                    } catch (Exception E) {
+                        displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
+                        System.out.println(E);
                     }
-                } catch (Exception E) {
-                    displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden.\n" + E);
-                    System.out.println(E);
                 }
-            }
         );
     }
 
@@ -264,12 +363,11 @@ public class KustwachtController {
         try {
             verkeerstorenList.setAll(verkeerstorens);
             //verkeerstorenList.setAll(kustwachtQueries.getAllVerkeerstorens()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
-            }
-            catch (Exception E){
-                displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de verkeerstorens.");
-            }
+        } catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de verkeerstorens.");
+        }
     }
-    
+
     // alle entries van de tabel met de schepen van de database opvragen en invullen in de schepenlijst
     public void getAllSchepenEntries() {
         ArrayList<Schepen> schepen = Actor.schepenOpWater;
@@ -277,8 +375,7 @@ public class KustwachtController {
             schepenList.setAll(schepen);
             schepenList.get(0).getStatus();
             //schepenList.setAll(kustwachtQueries.getAllSchepen()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
-        }
-        catch (Exception E){
+        } catch (Exception E) {
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de schepen.");
         }
     }
@@ -288,14 +385,13 @@ public class KustwachtController {
         ArrayList<Vervoermiddel> hulpdiensten = Actor.mogelijkeHulpdiensten;
         ArrayList<Vervoermiddel> hulpdienstenOK = new ArrayList<>();
         try {
-            for(Vervoermiddel item: hulpdiensten){
-                if ((item.getStatus().equals(StatusVervoermiddel.OK.toString()))){
-                        hulpdienstenOK.add(item);
+            for (Vervoermiddel item : hulpdiensten) {
+                if ((item.getStatus().equals(StatusVervoermiddel.OK.toString()))) {
+                    hulpdienstenOK.add(item);
                 }
             }
             hulpdienstenList.setAll(hulpdienstenOK);
-        }
-        catch (Exception E){
+        } catch (Exception E) {
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de hulpdiensten.");
         }
     }
@@ -305,19 +401,17 @@ public class KustwachtController {
         ArrayList<Schepen> schepen = Actor.schepenOpWater;
         ArrayList<Schepen> schepenInNood = new ArrayList<>();
         try {
-            for(Schepen item: schepen){
-                if (!(item.getStatus().equals(StatusVervoermiddel.OK.toString()))){
+            for (Schepen item : schepen) {
+                if (!(item.getStatus().equals(StatusVervoermiddel.OK.toString()))) {
                     schepenInNood.add(item);
                 }
             }
             schepenInNoodList.clear();
             schepenInNoodList.setAll(schepenInNood);
-        }
-        catch (Exception E){
+        } catch (Exception E) {
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een fout opgetreden bij het inladen van de schepen in nood.");
         }
     }
-
 
 
     // informatie verkeerstoren tonen in de voorziene vakken
@@ -327,15 +421,13 @@ public class KustwachtController {
                 txtVerkeerstorenNaam.setText(verkeerstoren.getNaam());
                 txtVerkeerstorenLatitude.setText(String.valueOf(verkeerstoren.getCoördinaten().getBreedte()));
                 txtVerkeerstorenLongitude.setText(String.valueOf(verkeerstoren.getCoördinaten().getLengte()));
-            }
-            else {
+            } else {
                 txtVerkeerstorenNaam.clear();
                 txtVerkeerstorenLatitude.clear();
                 txtVerkeerstorenLongitude.clear();
             }
-        }
-        catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        } catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
@@ -351,8 +443,7 @@ public class KustwachtController {
                 txtSchipLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtSchipLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
                 txtSchipStatus.setText(String.valueOf(vervoermiddel.getStatus()));
-            }
-            else {
+            } else {
                 txtSchipNaam.clear();
                 txtSchipSnelheid.clear();
                 txtSchipGrootte.clear();
@@ -362,9 +453,8 @@ public class KustwachtController {
                 txtSchipLongitude.clear();
                 txtSchipStatus.clear();
             }
-        }
-        catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        } catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
@@ -380,8 +470,7 @@ public class KustwachtController {
                 txtHulpdienstLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtHulpdienstLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
                 txtHulpdienstStatus.setText(String.valueOf(vervoermiddel.getStatus()));
-            }
-            else {
+            } else {
                 txtHulpdienstNaam.clear();
                 txtHulpdienstSnelheid.clear();
                 txtHulpdienstGrootte.clear();
@@ -391,9 +480,8 @@ public class KustwachtController {
                 txtHulpdienstLongitude.clear();
                 txtHulpdienstStatus.clear();
             }
-        }
-        catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        } catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
@@ -409,8 +497,7 @@ public class KustwachtController {
                 txtNoodLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtNoodLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
                 txtNoodStatus.setText(String.valueOf(vervoermiddel.getStatus()));
-            }
-            else {
+            } else {
                 txtNoodNaam.clear();
                 txtNoodSnelheid.clear();
                 txtNoodGrootte.clear();
@@ -420,9 +507,8 @@ public class KustwachtController {
                 txtNoodLongitude.clear();
                 txtNoodStatus.clear();
             }
-        }
-        catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        } catch (Exception E) {
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 

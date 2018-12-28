@@ -1,5 +1,7 @@
 package model;
 
+import enums.Actors;
+import enums.Hulpdiensten;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,11 +16,23 @@ import static org.junit.Assert.*;
  */
 public class FactoryProducerTest {
 
+    private AbstractActorFactory testFactoryProducer;
+    private SchipFactory testSchipFactory;
+
     @Before
     public void setUp() throws Exception {
+
+        testFactoryProducer = FactoryProducer.getFactory(Actors.SCHIP);
+
+
     }
 
     @Test
     public void getFactory() {
+
+
+
+        //assertEquals(testFactoryProducer,);
+
     }
 }
