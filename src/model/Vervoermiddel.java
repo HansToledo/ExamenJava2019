@@ -207,7 +207,8 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver {
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
-        System.out.println("\nReddingsactie is geslaagd\n");
+        EventLogger.logger.info(String.format("Reddingsactie is geslaagd\n"));
+        //System.out.println("\nReddingsactie is geslaagd\n");
     }
 
     @Override
