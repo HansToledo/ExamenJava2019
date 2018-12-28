@@ -4,7 +4,6 @@ import controller.create.AddHulpdienstController;
 import controller.create.AddSchipController;
 import controller.create.AddVerkeerstorenController;
 import database.DBqueries;
-import enums.Hulpdiensten;
 import enums.StatusVervoermiddel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -360,42 +359,44 @@ public class KustwachtController {
 
     @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
-
         int teller = 0;
-
-        //TODO soms 2 x hetzelfde schip in nood nog voorkomen Peter => mee bezig
-        //TODO indien schip gered status veranderen?
+        int aantalRandomInNood=0;
+        StatusVervoermiddel nieuwNoodSignaal;
+        Schepen schip;
         schepenNietInNood.clear();
         schepenAlGekozen.clear();
 
         for (Schepen item : Actor.schepenOpWater) {
-
             if (item.getStatus().equals(StatusVervoermiddel.OK.toString())) {
-
                 schepenNietInNood.add(item);
-
             }
-
         }
 
-        int aantalRandomInNood = randomGenerator.nextInt(schepenNietInNood.size() / 2) + 1;
+        switch (schepenNietInNood.size()) {
+            case 0:
+                break;
+            case 1:
+                aantalRandomInNood = 1;
+                nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                schip = schepenNietInNood.get(0);
+                schip.setNoodSignaal(nieuwNoodSignaal);
 
-        txtAreaTerminal.clear();
+                txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                break;
+            default:
+                aantalRandomInNood = randomGenerator.nextInt((schepenNietInNood.size() / 2) + 1);
+                do {
+                    nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                    schip = kiesRandomSchip();
+                    schip.setNoodSignaal(nieuwNoodSignaal);
 
-        do {
-
-            StatusVervoermiddel nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
-            Schepen schip = kiesRandomSchip();
-            schip.setNoodSignaal(nieuwNoodSignaal);
-
-            txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal);
-            ++teller;
-
-        } while (aantalRandomInNood > teller);
-
+                    txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                    ++teller;
+                } while (aantalRandomInNood > teller);
+                break;
+        }
         getAllHulpdiensten();
         getAllSchepenInNood();
-
     }
 
 
