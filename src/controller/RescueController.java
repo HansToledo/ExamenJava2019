@@ -58,6 +58,7 @@ public class RescueController {
         this.redders = redders;
         this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
         this.parent = parent;
+        this.verkeerstorenNaam = geregistreerdeVerkeerstoren.getNaam();
 
         ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
         try {
@@ -68,7 +69,7 @@ public class RescueController {
         }
 
         lstViewHulpdiensten.setItems(vkHulpdienstenList);
-        lblVerkeerstoren.setText(geregistreerdeVerkeerstoren.getNaam());
+        lblVerkeerstoren.setText(verkeerstorenNaam);
         this.schipInNood = schipInNood;
 
         // Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
@@ -105,7 +106,7 @@ public class RescueController {
     @FXML
     void btnStartReddingsoperatie_Clicked(ActionEvent event) {
         IHulpdienstStrategy gekozenStrategy = geenStrategy;
-        if (cbStrategy.toString()==("geenStrategy")){
+        if (cbStrategy.getValue()==("geenStrategy")){
             displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve een redding strategie te bepalen.");
         }
         else {
@@ -142,7 +143,6 @@ public class RescueController {
                 }
             }
 
-            geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
             schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
             ArrayList<String> output = new ArrayList<String>();
             output.add("Reddingsactie wordt gestart!]");
@@ -153,8 +153,10 @@ public class RescueController {
                 item.setHulpdienstStrategy(geenStrategy);
             }
             output.add("\n\n[Noodsituatie opgelost!");
-
             displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
+
+            geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
+
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
             parent.getAllHulpdiensten();
             parent.getAllSchepenInNood();

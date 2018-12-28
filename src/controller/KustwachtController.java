@@ -216,7 +216,7 @@ public class KustwachtController {
 
                         dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
                         Stage stage = new Stage();
-                        stage.setTitle(schipInNoodNaam);
+                        stage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
                         stage.setScene(new Scene(parent));
                         stage.show();
                     }
