@@ -187,7 +187,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextArea fx:id="txtAreaTerminal" prefHeight="190.0" prefWidth="1098.0" GridPane.rowIndex="1" />
+                              <TextArea fx:id="txtAreaTerminal" editable="false" prefHeight="190.0" prefWidth="1098.0" GridPane.rowIndex="1" />
                               <GridPane prefHeight="40.0" prefWidth="576.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.0" minWidth="10.0" prefWidth="542.0" />
