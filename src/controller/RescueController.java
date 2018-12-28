@@ -53,6 +53,7 @@ public class RescueController {
 
     public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, String verkeerstorenNaam, Schepen schipInNood){
         cbStrategy.setItems(StrategyOptions);
+        cbStrategy.setValue("geenStrategy");
         this.redders = redders;
         this.verkeerstorenNaam = verkeerstorenNaam;
         this.parent = parent;
@@ -69,38 +70,9 @@ public class RescueController {
         lblVerkeerstoren.setText(verkeerstorenNaam);
         this.schipInNood = schipInNood;
 
-        // Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        // Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
                 (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
-        );
-
-        // Listened gekoppeld aan ChoiseBox zodat bij wijziging de strategie wordt weggeschreven.
-        cbStrategy.getSelectionModel().selectedItemProperty().addListener(
-            (observableStrategyValue, oldStrategyValue, newStrategyValue) -> {
-                switch (newStrategyValue){
-                    case ("geenStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(geenStrategy);
-                        break;
-                    case ("piratenStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(piratenStrategy);
-                        break;
-                    case ("brandStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(brandStrategy);
-                        break;
-                    case ("gekapseisdStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(gekapseisdStrategy);
-                        break;
-                    case ("stormStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(stormStrategy);
-                        break;
-                    case ("ziekteStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(ziekteStrategy);
-                        break;
-                    case ("zinkendStrategy"):
-                        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().setHulpdienstStrategy(zinkendStrategy);
-                        break;
-                }
-            }
         );
     }
 
@@ -114,7 +86,6 @@ public class RescueController {
                 txtKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
-                cbStrategy.setValue(lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().getHulpdienstStrategy().toString());
             }
             else {
                 txtNaam.clear();
@@ -132,29 +103,49 @@ public class RescueController {
 
     @FXML
     void btnStartReddingsoperatie_Clicked(ActionEvent event) {
-        boolean allHaveStrategy = true;
-        for (Vervoermiddel item: redders){
-            if (item.getHulpdienstStrategy().toString().equals("geenStrategy")){
-                allHaveStrategy = false;
-                displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve voor ieder reddingsvoertuig een strategy te bepalen.");
-                break;
-            }
+        if (cbStrategy.toString()==("geenStrategy")){
+            displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve een redding strategie te bepalen.");
         }
-        if (allHaveStrategy){
-            schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
+        else {
+            for (Vervoermiddel item : redders) {
+                switch (cbStrategy.getValue()) {
+                    case ("geenStrategy"):
+                        item.setHulpdienstStrategy(geenStrategy);
+                        break;
+                    case ("piratenStrategy"):
+                        item.setHulpdienstStrategy(piratenStrategy);
+                        break;
+                    case ("brandStrategy"):
+                        item.setHulpdienstStrategy(brandStrategy);
+                        break;
+                    case ("gekapseisdStrategy"):
+                        item.setHulpdienstStrategy(gekapseisdStrategy);
+                        break;
+                    case ("stormStrategy"):
+                        item.setHulpdienstStrategy(stormStrategy);
+                        break;
+                    case ("ziekteStrategy"):
+                        item.setHulpdienstStrategy(ziekteStrategy);
+                        break;
+                    case ("zinkendStrategy"):
+                        item.setHulpdienstStrategy(zinkendStrategy);
+                        break;
+                }
+            }
 
+            schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
             ArrayList<String> output = new ArrayList<String>();
-            output.add ("Reddingsactie wordt gestart!]");
-            output.add ("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam +".");
-            output.add ("\nHulpdiensten onderweg: ");
-            for (Vervoermiddel item: redders){
+            output.add("Reddingsactie wordt gestart!]");
+            output.add("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam + ".");
+            output.add("\nHulpdiensten onderweg: ");
+            for (Vervoermiddel item : redders) {
                 output.add("\nNaam: " + item.getNaam() + "Strategy: " + item.getHulpdienstStrategy().Reddingstype());
                 item.setHulpdienstStrategy(geenStrategy);
             }
-            output.add ("\n\n[Noodsituatie opgelost!");
+            output.add("\n\n[Noodsituatie opgelost!");
 
             displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
-            ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
             parent.getAllHulpdiensten();
             parent.getAllSchepenInNood();
         }

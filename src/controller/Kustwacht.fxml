@@ -40,7 +40,17 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0" />
+                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                           <items>
+                              <Button fx:id="btnVerkeerstorenToevoegen" mnemonicParsing="false" text="Verkeerstoren Toevoegen" />
+                              <Button fx:id="btnVerkeerstorenWissen" mnemonicParsing="false" text="Verkeerstoren Wissen" />
+                           </items>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding></ToolBar>
                         <Label fx:id="lblSchepen" text="Schepen" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="75.0" />
