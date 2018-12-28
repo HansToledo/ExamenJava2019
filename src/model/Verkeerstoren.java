@@ -76,9 +76,9 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse(); //klasse voor berekenen van afstand en snelheid gesorteerd volgens reactiesnelheid
             Redders.clear();
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
-            vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood,beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelheid
+            vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood, beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelheid
 
-            System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip );
+            System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
 
             if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
 
@@ -91,9 +91,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                     Redders.add(vervoermiddelKortstebij.get(i));
                     ++i;
                 }
-            }
-            else
-            {
+            } else {
                 Vervoermiddel schipKortsteBij = vervoermiddelKortstebij.get(0);
                 Redders.add(schipKortsteBij);
             }

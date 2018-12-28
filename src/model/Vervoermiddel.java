@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * Time: 19:17<br/>
  * Abstracte klasse voor vervoermiddelen
  */
-public abstract class Vervoermiddel extends Actor implements INoodObserver{
+public abstract class Vervoermiddel extends Actor implements INoodObserver {
 
     private String enumNaam;
     private String naam;
@@ -27,11 +27,11 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     private Coördinaten coördinaten;
     private String status;
 
-    public Vervoermiddel(){
+    public Vervoermiddel() {
 
     }
 
-    public Vervoermiddel (String enumNaam, String naam, Coördinaten coördinaten, double snelheid,double grootte,double capaciteit,int koers, IHulpdienstStrategy hulpdienstStrategy, String status){
+    public Vervoermiddel(String enumNaam, String naam, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
         this.enumNaam = enumNaam;
         this.naam = naam;
         this.coördinaten = coördinaten;
@@ -55,20 +55,19 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         if (!status.isEmpty()) {
 
             this.status = status;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen status ingegeven");
         }
 
     }
-    public void setEnumNaam(String enumNaam){
+
+    public void setEnumNaam(String enumNaam) {
 
         if (!enumNaam.isEmpty()) {
 
             this.enumNaam = enumNaam;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen EnumNaam ingegeven");
         }
@@ -80,8 +79,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         if (!naam.isEmpty()) {
 
             this.naam = naam;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen naam ingegeven");
         }
@@ -93,8 +91,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         if (snelheid != 0) {
 
             this.snelheid = snelheid;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen geldige snelheid ingegeven");
         }
@@ -106,8 +103,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         if (grootte != 0.0) {
 
             this.grootte = grootte;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen geldige grootte ingegeven");
         }
@@ -119,8 +115,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         if (capaciteit != 0.0) {
 
             this.capaciteit = capaciteit;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen geldige capaciteit ingegeven");
         }
@@ -132,21 +127,19 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         if (koers < 360) {
 
             this.koers = koers;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen geldige koers ingegeven");
         }
 
     }
 
-    public void setReactieTijd(double reactieTijd){
+    public void setReactieTijd(double reactieTijd) {
 
         if (reactieTijd != 0.0) {
 
             this.reactieTijd = reactieTijd;
-        }
-        else{
+        } else {
 
             throw new IllegalArgumentException("Opslaan mislukt, geen geldige reactietijd ingegeven");
         }
@@ -159,7 +152,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     }
 
-    public String getEnumNaam(){
+    public String getEnumNaam() {
 
         return this.enumNaam;
 
@@ -211,12 +204,11 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
     }
 
 
-
     //endregion
 
 
     @Override
-    public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
+    public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
         System.out.println("\nReddingsactie is geslaagd\n");
     }

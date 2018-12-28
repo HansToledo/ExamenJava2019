@@ -12,14 +12,14 @@ import calculations.Coördinaten;
 public class Zeilboot extends Schepen {
 
 
-    public Zeilboot(){
+    public Zeilboot() {
 
 
     }
 
     public Zeilboot(String enumNaam, String naam, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
 
-        super(enumNaam, naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
+        super(enumNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, hulpdienstStrategy, status);
 
     }
 

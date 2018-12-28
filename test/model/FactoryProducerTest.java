@@ -26,7 +26,6 @@ public class FactoryProducerTest {
         testFactoryProducer = FactoryProducer.getFactory(Actors.SCHIP);
         //testSchipFactory.setHulpDienst()
 
-
     }
 
     @Test
