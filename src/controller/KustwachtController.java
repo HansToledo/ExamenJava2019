@@ -186,7 +186,11 @@ public class KustwachtController {
                     inNoodStage.show();
                 }
             }
-        } catch (Exception E) {
+        }
+        catch (NullPointerException E) {
+            //Normaal wordt nullpointerexception gesmeten bij selecteren van een leeg record. Hiermee wordt de error opgevangen zonder dat de gebruiker dit merkt.
+        }
+        catch (Exception E) {
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
             System.out.println(E);
         }
