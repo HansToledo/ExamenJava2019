@@ -138,13 +138,14 @@ public class KustwachtController {
     void lstViewSchepenInNood_Clicked(MouseEvent getOnMouseClicked){
         try {
             if (!schepenInNoodList.isEmpty()) {
+                displaySchepenInNood(lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get());
+
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
                 Parent parent = fxmlLoader.load();
                 RescueController dialogFXController = fxmlLoader.getController();
 
                 Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
                 String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
-                //String geregistreerdeVerkeerstoren = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
 
                 Verkeerstoren geregistreerdeVerkeerstoren = null;
                 for (Verkeerstoren item : verkeerstorenList) {
