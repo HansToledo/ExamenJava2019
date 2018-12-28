@@ -94,7 +94,7 @@ public class KustwachtController {
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> hulpdienstenList = FXCollections.observableArrayList();
     private final ObservableList<Schepen> schepenInNoodList = FXCollections.observableArrayList();
-    private ArrayList<Stage> openWindows = new ArrayList<>();
+    private ArrayList<Stage> openWindows = new ArrayList<>();   //Houd de geopende vensters van de schepen in nood bij.
 
     public void initialize() {
         lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
