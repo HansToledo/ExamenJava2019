@@ -9,13 +9,13 @@ import java.util.ArrayList;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 11:10<br/>
- * To change this template use File | Settings | File Templates.
+ * Abstracte Actor klasse
  */
 public abstract class Actor  {
 
-    public static ArrayList<Verkeerstoren> verkeerstorens = new ArrayList<Verkeerstoren>(); //via factory komen verkeerstorens in lijst
-    public static ArrayList<Schepen> schepenOpWater = new ArrayList<Schepen>();
-    public static ArrayList<Vervoermiddel> mogelijkeHulpdiensten = new ArrayList<Vervoermiddel>();
+    public static ArrayList<Verkeerstoren> verkeerstorens = new ArrayList<Verkeerstoren>();             //via factory komen verkeerstorens in deze lijst
+    public static ArrayList<Schepen> schepenOpWater = new ArrayList<Schepen>();                   //via factory komen de schepen op water in deze lijst
+    public static ArrayList<Vervoermiddel> mogelijkeHulpdiensten = new ArrayList<Vervoermiddel>();      //via factory komen de mogelijkehulpdiensten in deze lijst
 
     private double afstand;
 

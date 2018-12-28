@@ -13,12 +13,9 @@ import java.util.List;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 13:29<br/>
- * To change this template use File | Settings | File Templates.
+ * Deze factory wordt aangestuursd via de abstracte factory producer en maakt hulpdiensten aan, verkeerstoren zijn ook hulpdiensten
  */
 public class HulpdienstFactory extends AbstractActorFactory {
-    private final DBqueries kustwachtQueries = new DBqueries();
-    IHulpdienstStrategy geenStrategy = new GeenStrategy();
-
 
     @Override
     public Vervoermiddel setHulpDienst(String enumNaam, String naam, Hulpdiensten hulpdienst, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
@@ -28,13 +25,13 @@ public class HulpdienstFactory extends AbstractActorFactory {
             case SCHEEPSVAARTPOLITIE:
 
                 ScheepsvaartPolitie scheepsvaartPolitie = new ScheepsvaartPolitie(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
-                Actor.mogelijkeHulpdiensten.add(scheepsvaartPolitie);
+                Actor.mogelijkeHulpdiensten.add(scheepsvaartPolitie); //toeveoegen aan lijst in actor klasse
                 return scheepsvaartPolitie;
 
             case SEAKING:
 
                 Seaking seaking = new Seaking(enumNaam,naam,coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
-                Actor.mogelijkeHulpdiensten.add(seaking);
+                Actor.mogelijkeHulpdiensten.add(seaking);  //toevoegen aan lijst in actor klasse
                 return seaking;
         }
         return null;
@@ -54,9 +51,9 @@ public class HulpdienstFactory extends AbstractActorFactory {
         switch (verkeersToren) {
 
             case VERKEERSTOREN:
-                Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam, naam, coördinaten, hulpdienstStrategy);
-                Actor.verkeerstorens.add(verkeerstoren);
 
+                Verkeerstoren verkeerstoren = new Verkeerstoren(enumNaam, naam, coördinaten, hulpdienstStrategy);
+                Actor.verkeerstorens.add(verkeerstoren); //toevoegen aan lijst in actor klasse
                 return verkeerstoren;
         }
         return null;

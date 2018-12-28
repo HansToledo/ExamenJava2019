@@ -19,10 +19,12 @@ public class FactoryProducerTest {
     private AbstractActorFactory testFactoryProducer;
     private SchipFactory testSchipFactory;
 
+
     @Before
     public void setUp() throws Exception {
 
         testFactoryProducer = FactoryProducer.getFactory(Actors.SCHIP);
+        //testSchipFactory.setHulpDienst()
 
 
     }
@@ -32,7 +34,7 @@ public class FactoryProducerTest {
 
 
 
-        //assertEquals(testFactoryProducer,);
+        //assertEquals(testFactoryProducer,testSchipFactory);
 
     }
 }

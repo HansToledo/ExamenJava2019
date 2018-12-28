@@ -7,7 +7,7 @@ import calculations.Coördinaten;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 11:58<br/>
- * To change this template use File | Settings | File Templates.
+ * Klasse om tanker aan te maken
  */
 public class Tanker extends Schepen {
 

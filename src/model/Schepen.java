@@ -10,11 +10,11 @@ import java.util.*;
  * User: peter<br/>
  * Date: 16/12/2018<br/>
  * Time: 19:37<br/>
- * To change this template use File | Settings | File Templates.
+ * Abstracte schepen klasse
  */
 public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
-    private ArrayList<IStatusObserver> verkeerstorens = new ArrayList<IStatusObserver>();
+    private ArrayList<IStatusObserver> verkeerstorens = new ArrayList<IStatusObserver>();  //lijst word gebruikt door statusobser, lijst met verkeerstoren. Wel telkens maar 1. Deze dichtste bij.
     private StatusVervoermiddel noodSignaal;
 
 
@@ -27,7 +27,7 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
         super(enumNaam, naam, coördinaten, snelheid, grootte, capaciteit, koers, hulpdienstStrategy, status);
 
     }
-
+//region STATUSOBSERVER
     @Override
     public void addStatusObserver(IStatusObserver statusObserver) {
 
@@ -40,7 +40,6 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
         verkeerstorens.remove(statusObserver);
     }
 
-
     @Override
     public void doNotifyStatusObservers() {
 
@@ -50,28 +49,27 @@ public abstract class Schepen extends Vervoermiddel implements IStatusSubject {
 
             IStatusObserver verkeerstoren = it.next();
             verkeerstoren.doUpdate(noodSignaal, this);
-
         }
-
-    }
-
-    public IStatusObserver getVerkeerstorenIngeschreven() {
-
-        return this.verkeerstorens.get(0);
 
     }
 
     public void setNoodSignaal(StatusVervoermiddel nieuwNoodSignaal) {
 
         this.noodSignaal = nieuwNoodSignaal;
-        super.setStatus(nieuwNoodSignaal.toString());   //status schip wordt gewijzigd in de nieuwe situatie.
+        super.setStatus(nieuwNoodSignaal.toString());
         doNotifyStatusObservers();
 
     }
+
+    //EndRegion STATUSOBSERVER
 
     public StatusVervoermiddel getNoodSignaal() {
 
         return this.noodSignaal;
     }
 
+    public IStatusObserver getVerkeerstorenIngeschreven() { //getter verkeerstoren dichtste bij voor schip
+
+        return this.verkeerstorens.get(0);
+    }
 }

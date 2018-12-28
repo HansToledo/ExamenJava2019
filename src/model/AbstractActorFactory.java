@@ -9,7 +9,7 @@ import enums.Schepen;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 10:59<br/>
- * To change this template use File | Settings | File Templates.
+ * Abstracte klasse voor factories
  */
 public abstract class AbstractActorFactory {
 

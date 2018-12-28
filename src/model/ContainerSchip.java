@@ -7,7 +7,7 @@ import calculations.Coördinaten;
  * User: peter<br/>
  * Date: 15/12/2018<br/>
  * Time: 11:59<br/>
- * To change this template use File | Settings | File Templates.
+ * Deze klasse maakt een containerschip aan
  */
 public class ContainerSchip extends Schepen {
 

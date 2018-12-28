@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * User: peter<br/>
  * Date: 16/12/2018<br/>
  * Time: 19:17<br/>
- * To change this template use File | Settings | File Templates.
+ * Abstracte klasse voor vervoermiddelen
  */
 public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
@@ -72,8 +72,7 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         return super.getAfstand();
     }
 
-
-    public double getSnelheid() { // snelheid in knopen containerschip
+    public double getSnelheid() {
 
         return this.snelheid;
     }
@@ -83,12 +82,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
         return this.reactieTijd;
     }
 
-
     public double getWendbaarheid() {
 
         return this.wendbaarheid;
     }
-
 
     public double getGrootte() {
 
@@ -96,12 +93,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     }
 
-
     public double getCapaciteit() {
 
         return this.capaciteit;
     }
-
 
     public int getKoers() {
 
@@ -157,35 +152,6 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver{
 
     @Override
     public void ontvangNoodsignaal(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam){
-
-//        int teller = 0;
-//        System.out.println("Noodsignaal ontvangen door hulpdienst (van inood observer): " + this.getNaam()+ "\n"+"Reddingsactie wordt gestart " + "\n" + "STRATEGY : " + reddingsType.Reddingstype()); //ALS TEST
-//
-//
-//        try {
-//
-//            do {
-//
-//                TimeUnit.SECONDS.sleep(1);
-//                System.out.print(+teller+1);
-//                ++teller;
-//
-//            }while(teller < 5);
-//        }
-//        catch(Exception ex){
-//
-//            throw new IllegalArgumentException("rr");
-//        }
-
-//            for (Vervoermiddel item : Actor.schepenOpWater) {
-//
-//                if (item.getNaam().equals(naam)) {
-//
-//                    item.setStatus(StatusVervoermiddel.OK.toString());
-//                }
-//
-//            }
-
 
         System.out.println("\nReddingsactie is geslaagd\n");
     }
