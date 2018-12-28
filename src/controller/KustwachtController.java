@@ -374,6 +374,7 @@ public class KustwachtController {
 
         switch (schepenNietInNood.size()) {
             case 0:
+                displayAlert(Alert.AlertType.INFORMATION, "Iedereen is al aan het verdrinken!", "Alle schepen hebben al een noodsituatie!");
                 break;
             case 1:
                 aantalRandomInNood = 1;
