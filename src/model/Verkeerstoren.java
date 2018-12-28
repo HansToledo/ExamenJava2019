@@ -3,6 +3,7 @@ package model;
 import calculations.Coördinaten;
 import calculations.SnelstTerPlaatse;
 import enums.StatusVervoermiddel;
+import org.apache.log4j.Level;
 import strategy.*;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         this.naam = naam;
         this.coördinaten = coördinaten;
         super.setHulpdienstStrategy(hulpdienstStrategy);
+        EventLogger.logger.setLevel(Level.WARN );
 
     }
 
@@ -65,9 +67,11 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void doUpdate(StatusVervoermiddel statusSchip, Schepen schipInNood) {
 
-        if (statusSchip == StatusVervoermiddel.OK) {
 
-            System.out.println("Schip ok");
+
+        if (statusSchip == StatusVervoermiddel.OK) {
+            EventLogger.logger.info("Schip ok");
+            //System.out.println("Schip ok");
 
         }
 
@@ -78,7 +82,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood, beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelheid
 
-            System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
+            EventLogger.logger.info("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
+            //System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
 
             if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
 

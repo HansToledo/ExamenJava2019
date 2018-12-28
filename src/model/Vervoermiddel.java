@@ -136,13 +136,10 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver {
 
     public void setReactieTijd(double reactieTijd) {
 
-        if (reactieTijd != 0.0) {
+
 
             this.reactieTijd = reactieTijd;
-        } else {
 
-            throw new IllegalArgumentException("Opslaan mislukt, geen geldige reactietijd ingegeven");
-        }
 
     }
 
