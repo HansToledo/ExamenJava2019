@@ -56,6 +56,7 @@ public class AddHulpdienstController {
         database.Create.addHulpdienst(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
 
         parent.getAllHulpdiensten();
+        parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
 
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }

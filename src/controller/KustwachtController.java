@@ -212,6 +212,7 @@ public class KustwachtController {
             }
 
             if (markedForDeletion == 1) {
+                txtAreaTerminal.appendText("\nVerkeerstoren " + teDeletenVerkeerstoren.getNaam() + " succesvol verwijderd.\n");
                 displayAlert(Alert.AlertType.INFORMATION, "Verkeerstoren verwijderd.", teDeletenVerkeerstoren.getNaam() + " succesvol verwijderd.");
                 getAllVerkeerstorenEntries();
             }
@@ -262,6 +263,7 @@ public class KustwachtController {
             }
 
             if (markedForDeletion == 1) {
+                txtAreaTerminal.appendText("\nSchip " + teDeletenSchip.getNaam() + " succesvol verwijderd.\n");
                 displayAlert(Alert.AlertType.INFORMATION, "Schip verwijderd.", teDeletenSchip.getNaam() + " succesvol verwijderd.");
                 getAllSchepenEntries();
                 getAllHulpdiensten();
@@ -321,6 +323,7 @@ public class KustwachtController {
             }
 
             if (markedForDeletion == 1) {
+                txtAreaTerminal.appendText("\n" + wat + " " + teDeletenHulpdienst.getNaam() + " succesvol verwijderd.\n");
                 displayAlert(Alert.AlertType.INFORMATION, wat, teDeletenHulpdienst.getNaam() + " succesvol verwijderd.");
                 getAllSchepenEntries();
                 getAllHulpdiensten();

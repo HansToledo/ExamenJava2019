@@ -60,6 +60,7 @@ public class AddSchipController {
             database.Create.addSchip(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
             parent.getAllSchepenEntries();
             parent.getAllHulpdiensten();
+            parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
         }
         catch(Exception ex){

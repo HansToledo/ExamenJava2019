@@ -45,6 +45,7 @@ public class AddVerkeerstorenController {
         database.Create.addVerkeerstoren(naam,latitude,longitude);
 
         parent.getAllVerkeerstorenEntries();
+        parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
 
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
