@@ -85,6 +85,36 @@ public class KustwachtController {
     private ArrayList<Schepen> schepenNietInNood = new ArrayList<Schepen>();
 
     @FXML
+    void btnVerkeerstorenToevoegen_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnVerkeerstorenWissen_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSchipToevoegen_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSchipWissen_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnHulpdienstToevoegen_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnHulpdienstWissen_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
 
         int teller = 0;
