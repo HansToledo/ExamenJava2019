@@ -22,8 +22,8 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         database.DBConnection.getConnection(); //connectie maken met de database
-        database.Create.addEnumHulpdienstenEnSchepenToDB();
-        database.Create.addEnumStatusVervoermiddelToDB();
+        database.Read.addEnumHulpdienstenEnSchepenToDB();
+        database.Read.addEnumStatusVervoermiddelToDB();
 
         Randomizer random = new Randomizer();
 
