@@ -104,7 +104,7 @@ public class KustwachtController {
         getAllSchepenEntries();
         getAllHulpdiensten();
 
-        for (String item : Randomizer.output) {
+        for (String item : view.Main.output) {
             txtAreaTerminal.appendText(item + "\n");
         }
 

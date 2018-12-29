@@ -1,13 +1,20 @@
 package database;
 
+import calculations.Coördinaten;
+import enums.Actors;
 import enums.Hulpdiensten;
 import enums.Schepen;
 import enums.StatusVervoermiddel;
-
+import model.*;
+import strategy.GeenStrategy;
+import java.util.ArrayList;
 import java.util.List;
+import static enums.Hulpdiensten.SCHEEPSVAARTPOLITIE;
+import static enums.Hulpdiensten.SEAKING;
 
 public class Read {
     private static final DBqueries kustwachtQueries = new DBqueries();
+    static IHulpdienstStrategy geenStrategy = new GeenStrategy();
 
     public static void addEnumHulpdienstenEnSchepenToDB() {
         //Alle mogelijke enums toevoegen aan database
@@ -54,6 +61,88 @@ public class Read {
                 enumi++;
             } else {
                 enumi++;
+            }
+        }
+    }
+
+    public static void inlezenVerkeerstorens() {
+        AbstractActorFactory actor = FactoryProducer.getFactory(Actors.HULPDIENST);
+        ArrayList<Verkeerstoren> verkeerstorens = kustwachtQueries.getAllVerkeerstorens();
+
+        for (Verkeerstoren item : verkeerstorens) {
+            String typeNaam = item.getEnumNaam();
+            String naam = item.getNaam();
+            Coördinaten coördinaten = item.getCoördinaten();
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere clients moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+            Verkeerstoren verkeerstoren = actor.setVerkeersToren(typeNaam, naam, Hulpdiensten.VERKEERSTOREN, coördinaten, strategy);
+        }
+    }
+
+    public static void inlezenSchepen() {
+        try {
+            AbstractActorFactory actor = FactoryProducer.getFactory(Actors.SCHIP);
+            ArrayList<Vervoermiddel> schepen = kustwachtQueries.getAllSchepen();
+            schepen.size();
+
+            for (Vervoermiddel item : schepen) {
+                String typeNaam = item.getEnumNaam();
+                String naam = item.getNaam();
+                Coördinaten coördinaten = item.getCoördinaten();
+                double snelheid = item.getSnelheid();
+                double grootte = item.getGrootte();
+                double capaciteit = item.getCapaciteit();
+                int koers = item.getKoers();
+                String status = item.getStatus();
+                IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere clients moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+                Vervoermiddel vervoermiddel;
+                switch (typeNaam) {
+                    case "CONTAINERSCHIP":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.CONTAINERSCHIP, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                    case "MOTORBOOT":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.MOTORBOOT, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                    case "TANKER":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.TANKER, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                    case "ZEILBOOT":
+                        vervoermiddel = actor.setSchip(typeNaam, naam, Schepen.ZEILBOOT, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
+    public static void inlezenHulpdiensten() {
+        AbstractActorFactory actor = FactoryProducer.getFactory(Actors.HULPDIENST);
+        ArrayList<Vervoermiddel> hulpdiensten = kustwachtQueries.getAllHulpdiensten();
+        hulpdiensten.size();
+
+        for (Vervoermiddel item : hulpdiensten) {
+            String typeNaam = item.getEnumNaam();
+            String naam = item.getNaam();
+            Coördinaten coördinaten = item.getCoördinaten();
+            double snelheid = item.getSnelheid();
+            double grootte = item.getGrootte();
+            double capaciteit = item.getCapaciteit();
+            int koers = item.getKoers();
+            String status = item.getStatus();
+            IHulpdienstStrategy strategy = geenStrategy;    //Default waarde. Indien we met meerdere moeten werken zal dit moeten worden weggeschreven in DB zodat iedereen de strategy kan zien.
+
+            Vervoermiddel vervoermiddel;
+            switch (typeNaam) {
+                case "SEAKING":
+                    vervoermiddel = actor.setHulpDienst(typeNaam, naam, SEAKING, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                    break;
+                case "SCHEEPSVAARTPOLITIE":
+                    vervoermiddel = actor.setHulpDienst(typeNaam, naam, SCHEEPSVAARTPOLITIE, coördinaten, snelheid, grootte, capaciteit, koers, strategy, status);
+                    break;
             }
         }
     }
