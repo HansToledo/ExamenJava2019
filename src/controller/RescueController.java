@@ -118,7 +118,7 @@ public class RescueController {
             schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
 
             ArrayList<String> output = new ArrayList<String>();
-                output.add("Reddingsactie wordt gestart!]");
+                output.add("Reddingsactie gestart voor " + schipInNood.getNaam() + "]");
                 output.add("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam + ".");
                 output.add("\nHulpdiensten onderweg: ");
                 for (Vervoermiddel item : redders) {
