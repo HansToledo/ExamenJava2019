@@ -44,66 +44,34 @@ public class RescueController {
     IHulpdienstStrategy ziekteStrategy = new ZiekteStrategy();
     IHulpdienstStrategy zinkendStrategy = new ZinkendStrategy();
 
+    private IStatusObserver vkObserver;
     private Schepen schipInNood;
-    IStatusObserver vkObserver;
-    ArrayList<Vervoermiddel> redders;
+    private ArrayList<Vervoermiddel> redders;
     private final ObservableList<String> StrategyOptions = FXCollections.observableArrayList("geenStrategy","brandStrategy","gekapseisdStrategy","piratenStrategy","stormStrategy","ziekteStrategy","zinkendStrategy");
-    String verkeerstorenNaam;
-    KustwachtController parent;
-    Verkeerstoren geregistreerdeVerkeerstoren;
-    String windowTitle;
+    private String verkeerstorenNaam;
+    private KustwachtController parent;
+    private Verkeerstoren geregistreerdeVerkeerstoren;
+    private String windowTitle;
 
     public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, Verkeerstoren geregistreerdeVerkeerstoren, Schepen schipInNood, String windowTitle){
-        cbStrategy.setItems(StrategyOptions);   // Choicebox opvullen met waarden.
-        cbStrategy.setValue("geenStrategy");
         this.redders = redders;
-        this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
         this.parent = parent;
+        this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
         this.verkeerstorenNaam = geregistreerdeVerkeerstoren.getNaam();
         this.windowTitle = windowTitle;
-
-        ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
-        try {
-            vkHulpdienstenList.setAll(redders);
-        }
-        catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
-        }
-
-        lstViewHulpdiensten.setItems(vkHulpdienstenList);
-        lblVerkeerstoren.setText(verkeerstorenNaam);
         this.schipInNood = schipInNood;
+        lblVerkeerstoren.setText(verkeerstorenNaam);
+        cbStrategy.setItems(StrategyOptions);   // Choicebox opvullen met waarden.
+        cbStrategy.setValue("geenStrategy");
 
-        // Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
-        // Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler zijn hetzelfde maar dan op andere positie gedefinieerd.
+        getRedders();
+
+        //region Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
                 (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
         );
-    }
-
-    // informatie schepen tonen in de voorziene vakken
-    private void displayHulpdiensten(Vervoermiddel vervoermiddel) {
-        try {
-            if (vervoermiddel != null) {
-                txtNaam.setText(String.valueOf(vervoermiddel.getNaam()));
-                txtGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
-                txtCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
-                txtKoers.setText(String.valueOf(vervoermiddel.getKoers()));
-                txtLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
-                txtLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
-            }
-            else {
-                txtNaam.clear();
-                txtGrootte.clear();
-                txtCapaciteit.clear();
-                txtKoers.clear();
-                txtLatitude.clear();
-                txtLongitude.clear();
-            }
-        }
-        catch (Exception E){
-            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
-        }
+        //endregion
     }
 
     @FXML
@@ -146,23 +114,24 @@ public class RescueController {
                 }
             }
 
+            geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
             schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
+
             ArrayList<String> output = new ArrayList<String>();
-            output.add("Reddingsactie wordt gestart!]");
-            output.add("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam + ".");
-            output.add("\nHulpdiensten onderweg: ");
-            for (Vervoermiddel item : redders) {
-                output.add("\nNaam: " + item.getNaam() + "Strategy: " + item.getHulpdienstStrategy().Reddingstype());
-                item.setHulpdienstStrategy(geenStrategy);
-            }
-            output.add("\n\n[Noodsituatie opgelost!");
+                output.add("Reddingsactie wordt gestart!]");
+                output.add("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam + ".");
+                output.add("\nHulpdiensten onderweg: ");
+                for (Vervoermiddel item : redders) {
+                    output.add("\nNaam: " + item.getNaam() + "\nStrategy: " + item.getHulpdienstStrategy().Reddingstype());
+                    item.setHulpdienstStrategy(geenStrategy);
+                }
+                output.add("\n\n[Noodsituatie opgelost!");
 
             parent.txtAreaTerminal.appendText("\n"+output.toString()+"\n");
 
             displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
 
-            geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
-
+            //Window uit lijst met open schermen wissen.
             for (Stage item: parent.openWindows){
                 if(item.getTitle().equals(windowTitle)){
                     parent.openWindows.remove(item);
@@ -170,13 +139,50 @@ public class RescueController {
                 }
             }
 
-
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
             parent.getAllHulpdiensten();
             parent.getAllSchepenInNood();
         }
     }
 
+    //Redders in lijst inladen.
+    public void getRedders(){
+        ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
+        try {
+            vkHulpdienstenList.setAll(redders);
+            lstViewHulpdiensten.setItems(vkHulpdienstenList);
+        }
+        catch (Exception E){
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
+        }
+    }
+
+    //Informatie schepen tonen in de voorziene vakken.
+    private void displayHulpdiensten(Vervoermiddel vervoermiddel) {
+        try {
+            if (vervoermiddel != null) {
+                txtNaam.setText(String.valueOf(vervoermiddel.getNaam()));
+                txtGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
+                txtCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtKoers.setText(String.valueOf(vervoermiddel.getKoers()));
+                txtLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
+                txtLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
+            }
+            else {
+                txtNaam.clear();
+                txtGrootte.clear();
+                txtCapaciteit.clear();
+                txtKoers.clear();
+                txtLatitude.clear();
+                txtLongitude.clear();
+            }
+        }
+        catch (Exception E){
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        }
+    }
+
+    //Voor het tonen van een messagebox met de nodige uitleg.
     private void displayAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

@@ -109,6 +109,7 @@ public class KustwachtController {
         }
 
         //region Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
         lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().addListener(
                 (observableVerkeerstorenValue, oldVerkeerstorenValue, newVerkeerstorenValue) -> {
                     displayVerkeerstoren(newVerkeerstorenValue);
@@ -117,6 +118,7 @@ public class KustwachtController {
         //endregion
 
         //region Listener gekoppeld aan de listview van de schepen zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
         lstViewSchepen.getSelectionModel().selectedItemProperty().addListener(
                 (observableSchipValue, oldSchipValue, newSchipValue) -> {
                     displaySchip(newSchipValue);
@@ -125,6 +127,7 @@ public class KustwachtController {
         //endregion
 
         //region Listener gekoppeld aan de listview van de hulpdiensten zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
                 (observableHulpdienstValue, oldHulpdienstValue, newHulpdienstValue) -> {
                     displayHulpdienst(newHulpdienstValue);
@@ -132,6 +135,7 @@ public class KustwachtController {
         );
         //endregion
     }
+
 
     @FXML
     void lstViewSchepenInNood_Clicked(MouseEvent getOnMouseClicked){
@@ -141,34 +145,23 @@ public class KustwachtController {
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/Rescue.fxml"));
                 Parent parent = fxmlLoader.load();
-                RescueController dialogFXController = fxmlLoader.getController();
+                RescueController rescueControllerFX = fxmlLoader.getController();
 
                 Schepen schipInNood = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().get();
                 String schipInNoodNaam = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getNaam();
 
-                Verkeerstoren geregistreerdeVerkeerstoren = null;
-                for (Verkeerstoren item : verkeerstorenList) {
-                    String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                    if (item.getNaam().equals(vk)) {
-                        geregistreerdeVerkeerstoren = item;
-                    }
-                }
-                ArrayList<Vervoermiddel> redders = null;
+                // Door naam verkeerstoren door te geven krijgen we het verkeerstoreobject terug.
+                Verkeerstoren geregistreerdeVerkeerstoren = getVerkeerstorenGeregistreerd(lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString());
 
-                //Doorgeven beschikbare hulpdiensten voor schip in nood, eerst kijken welke verkeerstoren en dan de redders van deze verkeerstoren opvragen.
-                for (Verkeerstoren item : verkeerstorenList) {
-                    String vk = lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString();
-                    if (item.getNaam().equals(vk)) {
-                        redders = item.Redders;
-                        break;
-                    }
-                }
+                // Door naam verkeerstoren door te geven krijgen we de beschikbare redders van deze verkeerstoren terug.
+                ArrayList<Vervoermiddel> redders = getReddersVanVerkeerstoren(lstViewSchepenInNood.getSelectionModel().selectedItemProperty().getValue().getVerkeerstorenIngeschreven().toString());
 
-
+                // Aangemaakte windows worden bijgehouden in openWindows lijst.
+                // Bij selectie op lijst wordt er gecontroleerd of dit venster al open staat zodat dit venster niet 2x open kan staan.
+                // Bij sluiten of afronden van reddingsoperatie wordt er nagegaan of deze in de lijst staan en indien nodig uit de lijst gewist.
                 Stage inNoodStage = new Stage();
                 inNoodStage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
-
-                dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood,inNoodStage.getTitle());
+                rescueControllerFX.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood,inNoodStage.getTitle());
                 boolean windowExists = false;
                 for (Stage item: openWindows){
                     if((item.getTitle().equals(inNoodStage.getTitle()))){
@@ -278,7 +271,7 @@ public class KustwachtController {
                     Actor.schepenOpWater.remove(item);
                     Actor.mogelijkeHulpdiensten.remove(item);
 
-
+                    //Controle of er een venster van dit schip openstaat, zoja, dit venster sluiten.
                     for (Stage stageItem: openWindows){
                         if(stageItem.getTitle().equals(naam + "      NOODSITUATIE: " + noodStatus)){
                             openWindows.remove(item);
@@ -333,6 +326,7 @@ public class KustwachtController {
             String wat="Hulpdienst verwijderd.";
             String naam = lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().getNaam();
             int markedForDeletion = kustwachtQueries.deleteSchip(naam); //Hulpdienst wordt gewist uit de database.
+
             Vervoermiddel teDeletenHulpdienst = null;
             for (Vervoermiddel item: hulpdienstenList){
                 if(item.getNaam().equals(naam)){
@@ -413,10 +407,8 @@ public class KustwachtController {
         getAllSchepenInNood();
     }
 
-    int teller = 0;
-
+    //Random schip selecteren uit de lijst met schepen met een gezonde status.
     public Schepen kiesRandomSchip() {
-        teller += 1;
         int index = randomGenerator.nextInt(schepenNietInNood.size());
         Schepen schip = schepenNietInNood.get(index);
         boolean schipAlGekozen = schipAlGekozen(schip);
@@ -447,7 +439,6 @@ public class KustwachtController {
         return null;
     }
 
-
     public boolean schipAlGekozen(Schepen schip) {
         for (Schepen item : schepenAlGekozen) {
             if (item.getNaam().equals(schip.getNaam())) {
@@ -457,7 +448,29 @@ public class KustwachtController {
         return false;
     }
 
-    //alle entries van de tabel met de leden van de database opvragen en invullen in de ledenlijst
+    //Doorgeven verkeerstorenobject.
+    public Verkeerstoren getVerkeerstorenGeregistreerd(String verkeerstorenNaam){
+        for (Verkeerstoren item : verkeerstorenList) {
+            if (item.getNaam().equals(verkeerstorenNaam)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    //Doorgeven beschikbare hulpdiensten van verkeerstoren.
+    public ArrayList<Vervoermiddel> getReddersVanVerkeerstoren(String verkeerstorenNaam){
+        ArrayList<Vervoermiddel> redders;
+        for (Verkeerstoren item : verkeerstorenList) {
+            if (item.getNaam().equals(verkeerstorenNaam)) {
+                redders = item.Redders;
+                return redders;
+            }
+        }
+        return null;
+    }
+
+    //alle entries van de tabel met de leden van de database opvragen en invullen in de verkeerstorenlijst
     public void getAllVerkeerstorenEntries() {
         try {
             if (!Actor.verkeerstorens.isEmpty())
@@ -538,7 +551,7 @@ public class KustwachtController {
                 txtVerkeerstorenLongitude.clear();
             }
         } catch (Exception E) {
-            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van de verkeerstoren gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
@@ -565,7 +578,7 @@ public class KustwachtController {
                 txtSchipStatus.clear();
             }
         } catch (Exception E) {
-            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van het schip zijn gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
@@ -592,7 +605,7 @@ public class KustwachtController {
                 txtHulpdienstStatus.clear();
             }
         } catch (Exception E) {
-            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van de hulpdienst zijn gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
@@ -619,10 +632,11 @@ public class KustwachtController {
                 txtNoodStatus.clear();
             }
         } catch (Exception E) {
-            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van het schip in nood zijn gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
+    //voor het tonen van een messagebox met de nodige uitleg
     private void displayAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

@@ -152,7 +152,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     @Override
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
-
         Iterator<Vervoermiddel> it = Redders.iterator();
 
         while (it.hasNext()) {
