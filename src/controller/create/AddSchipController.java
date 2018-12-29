@@ -34,8 +34,6 @@ public class AddSchipController {
     KustwachtController parent;
     String actorNaam;
 
-
-
     public void AddActorController(KustwachtController parent, String actorNaam){
         this.parent = parent;
         lblActorTitelNaam.setText(actorNaam + " toevoegen");
@@ -46,9 +44,7 @@ public class AddSchipController {
 
     @FXML
     void btnToevoegen_Clicked(ActionEvent event) {
-
         try {
-
             String naam = txtActorNaam.getText();
             double latitude = Double.parseDouble(txtActorLatitude.getText());
             double longitude = Double.parseDouble(txtActorLongitude.getText());
@@ -64,18 +60,15 @@ public class AddSchipController {
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
         }
         catch(Exception ex){
-
             displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());
         }
     }
 
     private void displayAlert(Alert.AlertType type, String title, String message) {
-
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-
     }
 }

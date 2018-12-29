@@ -14,22 +14,22 @@
          <left>
             <GridPane BorderPane.alignment="CENTER">
                <children>
+                  <Label fx:id="lblActorType" text="Type:" />
+                  <Label fx:id="lblActorNaam" text="Naam:" GridPane.rowIndex="1" />
                   <Label fx:id="lblActorSnelheid" text="Snelheid:" GridPane.rowIndex="2" />
                   <Label fx:id="lblActorGrootte" text="Grootte:" GridPane.rowIndex="3" />
                   <Label fx:id="lblActorCapaciteit" text="Capaciteit:" GridPane.rowIndex="4" />
                   <Label fx:id="lblActorKoers" text="Koers:" GridPane.rowIndex="5" />
                   <Label fx:id="lblActorLongitude" text="Longitude:" GridPane.rowIndex="6" />
                   <Label fx:id="lblActorLatitude" text="Latitude:" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="cbActorType" prefHeight="25.0" prefWidth="208.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtActorNaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="txtActorSnelheid" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="txtActorGrootte" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="txtActorCapaciteit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="txtActorKoers" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="txtActorLongitude" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <TextField fx:id="txtActorLatitude" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label fx:id="lblActorNaam" text="Naam:" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtActorNaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="lblActorType" text="Type:" />
-                  <ChoiceBox fx:id="cbActorType" prefHeight="25.0" prefWidth="208.0" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="86.0" />

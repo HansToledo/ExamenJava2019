@@ -5,10 +5,7 @@ import enums.Actors;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class AddHulpdienstController {
@@ -34,7 +31,6 @@ public class AddHulpdienstController {
     KustwachtController parent;
     String actorNaam;
 
-
     public void AddActorController(KustwachtController parent, String actorNaam){
         this.parent = parent;
         lblActorTitelNaam.setText(actorNaam + " toevoegen");
@@ -46,18 +42,31 @@ public class AddHulpdienstController {
 
     @FXML
     void btnToevoegen_Clicked(ActionEvent event) {
-        String naam = txtActorNaam.getText();
-        double latitude = Double.parseDouble(txtActorLatitude.getText());
-        double longitude = Double.parseDouble(txtActorLongitude.getText());
-        double snelheid = Double.parseDouble(txtActorSnelheid.getText());
-        double grootte = Double.parseDouble(txtActorGrootte.getText());
-        double capaciteit = Double.parseDouble(txtActorCapaciteit.getText());
-        int koers = Integer.parseInt(txtActorKoers.getText());
-        database.Create.addHulpdienst(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
+        try{
+                String naam = txtActorNaam.getText();
+            double latitude = Double.parseDouble(txtActorLatitude.getText());
+            double longitude = Double.parseDouble(txtActorLongitude.getText());
+            double snelheid = Double.parseDouble(txtActorSnelheid.getText());
+            double grootte = Double.parseDouble(txtActorGrootte.getText());
+            double capaciteit = Double.parseDouble(txtActorCapaciteit.getText());
+            int koers = Integer.parseInt(txtActorKoers.getText());
+            database.Create.addHulpdienst(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
 
-        parent.getAllHulpdiensten();
-        parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
+            parent.getAllHulpdiensten();
+            parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
 
-        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+        }
+            catch(Exception ex){
+            displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());
+        }
+    }
+
+    private void displayAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
