@@ -94,7 +94,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                 Redders.add(schipKortsteBij);
             }
         }
-        return 1;
     }
     //endregion
 
@@ -130,19 +129,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     //region NoodObserver
     @Override
-    public void addNoodObserver(INoodObserver noodObserver) {
-
-        hulpdiensten.add(noodObserver); //TODO bekijken
-
-    }
-
-    @Override
-    public void removeNoodObserver(INoodObserver noodObserver) {
-
-        hulpdiensten.remove(noodObserver); //TODO bekijken
-    }
-
-    @Override
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {
 
         Iterator<Vervoermiddel> it = Redders.iterator();
@@ -154,7 +140,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         }
 
     }
-
     //endregion
 
     @Override
