@@ -379,7 +379,7 @@ public class KustwachtController {
                 break;
             case 1:
                 aantalRandomInNood = 1;
-                nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)+1];
                 schip = schepenNietInNood.get(0);
                 schip.setNoodSignaal(nieuwNoodSignaal);
 
@@ -388,7 +388,7 @@ public class KustwachtController {
             default:
                 aantalRandomInNood = randomGenerator.nextInt((schepenNietInNood.size() / 2) + 1);
                 do {
-                    nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                    nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)+1];
                     schip = kiesRandomSchip();
                     schip.setNoodSignaal(nieuwNoodSignaal);
 
