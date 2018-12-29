@@ -575,7 +575,7 @@ public class KustwachtController {
                 txtSchipNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtSchipSnelheid.setText(String.valueOf(vervoermiddel.getSnelheid()));
                 txtSchipGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
-                txtSchipCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtSchipCapaciteit.setText(String.valueOf((int)vervoermiddel.getCapaciteit()));
                 txtSchipKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtSchipLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtSchipLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
@@ -602,7 +602,7 @@ public class KustwachtController {
                 txtHulpdienstNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtHulpdienstSnelheid.setText(String.valueOf(vervoermiddel.getSnelheid()));
                 txtHulpdienstGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
-                txtHulpdienstCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtHulpdienstCapaciteit.setText(String.valueOf((int)vervoermiddel.getCapaciteit()));
                 txtHulpdienstKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtHulpdienstLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtHulpdienstLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
@@ -629,7 +629,7 @@ public class KustwachtController {
                 txtNoodNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtNoodSnelheid.setText(String.valueOf(vervoermiddel.getSnelheid()));
                 txtNoodGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
-                txtNoodCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtNoodCapaciteit.setText(String.valueOf((int)vervoermiddel.getCapaciteit()));
                 txtNoodKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtNoodLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtNoodLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
