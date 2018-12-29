@@ -372,9 +372,9 @@ public class KustwachtController {
 
     @FXML
     void btnGenerate_Clicked(ActionEvent event){
-        model.Randomizer.generateVerkeerstores(5);
-        model.Randomizer.generateHulpdiensten(5);
-        model.Randomizer.generateSchepen(5);
+        model.Randomizer.generateVerkeerstores(15);
+        model.Randomizer.generateHulpdiensten(15);
+        model.Randomizer.generateSchepen(15);
         getAllSchepenEntries();
         getAllHulpdiensten();
         getAllVerkeerstorenEntries();

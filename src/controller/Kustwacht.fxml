@@ -256,7 +256,7 @@
                         </TextField>
                         <Label fx:id="lblVerkeerstorenNaam" text="Naam:" />
                         <Button fx:id="btnRandomNood" mnemonicParsing="false" onAction="#btnRandomNood_Clicked" prefHeight="60.0" prefWidth="95.0" text="RandomNood" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                        <Button fx:id="btnGenerate" mnemonicParsing="false" onAction="#btnGenerate_Clicked" prefHeight="60.0" prefWidth="95.0" text="Genereer 5 exemplaren van elk." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button fx:id="btnGenerate" mnemonicParsing="false" onAction="#btnGenerate_Clicked" prefHeight="60.0" prefWidth="95.0" text="Genereer 15 exemplaren van elk." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="85.0" />
