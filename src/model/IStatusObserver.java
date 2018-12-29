@@ -12,6 +12,6 @@ import enums.StatusVervoermiddel;
 
 public interface IStatusObserver {
 
-    public void doUpdate(StatusVervoermiddel statusSchip,Schepen schipInNood);
+    public int doUpdate(StatusVervoermiddel statusSchip,Schepen schipInNood);
 
 }
