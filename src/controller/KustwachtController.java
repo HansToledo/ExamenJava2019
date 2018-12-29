@@ -360,6 +360,7 @@ public class KustwachtController {
 
     @FXML
     void randomNoodButton_Clicked(ActionEvent event) {
+        txtAreaTerminal.appendText("\nRANDOM NOODKNOP GEACTIVEERD\n");
         int teller = 0;
         int aantalRandomInNood=0;
         StatusVervoermiddel nieuwNoodSignaal;
@@ -376,10 +377,10 @@ public class KustwachtController {
         switch (schepenNietInNood.size()) {
             case 0:
                 displayAlert(Alert.AlertType.INFORMATION, "Iedereen is al aan het verdrinken!", "Alle schepen hebben al een noodsituatie!");
+
+                txtAreaTerminal.appendText("\nGeen beschikbare schepen meer, alle schepen hebben al een noodsituatie!\n");
                 break;
             case 1:
-                aantalRandomInNood = 1;
-
                 nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
                 schip = schepenNietInNood.get(0);
                 schip.setNoodSignaal(nieuwNoodSignaal);
@@ -402,31 +403,30 @@ public class KustwachtController {
         getAllSchepenInNood();
     }
 
+    int teller = 0;
 
     public Schepen kiesRandomSchip() {
+        teller += 1;
         int index = randomGenerator.nextInt(schepenNietInNood.size());
         Schepen schip = schepenNietInNood.get(index);
         boolean schipAlGekozen = schipAlGekozen(schip);
 
-        if (schipAlGekozen == false) {
-
+        if (!schipAlGekozen) {
             EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
             txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
-            //System.out.println("\nRandom schip in nood gekozen " + schip.getNaam());
             schepenAlGekozen.add(schip);
             return schip;
-        } else if (schipAlGekozen == true) {
-
+        } else if (schipAlGekozen) {
             int index2;
             Schepen schip2;
             boolean schipAlGekozen2 = false;
 
             do {
                 index2 = randomGenerator.nextInt(schepenNietInNood.size());
-                schip2 = schepenNietInNood.get(index);
+                schip2 = schepenNietInNood.get(index2);
                 schipAlGekozen2 = schipAlGekozen(schip2);
 
-            } while (schipAlGekozen2 == true);
+            } while (schipAlGekozen2);
 
             EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
             txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip2.getNaam());
@@ -434,10 +434,9 @@ public class KustwachtController {
             schepenAlGekozen.add(schip2);
             return schip2;
         }
-
         return null;
-        //txtAreaTerminal.clear();
     }
+
 
     public boolean schipAlGekozen(Schepen schip) {
         for (Schepen item : schepenAlGekozen) {
