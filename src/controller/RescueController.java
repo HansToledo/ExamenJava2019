@@ -162,14 +162,14 @@ public class RescueController {
 
     //capaciteit reddingsdiensten optellen
     public void capaciteitReddingsdiensten(){
-        int capaciteit = 0;
+        int grootte = 0;
         for(Vervoermiddel item: redders){
-            capaciteit += item.getCapaciteit();
+            grootte += item.getGrootte();
         }
 
-        if (capaciteit < schipInNood.getGrootte()){
-            lblOnvoldoendeCapaciteit.setText("MERK OP: de capaciteit van de reddingsdiensten is onvoldoende!\nSchip in nood heeft "+Math.round(schipInNood.getGrootte())
-                    + " opvarenden." + " De hulpdiensten hebben slechts " + capaciteit + " plaatsen beschikbaar.");
+        if (grootte < schipInNood.getCapaciteit()){
+            lblOnvoldoendeCapaciteit.setText("MERK OP: de capaciteit van de reddingsdiensten is onvoldoende!\nSchip in nood heeft "+(int)(schipInNood.getGrootte())
+                    + " opvarenden." + " De hulpdiensten hebben slechts " + grootte + " plaatsen beschikbaar.");
         }
         else
         {
@@ -195,7 +195,7 @@ public class RescueController {
             if (vervoermiddel != null) {
                 txtNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
-                txtCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtCapaciteit.setText(String.valueOf((int)vervoermiddel.getCapaciteit()));
                 txtKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
@@ -218,7 +218,7 @@ public class RescueController {
     private void getSchipInNood() {
         try {
             txtNoodNaam.setText(String.valueOf(schipInNood.getNaam()));
-            txtNoodCapaciteit.setText(String.valueOf(schipInNood.getCapaciteit()));
+            txtNoodCapaciteit.setText(String.valueOf((int)schipInNood.getCapaciteit()));
             txtNoodKoers.setText(String.valueOf(schipInNood.getKoers()));
             txtNoodLatitude.setText(String.valueOf(schipInNood.getCoördinaten().getBreedte()));
             txtNoodLongitude.setText(String.valueOf(schipInNood.getCoördinaten().getLengte()));
