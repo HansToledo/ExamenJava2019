@@ -52,7 +52,7 @@ public class AddHulpdienstController {
             int koers = Integer.parseInt(txtActorKoers.getText());
 
             if (grootte < capaciteit){
-                displayAlert(Alert.AlertType.INFORMATION, "Controleer ingave","Grootte moet groter zijn dan de capaciteit.");
+                displayAlert(Alert.AlertType.INFORMATION, "Controleer ingave","Grootte " + grootte + " moet groter zijn dan de capaciteit " + capaciteit + ".");
             }
             else {
                 int result = database.Create.addHulpdienst(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
