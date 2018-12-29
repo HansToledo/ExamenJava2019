@@ -222,7 +222,7 @@ public class RescueController {
             txtNoodKoers.setText(String.valueOf(schipInNood.getKoers()));
             txtNoodLatitude.setText(String.valueOf(schipInNood.getCoördinaten().getBreedte()));
             txtNoodLongitude.setText(String.valueOf(schipInNood.getCoördinaten().getLengte()));
-            txtNoodStatus.setText(String.valueOf(schipInNood.getCoördinaten().getLengte()));
+            txtNoodStatus.setText(String.valueOf(schipInNood.getStatus()));
         }
         catch (Exception E){
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden bij het."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
