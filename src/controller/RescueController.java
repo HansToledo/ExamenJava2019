@@ -50,14 +50,16 @@ public class RescueController {
     String verkeerstorenNaam;
     KustwachtController parent;
     Verkeerstoren geregistreerdeVerkeerstoren;
+    String windowTitle;
 
-    public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, Verkeerstoren geregistreerdeVerkeerstoren, Schepen schipInNood){
+    public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, Verkeerstoren geregistreerdeVerkeerstoren, Schepen schipInNood, String windowTitle){
         cbStrategy.setItems(StrategyOptions);
         cbStrategy.setValue("geenStrategy");
         this.redders = redders;
         this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
         this.parent = parent;
         this.verkeerstorenNaam = geregistreerdeVerkeerstoren.getNaam();
+        this.windowTitle = windowTitle;
 
         ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
         try {
@@ -158,6 +160,14 @@ public class RescueController {
             displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
 
             geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
+
+            for (Stage item: parent.openWindows){
+                if(item.getTitle().equals(windowTitle)){
+                    parent.openWindows.remove(item);
+                    break;
+                }
+            }
+
 
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
             parent.getAllHulpdiensten();

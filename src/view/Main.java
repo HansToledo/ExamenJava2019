@@ -9,7 +9,6 @@ import model.*;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 
-
 public class Main extends Application {
 
     @Override

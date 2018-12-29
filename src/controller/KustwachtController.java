@@ -93,7 +93,7 @@ public class KustwachtController {
     private final ObservableList<Vervoermiddel> schepenList = FXCollections.observableArrayList();
     private final ObservableList<Vervoermiddel> hulpdienstenList = FXCollections.observableArrayList();
     private final ObservableList<Schepen> schepenInNoodList = FXCollections.observableArrayList();
-    private ArrayList<Stage> openWindows = new ArrayList<>();   //Houd de geopende vensters van de schepen in nood bij.
+    public ArrayList<Stage> openWindows = new ArrayList<>();   //Houd de geopende vensters van de schepen in nood bij.
 
     public void initialize() {
         lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
@@ -164,11 +164,11 @@ public class KustwachtController {
                     }
                 }
 
-                dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood);
 
                 Stage inNoodStage = new Stage();
                 inNoodStage.setTitle(schipInNoodNaam + "      NOODSITUATIE: " + schipInNood.getStatus());
 
+                dialogFXController.RescueController(KustwachtController.this, redders, geregistreerdeVerkeerstoren, schipInNood,inNoodStage.getTitle());
                 boolean windowExists = false;
                 for (Stage item: openWindows){
                     if((item.getTitle().equals(inNoodStage.getTitle()))){
@@ -379,6 +379,7 @@ public class KustwachtController {
                 break;
             case 1:
                 aantalRandomInNood = 1;
+
                 nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
                 schip = schepenNietInNood.get(0);
                 schip.setNoodSignaal(nieuwNoodSignaal);
