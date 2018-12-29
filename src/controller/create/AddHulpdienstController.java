@@ -43,19 +43,25 @@ public class AddHulpdienstController {
     @FXML
     void btnToevoegen_Clicked(ActionEvent event) {
         try{
-                String naam = txtActorNaam.getText();
+            String naam = txtActorNaam.getText();
             double latitude = Double.parseDouble(txtActorLatitude.getText());
             double longitude = Double.parseDouble(txtActorLongitude.getText());
             double snelheid = Double.parseDouble(txtActorSnelheid.getText());
             double grootte = Double.parseDouble(txtActorGrootte.getText());
             double capaciteit = Double.parseDouble(txtActorCapaciteit.getText());
             int koers = Integer.parseInt(txtActorKoers.getText());
-            database.Create.addHulpdienst(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
 
-            parent.getAllHulpdiensten();
-            parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
+            int result = database.Create.addHulpdienst(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
 
-            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            if (result == 1) {
+                parent.getAllHulpdiensten();
+                parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + " is aangemaakt.\n");
+
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            }
+            else {
+                displayAlert(Alert.AlertType.INFORMATION, "FOUT BIJ INGAVE","Er bestaat al een hulpdienst met deze naam.");
+            }
         }
             catch(Exception ex){
             displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());

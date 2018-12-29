@@ -35,12 +35,18 @@ public class AddVerkeerstorenController {
             String naam = txtActorNaam.getText();
             double latitude = Double.parseDouble(txtActorLatitude.getText());
             double longitude = Double.parseDouble(txtActorLongitude.getText());
-            database.Create.addVerkeerstoren(naam,latitude,longitude);
 
-            parent.getAllVerkeerstorenEntries();
-            parent.txtAreaTerminal.appendText("\nVerkeerstoren " + naam + "is aangemaakt.\n");
+            int result = database.Create.addVerkeerstoren(naam,latitude,longitude);
 
-            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            if (result == 1) {
+                parent.getAllVerkeerstorenEntries();
+                parent.txtAreaTerminal.appendText("\nVerkeerstoren " + naam + " is aangemaakt.\n");
+
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            }
+            else{
+                displayAlert(Alert.AlertType.INFORMATION, "FOUT BIJ INGAVE","Er bestaat al een vuurtoren met deze naam.");
+            }
         }
         catch(Exception ex){
             displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());

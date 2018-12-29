@@ -53,11 +53,18 @@ public class AddSchipController {
             double capaciteit = Double.parseDouble(txtActorCapaciteit.getText());
             int koers = Integer.parseInt(txtActorKoers.getText());
 
-            database.Create.addSchip(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
-            parent.getAllSchepenEntries();
-            parent.getAllHulpdiensten();
-            parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + "is aangemaakt.\n");
-            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            int result = database.Create.addSchip(naam, cbActorType.getValue(), latitude, longitude, snelheid, grootte, capaciteit, koers);
+
+            if (result == 1) {
+                parent.getAllSchepenEntries();
+                parent.getAllHulpdiensten();
+                parent.txtAreaTerminal.appendText("\n" + cbActorType.getValue().toString() + " " + naam + " is aangemaakt.\n");
+
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            }
+            else {
+                displayAlert(Alert.AlertType.INFORMATION, "FOUT BIJ INGAVE","Er bestaat al een schip met deze naam.");
+            }
         }
         catch(Exception ex){
             displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());

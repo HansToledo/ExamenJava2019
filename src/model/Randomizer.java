@@ -22,10 +22,7 @@ public class Randomizer {
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
     Coördinaten coördinaten;
 
-    //TODO randomizer knop voorzien in gui
-    //TODO methods voor schrijven en lezen uit randomizer klasse halen
-
-    public static double getRandomDoubleBetweenRange(double min, double max) { // gebruikt worden voor ramdom met range
+    public static double getRandomDoubleBetweenRange(double min, double max) { // gebruikt worden voor random met range
 
         double x = (Math.random() * ((max - min) + 1)) + min;
         return x;
