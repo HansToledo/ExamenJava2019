@@ -269,6 +269,7 @@ public class KustwachtController {
     void btnSchipWissen_Clicked(ActionEvent event) {
         try{
             String naam = lstViewSchepen.getSelectionModel().selectedItemProperty().getValue().getNaam();
+            String noodStatus = lstViewSchepen.getSelectionModel().selectedItemProperty().getValue().getStatus();
             int markedForDeletion = kustwachtQueries.deleteSchip(naam); //Schip wordt gewist uit de database.
             Vervoermiddel teDeletenSchip = null;
             for (Vervoermiddel item: schepenList){
@@ -276,6 +277,15 @@ public class KustwachtController {
                     teDeletenSchip = item;
                     Actor.schepenOpWater.remove(item);
                     Actor.mogelijkeHulpdiensten.remove(item);
+
+
+                    for (Stage stageItem: openWindows){
+                        if(stageItem.getTitle().equals(naam + "      NOODSITUATIE: " + noodStatus)){
+                            openWindows.remove(item);
+                            stageItem.close();
+                            break;
+                        }
+                    }
                 }
             }
 

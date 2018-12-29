@@ -43,6 +43,7 @@ public class RescueController {
     IHulpdienstStrategy stormStrategy = new StormStrategy();
     IHulpdienstStrategy ziekteStrategy = new ZiekteStrategy();
     IHulpdienstStrategy zinkendStrategy = new ZinkendStrategy();
+
     private Schepen schipInNood;
     IStatusObserver vkObserver;
     ArrayList<Vervoermiddel> redders;
@@ -53,7 +54,7 @@ public class RescueController {
     String windowTitle;
 
     public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, Verkeerstoren geregistreerdeVerkeerstoren, Schepen schipInNood, String windowTitle){
-        cbStrategy.setItems(StrategyOptions);
+        cbStrategy.setItems(StrategyOptions);   // Choicebox opvullen met waarden.
         cbStrategy.setValue("geenStrategy");
         this.redders = redders;
         this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
@@ -74,6 +75,7 @@ public class RescueController {
         this.schipInNood = schipInNood;
 
         // Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
+        // Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler zijn hetzelfde maar dan op andere positie gedefinieerd.
         lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
                 (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
         );
