@@ -18,22 +18,35 @@ import java.util.ArrayList;
 
 public class RescueController {
     @FXML private Button btnStartReddingsoperatie;
-    @FXML private TextField txtLongitude;
     @FXML private Label lblGrootte;
     @FXML private Label lblLongitude;
     @FXML private Label lblNaam;
     @FXML private Label lblStrategy;
-    @FXML private TextField txtKoers;
-    @FXML private TextField txtLatitude;
     @FXML private Label lblKoers;
+    @FXML private Label lblNoodNaam;
+    @FXML private Label lblNoodKoers;
+    @FXML private Label lblNoodLatitude;
+    @FXML private Label lblNoodLongitude;
+    @FXML private Label lblNoodCapaciteit;
+    @FXML private Label lblNoodStatus;
     @FXML private Label lblBeschikbareHulpdiensten;
     @FXML private Label lblVerkeerstoren;
     @FXML private Label lblCapaciteit;
+    @FXML private Label lblOnvoldoendeCapaciteit;
     @FXML private TextField txtNaam;
-    @FXML private ChoiceBox<String> cbStrategy;
+    @FXML private TextField txtKoers;
+    @FXML private TextField txtLatitude;
     @FXML private TextField txtCapaciteit;
     @FXML private TextField txtGrootte;
+    @FXML private TextField txtLongitude;
+    @FXML private TextField txtNoodNaam;
+    @FXML private TextField txtNoodKoers;
+    @FXML private TextField txtNoodLatitude;
+    @FXML private TextField txtNoodLongitude;
+    @FXML private TextField txtNoodCapaciteit;
+    @FXML private TextField txtNoodStatus;
     @FXML private Label lblLatitude;
+    @FXML private ChoiceBox<String> cbStrategy;
     @FXML private ListView<Vervoermiddel> lstViewHulpdiensten;
 
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
@@ -64,7 +77,9 @@ public class RescueController {
         cbStrategy.setItems(StrategyOptions);   // Choicebox opvullen met waarden.
         cbStrategy.setValue("geenStrategy");
 
+        getSchipInNood();
         getRedders();
+        capaciteitReddingsdiensten();
 
         //region Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
         //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
@@ -120,9 +135,9 @@ public class RescueController {
             ArrayList<String> output = new ArrayList<String>();
                 output.add("Reddingsactie gestart voor " + schipInNood.getNaam() + "]");
                 output.add("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam + ".");
-                output.add("\nHulpdiensten onderweg: ");
+                output.add("\nHulpdiensten onderweg naar " + schipInNood.getNaam() + ":");
                 for (Vervoermiddel item : redders) {
-                    output.add("\nNaam: " + item.getNaam() + "\nStrategy: " + item.getHulpdienstStrategy().Reddingstype());
+                    output.add("\nHulpdienst: " + item.getNaam() + "\nStrategy: " + item.getHulpdienstStrategy().Reddingstype());
                     item.setHulpdienstStrategy(geenStrategy);
                 }
                 output.add("\n\n[Noodsituatie opgelost!");
@@ -145,6 +160,23 @@ public class RescueController {
         }
     }
 
+    //capaciteit reddingsdiensten optellen
+    public void capaciteitReddingsdiensten(){
+        int grootte = 0;
+        for(Vervoermiddel item: redders){
+            grootte += (item.getGrootte()-item.getCapaciteit());
+        }
+
+        if (grootte < schipInNood.getCapaciteit()){
+            lblOnvoldoendeCapaciteit.setText("MERK OP: de capaciteit van de reddingsdiensten is onvoldoende!\nSchip in nood heeft "+(int)(schipInNood.getGrootte())
+                    + " opvarenden." + " De hulpdiensten hebben slechts " + grootte + " plaatsen beschikbaar.");
+        }
+        else
+        {
+            lblOnvoldoendeCapaciteit.setText("");
+        }
+    }
+
     //Redders in lijst inladen.
     public void getRedders(){
         ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
@@ -157,13 +189,13 @@ public class RescueController {
         }
     }
 
-    //Informatie schepen tonen in de voorziene vakken.
+    //Informatie hulpdiensten tonen in de voorziene vakken.
     private void displayHulpdiensten(Vervoermiddel vervoermiddel) {
         try {
             if (vervoermiddel != null) {
                 txtNaam.setText(String.valueOf(vervoermiddel.getNaam()));
                 txtGrootte.setText(String.valueOf(vervoermiddel.getGrootte()));
-                txtCapaciteit.setText(String.valueOf(vervoermiddel.getCapaciteit()));
+                txtCapaciteit.setText(String.valueOf((int)vervoermiddel.getCapaciteit()));
                 txtKoers.setText(String.valueOf(vervoermiddel.getKoers()));
                 txtLatitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getBreedte()));
                 txtLongitude.setText(String.valueOf(vervoermiddel.getCoördinaten().getLengte()));
@@ -179,6 +211,21 @@ public class RescueController {
         }
         catch (Exception E){
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+        }
+    }
+
+    //Informatie schip in nood tonen in de voorziene vakken.
+    private void getSchipInNood() {
+        try {
+            txtNoodNaam.setText(String.valueOf(schipInNood.getNaam()));
+            txtNoodCapaciteit.setText(String.valueOf((int)schipInNood.getCapaciteit()));
+            txtNoodKoers.setText(String.valueOf(schipInNood.getKoers()));
+            txtNoodLatitude.setText(String.valueOf(schipInNood.getCoördinaten().getBreedte()));
+            txtNoodLongitude.setText(String.valueOf(schipInNood.getCoördinaten().getLengte()));
+            txtNoodStatus.setText(String.valueOf(schipInNood.getStatus()));
+        }
+        catch (Exception E){
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden bij het."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
         }
     }
 
