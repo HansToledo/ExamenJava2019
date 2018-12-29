@@ -11,12 +11,12 @@ import java.util.Random;
 
 public class Randomizer {
     private static Random random = new Random();
-    private final DBqueries kustwachtQueries = new DBqueries();
-    IHulpdienstStrategy geenStrategy = new GeenStrategy();
-    Coördinaten coördinaten;
+    private static final DBqueries kustwachtQueries = new DBqueries();
+    static IHulpdienstStrategy geenStrategy = new GeenStrategy();
+    static Coördinaten coördinaten;
 
 
-    public String naamAddon() {
+    public static String naamAddon() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuffer randomNaam = new StringBuffer();
         randomNaam.append("-");
@@ -31,7 +31,7 @@ public class Randomizer {
     }
 
 
-    public void generateVerkeerstores(int aantal) {
+    public static void generateVerkeerstores(int aantal) {
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
@@ -59,7 +59,7 @@ public class Randomizer {
         } while (teller < aantal);
     }
 
-    public void generateHulpdiensten(int aantal) {
+    public static void generateHulpdiensten(int aantal) {
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.HULPDIENST);
 
@@ -93,7 +93,7 @@ public class Randomizer {
     }
 
 
-    public void generateSchepen(int aantal) {
+    public static void generateSchepen(int aantal) {
         int teller = 0;
         AbstractActorFactory random = FactoryProducer.getFactory(Actors.SCHIP);
 
@@ -128,7 +128,7 @@ public class Randomizer {
         } while (teller < aantal);
     }
 
-    private double getSnelheid(String type){
+    private static double getSnelheid(String type){
         switch (type) {
             case "SEAKING":
                 return Math.floor(Math.random()*((180-120)+1))+120;
@@ -146,7 +146,7 @@ public class Randomizer {
         return 0.0;
     }
 
-    private double getCapaciteit(String type){
+    private static double getCapaciteit(String type){
         switch (type) {
             case "SEAKING":
                 return Math.floor(Math.random()*((20-10)+1))+10;
@@ -164,7 +164,7 @@ public class Randomizer {
         return 0.0;
     }
 
-    private double getGrootte(String type, double Capaciteit){
+    private static double getGrootte(String type, double Capaciteit){
         switch(type){
             case "SEAKING":
                 return Math.floor(Math.random()*((20-Capaciteit)+1))+Capaciteit;
@@ -182,7 +182,7 @@ public class Randomizer {
         return 0.0;
     }
 
-    private int getKoers(){
+    private static int getKoers(){
 
         return (int)((Math.random() * ((359 - 1) + 1)) + 1);
 

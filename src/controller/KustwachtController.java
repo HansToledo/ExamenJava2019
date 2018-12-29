@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class KustwachtController {
-    @FXML private Button randomNoodButton;
+    @FXML private Button btnRandomNood;
+    @FXML private Button btnGenerate;
     @FXML private TextField txtNoodNaam;
     @FXML private TextField txtNoodStatus;
     @FXML private TextField txtNoodLongitude;
@@ -370,7 +371,17 @@ public class KustwachtController {
     }
 
     @FXML
-    void randomNoodButton_Clicked(ActionEvent event) {
+    void btnGenerate_Clicked(ActionEvent event){
+        model.Randomizer.generateVerkeerstores(5);
+        model.Randomizer.generateHulpdiensten(5);
+        model.Randomizer.generateSchepen(5);
+        getAllSchepenEntries();
+        getAllHulpdiensten();
+        getAllVerkeerstorenEntries();
+    }
+
+    @FXML
+    void btnRandomNood_Clicked(ActionEvent event) {
         txtAreaTerminal.appendText("\nRANDOM NOODKNOP GEACTIVEERD\n");
         int teller = 0;
         int aantalRandomInNood=0;

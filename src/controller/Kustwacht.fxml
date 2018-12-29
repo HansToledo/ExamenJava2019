@@ -255,17 +255,19 @@
                            </GridPane.margin>
                         </TextField>
                         <Label fx:id="lblVerkeerstorenNaam" text="Naam:" />
-                        <Button fx:id="randomNoodButton" mnemonicParsing="false" onAction="#randomNoodButton_Clicked" prefHeight="94.0" prefWidth="91.0" text="RandomNood" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button fx:id="btnRandomNood" mnemonicParsing="false" onAction="#btnRandomNood_Clicked" prefHeight="60.0" prefWidth="95.0" text="RandomNood" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+                        <Button fx:id="btnGenerate" mnemonicParsing="false" onAction="#btnGenerate_Clicked" prefHeight="60.0" prefWidth="95.0" text="Genereer 5 exemplaren van elk." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="85.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="209.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
                   <ListView fx:id="lstViewSchepenInNood" maxHeight="1.7976931348623157E308" maxWidth="200.0" onMouseClicked="#lstViewSchepenInNood_Clicked" prefHeight="357.0" prefWidth="200.0" GridPane.columnIndex="1">
