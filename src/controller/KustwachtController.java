@@ -211,23 +211,27 @@ public class KustwachtController {
     @FXML
     void btnVerkeerstorenWissen_Clicked(ActionEvent event) {
         try{
-            String naam = lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().getValue().getNaam();
-            int markedForDeletion = kustwachtQueries.deleteVerkeerstoren(naam); //Verkeerstoren wordt gewist uit de database.
-            Verkeerstoren teDeletenVerkeerstoren = null;
-            for (Verkeerstoren item: verkeerstorenList){
-                if(item.getNaam().equals(naam)){
-                    teDeletenVerkeerstoren = item;
-                    Actor.verkeerstorens.remove(item);
-                }
-            }
-
-            if (markedForDeletion == 1) {
-                txtAreaTerminal.appendText("\nVerkeerstoren " + teDeletenVerkeerstoren.getNaam() + " succesvol verwijderd.\n");
-                displayAlert(Alert.AlertType.INFORMATION, "Verkeerstoren verwijderd.", teDeletenVerkeerstoren.getNaam() + " succesvol verwijderd.");
-                getAllVerkeerstorenEntries();
+            if (!lstViewSchepenInNood.getItems().isEmpty()){
+                displayAlert(Alert.AlertType.WARNING, "LOPENDE REDDINGSOPERATIES", "Momenteel niet mogelijk wegens lopende reddinsoperaties.");
             }
             else {
-                displayAlert(Alert.AlertType.ERROR, "Error bij verwijderen.", "De te verwijderen verkeerstoren werd niet gevonden.");
+                String naam = lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().getValue().getNaam();
+                int markedForDeletion = kustwachtQueries.deleteVerkeerstoren(naam); //Verkeerstoren wordt gewist uit de database.
+                Verkeerstoren teDeletenVerkeerstoren = null;
+                for (Verkeerstoren item : verkeerstorenList) {
+                    if (item.getNaam().equals(naam)) {
+                        teDeletenVerkeerstoren = item;
+                        Actor.verkeerstorens.remove(item);
+                    }
+                }
+
+                if (markedForDeletion == 1) {
+                    txtAreaTerminal.appendText("\nVerkeerstoren " + teDeletenVerkeerstoren.getNaam() + " succesvol verwijderd.\n");
+                    displayAlert(Alert.AlertType.INFORMATION, "Verkeerstoren verwijderd.", teDeletenVerkeerstoren.getNaam() + " succesvol verwijderd.");
+                    getAllVerkeerstorenEntries();
+                } else {
+                    displayAlert(Alert.AlertType.ERROR, "Error bij verwijderen.", "De te verwijderen verkeerstoren werd niet gevonden.");
+                }
             }
         }
         catch (NullPointerException E) {
@@ -241,7 +245,6 @@ public class KustwachtController {
     @FXML
     void btnSchipToevoegen_Clicked(ActionEvent event) {
         try {
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/controller/create/AddSchip.fxml"));
             Parent parent = fxmlLoader.load();
             AddSchipController addSchipController = fxmlLoader.getController();
@@ -323,35 +326,39 @@ public class KustwachtController {
     @FXML
     void btnHulpdienstWissen_Clicked(ActionEvent event) {
         try{
-            String wat="Hulpdienst verwijderd.";
-            String naam = lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().getNaam();
-            int markedForDeletion = kustwachtQueries.deleteSchip(naam); //Hulpdienst wordt gewist uit de database.
+            if (!lstViewSchepenInNood.getItems().isEmpty()){
+                displayAlert(Alert.AlertType.WARNING, "LOPENDE REDDINGSOPERATIES", "Momenteel niet mogelijk wegens lopende reddinsoperaties.");
+            }
+            else {
+                String wat = "Hulpdienst verwijderd.";
+                String naam = lstViewHulpdiensten.getSelectionModel().selectedItemProperty().getValue().getNaam();
+                int markedForDeletion = kustwachtQueries.deleteSchip(naam); //Hulpdienst wordt gewist uit de database.
 
-            Vervoermiddel teDeletenHulpdienst = null;
-            for (Vervoermiddel item: hulpdienstenList){
-                if(item.getNaam().equals(naam)){
-                    teDeletenHulpdienst = item;
-                    Actor.mogelijkeHulpdiensten.remove(item);
+                Vervoermiddel teDeletenHulpdienst = null;
+                for (Vervoermiddel item : hulpdienstenList) {
+                    if (item.getNaam().equals(naam)) {
+                        teDeletenHulpdienst = item;
+                        Actor.mogelijkeHulpdiensten.remove(item);
 
-                    for (enums.Schepen itemEnum: enums.Schepen.values()){
-                        if(itemEnum.toString().equals(item.getEnumNaam())){
-                            Actor.schepenOpWater.remove(item);
-                            wat = "Hulpdienst en schip verwijderd.";
-                            break;
+                        for (enums.Schepen itemEnum : enums.Schepen.values()) {
+                            if (itemEnum.toString().equals(item.getEnumNaam())) {
+                                Actor.schepenOpWater.remove(item);
+                                wat = "Hulpdienst en schip verwijderd.";
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            if (markedForDeletion == 1) {
-                txtAreaTerminal.appendText("\n" + wat + " " + teDeletenHulpdienst.getNaam() + " succesvol verwijderd.\n");
-                displayAlert(Alert.AlertType.INFORMATION, wat, teDeletenHulpdienst.getNaam() + " succesvol verwijderd.");
-                getAllSchepenEntries();
-                getAllHulpdiensten();
-                getAllSchepenInNood();
-            }
-            else {
-                displayAlert(Alert.AlertType.ERROR, "Error bij verwijderen.", "De te verwijderen hulpdienst werd niet gevonden.");
+                if (markedForDeletion == 1) {
+                    txtAreaTerminal.appendText("\n" + wat + " " + teDeletenHulpdienst.getNaam() + " succesvol verwijderd.\n");
+                    displayAlert(Alert.AlertType.INFORMATION, wat, teDeletenHulpdienst.getNaam() + " succesvol verwijderd.");
+                    getAllSchepenEntries();
+                    getAllHulpdiensten();
+                    getAllSchepenInNood();
+                } else {
+                    displayAlert(Alert.AlertType.ERROR, "Error bij verwijderen.", "De te verwijderen hulpdienst werd niet gevonden.");
+                }
             }
         }
         catch (NullPointerException E) {
