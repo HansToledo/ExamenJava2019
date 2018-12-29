@@ -392,11 +392,17 @@ public class KustwachtController {
                 txtAreaTerminal.appendText("\nGeen beschikbare schepen meer, alle schepen hebben al een noodsituatie!\n");
                 break;
             case 1:
-                nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
                 schip = schepenNietInNood.get(0);
-                schip.setNoodSignaal(nieuwNoodSignaal);
-
-                txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                if (hulpdienstenList.isEmpty() || (hulpdienstenList.size()==1 && (hulpdienstenList.get(0).getNaam()==schip.getNaam()))){
+                    txtAreaTerminal.appendText("Randomnood niet uitgevoerd. Er zijn geen beschikbare reddingsdiensten.");
+                    displayAlert(Alert.AlertType.ERROR, "ERROR", "Randomnood niet uitgevoerd. Er zijn geen beschikbare reddingsdiensten.");
+                }
+                else {
+                    nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                    schip.setNoodSignaal(nieuwNoodSignaal);
+                    txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                    break;
+                }
                 break;
             default:
                 aantalRandomInNood = randomGenerator.nextInt((schepenNietInNood.size() / 2) + 1);
