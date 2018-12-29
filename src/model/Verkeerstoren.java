@@ -104,7 +104,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     //endregion
 
     //TODO later eventueel observable list actor voor schrijven naar database??
-    //TODO grootte is ook een propertei rekening mee houden voor capaciteit
     //TODO melding indien niet genoeg capaciteit
     //TODO exceptions voorzien
 
