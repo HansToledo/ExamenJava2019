@@ -34,31 +34,64 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     public Verkeerstoren(String enumNaam, String naam, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
-        this.coördinaten = coördinaten;
-        this.enumNaam = enumNaam;
-        this.naam = naam;
-        this.coördinaten = coördinaten;
+        //this.coördinaten = coördinaten;
+        setCoördinaten(coördinaten);
+        //this.enumNaam = enumNaam;
+        setEnumNaam(enumNaam);
+        //this.naam = naam;
+        setNaam(naam);
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
+    public void setNaam(String naam) {
+
+        if (!naam.isEmpty()) {
+
+            this.naam = naam;
+        } else {
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen naam ingegeven");
+        }
+
+    }
+
     public String getNaam() {
+
         return naam;
     }
 
-    public void setNaam(String naam) {
-        this.naam = naam;
-    }
+    public void setCoördinaten(Coördinaten coördinaten) {
 
-    public String getEnumNaam() {
-        return enumNaam;
-    }
+        if (coördinaten.getBreedte() < 90 && coördinaten.getBreedte() > -90 && coördinaten.getLengte() < 180 && coördinaten.getLengte() > -180) {
 
-    public void setEnumNaam(String enumNaam) {
-        this.enumNaam = enumNaam;
+            this.coördinaten = coördinaten;
+
+        } else {
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige coordinaten ingegeven limieten zijn voor latitude -90/90 en voor longitude -180/180");
+        }
     }
 
     public Coördinaten getCoördinaten() {
+
         return coördinaten;
+    }
+
+    public void setEnumNaam(String enumNaam) {
+
+        if (!enumNaam.isEmpty()) {
+
+            this.enumNaam = enumNaam;
+        } else {
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen EnumNaam ingegeven");
+        }
+
+    }
+
+    public String getEnumNaam() {
+
+        return enumNaam;
     }
 
 
@@ -85,7 +118,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                 int i = 0;
 
                 while (totaleGrootte < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
-                    totaleGrootte += (vervoermiddelKortstebij.get(i).getGrootte()-vervoermiddelKortstebij.get(i).getCapaciteit());
+                    totaleGrootte += (vervoermiddelKortstebij.get(i).getGrootte() - vervoermiddelKortstebij.get(i).getCapaciteit());
                     Redders.add(vervoermiddelKortstebij.get(i));
                     ++i;
                 }
@@ -97,9 +130,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
     //endregion
 
-    //TODO later eventueel observable list actor voor schrijven naar database??
-    //TODO grootte is ook een propertei rekening mee houden voor capaciteit
-    //TODO melding indien niet genoeg capaciteit
     //TODO exceptions voorzien
 
     public boolean zoekBeschikbareHulpdienst(String naam) {            //controle van beschikbare hulpdiensten volgens status

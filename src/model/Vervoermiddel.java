@@ -32,23 +32,25 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver {
     }
 
     public Vervoermiddel(String enumNaam, String naam, Coördinaten coördinaten, double snelheid, double grootte, double capaciteit, int koers, IHulpdienstStrategy hulpdienstStrategy, String status) {
-        this.enumNaam = enumNaam;
-        this.naam = naam;
-        this.coördinaten = coördinaten;
-        this.snelheid = snelheid;
-        this.grootte = grootte;
-        //setGrootte(grootte);
-        this.capaciteit = capaciteit;
-        this.koers = koers;
-        //setKoers(koers);
+
         this.status = status;
+        this.enumNaam = enumNaam;
+        //this.naam = naam;
+        setNaam(naam);
+        //this.snelheid = snelheid;
+        setSnelheid(snelheid);
+        //this.grootte = grootte;
+        setGrootte(grootte);
+        //this.capaciteit = capaciteit;
+        setCapaciteit(capaciteit);
+        //this.koers = koers;
+        setKoers(koers);
+        //this.coördinaten = coördinaten;
+        setCoördinaten(coördinaten);
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
 
-    //TODO algemeen limieten instellen op setters ook controle op double
-
     //region Getters & Setters
-
 
     public void setStatus(String status) {
 
@@ -129,14 +131,34 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver {
             this.koers = koers;
         } else {
 
-            throw new IllegalArgumentException("Opslaan mislukt, geen geldige koers ingegeven");
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige koers ingegeven getal moet kleiner zijn dan 360 graden");
         }
 
     }
 
     public void setReactieTijd(double reactieTijd) {
 
+        if (capaciteit != 0.0) {
+
             this.reactieTijd = reactieTijd;
+
+        } else {
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige capaciteit ingegeven");
+        }
+    }
+
+    public void setCoördinaten(Coördinaten coördinaten) {
+
+        if (coördinaten.getBreedte()<90 && coördinaten.getBreedte()>-90 && coördinaten.getLengte()<180 && coördinaten.getLengte()>-180){
+
+            this.coördinaten = coördinaten;
+
+        }else {
+
+            throw new IllegalArgumentException("Opslaan mislukt, geen geldige coordinaten ingegeven limieten zijn voor latitude -90/90 en voor longitude -180/180");
+        }
+
     }
 
     public String getStatus() {
