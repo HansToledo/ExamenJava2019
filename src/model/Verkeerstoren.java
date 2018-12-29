@@ -79,13 +79,13 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
             EventLogger.logger.info(String.format("Schip in nood (signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip));
             //System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
-            if (vervoermiddelKortstebij.get(0).getGrootte() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
+            if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
 
-                int totaleGrootte = 0;
+                int totaleCapaciteit = 0;
                 int i = 0;
 
-                while (totaleGrootte < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
-                    totaleGrootte += vervoermiddelKortstebij.get(i).getGrootte();
+                while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
+                    totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     Redders.add(vervoermiddelKortstebij.get(i));
                     ++i;
                 }
