@@ -68,11 +68,11 @@ public class Randomizer {
             Hulpdiensten hulpdienst = Hulpdiensten.values()[(int) (Math.random() * (Hulpdiensten.values().length) - 1)]; //random enum hulpdienst genereren, -1 omdat verkeerstoren niet geselecteerd mag worden doordat deze de parameters zoals snelheid enzo niet heeft.
             String randomNaam = hulpdienst.toString() + naamAddon();
             boolean alreadyExists = false;
+            double capaciteit = getCapaciteit(hulpdienst.toString());
 
             Vervoermiddel vervoermiddel = random.setHulpDienst(hulpdienst.toString(), randomNaam, hulpdienst, coördinaten,
-                    getSnelheid(hulpdienst.toString()), Math.round(100 + Math.random() * 100),
-                    getCapaciteit(hulpdienst.toString()), getKoers(),
-                    geenStrategy, StatusVervoermiddel.OK.toString());
+                    getSnelheid(hulpdienst.toString()), getGrootte(hulpdienst.toString(),capaciteit),
+                    capaciteit, getKoers(), geenStrategy, StatusVervoermiddel.OK.toString());
 
             //Actor toevoegen aan database
             for (Vervoermiddel item: kustwachtQueries.getAllHulpdiensten() ) {
@@ -102,11 +102,12 @@ public class Randomizer {
             Schepen schip = Schepen.values()[(int) (Math.random() * Schepen.values().length)]; //random enum schip genereren
             String randomNaam = schip.toString() + naamAddon();
             boolean alreadyExists = false;
+            double capaciteit = getCapaciteit(schip.toString());
+
 
             Vervoermiddel vervoermiddel = random.setSchip(schip.toString(), randomNaam, schip, coördinaten,
-                    getSnelheid(schip.toString()), Math.round(100 + Math.random() * 100),
-                    getCapaciteit(schip.toString()), getKoers(),
-                    geenStrategy, StatusVervoermiddel.OK.toString());
+                    getSnelheid(schip.toString()), getGrootte(schip.toString(),capaciteit),
+                    capaciteit, getKoers(), geenStrategy, StatusVervoermiddel.OK.toString());
 
             //Actoren toevoegen aan database
             for (Vervoermiddel item: kustwachtQueries.getAllSchepen() ) {
@@ -128,9 +129,7 @@ public class Randomizer {
     }
 
     private double getSnelheid(String type){
-
         switch (type) {
-
             case "SEAKING":
                 return Math.floor(Math.random()*((180-120)+1))+120;
             case "SCHEEPSVAARTPOLITIE":
@@ -143,16 +142,12 @@ public class Randomizer {
                 return Math.floor(Math.random()*((25-10)+1))+10;
             case "ZEILBOOT":
                 return Math.floor(Math.random()*((50-20)+1))+20;
-
         }
-
         return 0.0;
     }
 
     private double getCapaciteit(String type){
-
         switch (type) {
-
             case "SEAKING":
                 return Math.floor(Math.random()*((20-10)+1))+10;
             case "SCHEEPSVAARTPOLITIE":
@@ -166,7 +161,24 @@ public class Randomizer {
             case "ZEILBOOT":
                 return Math.floor(Math.random()*((10-5)+1))+5;
         }
+        return 0.0;
+    }
 
+    private double getGrootte(String type, double Capaciteit){
+        switch(type){
+            case "SEAKING":
+                return Math.floor(Math.random()*((20-Capaciteit)+1))+Capaciteit;
+            case "SCHEEPSVAARTPOLITIE":
+                return Math.floor(Math.random()*((40-Capaciteit)+1))+Capaciteit;
+            case "CONTAINERSCHIP":
+                return Math.floor(Math.random()*((200-Capaciteit)+1))+Capaciteit;
+            case "MOTORBOOT":
+                return Math.floor(Math.random()*((15-Capaciteit)+1))+Capaciteit;
+            case "TANKER":
+                return Math.floor(Math.random()*((400-Capaciteit)+1))+Capaciteit;
+            case "ZEILBOOT":
+                return Math.floor(Math.random()*((10-Capaciteit)+1))+Capaciteit;
+        }
         return 0.0;
     }
 
