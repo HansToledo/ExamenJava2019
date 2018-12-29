@@ -37,9 +37,9 @@ public class Main extends Application {
 
         Randomizer random = new Randomizer();
 
-//        random.generateVerkeerstores(5);
-//        random.generateHulpdiensten(5);
-//        random.generateSchepen(5);
+//        random.generateVerkeerstores(100);
+//        random.generateHulpdiensten(100);
+//        random.generateSchepen(100);
 
         database.Read.inlezenVerkeerstorens();
         database.Read.inlezenSchepen();

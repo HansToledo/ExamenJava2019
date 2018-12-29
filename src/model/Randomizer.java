@@ -171,7 +171,8 @@ public class Randomizer {
     }
 
     private int getKoers(){
-        Random r = new Random();
-        return r.nextInt(((359 - 1) + 1) + 1);
+
+        return (int)((Math.random() * ((359 - 1) + 1)) + 1);
+
     }
 }
