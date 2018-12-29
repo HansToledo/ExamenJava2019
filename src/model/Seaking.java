@@ -23,5 +23,10 @@ public class Seaking extends Vervoermiddel {
 
     }
 
+    @Override
+    public double getWendbaarheid() {
+
+        return (Math.random() * ((0.5 - 0.1) + 1)) + 0.1;
+    }
 
 }

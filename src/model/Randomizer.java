@@ -15,11 +15,6 @@ public class Randomizer {
     IHulpdienstStrategy geenStrategy = new GeenStrategy();
     Coördinaten coördinaten;
 
-    public static double getRandomDoubleBetweenRange(double min, double max) { //worden gebruikt voor random met range
-
-        double x = (Math.random() * ((max - min) + 1)) + min;
-        return x;
-    }
 
     public String naamAddon() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

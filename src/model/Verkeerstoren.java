@@ -103,9 +103,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
     //endregion
 
-    //TODO tijden omrekenen naar minuten
     //TODO later eventueel observable list actor voor schrijven naar database??
-    //TODO add + remove observer
     //TODO grootte is ook een propertei rekening mee houden voor capaciteit
     //TODO melding indien niet genoeg capaciteit
     //TODO exceptions voorzien
@@ -136,18 +134,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
     //region NoodObserver
-    @Override
-    public void addNoodObserver(INoodObserver noodObserver) {
 
-        hulpdiensten.add(noodObserver); //TODO bekijken
-
-    }
-
-    @Override
-    public void removeNoodObserver(INoodObserver noodObserver) {
-
-        hulpdiensten.remove(noodObserver); //TODO bekijken
-    }
 
     @Override
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten, String naam) {

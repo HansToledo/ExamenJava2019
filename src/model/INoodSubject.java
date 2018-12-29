@@ -11,8 +11,6 @@ import calculations.Coördinaten;
  */
 public interface INoodSubject {
 
-    public void addNoodObserver(INoodObserver noodObserver);
-    public void removeNoodObserver(INoodObserver noodObserver);
     public void doNotifyNoodObserver(IHulpdienstStrategy reddingsType, Coördinaten coördinaten,String naam);
 
 }
