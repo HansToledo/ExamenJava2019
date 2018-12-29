@@ -164,7 +164,7 @@ public class RescueController {
     public void capaciteitReddingsdiensten(){
         int grootte = 0;
         for(Vervoermiddel item: redders){
-            grootte += item.getGrootte();
+            grootte += (item.getGrootte()-item.getCapaciteit());
         }
 
         if (grootte < schipInNood.getCapaciteit()){
