@@ -21,5 +21,11 @@ public class ContainerSchip extends Schepen {
 
     }
 
+    @Override
+    public double getWendbaarheid() {
+
+        return (Math.random() * ((30 - 10) + 1)) + 10;
+    }
+
 
 }

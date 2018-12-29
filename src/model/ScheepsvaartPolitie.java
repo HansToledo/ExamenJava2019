@@ -19,4 +19,9 @@ public class ScheepsvaartPolitie extends Vervoermiddel {
         super(enumNaam, naam, coördinaten,snelheid,grootte,capaciteit,koers,hulpdienstStrategy,status);
     }
 
+    @Override
+    public double getWendbaarheid() {
+
+        return (Math.random() * ((3 - 1) + 1)) + 1;
+    }
 }

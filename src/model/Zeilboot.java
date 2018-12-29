@@ -23,4 +23,12 @@ public class Zeilboot extends Schepen {
 
     }
 
+    @Override
+    public double getWendbaarheid() {
+
+        return ((Math.random() * ((3 - 1) + 1)) + 1);
+    }
+
+
+
 }

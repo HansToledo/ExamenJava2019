@@ -62,19 +62,16 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
 
 
-//region StatusObserver
-
+    //region StatusObserver
     @Override
     public void doUpdate(StatusVervoermiddel statusSchip, Schepen schipInNood) {
 
         if (statusSchip == StatusVervoermiddel.OK) {
             EventLogger.logger.info(String.format("Schip ok"));
             //System.out.println("Schip ok");
-
         }
 
         if (statusSchip != StatusVervoermiddel.OK) {
-
             SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse(); //klasse voor berekenen van afstand en snelheid gesorteerd volgens reactiesnelheid
             Redders.clear();
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
@@ -88,7 +85,6 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                 int i = 0;
 
                 while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
-
                     totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     Redders.add(vervoermiddelKortstebij.get(i));
                     ++i;
@@ -98,17 +94,14 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
                 Redders.add(schipKortsteBij);
             }
         }
-
-        //TODO tijden omrekenen naar minuten
-        //TODO later eventueel observable list actor voor schrijven naar database??
-        //TODO add + remove observer
-        //TODO grootte is ook een propertei rekening mee houden voor capaciteit
-        //TODO melding indien niet genoeg capaciteit
-        //TODO exceptions voorzien
-        
+        return 1;
     }
-
     //endregion
+
+    //TODO later eventueel observable list actor voor schrijven naar database??
+    //TODO grootte is ook een propertei rekening mee houden voor capaciteit
+    //TODO melding indien niet genoeg capaciteit
+    //TODO exceptions voorzien
 
     public boolean zoekBeschikbareHulpdienst(String naam) {            //controle van beschikbare hulpdiensten volgens status
 

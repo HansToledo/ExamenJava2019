@@ -12,7 +12,6 @@ import calculations.Coördinaten;
 public class Tanker extends Schepen {
 
 
-
     public Tanker(){
 
     }
@@ -23,6 +22,10 @@ public class Tanker extends Schepen {
 
     }
 
+    @Override
+    public double getWendbaarheid() {
 
+        return (Math.random() * ((20 - 10) + 1)) + 10;
+    }
 
 }
