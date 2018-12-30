@@ -153,11 +153,11 @@ public class Randomizer {
             case "SCHEEPSVAARTPOLITIE":
                 return Math.floor(Math.random()*((40-20)+1))+20;
             case "CONTAINERSCHIP":
-                return Math.floor(Math.random()*((60-30)+1))+30;
+                return Math.floor(Math.random()*((100-30)+1))+30;
             case "MOTORBOOT":
                 return Math.floor(Math.random()*((15-5)+1))+5;
             case "TANKER":
-                return Math.floor(Math.random()*((50-30)+1))+30;
+                return Math.floor(Math.random()*((100-30)+1))+30;
             case "ZEILBOOT":
                 return Math.floor(Math.random()*((10-5)+1))+5;
         }
