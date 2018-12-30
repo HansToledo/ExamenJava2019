@@ -46,24 +46,18 @@ public class DBqueries {
             dbConnection = database.DBConnection.getConnection();
 
             deleteVerkeerstoren = dbConnection.prepareStatement(
-                    "DELETE verkeerstorens\n" +
-                            "FROM verkeerstorens \n" +
-                            "join actoren on (verkeerstorens.ActorID = actoren.ActorID)\n" +
-                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
-                            "WHERE actoren.naam=?;");
+                    "DELETE actoren\n" +
+                            "FROM actoren\n" +
+                            "WHERE actoren.naam=?");
 
             deleteHulpdienst = dbConnection.prepareStatement(
-                    "DELETE vervoermiddel\n" +
-                            "FROM vervoermiddel \n" +
-                            "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
-                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                    "DELETE actoren\n" +
+                            "FROM actoren\n" +
                             "WHERE actoren.naam=?");
 
             deleteSchip = dbConnection.prepareStatement(
-                    "DELETE vervoermiddel\n" +
-                            "FROM vervoermiddel \n" +
-                            "join actoren on (vervoermiddel.ActorID = actoren.ActorID)\n" +
-                            "join type_actor on (type_actor.EnumID = actoren.EnumID)\n" +
+                    "DELETE actoren\n" +
+                            "FROM actoren\n" +
                             "WHERE actoren.naam=?");
 
             getAllVerkeerstorens = dbConnection.prepareStatement(

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import model.*;
 import model.Schepen;
+import view.Main;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -378,6 +380,11 @@ public class KustwachtController {
         getAllSchepenEntries();
         getAllHulpdiensten();
         getAllVerkeerstorenEntries();
+        Main.printAllActors();
+
+        for (String item : view.Main.output) {
+            txtAreaTerminal.appendText(item + "\n");
+        }
     }
 
     @FXML
