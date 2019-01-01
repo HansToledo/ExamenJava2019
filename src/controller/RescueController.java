@@ -162,14 +162,14 @@ public class RescueController {
 
     //capaciteit reddingsdiensten optellen
     public void capaciteitReddingsdiensten(){
-        int totaleGrootte = 0;
+        int totaleCapaciteit = 0;
         for(Vervoermiddel item: redders){
-            totaleGrootte += (item.getGrootte()-item.getCapaciteit());
+            totaleCapaciteit += item.getCapaciteit();
         }
 
-        if (totaleGrootte < schipInNood.getCapaciteit()){
+        if (totaleCapaciteit < schipInNood.getCapaciteit()){
             lblOnvoldoendeCapaciteit.setText("MERK OP: de capaciteit van de reddingsdiensten is onvoldoende!\nSchip in nood heeft "+(int)(schipInNood.getCapaciteit())
-                    + " opvarenden." + " De hulpdiensten hebben slechts " + totaleGrootte + " plaatsen beschikbaar.");
+                    + " opvarenden." + " De hulpdiensten hebben slechts " + totaleCapaciteit + " plaatsen beschikbaar. Best contact opnemen met een 2de verkeerstoren.");
         }
         else
         {

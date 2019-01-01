@@ -102,23 +102,26 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
         if (statusSchip == StatusVervoermiddel.OK) {
             EventLogger.logger.info(String.format("Schip ok"));
             //System.out.println("Schip ok");
+
         }
 
         if (statusSchip != StatusVervoermiddel.OK) {
+
             SnelstTerPlaatse snelstTerPlaatse = new SnelstTerPlaatse(); //klasse voor berekenen van afstand en snelheid gesorteerd volgens reactiesnelheid
             Redders.clear();
             zoekBeschikbareHulpdienst(schipInNood.getNaam());
             vervoermiddelKortstebij = snelstTerPlaatse.zoekHulpdienstDichtsbij(schipInNood, beschikbareHulpdiensten); //list gesorteerd volgens reactiesnelheid
 
-            EventLogger.logger.info(String.format("Schip in nood (signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip));
+            EventLogger.logger.info(String.format("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip));
             //System.out.println("Schip in nood(signaal ontvangen door statusobserver) " + schipInNood + " ontvangen door verkeerstoren: " + this.naam + " Noodsignaal is : " + statusSchip);
-            if (vervoermiddelKortstebij.get(0).getGrootte() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
+            if (vervoermiddelKortstebij.get(0).getCapaciteit() < schipInNood.getCapaciteit()) {  // controle of capaciteit redder voldoende is anders extra schip voorzien
 
-                int totaleGrootte = 0;
+                int totaleCapaciteit = 0;
                 int i = 0;
 
-                while (totaleGrootte < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
-                    totaleGrootte += (vervoermiddelKortstebij.get(i).getGrootte() - vervoermiddelKortstebij.get(i).getCapaciteit());
+                while (totaleCapaciteit < schipInNood.getCapaciteit() && i < vervoermiddelKortstebij.size()) {
+
+                    totaleCapaciteit += vervoermiddelKortstebij.get(i).getCapaciteit();
                     Redders.add(vervoermiddelKortstebij.get(i));
                     ++i;
                 }

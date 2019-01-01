@@ -75,7 +75,7 @@
                               <GridPane maxHeight="200.0" maxWidth="350.0">
                                  <children>
                                     <Label fx:id="lblNoodNaam" text="Naam:" />
-                                    <Label fx:id="lblNoodCapaciteit" text="Capaciteit:" GridPane.rowIndex="1" />
+                                    <Label fx:id="lblNoodCapaciteit" text="Opvarenden:" GridPane.rowIndex="1" />
                                     <Label fx:id="lblNoodKoers" text="Koers:" GridPane.rowIndex="2" />
                                     <Label fx:id="lblNoodLongitude" text="Longitude:" GridPane.rowIndex="3" />
                                     <Label fx:id="lblNoodLatitude" text="Latitude:" GridPane.rowIndex="4" />
