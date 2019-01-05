@@ -1,15 +1,18 @@
 package controller.create;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Tonen van scherm waarmee een schip wordt toegevoegd.
+ */
+
 import controller.KustwachtController;
-import enums.Actors;
-import enums.Hulpdiensten;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
+import model.EventLogger;
 
 public class AddSchipController {
     @FXML private Label lblActorType;
@@ -35,11 +38,16 @@ public class AddSchipController {
     String actorNaam;
 
     public void AddActorController(KustwachtController parent, String actorNaam){
-        this.parent = parent;
-        lblActorTitelNaam.setText(actorNaam + " toevoegen");
-        this.actorNaam = actorNaam;
-        cbActorType.setItems( FXCollections.observableArrayList( enums.Schepen.values()));
-        cbActorType.getSelectionModel().selectFirst();
+        try {
+            this.parent = parent;
+            lblActorTitelNaam.setText(actorNaam + " toevoegen");
+            this.actorNaam = actorNaam;
+            cbActorType.setItems( FXCollections.observableArrayList( enums.Schepen.values()));
+            cbActorType.getSelectionModel().selectFirst();
+        }
+        catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
+        }
     }
 
     @FXML
@@ -71,15 +79,22 @@ public class AddSchipController {
             }
         }
         catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());
         }
     }
 
     private void displayAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        try {
+            Alert alert = new Alert(type);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+        catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
+            //System.out.println(ex.getMessage());
+        }
     }
 }

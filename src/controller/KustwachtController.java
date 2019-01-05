@@ -1,5 +1,11 @@
 package controller;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Het hoofdscherm van de toepassing. Lijsten worden opgevuld met gegevens van de database.
+ */
+
 import controller.create.AddHulpdienstController;
 import controller.create.AddSchipController;
 import controller.create.AddVerkeerstorenController;
@@ -99,44 +105,50 @@ public class KustwachtController {
     public ArrayList<Stage> openWindows = new ArrayList<>();   //Houd de geopende vensters van de schepen in nood bij.
 
     public void initialize() {
-        lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
-        lstViewSchepen.setItems(schepenList); // Lijst van schepen koppelen aan de listview
-        lstViewHulpdiensten.setItems(hulpdienstenList); // Lijst van hulpdiensten koppelen aan de listview
-        lstViewSchepenInNood.setItems(schepenInNoodList); // Lijst van hulpdiensten koppelen aan de listview
-        getAllVerkeerstorenEntries();
-        getAllSchepenEntries();
-        getAllHulpdiensten();
+        try {
+            lstViewVerkeerstorens.setItems(verkeerstorenList); // Lijst van verkeertorens koppelen aan de listview
+            lstViewSchepen.setItems(schepenList); // Lijst van schepen koppelen aan de listview
+            lstViewHulpdiensten.setItems(hulpdienstenList); // Lijst van hulpdiensten koppelen aan de listview
+            lstViewSchepenInNood.setItems(schepenInNoodList); // Lijst van hulpdiensten koppelen aan de listview
+            getAllVerkeerstorenEntries();
+            getAllSchepenEntries();
+            getAllHulpdiensten();
 
-        for (String item : view.Main.output) {
-            txtAreaTerminal.appendText(item + "\n");
+            for (String item : view.Main.output) {
+                txtAreaTerminal.appendText(item + "\n");
+            }
+
+            //region Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
+            //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
+            lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().addListener(
+                    (observableVerkeerstorenValue, oldVerkeerstorenValue, newVerkeerstorenValue) -> {
+                        displayVerkeerstoren(newVerkeerstorenValue);
+                    }
+            );
+            //endregion
+
+            //region Listener gekoppeld aan de listview van de schepen zodat bij selecteren informatie wordt getoond in de tekstvelden.
+            //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
+            lstViewSchepen.getSelectionModel().selectedItemProperty().addListener(
+                    (observableSchipValue, oldSchipValue, newSchipValue) -> {
+                        displaySchip(newSchipValue);
+                    }
+            );
+            //endregion
+
+            //region Listener gekoppeld aan de listview van de hulpdiensten zodat bij selecteren informatie wordt getoond in de tekstvelden.
+            //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
+            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
+                    (observableHulpdienstValue, oldHulpdienstValue, newHulpdienstValue) -> {
+                        displayHulpdienst(newHulpdienstValue);
+                    }
+            );
+            //endregion
         }
-
-        //region Listener gekoppeld aan de listview van de verkeerstorens zodat bij selecteren informatie wordt getoond in de tekstvelden.
-        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
-        lstViewVerkeerstorens.getSelectionModel().selectedItemProperty().addListener(
-                (observableVerkeerstorenValue, oldVerkeerstorenValue, newVerkeerstorenValue) -> {
-                    displayVerkeerstoren(newVerkeerstorenValue);
-                }
-        );
-        //endregion
-
-        //region Listener gekoppeld aan de listview van de schepen zodat bij selecteren informatie wordt getoond in de tekstvelden.
-        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
-        lstViewSchepen.getSelectionModel().selectedItemProperty().addListener(
-                (observableSchipValue, oldSchipValue, newSchipValue) -> {
-                    displaySchip(newSchipValue);
-                }
-        );
-        //endregion
-
-        //region Listener gekoppeld aan de listview van de hulpdiensten zodat bij selecteren informatie wordt getoond in de tekstvelden.
-        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
-        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
-                (observableHulpdienstValue, oldHulpdienstValue, newHulpdienstValue) -> {
-                    displayHulpdienst(newHulpdienstValue);
-                }
-        );
-        //endregion
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            //System.out.println(E);
+        }
     }
 
 
@@ -187,8 +199,9 @@ public class KustwachtController {
             //Normaal wordt nullpointerexception gesmeten bij selecteren van een leeg record. Hiermee wordt de error opgevangen zonder dat de gebruiker dit merkt.
         }
         catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
-            System.out.println(E);
+            //System.out.println(E);
         }
     }
 
@@ -207,7 +220,8 @@ public class KustwachtController {
         }
         catch (Exception E) {
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
-            System.out.println(E);
+            EventLogger.logger.error(String.format(E.getMessage()));
+            //System.out.println(E);
         }
     }
 
@@ -238,10 +252,14 @@ public class KustwachtController {
             }
         }
         catch (NullPointerException E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.INFORMATION, "GEEN SELECTIE", "Gelieve een verkeerstoren te selecteren.");
+            //System.out.println(E);
         }
         catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
@@ -259,8 +277,9 @@ public class KustwachtController {
             stage.show();
         }
         catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
-            System.out.println(E);
+            //System.out.println(E);
         }
     }
 
@@ -300,10 +319,14 @@ public class KustwachtController {
             }
         }
         catch (NullPointerException E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.INFORMATION, "GEEN SELECTIE", "Gelieve een schip te selecteren.");
+            //System.out.println(E);
         }
         catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
@@ -321,8 +344,9 @@ public class KustwachtController {
             stage.show();
         }
         catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden.\n" + E);
-            System.out.println(E);
+            //System.out.println(E);
         }
     }
 
@@ -365,138 +389,184 @@ public class KustwachtController {
             }
         }
         catch (NullPointerException E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.INFORMATION, "GEEN SELECTIE", "Gelieve een hulpdienst te selecteren.");
+            //System.out.println(E);
         }
         catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
     @FXML
     void btnGenerate_Clicked(ActionEvent event){
-        model.Randomizer.generateVerkeerstores(15);
-        model.Randomizer.generateHulpdiensten(15);
-        model.Randomizer.generateSchepen(15);
-        getAllSchepenEntries();
-        getAllHulpdiensten();
-        getAllVerkeerstorenEntries();
-        Main.printAllActors();
+        try {
+            model.Randomizer.generateVerkeerstores(15);
+            model.Randomizer.generateHulpdiensten(15);
+            model.Randomizer.generateSchepen(15);
+            getAllSchepenEntries();
+            getAllHulpdiensten();
+            getAllVerkeerstorenEntries();
+            Main.printAllActors();
 
-        for (String item : view.Main.output) {
-            txtAreaTerminal.appendText(item + "\n");
+            for (String item : view.Main.output) {
+                txtAreaTerminal.appendText(item + "\n");
+            }
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het genereren."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
     @FXML
     void btnRandomNood_Clicked(ActionEvent event) {
-        txtAreaTerminal.appendText("\nRANDOM NOODKNOP GEACTIVEERD\n");
-        int teller = 0;
-        int aantalRandomInNood=0;
-        StatusVervoermiddel nieuwNoodSignaal;
-        Schepen schip;
-        schepenNietInNood.clear();
-        schepenAlGekozen.clear();
+        try {
+            txtAreaTerminal.appendText("\nRANDOM NOODKNOP GEACTIVEERD\n");
+            int teller = 0;
+            int aantalRandomInNood=0;
+            StatusVervoermiddel nieuwNoodSignaal;
+            Schepen schip;
+            schepenNietInNood.clear();
+            schepenAlGekozen.clear();
 
-        for (Schepen item : Actor.schepenOpWater) {
-            if (item.getStatus().equals(StatusVervoermiddel.OK.toString())) {
-                schepenNietInNood.add(item);
+            for (Schepen item : Actor.schepenOpWater) {
+                if (item.getStatus().equals(StatusVervoermiddel.OK.toString())) {
+                    schepenNietInNood.add(item);
+                }
             }
-        }
 
-        switch (schepenNietInNood.size()) {
-            case 0:
-                displayAlert(Alert.AlertType.INFORMATION, "Iedereen is al aan het verdrinken!", "Alle schepen hebben al een noodsituatie!");
+            switch (schepenNietInNood.size()) {
+                case 0:
+                    displayAlert(Alert.AlertType.INFORMATION, "Iedereen is al aan het verdrinken!", "Alle schepen hebben al een noodsituatie!");
 
-                txtAreaTerminal.appendText("\nGeen beschikbare schepen meer, alle schepen hebben al een noodsituatie!\n");
-                break;
-            case 1:
-                schip = schepenNietInNood.get(0);
-                if (hulpdienstenList.isEmpty() || (hulpdienstenList.size()==1 && (hulpdienstenList.get(0).getNaam()==schip.getNaam()))){
-                    txtAreaTerminal.appendText("Randomnood niet uitgevoerd. Er zijn geen beschikbare reddingsdiensten.");
-                    displayAlert(Alert.AlertType.ERROR, "ERROR", "Randomnood niet uitgevoerd. Er zijn geen beschikbare reddingsdiensten.");
-                }
-                else {
-                    nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
-                    schip.setNoodSignaal(nieuwNoodSignaal);
-                    txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                    txtAreaTerminal.appendText("\nGeen beschikbare schepen meer, alle schepen hebben al een noodsituatie!\n");
                     break;
-                }
-                break;
-            default:
-                aantalRandomInNood = randomGenerator.nextInt((schepenNietInNood.size() / 2) + 1);
-                do {
-                    nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
-                    schip = kiesRandomSchip();
-                    schip.setNoodSignaal(nieuwNoodSignaal);
+                case 1:
+                    schip = schepenNietInNood.get(0);
+                    if (hulpdienstenList.isEmpty() || (hulpdienstenList.size()==1 && (hulpdienstenList.get(0).getNaam()==schip.getNaam()))){
+                        txtAreaTerminal.appendText("Randomnood niet uitgevoerd. Er zijn geen beschikbare reddingsdiensten.");
+                        displayAlert(Alert.AlertType.ERROR, "ERROR", "Randomnood niet uitgevoerd. Er zijn geen beschikbare reddingsdiensten.");
+                    }
+                    else {
+                        nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                        schip.setNoodSignaal(nieuwNoodSignaal);
+                        txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                        break;
+                    }
+                    break;
+                default:
+                    aantalRandomInNood = randomGenerator.nextInt((schepenNietInNood.size() / 2) + 1);
+                    do {
+                        nieuwNoodSignaal = StatusVervoermiddel.values()[(int) (Math.random() * StatusVervoermiddel.values().length)];
+                        schip = kiesRandomSchip();
+                        schip.setNoodSignaal(nieuwNoodSignaal);
 
-                    txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
-                    ++teller;
-                } while (aantalRandomInNood > teller);
-                break;
+                        txtAreaTerminal.appendText("\nSchip in nood : " + schip.getNaam() + " signaal ontvangen door verkeerstoren : " + schip.getVerkeerstorenIngeschreven() + " Noodsignaal is : " + nieuwNoodSignaal+"\n");
+                        ++teller;
+                    } while (aantalRandomInNood > teller);
+                    break;
+            }
+            getAllHulpdiensten();
+            getAllSchepenInNood();
         }
-        getAllHulpdiensten();
-        getAllSchepenInNood();
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het genereren van noodsituaties."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
+        }
     }
 
     //Random schip selecteren uit de lijst met schepen met een gezonde status.
     public Schepen kiesRandomSchip() {
-        int index = randomGenerator.nextInt(schepenNietInNood.size());
-        Schepen schip = schepenNietInNood.get(index);
-        boolean schipAlGekozen = schipAlGekozen(schip);
+        try {
+            int index = randomGenerator.nextInt(schepenNietInNood.size());
+            Schepen schip = schepenNietInNood.get(index);
+            boolean schipAlGekozen = schipAlGekozen(schip);
 
-        if (!schipAlGekozen) {
-            EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
-            txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
-            schepenAlGekozen.add(schip);
-            return schip;
-        } else if (schipAlGekozen) {
-            int index2;
-            Schepen schip2;
-            boolean schipAlGekozen2 = false;
+            if (!schipAlGekozen) {
+                EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
+                txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip.getNaam());
+                schepenAlGekozen.add(schip);
+                return schip;
+            } else if (schipAlGekozen) {
+                int index2;
+                Schepen schip2;
+                boolean schipAlGekozen2 = false;
 
-            do {
-                index2 = randomGenerator.nextInt(schepenNietInNood.size());
-                schip2 = schepenNietInNood.get(index2);
-                schipAlGekozen2 = schipAlGekozen(schip2);
+                do {
+                    index2 = randomGenerator.nextInt(schepenNietInNood.size());
+                    schip2 = schepenNietInNood.get(index2);
+                    schipAlGekozen2 = schipAlGekozen(schip2);
 
-            } while (schipAlGekozen2);
+                } while (schipAlGekozen2);
 
-            EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
-            txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip2.getNaam());
-            //System.out.println("\nRandom schip in nood gekozen " + schip2.getNaam());
-            schepenAlGekozen.add(schip2);
-            return schip2;
+                EventLogger.logger.info(String.format("Random schip in nood gekozen " + schip.getNaam()));
+                txtAreaTerminal.appendText("\nRandom schip in nood gekozen " + schip2.getNaam());
+                //System.out.println("\nRandom schip in nood gekozen " + schip2.getNaam());
+                schepenAlGekozen.add(schip2);
+                return schip2;
+            }
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het random selecteren van een schip."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
         return null;
     }
 
     public boolean schipAlGekozen(Schepen schip) {
-        for (Schepen item : schepenAlGekozen) {
-            if (item.getNaam().equals(schip.getNaam())) {
-                return true;
+        try {
+            for (Schepen item : schepenAlGekozen) {
+                if (item.getNaam().equals(schip.getNaam())) {
+                    return true;
+                }
             }
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
         return false;
     }
 
     //Doorgeven verkeerstorenobject.
     public Verkeerstoren getVerkeerstorenGeregistreerd(String verkeerstorenNaam){
-        for (Verkeerstoren item : verkeerstorenList) {
-            if (item.getNaam().equals(verkeerstorenNaam)) {
-                return item;
+        try {
+            for (Verkeerstoren item : verkeerstorenList) {
+                if (item.getNaam().equals(verkeerstorenNaam)) {
+                    return item;
+                }
             }
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
         return null;
     }
 
     //Doorgeven beschikbare hulpdiensten van verkeerstoren.
     public ArrayList<Vervoermiddel> getReddersVanVerkeerstoren(String verkeerstorenNaam){
-        ArrayList<Vervoermiddel> redders;
-        for (Verkeerstoren item : verkeerstorenList) {
-            if (item.getNaam().equals(verkeerstorenNaam)) {
-                redders = item.Redders;
-                return redders;
+        try {
+            ArrayList<Vervoermiddel> redders;
+            for (Verkeerstoren item : verkeerstorenList) {
+                if (item.getNaam().equals(verkeerstorenNaam)) {
+                    redders = item.Redders;
+                    return redders;
+                }
             }
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
         return null;
     }
@@ -514,7 +584,9 @@ public class KustwachtController {
             }
             //verkeerstorenList.setAll(kustwachtQueries.getAllVerkeerstorens()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een fout opgetreden bij het inladen van de verkeerstorens.");
+            //System.out.println(E);
         }
     }
 
@@ -532,15 +604,17 @@ public class KustwachtController {
             }
             //schepenList.setAll(kustwachtQueries.getAllSchepen()); //deze uncommenten om rechtstreeks data uit database in te laden ipv de ingeladen lijst.
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een fout opgetreden bij het inladen van de schepen.");
+            //System.out.println(E);
         }
     }
 
     //alle entries van de tabel met de hulpdiensten van de database opvragen en invullen in de hulpdienstenlijst
     public void getAllHulpdiensten() {
-        ArrayList<Vervoermiddel> hulpdiensten = Actor.mogelijkeHulpdiensten;
-        ArrayList<Vervoermiddel> hulpdienstenOK = new ArrayList<>();
         try {
+            ArrayList<Vervoermiddel> hulpdiensten = Actor.mogelijkeHulpdiensten;
+            ArrayList<Vervoermiddel> hulpdienstenOK = new ArrayList<>();
             for (Vervoermiddel item : hulpdiensten) {
                 if ((item.getStatus().equals(StatusVervoermiddel.OK.toString()))) {
                     hulpdienstenOK.add(item);
@@ -548,15 +622,17 @@ public class KustwachtController {
             }
             hulpdienstenList.setAll(hulpdienstenOK);
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een fout opgetreden bij het inladen van de hulpdiensten.");
+            //System.out.println(E);
         }
     }
 
     //alle entries van de tabel met de schepen in nood van de database opvragen en invullen in de schepeninnoodlijst
     public void getAllSchepenInNood() {
-        ArrayList<Schepen> schepen = Actor.schepenOpWater;
-        ArrayList<Schepen> schepenInNood = new ArrayList<>();
         try {
+            ArrayList<Schepen> schepen = Actor.schepenOpWater;
+            ArrayList<Schepen> schepenInNood = new ArrayList<>();
             for (Schepen item : schepen) {
                 if (!(item.getStatus().equals(StatusVervoermiddel.OK.toString()))) {
                     schepenInNood.add(item);
@@ -565,7 +641,9 @@ public class KustwachtController {
             schepenInNoodList.clear();
             schepenInNoodList.setAll(schepenInNood);
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een fout opgetreden bij het inladen van de schepen in nood.");
+            //System.out.println(E);
         }
     }
 
@@ -582,7 +660,9 @@ public class KustwachtController {
                 txtVerkeerstorenLongitude.clear();
             }
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van de verkeerstoren gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
@@ -609,7 +689,9 @@ public class KustwachtController {
                 txtSchipStatus.clear();
             }
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van het schip zijn gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
@@ -636,7 +718,9 @@ public class KustwachtController {
                 txtHulpdienstStatus.clear();
             }
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van de hulpdienst zijn gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
@@ -663,15 +747,23 @@ public class KustwachtController {
                 txtNoodStatus.clear();
             }
         } catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR", "Er is een onverwachte fout opgetreden bij het tonen van het schip in nood zijn gegevens." + "\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
     //voor het tonen van een messagebox met de nodige uitleg
     private void displayAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
+        try {
+            Alert alert = new Alert(type);
+            alert.setTitle(title);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+        catch (Exception E){
+        EventLogger.logger.error(String.format(E.getMessage()));
+        //System.out.println(E);
+        }
     }
 }

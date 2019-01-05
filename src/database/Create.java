@@ -1,5 +1,11 @@
 package database;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Bevat alle create statements met betrekking tot het aanmaken van de actoren in de database.
+ */
+
 import calculations.Coördinaten;
 import enums.Actors;
 import enums.Hulpdiensten;
@@ -7,8 +13,6 @@ import enums.Schepen;
 import enums.StatusVervoermiddel;
 import model.*;
 import strategy.GeenStrategy;
-
-import java.util.List;
 
 public class Create {
     private static final IHulpdienstStrategy geenStrategy = new GeenStrategy();
@@ -33,8 +37,9 @@ public class Create {
             return kustwachtQueries.addVerkeerstoren(verkeerstoren.getEnumNaam(), verkeerstoren.getNaam(), coördinaten);
 
         }
-        catch (Exception ex){
-            throw new IllegalArgumentException(ex.getMessage());
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            throw new IllegalArgumentException(E.getMessage());
         }
     }
 
@@ -59,8 +64,9 @@ public class Create {
                     vervoermiddel.getGrootte(), vervoermiddel.getCapaciteit(),
                     vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
         }
-        catch (Exception ex) {
-            throw new IllegalArgumentException(ex.getMessage());
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            throw new IllegalArgumentException(E.getMessage());
         }
     }
 
@@ -86,6 +92,7 @@ public class Create {
                     vervoermiddel.getKoers(), vervoermiddel.getStatus(), coördinaten);
         }
         catch (Exception ex) {
+            EventLogger.logger.error(String.format(ex.getMessage()));
             throw new IllegalArgumentException(ex.getMessage());
         }
     }

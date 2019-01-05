@@ -1,12 +1,18 @@
 package controller.create;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Tonen van scherm waarmee een hulpdienst wordt toegevoegd.
+ */
+
 import controller.KustwachtController;
-import enums.Actors;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.EventLogger;
 
 public class AddHulpdienstController {
     @FXML private Label lblActorType;
@@ -32,12 +38,17 @@ public class AddHulpdienstController {
     String actorNaam;
 
     public void AddActorController(KustwachtController parent, String actorNaam){
-        this.parent = parent;
-        lblActorTitelNaam.setText(actorNaam + " toevoegen");
-        this.actorNaam = actorNaam;
-        cbActorType.setItems( FXCollections.observableArrayList( enums.Hulpdiensten.values()));
-        cbActorType.getSelectionModel().selectFirst();
-        cbActorType.getItems().remove(2); //VERKEERSTOREN WEGLATEN
+        try {
+            this.parent = parent;
+            lblActorTitelNaam.setText(actorNaam + " toevoegen");
+            this.actorNaam = actorNaam;
+            cbActorType.setItems( FXCollections.observableArrayList( enums.Hulpdiensten.values()));
+            cbActorType.getSelectionModel().selectFirst();
+            cbActorType.getItems().remove(2); //VERKEERSTOREN WEGLATEN
+        }
+        catch (Exception E) {
+            EventLogger.logger.error(String.format(E.getMessage()));
+        }
     }
 
     @FXML
@@ -68,15 +79,22 @@ public class AddHulpdienstController {
             }
         }
             catch(Exception ex){
-            displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());
+                EventLogger.logger.error(String.format(ex.getMessage()));
+                displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());
         }
     }
 
     private void displayAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        try {
+            Alert alert = new Alert(type);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+        catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
+            //System.out.println(ex.getMessage());
+        }
     }
 }

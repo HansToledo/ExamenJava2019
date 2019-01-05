@@ -1,10 +1,9 @@
 package calculations;
 
 /**
- * @Autor:
- * @Date: 15/12/2018
+ * @Autor: Peter Raes & Hans Van De Weyer
  * @Project: Examen Januari 2019
- * @Purpose: Coordinaten klasse coordinaten met random generator
+ * @Purpose: Coördinaten klasse.
  */
 
 public class Coördinaten {

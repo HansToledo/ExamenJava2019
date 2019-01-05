@@ -1,8 +1,7 @@
 package database;
 
 /**
- * @Autor: Hans Van De Weyer
- * @Date: 15/12/2018
+ * @Autor: Hans Van De Weyer & Peter Raes
  * @Project: Examen Januari 2019
  * @Purpose: Klasse bevat alle preparedstatemens queries.
  */

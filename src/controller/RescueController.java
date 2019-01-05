@@ -1,5 +1,11 @@
 package controller;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Scherm dat wordt getoond na selectie van schip in nood.
+ */
+
 import enums.StatusVervoermiddel;
 import javafx.fxml.FXML;
 import javafx.event.*;
@@ -67,72 +73,80 @@ public class RescueController {
     private String windowTitle;
 
     public void RescueController(KustwachtController parent, ArrayList<Vervoermiddel> redders, Verkeerstoren geregistreerdeVerkeerstoren, Schepen schipInNood, String windowTitle){
-        this.redders = redders;
-        this.parent = parent;
-        this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
-        this.verkeerstorenNaam = geregistreerdeVerkeerstoren.getNaam();
-        this.windowTitle = windowTitle;
-        this.schipInNood = schipInNood;
-        lblVerkeerstoren.setText(verkeerstorenNaam);
-        cbStrategy.setItems(StrategyOptions);   // Choicebox opvullen met waarden.
-        cbStrategy.setValue("geenStrategy");
+        try {
+            this.redders = redders;
+            this.parent = parent;
+            this.geregistreerdeVerkeerstoren = geregistreerdeVerkeerstoren;
+            this.verkeerstorenNaam = geregistreerdeVerkeerstoren.getNaam();
+            this.windowTitle = windowTitle;
+            this.schipInNood = schipInNood;
+            lblVerkeerstoren.setText(verkeerstorenNaam);
+            cbStrategy.setItems(StrategyOptions);   // Choicebox opvullen met waarden.
+            cbStrategy.setValue("geenStrategy");
 
-        getSchipInNood();
-        getRedders();
-        capaciteitReddingsdiensten();
+            getSchipInNood();
+            getRedders();
+            capaciteitReddingsdiensten();
 
-        //region Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
-        //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
-        lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
-                (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
-        );
-        //endregion
+            //region Listener gekoppeld aan de listview van de redders zodat bij selecteren informatie wordt getoond in de tekstvelden.
+            //Dit had ook via event handler op listview kunnen gebeuren. Eventlistener en eventhandler werken hetzelfde maar dan op andere positie gedefinieerd.
+            lstViewHulpdiensten.getSelectionModel().selectedItemProperty().addListener(
+                    (observableHulpdienstenValue, oldHulpdienstenValue, newHulpdienstenValue) -> { displayHulpdiensten(newHulpdienstenValue); }
+            );
+            //endregion
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden bij het."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
+        }
     }
 
     @FXML
     void btnStartReddingsoperatie_Clicked(ActionEvent event) {
-        IHulpdienstStrategy gekozenStrategy = geenStrategy;
-        if (cbStrategy.getValue()==("geenStrategy")){
-            displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve een redding strategie te bepalen.");
-        }
-        else {
-            for (Vervoermiddel item : redders) {
-                switch (cbStrategy.getValue()) {
-                    case ("geenStrategy"):
-                        item.setHulpdienstStrategy(geenStrategy);
-                        gekozenStrategy = geenStrategy;
-                        break;
-                    case ("piratenStrategy"):
-                        item.setHulpdienstStrategy(piratenStrategy);
-                        gekozenStrategy = piratenStrategy;
-                        break;
-                    case ("brandStrategy"):
-                        item.setHulpdienstStrategy(brandStrategy);
-                        gekozenStrategy = brandStrategy;
-                        break;
-                    case ("gekapseisdStrategy"):
-                        item.setHulpdienstStrategy(gekapseisdStrategy);
-                        gekozenStrategy = gekapseisdStrategy;
-                        break;
-                    case ("stormStrategy"):
-                        item.setHulpdienstStrategy(stormStrategy);
-                        gekozenStrategy = stormStrategy;
-                        break;
-                    case ("ziekteStrategy"):
-                        item.setHulpdienstStrategy(ziekteStrategy);
-                        gekozenStrategy = ziekteStrategy;
-                        break;
-                    case ("zinkendStrategy"):
-                        item.setHulpdienstStrategy(zinkendStrategy);
-                        gekozenStrategy = zinkendStrategy;
-                        break;
-                }
+        try {
+            IHulpdienstStrategy gekozenStrategy = geenStrategy;
+            if (cbStrategy.getValue()==("geenStrategy")){
+                displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve een redding strategie te bepalen.");
             }
+            else {
+                for (Vervoermiddel item : redders) {
+                    switch (cbStrategy.getValue()) {
+                        case ("geenStrategy"):
+                            item.setHulpdienstStrategy(geenStrategy);
+                            gekozenStrategy = geenStrategy;
+                            break;
+                        case ("piratenStrategy"):
+                            item.setHulpdienstStrategy(piratenStrategy);
+                            gekozenStrategy = piratenStrategy;
+                            break;
+                        case ("brandStrategy"):
+                            item.setHulpdienstStrategy(brandStrategy);
+                            gekozenStrategy = brandStrategy;
+                            break;
+                        case ("gekapseisdStrategy"):
+                            item.setHulpdienstStrategy(gekapseisdStrategy);
+                            gekozenStrategy = gekapseisdStrategy;
+                            break;
+                        case ("stormStrategy"):
+                            item.setHulpdienstStrategy(stormStrategy);
+                            gekozenStrategy = stormStrategy;
+                            break;
+                        case ("ziekteStrategy"):
+                            item.setHulpdienstStrategy(ziekteStrategy);
+                            gekozenStrategy = ziekteStrategy;
+                            break;
+                        case ("zinkendStrategy"):
+                            item.setHulpdienstStrategy(zinkendStrategy);
+                            gekozenStrategy = zinkendStrategy;
+                            break;
+                    }
+                }
 
-            geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
-            schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
+                geregistreerdeVerkeerstoren.doNotifyNoodObserver(gekozenStrategy,schipInNood.getCoördinaten(),schipInNood.getNaam());
+                schipInNood.setNoodSignaal(StatusVervoermiddel.OK);
 
-            ArrayList<String> output = new ArrayList<String>();
+                ArrayList<String> output = new ArrayList<String>();
                 output.add("Reddingsactie gestart voor " + schipInNood.getNaam() + "]");
                 output.add("\n\nNoodsignaal ontvangen door " + verkeerstorenNaam + ".");
                 output.add("\nHulpdiensten onderweg naar " + schipInNood.getNaam() + ":");
@@ -142,50 +156,65 @@ public class RescueController {
                 }
                 output.add("\n\n[Noodsituatie opgelost!");
 
-            parent.txtAreaTerminal.appendText("\n"+output.toString()+"\n");
+                parent.txtAreaTerminal.appendText("\n"+output.toString()+"\n");
 
-            displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
+                displayAlert(Alert.AlertType.INFORMATION, "SUCCESS", output.toString());
 
-            //Window uit lijst met open schermen wissen.
-            for (Stage item: parent.openWindows){
-                if(item.getTitle().equals(windowTitle)){
-                    parent.openWindows.remove(item);
-                    break;
+                //Window uit lijst met open schermen wissen.
+                for (Stage item: parent.openWindows){
+                    if(item.getTitle().equals(windowTitle)){
+                        parent.openWindows.remove(item);
+                        break;
+                    }
                 }
-            }
 
-            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
-            parent.getAllHulpdiensten();
-            parent.getAllSchepenInNood();
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+                parent.getAllHulpdiensten();
+                parent.getAllSchepenInNood();
+            }
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden bij het."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
     //capaciteit reddingsdiensten optellen
     public void capaciteitReddingsdiensten(){
-        int totaleCapaciteit = 0;
-        for(Vervoermiddel item: redders){
-            totaleCapaciteit += item.getCapaciteit();
-        }
+        try {
+            int totaleCapaciteit = 0;
+            for(Vervoermiddel item: redders){
+                totaleCapaciteit += item.getCapaciteit();
+            }
 
-        if (totaleCapaciteit < schipInNood.getCapaciteit()){
-            lblOnvoldoendeCapaciteit.setText("MERK OP: de capaciteit van de reddingsdiensten is onvoldoende!\nSchip in nood heeft "+(int)(schipInNood.getCapaciteit())
-                    + " opvarenden." + " De hulpdiensten hebben slechts " + totaleCapaciteit + " plaatsen beschikbaar. Best contact opnemen met een 2de verkeerstoren.");
+            if (totaleCapaciteit < schipInNood.getCapaciteit()){
+                lblOnvoldoendeCapaciteit.setText("MERK OP: de capaciteit van de reddingsdiensten is onvoldoende!\nSchip in nood heeft "+(int)(schipInNood.getCapaciteit())
+                        + " opvarenden." + " De hulpdiensten hebben slechts " + totaleCapaciteit + " plaatsen beschikbaar. Best contact opnemen met een 2de verkeerstoren.");
+            }
+            else
+            {
+                lblOnvoldoendeCapaciteit.setText("");
+            }
         }
-        else
-        {
-            lblOnvoldoendeCapaciteit.setText("");
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden bij het."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
     //Redders in lijst inladen.
     public void getRedders(){
-        ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
         try {
+            ObservableList<Vervoermiddel> vkHulpdienstenList = FXCollections.observableArrayList();
             vkHulpdienstenList.setAll(redders);
             lstViewHulpdiensten.setItems(vkHulpdienstenList);
         }
         catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR.", E.toString());
+            //System.out.println(E);
         }
     }
 
@@ -210,7 +239,9 @@ public class RescueController {
             }
         }
         catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
@@ -225,16 +256,24 @@ public class RescueController {
             txtNoodStatus.setText(String.valueOf(schipInNood.getStatus()));
         }
         catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "ERROR.", "Er is een onverwachte fout opgetreden bij het."+"\n\nERROR INFO:\n" + E.fillInStackTrace());
+            //System.out.println(E);
         }
     }
 
     //Voor het tonen van een messagebox met de nodige uitleg.
     private void displayAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
+        try {
+            Alert alert = new Alert(type);
+            alert.setTitle(title);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+        catch (Exception E){
+            EventLogger.logger.error(String.format(E.getMessage()));
+            //System.out.println(E);
+        }
     }
 }
 

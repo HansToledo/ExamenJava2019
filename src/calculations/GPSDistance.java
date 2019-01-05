@@ -1,11 +1,11 @@
 package calculations;
 
+import model.EventLogger;
+
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 16/12/2018<br/>
- * Time: 17:31<br/>
- * Klasse voor berekenen van afstanden uitgedrukt in zeemijl
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Klasse voor berekenen van afstanden uitgedrukt in zeemijl
  */
 public class GPSDistance {
 
@@ -26,6 +26,7 @@ public class GPSDistance {
             afstand = (Radius * c) / 1.852; //uitgedruk in zeemijl dus / 1.852km
 
         } catch (Exception e) {
+            EventLogger.logger.error(String.format(e.getMessage()));
             e.printStackTrace();
         }
         return afstand;

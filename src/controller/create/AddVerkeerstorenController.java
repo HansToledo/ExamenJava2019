@@ -1,13 +1,17 @@
 package controller.create;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Tonen van scherm waarmee een verkeerstoren wordt toegevoegd.
+ */
+
 import controller.KustwachtController;
-import database.DBqueries;
-import enums.Actors;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.EventLogger;
 
 public class AddVerkeerstorenController {
     @FXML private Label lblActorType;
@@ -24,9 +28,14 @@ public class AddVerkeerstorenController {
     String actorNaam;
 
     public void AddActorController(KustwachtController parent, String actorNaam){
-        this.parent = parent;
-        lblActorTitelNaam.setText(actorNaam + " toevoegen");
-        this.actorNaam = actorNaam;
+        try {
+            this.parent = parent;
+            lblActorTitelNaam.setText(actorNaam + " toevoegen");
+            this.actorNaam = actorNaam;
+        }
+        catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
+        }
     }
 
     @FXML
@@ -49,15 +58,21 @@ public class AddVerkeerstorenController {
             }
         }
         catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
             displayAlert(Alert.AlertType.ERROR, "FOUT BIJ INGAVE",ex.getMessage());
         }
     }
 
     private void displayAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        try {
+            Alert alert = new Alert(type);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+        catch(Exception ex){
+            EventLogger.logger.error(String.format(ex.getMessage()));
+        }
     }
 }

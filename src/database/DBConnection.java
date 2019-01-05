@@ -1,19 +1,18 @@
 package database;
 
 /**
- * @Autor: Hans Van De Weyer
- * @Date: 15/12/2018
+ * @Autor: Hans Van De Weyer & Peter Raes
  * @Project: Examen Januari 2019
  * @Purpose: Opzetten van de verbinding met de database d.m.v. Singleton Pattern en properties file.
  */
 
 import com.mysql.jdbc.Connection;
+import model.EventLogger;
 
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.File;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
@@ -36,9 +35,11 @@ public class DBConnection {
 
             Class.forName(DRIVER);
             dbConnection = (Connection) DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
-            System.out.println("Database connection successfull!");
+            EventLogger.logger.info(String.format("Database connection successfull!"));
+            //System.out.println("Database connection successfull!");
         } catch (Exception ex) {
-            System.out.println("Database Connection Creation Failed : " + ex.getMessage());
+            EventLogger.logger.error(String.format("Database Connection Creation Failed: \n" + ex.getMessage()));
+            //System.out.println("Database Connection Creation Failed: \n" + ex.getMessage());
         }
     }
 
