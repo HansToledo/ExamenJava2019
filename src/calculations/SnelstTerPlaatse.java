@@ -9,11 +9,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 23/12/2018<br/>
- * Time: 16:08<br/>
- * To change this template use File | Settings | File Templates.
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: Klasse met method voor berekenen verkeerstoren dichtstebij en method voor lijst gesorteerd op reactiesnelheid (deze wordt gebruikt door de verkeerstoren klasse)
  */
 public class SnelstTerPlaatse {
 
