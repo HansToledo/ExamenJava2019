@@ -11,11 +11,9 @@ import strategy.BrandStrategy;
 import static org.junit.Assert.*;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 25/12/2018<br/>
- * Time: 11:50<br/>
- * To change this template use File | Settings | File Templates.
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: JUnit test op de Factory klasse
  */
 public class FactoryProducerTest {
 

@@ -9,6 +9,12 @@ import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
+/**
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: JUnit test op database connectie en queries
+ */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DatabaseTesten {
     String naam;

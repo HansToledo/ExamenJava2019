@@ -6,11 +6,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 6/01/2019<br/>
- * Time: 19:47<br/>
- * To change this template use File | Settings | File Templates.
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: JUnit test op de klasse GPSDistance
  */
 public class GPSDistanceTest {
 

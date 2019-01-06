@@ -8,11 +8,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 27/12/2018<br/>
- * Time: 15:41<br/>
- * To change this template use File | Settings | File Templates.
+ * @Autor: Hans Van De Weyer & Peter Raes
+ * @Project: Examen Januari 2019
+ * @Purpose: JUnit test op de klasse Zeilboot
  */
 public class ZeilbootTest {
 
