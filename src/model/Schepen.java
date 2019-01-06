@@ -6,10 +6,8 @@ import enums.StatusVervoermiddel;
 import java.util.*;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 16/12/2018<br/>
- * Time: 19:37<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Abstracte schepen klasse
  */
 public abstract class Schepen extends Vervoermiddel implements IStatusSubject {

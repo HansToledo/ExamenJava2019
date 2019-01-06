@@ -5,10 +5,8 @@ import calculations.Coördinaten;
 import java.util.ArrayList;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 11:10<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Abstracte Actor klasse
  */
 public abstract class Actor  {

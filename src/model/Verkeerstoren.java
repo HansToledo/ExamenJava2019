@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 11:38<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Klasse voor verkeerstorens aan te maken, deze ontvangt het noodsignaal via statusobserver en stuurt signaal naar hulpdiensten
  */
 public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserver {
@@ -34,11 +32,8 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
 
     public Verkeerstoren(String enumNaam, String naam, Coördinaten coördinaten, IHulpdienstStrategy hulpdienstStrategy) {
 
-        //this.coördinaten = coördinaten;
         setCoördinaten(coördinaten);
-        //this.enumNaam = enumNaam;
         setEnumNaam(enumNaam);
-        //this.naam = naam;
         setNaam(naam);
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }
@@ -133,7 +128,7 @@ public class Verkeerstoren extends Actor implements INoodSubject, IStatusObserve
     }
     //endregion
 
-    //TODO exceptions voorzien
+
 
     public boolean zoekBeschikbareHulpdienst(String naam) {            //controle van beschikbare hulpdiensten volgens status
 

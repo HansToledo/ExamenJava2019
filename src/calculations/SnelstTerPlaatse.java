@@ -17,7 +17,7 @@ import java.util.Comparator;
  */
 public class SnelstTerPlaatse {
 
-    public Verkeerstoren zoekVerkeerstorenDichtsbij(Vervoermiddel vervoermiddel) {
+    public Verkeerstoren zoekVerkeerstorenDichtsbij(Vervoermiddel vervoermiddel) { //zoekt verkeerstoren het dichtste bij voor inschrijving schepen
 
         double afstandKortste = 0;
         double afstandBereken = 0;
@@ -32,7 +32,6 @@ public class SnelstTerPlaatse {
 
 
         for (Verkeerstoren item : Actor.verkeerstorens) {    // Actor.verkeerstorens
-
 
             afstandBereken = berekenAfstand.GPSDistance(breedte, lengte, item.getCoördinaten().getBreedte(), item.getCoördinaten().getLengte());
 
@@ -58,7 +57,7 @@ public class SnelstTerPlaatse {
         return verkeerstorenKortste;
     }
 
-    public  ArrayList<Vervoermiddel> zoekHulpdienstDichtsbij(Vervoermiddel vervoermiddel, ArrayList<Vervoermiddel> vervoermiddelenBeschikbaar) {
+    public  ArrayList<Vervoermiddel> zoekHulpdienstDichtsbij(Vervoermiddel vervoermiddel, ArrayList<Vervoermiddel> vervoermiddelenBeschikbaar) { //maakt gesorteerde lijst volgens reactiesnelheid
 
         ArrayList<Vervoermiddel> vervoermiddelen = new ArrayList<Vervoermiddel>();
         double afstandKortste = 0;

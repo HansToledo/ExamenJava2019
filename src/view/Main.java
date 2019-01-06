@@ -6,6 +6,7 @@ package view;
  * @Purpose: Creatie van het window scherm en de data uit de database inladen.
  */
 
+import calculations.GPSDistance;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

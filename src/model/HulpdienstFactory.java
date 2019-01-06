@@ -9,10 +9,8 @@ import strategy.*;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 13:29<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Deze factory wordt aangestuursd via de abstracte factory producer en maakt hulpdiensten aan, verkeerstoren zijn ook hulpdiensten
  */
 public class HulpdienstFactory extends AbstractActorFactory {

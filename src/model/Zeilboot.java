@@ -3,10 +3,8 @@ package model;
 import calculations.Coördinaten;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 11:58<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Klasse om zeilboot aan te maken
  */
 public class Zeilboot extends Schepen {

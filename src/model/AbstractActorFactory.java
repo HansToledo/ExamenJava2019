@@ -5,10 +5,8 @@ import enums.Hulpdiensten;
 import enums.Schepen;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 10:59<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Abstracte klasse voor factories
  */
 public abstract class AbstractActorFactory {

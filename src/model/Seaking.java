@@ -3,10 +3,8 @@ package model;
 import calculations.Coördinaten;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 12:05<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Klasse om seaking aan te maken
  */
 public class Seaking extends Vervoermiddel {

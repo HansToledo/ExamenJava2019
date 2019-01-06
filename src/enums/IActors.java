@@ -1,11 +1,9 @@
 package enums;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 28/12/2018<br/>
- * Time: 13:47<br/>
- * To change this template use File | Settings | File Templates.
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
+ * @Purpose: Interface voor enums schepen en hulpdiensten
  */
 public interface IActors {
 }

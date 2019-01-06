@@ -2,8 +2,8 @@ package calculations;
 
 /**
  * @Autor: Peter Raes & Hans Van De Weyer
- * @Project: Examen Januari 2019
- * @Purpose: Coördinaten klasse.
+ *  * @Project: Examen Januari 2019
+ *  * @Purpose: Coördinaten klasse.
  */
 
 public class Coördinaten {

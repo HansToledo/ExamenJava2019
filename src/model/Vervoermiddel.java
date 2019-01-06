@@ -7,10 +7,8 @@ import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 16/12/2018<br/>
- * Time: 19:17<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Abstracte klasse voor vervoermiddelen
  */
 public abstract class Vervoermiddel extends Actor implements INoodObserver {
@@ -35,17 +33,11 @@ public abstract class Vervoermiddel extends Actor implements INoodObserver {
 
         this.status = status;
         this.enumNaam = enumNaam;
-        //this.naam = naam;
         setNaam(naam);
-        //this.snelheid = snelheid;
         setSnelheid(snelheid);
-        //this.grootte = grootte;
         setGrootte(grootte);
-        //this.capaciteit = capaciteit;
         setCapaciteit(capaciteit);
-        //this.koers = koers;
         setKoers(koers);
-        //this.coördinaten = coördinaten;
         setCoördinaten(coördinaten);
         super.setHulpdienstStrategy(hulpdienstStrategy);
     }

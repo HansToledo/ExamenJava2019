@@ -7,10 +7,8 @@ import enums.Hulpdiensten;
 import enums.Schepen;
 
 /**
- * Created by IntelliJ IDEA.<br/>
- * User: peter<br/>
- * Date: 15/12/2018<br/>
- * Time: 13:29<br/>
+ * @Autor: Peter Raes & Hans Van De Weyer
+ * @Project: Examen Januari 2019
  * Factory voor het aanmaken van schepen, toevoegen van schepen aan lijsten in actor klasse, kijken welke verkeertoren dichtste bij en inschrijven bij verkeertoren dichtste bij
  */
 public class SchipFactory extends AbstractActorFactory{
