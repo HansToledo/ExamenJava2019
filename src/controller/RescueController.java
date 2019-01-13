@@ -110,35 +110,43 @@ public class RescueController {
                 displayAlert(Alert.AlertType.WARNING, "OPGEPAST", "Gelieve een redding strategie te bepalen.");
             }
             else {
+                ContextStrategy contextStrategy = new ContextStrategy(new GeenStrategy());
                 for (Vervoermiddel item : redders) {
                     switch (cbStrategy.getValue()) {
                         case ("geenStrategy"):
-                            item.setHulpdienstStrategy(geenStrategy);
-                            gekozenStrategy = geenStrategy;
+                            contextStrategy = new ContextStrategy(new GeenStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                         case ("piratenStrategy"):
-                            item.setHulpdienstStrategy(piratenStrategy);
-                            gekozenStrategy = piratenStrategy;
+                            contextStrategy = new ContextStrategy(new PiratenStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                         case ("brandStrategy"):
-                            item.setHulpdienstStrategy(brandStrategy);
-                            gekozenStrategy = brandStrategy;
+                            contextStrategy = new ContextStrategy(new BrandStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                         case ("gekapseisdStrategy"):
-                            item.setHulpdienstStrategy(gekapseisdStrategy);
-                            gekozenStrategy = gekapseisdStrategy;
+                            contextStrategy = new ContextStrategy(new GekapseisdStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                         case ("stormStrategy"):
-                            item.setHulpdienstStrategy(stormStrategy);
-                            gekozenStrategy = stormStrategy;
+                            contextStrategy = new ContextStrategy(new StormStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                         case ("ziekteStrategy"):
-                            item.setHulpdienstStrategy(ziekteStrategy);
-                            gekozenStrategy = ziekteStrategy;
+                            contextStrategy = new ContextStrategy(new ZiekteStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                         case ("zinkendStrategy"):
-                            item.setHulpdienstStrategy(zinkendStrategy);
-                            gekozenStrategy = zinkendStrategy;
+                            contextStrategy = new ContextStrategy(new ZinkendStrategy());
+                            item.setHulpdienstStrategy(contextStrategy.executeStrategy());
+                            gekozenStrategy = contextStrategy.executeStrategy();
                             break;
                     }
                 }
